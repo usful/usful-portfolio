@@ -6,9 +6,9 @@ import {
     View
 } from 'react-native';
 
-import styles from '../styles';
+import styles from '../../styles';
 
-export default class ProductView extends Component{
+export default class FeatureImageItem extends Component{
     constructor(props){
         super(props);
     }

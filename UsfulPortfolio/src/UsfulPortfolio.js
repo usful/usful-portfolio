@@ -8,8 +8,6 @@ import {
 
 import styles from './styles';
 
-import StoryItem from './components/StoryItem';
-
 export default class UsfulPortfolio extends Component{
     constructor(props){
         super(props);

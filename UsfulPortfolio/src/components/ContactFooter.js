@@ -8,7 +8,7 @@ import {
 
 import styles from '../styles';
 
-export default class ProductView extends Component{
+export default class ContactFooter extends Component{
     constructor(props){
         super(props);
     }

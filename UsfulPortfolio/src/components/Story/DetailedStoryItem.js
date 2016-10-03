@@ -6,9 +6,9 @@ import {
     View
 } from 'react-native';
 
-import styles from '../styles';
+import styles from '../../styles';
 
-export default class ProductView extends Component{
+export default class DetailedStoryItem extends Component{
     constructor(props){
         super(props);
     }
@@ -22,4 +22,6 @@ export default class ProductView extends Component{
         );
 
     }
-}
+}/**
+ * Created by rishabhnag on 2016-10-03.
+ */
