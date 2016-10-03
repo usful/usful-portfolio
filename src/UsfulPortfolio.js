@@ -8,18 +8,17 @@ import {
 
 import styles from './styles';
 
-export default class UsfulPortfolio extends Component{
-    constructor(props){
-        super(props);
-    }
+export default class UsfulPortfolio extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-    render(){
-        return(
-            <View>
-                <Text style={styles.global.title}>Hello World</Text>
-            </View>
+  render() {
+    return (
+      <View>
+        <Text style={styles.global.title}>Hello World</Text>
+      </View>
 
-        );
-
-    }
+    );
+  }
 }

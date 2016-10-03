@@ -1,3 +1,3 @@
-module.exports = {
-    global: require('./styles/global')
-}
+import Styles from './styles/global';
+
+export default Styles;
