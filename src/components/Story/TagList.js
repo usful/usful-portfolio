@@ -14,11 +14,27 @@ export default class TagList extends Component {
 
   render() {
     return (
-      <View>
-        <Text style={styles.title}>Hello World</Text>
+      <View style={style.list}>
+        {this.props.tags.map(function (name, index) {
+            return (
+              <Text key={index} style={style.tag}>{name} | </Text>
+            )
+          }
+        )
+        }
       </View>
-
-    );
-
+    )
   }
 }
+
+const style = StyleSheet.create({
+  tag: {
+    fontFamily: 'Courier New',
+    color: '#B4B4B4',
+    fontSize: 12
+  },
+  list: {
+    flexDirection: 'row',
+    marginTop: 10
+  }
+})
