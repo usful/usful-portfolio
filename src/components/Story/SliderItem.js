@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet,
-    Text,
-    View
+  StyleSheet,
+  Text,
+  View
 } from 'react-native';
 
 import styles from '../../styles';
 
-export default class FooterItem extends Component {
+export default class SliderItem extends Component {
   constructor(props) {
     super(props);
   }

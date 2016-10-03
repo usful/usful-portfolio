@@ -14,8 +14,17 @@ export default class DetailedStoryItem extends Component {
 
   render() {
     return (
-      <View>
-        <Text style={styles.global.title}>Hello World</Text>
+      <View style ={styles.global.container}>
+          <HeaderItem image='' date=''/>
+          <TitleItem title='' />
+          <BodyItem text=''/>
+          <FeatureImageItem image='' byline='' author=''/>
+          <BodyItem text=''/>
+          <SliderItem images=''/>
+          <BodyItem text=''/>
+          <ImageItem image=''/>
+          <BodyItem text=''/>
+          <NextStoryButton title='' image=''/>
       </View>
 
     );

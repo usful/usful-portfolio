@@ -15,11 +15,21 @@ export default class BodyItem extends Component {
 
   render() {
     return (
-      <View>
-        <Text style={styles.global.title}>Hello World</Text>
+      <View style={styles.global.content}>
+        <Text style={style.text}>Hello World</Text>
       </View>
 
     );
 
   }
 }
+
+const style = StyleSheet.create({
+
+  text: {
+    fontFamily: 'Avenir',
+    fontSize: 15,
+    marginHorizontal: 30,
+    flexWrap: 'wrap'
+  }
+});
