@@ -15,8 +15,8 @@ export default class BodyItem extends Component {
 
   render() {
     return (
-      <View style={styles.global.content}>
-        <Text style={style.text}>Hello World</Text>
+      <View style={styles.content}>
+        <Text style={style.text}>{this.props.text}</Text>
       </View>
 
     );
@@ -28,7 +28,7 @@ const style = StyleSheet.create({
 
   text: {
     fontFamily: 'Avenir',
-    fontSize: 15,
+    fontSize: 12,
     marginHorizontal: 30,
     flexWrap: 'wrap'
   }

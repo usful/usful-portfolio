@@ -10,9 +10,8 @@ export default StyleSheet.create({
     width: width
   },
   content: {
-    flex: 1,
     flexDirection: 'column',
-    alignItem: 'center',
+    alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 30
   }

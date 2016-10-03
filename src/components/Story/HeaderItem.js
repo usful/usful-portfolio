@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
-    View
+    Dimensions,
+    View,
+Image
 } from 'react-native';
 
 import styles from '../../styles';
+
+let {width,height} = Dimensions.get('window');
 
 export default class HeaderItem extends Component {
   constructor(props) {
@@ -14,11 +18,29 @@ export default class HeaderItem extends Component {
 
   render() {
     return (
-      <View>
-        <Text style={styles.global.title}>Hello World</Text>
+      <View style={styles.content}>
+        <Image style = {style.image} source={this.props.image}/>
+        <Text style={style.date}>{this.props.date}</Text>
       </View>
 
     );
 
   }
 }
+
+const style = StyleSheet.create({
+
+  date: {
+    alignSelf: 'flex-end',
+    fontSize: 10,
+    color: '#B4B4B4',
+    marginTop: 10,
+    marginRight: 10
+
+  },
+  image: {
+    width: width,
+    height: 200,
+  }
+
+})

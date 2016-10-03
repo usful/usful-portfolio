@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 import styles from './styles';
+import DetailedStoryItem from './components/Story/DetailedStoryItem';
 
 export default class UsfulPortfolio extends Component {
   constructor(props) {
@@ -15,10 +16,7 @@ export default class UsfulPortfolio extends Component {
 
   render() {
     return (
-      <View>
-        <Text style={styles.global.title}>Hello World</Text>
-      </View>
-
+      <DetailedStoryItem />
     );
   }
 }

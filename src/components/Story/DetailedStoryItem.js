@@ -6,6 +6,13 @@ import {
 } from 'react-native';
 
 import styles from '../../styles';
+import HeaderItem from './HeaderItem';
+import TitleItem from './TitleItem';
+import BodyItem from './BodyItem';
+import FeatureImageItem from './FeatureImageItem';
+import SliderItem from './SliderItem';
+import ImageItem from './ImageItem';
+import NextStoryButton from './NextStoryButton';
 
 export default class DetailedStoryItem extends Component {
   constructor(props) {
@@ -14,20 +21,28 @@ export default class DetailedStoryItem extends Component {
 
   render() {
     return (
-      <View style ={styles.global.container}>
-          <HeaderItem image='' date=''/>
-          <TitleItem title='' />
-          <BodyItem text=''/>
-          <FeatureImageItem image='' byline='' author=''/>
-          <BodyItem text=''/>
-          <SliderItem images=''/>
-          <BodyItem text=''/>
-          <ImageItem image=''/>
-          <BodyItem text=''/>
-          <NextStoryButton title='' image=''/>
+      <View style ={styles.container}>
+
+          <HeaderItem image= {require('../../img/350-200.png')} date='SEPTEMBER 30TH, 2016'/>
+
+          <BodyItem text='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'/>
+
+          <BodyItem text='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'/>
+
+          <BodyItem text='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'/>
+
+          <BodyItem text='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'/>
+
       </View>
 
     );
 
   }
 }
+{/*
+
+<TitleItem title='' />
+  <FeatureImageItem image='' byline='' author=''/>
+  <SliderItem images=''/>
+  <ImageItem image=''/>
+  <NextStoryButton title='' image=''/>*/}
