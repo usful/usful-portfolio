@@ -18,9 +18,12 @@ import {
     View
 } from 'react-native';
 
+import InitiativeView from './InitiativeView';
+import StoriesFeed from './StoriesFeed';
+import StoryRow from './Story/StoryRow';
+import ProductView from './ProductView';
+import TopNav from './TopNav';
 
-import FeaturedList from './components/StoriesFeed';
-import TopNav from './components/TopNav';
 
 let {height, width} = Dimensions.get('window');
 const SCROLL_FPS = Math.round(1000/30);
@@ -62,14 +65,12 @@ export default class Portfolio extends Component {
     }
 
     componentDidMount() {
-        this._scrollView.scrollTo({x:375, y:0, animated: false});
+        //this._scrollView.scrollTo({x:375, y:0, animated: false});
     }
 
 
     onStoriesScroll(e){
-        this.setState({
-            offset:e.nativeEvent.contentOffset.y/e.nativeEvent.contentSize.height
-        });
+
     }
 
     onTopNavScroll(e){
@@ -94,18 +95,10 @@ export default class Portfolio extends Component {
             <ScrollView horizontal={true}
                         pagingEnabled={true}
                         ref={(c) => this._scrollView = c}
-
                         onScroll={(e) => this.onTopNavScroll(e)}
                         scrollEventThrottle={SCROLL_FPS}>
 
-                <ScrollView
-                    onScroll={(e) => this.onStoriesScroll(e)}
-                    scrollEventThrottle={SCROLL_FPS}
-                    showsVerticalScollIndicator={false}
-                    style={styles.storiesScroll}
-                >
-                    {stories.map((data,i) => <FeaturedList key={i} title={data.title} author={data.author} offset={this.state.offset} />)}
-                </ScrollView>
+                <ProductView/>
 
                 <ScrollView
                   onScroll={(e) => this.onStoriesScroll(e)}
@@ -113,18 +106,11 @@ export default class Portfolio extends Component {
                   showsVerticalScollIndicator={false}
                   style={styles.storiesScroll}
                 >
-                    {stories.map((data,i) => <FeaturedList key={i} title={data.title} author={data.author} offset={this.state.offset} />)}
+                    {stories.map((data,i) => <StoriesFeed key={i} title={data.title} author={data.author} />)}
                 </ScrollView>
 
 
-                <ScrollView
-                  onScroll={(e) => this.onStoriesScroll(e)}
-                  scrollEventThrottle={SCROLL_FPS}
-                  showsVerticalScollIndicator={false}
-                  style={styles.storiesScroll}
-                >
-                    {stories.map((data,i) => <FeaturedList key={i} title={data.title} author={data.author} offset={this.state.offset} />)}
-                </ScrollView>
+                <InitiativeView/>
             </ScrollView>
             <TopNav tab1Anim={this.state.tab1Anim}
                     tab2Anim={this.state.tab2Anim}

@@ -15,7 +15,7 @@ export default class InitiativeView extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.global.title}>Hello World</Text>
+        <Text style={styles.title}>Hello World</Text>
       </View>
 
     );

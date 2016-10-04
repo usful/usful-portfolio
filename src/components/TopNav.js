@@ -64,7 +64,10 @@ export default class TopNav extends Component {
             tab1Anim : new Animated.Value(1),
             tab2Anim: new Animated.Value(1),
             tab3Anim: new Animated.Value(1)
-        }
+        };
+        this.state.tab1Anim.addListener(({value}) => this.state.tab1Anim = value);
+        this.state.tab2Anim.addListener(({value}) => this.state.tab2Anim = value);
+        this.state.tab3Anim.addListener(({value}) => this.state.tab3Anim = value);
     }
 
     getTextStyle(page){
