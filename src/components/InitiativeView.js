@@ -5,7 +5,7 @@ import {
     View
 } from 'react-native';
 
-import styles from '../styles';
+import global from '../styles';
 
 export default class InitiativeView extends Component {
   constructor(props) {

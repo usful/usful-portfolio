@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import {
     StyleSheet,
-    Text,
-    View
+    Image,
+    View,
+Dimensions
 } from 'react-native';
 
-import styles from '../../styles';
+import global from '../../styles';
+
+let {width,height} = Dimensions.get('window');
 
 export default class ImageItem extends Component {
   constructor(props) {
@@ -14,11 +17,17 @@ export default class ImageItem extends Component {
 
   render() {
     return (
-      <View>
-        <Text style={styles.global.title}>Hello World</Text>
+      <View style= {global.content}>
+        <Image style= {style.image} source= {this.props.image}/>
       </View>
 
     );
 
   }
 }
+
+const style = StyleSheet.create({
+  image: {
+    width: width
+  }
+})

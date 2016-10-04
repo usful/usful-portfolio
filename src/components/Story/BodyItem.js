@@ -6,7 +6,7 @@ import {
     View
 } from 'react-native';
 
-import styles from '../../styles';
+import global from '../../styles';
 
 export default class BodyItem extends Component {
   constructor(props) {
@@ -15,11 +15,21 @@ export default class BodyItem extends Component {
 
   render() {
     return (
-      <View>
-        <Text style={styles.global.title}>Hello World</Text>
+      <View style={global.content}>
+        <Text style={style.text}>{this.props.text}</Text>
       </View>
 
     );
 
   }
 }
+
+const style = StyleSheet.create({
+
+  text: {
+    fontFamily: 'Avenir',
+    fontSize: 12,
+    marginHorizontal: 30,
+    flexWrap: 'wrap'
+  }
+});
