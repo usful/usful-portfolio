@@ -5,7 +5,7 @@ import {
     View
 } from 'react-native';
 
-import styles from '../../styles';
+import global from '../../styles';
 
 export default class TeamCards extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export default class TeamCards extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.title}>Hello World</Text>
+        <Text style={global.title}>Hello World</Text>
       </View>
 
     );

@@ -6,7 +6,7 @@ import {
     Image
 } from 'react-native';
 
-import styles from '../../styles';
+import global from '../../styles';
 
 export default class FeatureImageItem extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export default class FeatureImageItem extends Component {
 
   render() {
     return (
-      <View style={styles.content}>
+      <View style={global.content}>
         <Image style={style.roundImage} source={this.props.image}></Image>
         <Text style={style.byline}>{this.props.byline}</Text>
         <Text style={style.author}>{this.props.author}</Text>

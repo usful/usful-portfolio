@@ -9,7 +9,7 @@ Image
 
 import TagList from './TagList';
 
-import styles from '../../styles';
+import global from '../../styles';
 
 export default class TitleItem extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class TitleItem extends Component {
 
   render() {
     return (
-      <View style= {[styles.content, style.content]}>
+      <View style= {[global.content, style.content]}>
           <View style= {style.row1}>
             <TouchableOpacity>
               <Image style= {style.team} source={require('../../img/judge.png')}></Image>

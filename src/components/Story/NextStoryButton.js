@@ -7,7 +7,7 @@ TouchableOpacity,
     View
 } from 'react-native';
 
-import styles from '../../styles';
+import global from '../../styles';
 
 export default class NextStoryButton extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export default class NextStoryButton extends Component {
   render() {
     return (
       <TouchableOpacity>
-      <View style={[style.content, style.content]}>
+      <View style={style.content}>
         <View style= {style.row1}>
           <Text style={style.title} >{this.props.title}</Text>
           <Text style={style.next}>NEXT STORY</Text>
@@ -41,7 +41,7 @@ const style = StyleSheet.create({
     flexDirection: 'column',
     marginLeft: 20,
     justifyContent: 'center',
-    marginRight: 20
+    marginRight: 35
   },
   row2: {
     flex: 1,

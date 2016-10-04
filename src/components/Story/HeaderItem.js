@@ -7,7 +7,7 @@ import {
 Image
 } from 'react-native';
 
-import styles from '../../styles';
+import global from '../../styles';
 
 let {width,height} = Dimensions.get('window');
 
@@ -18,7 +18,7 @@ export default class HeaderItem extends Component {
 
   render() {
     return (
-      <View style={styles.content}>
+      <View style={global.content}>
         <Image style = {style.image} source={this.props.image}/>
         <Text style={style.date}>{this.props.date}</Text>
       </View>

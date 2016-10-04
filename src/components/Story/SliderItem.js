@@ -5,7 +5,7 @@ import {
   View
 } from 'react-native';
 
-import styles from '../../styles';
+import global from '../../styles';
 
 import ImageSlider from 'react-native-image-slider';
 
@@ -16,7 +16,7 @@ export default class SliderItem extends Component {
 
   render() {
     return (
-      <View style={styles.content}>
+      <View style={global.content}>
         <ImageSlider images={this.props.images} />
       </View>
 

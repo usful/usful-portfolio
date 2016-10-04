@@ -5,7 +5,7 @@ import {
     ScrollView
 } from 'react-native';
 
-import styles from '../../styles';
+import global from '../../styles';
 import HeaderItem from './HeaderItem';
 import TitleItem from './TitleItem';
 import BodyItem from './BodyItem';
@@ -21,7 +21,7 @@ export default class DetailedStoryItem extends Component {
 
   render() {
     return (
-      <ScrollView style ={styles.container}>
+      <ScrollView style ={global.container}>
 
           <HeaderItem image= {require('../../img/350-200.png')} date='SEPTEMBER 30TH, 2016'/>
           <TitleItem title='Nanoleaf and the Usful Team Partner to Brighten Space' />

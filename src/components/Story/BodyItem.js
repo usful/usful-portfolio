@@ -6,7 +6,7 @@ import {
     View
 } from 'react-native';
 
-import styles from '../../styles';
+import global from '../../styles';
 
 export default class BodyItem extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export default class BodyItem extends Component {
 
   render() {
     return (
-      <View style={styles.content}>
+      <View style={global.content}>
         <Text style={style.text}>{this.props.text}</Text>
       </View>
 
