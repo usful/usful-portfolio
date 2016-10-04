@@ -19,17 +19,14 @@ export default class HeaderItem extends Component {
   render() {
     return (
       <View style={global.content}>
-        <Image style = {style.image} source={this.props.image}/>
+        <Image style={style.image} source={this.props.image}/>
         <Text style={style.date}>{this.props.date}</Text>
       </View>
-
     );
-
   }
 }
 
 const style = StyleSheet.create({
-
   date: {
     alignSelf: 'flex-end',
     fontSize: 10,
@@ -42,5 +39,4 @@ const style = StyleSheet.create({
     width: width,
     height: 200,
   }
-
-})
+});

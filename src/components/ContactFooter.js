@@ -17,8 +17,6 @@ export default class ContactFooter extends Component {
       <View>
         <Text style={styles.global.title}>Hello World</Text>
       </View>
-
     );
-
   }
 }

@@ -6,9 +6,11 @@ import {
     ListView
 } from 'react-native';
 
-import DetailedStoryItem from './components/Story/DetailedStoryItem';
-import TagView from './components/TagView';
+import AppData from './AppData';
 
+import DetailedStoryItem from './components/Story/DetailedStoryItem';
+import Portfolio from './components/Portfolio';
+import TagView from './components/TagView';
 
 export default class UsfulPortfolio extends Component {
   constructor(props) {
@@ -17,10 +19,7 @@ export default class UsfulPortfolio extends Component {
 
   render() {
     return (
-      <View>
-        <TagView/>
-        <DetailedStoryItem />
-      </View>
-    );
+      <DetailedStoryItem story={AppData.stories[0]} nextStory={AppData.stories[1]}/>
+     );
   }
 }
