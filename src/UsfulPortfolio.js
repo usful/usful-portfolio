@@ -18,7 +18,6 @@ export default class UsfulPortfolio extends Component {
   render() {
     return (
       <View>
-        <TagView/>
         <DetailedStoryItem />
       </View>
     );
