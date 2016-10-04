@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     StyleSheet,
-    TouchableHighlight,
+    TouchableOpacity,
     Text,
     View,
 Image
@@ -20,12 +20,12 @@ export default class TitleItem extends Component {
     return (
       <View style= {[styles.content, style.content]}>
           <View style= {style.row1}>
-            <TouchableHighlight>
+            <TouchableOpacity>
               <Image style= {style.team} source={require('../../img/judge.png')}></Image>
-            </TouchableHighlight>
-            <TouchableHighlight >
+            </TouchableOpacity>
+            <TouchableOpacity >
               <Image style= {style.share} source={require('../../img/share.png')}></Image>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
           <View style= {style.row2}>
             <Text style={style.title}>{this.props.title}</Text>
