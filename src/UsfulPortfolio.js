@@ -3,12 +3,14 @@ import {
     StyleSheet,
     Text,
     View,
-    ListView
+    ListView,
+ScrollView
 } from 'react-native';
 
 import DetailedStoryItem from './components/Story/DetailedStoryItem';
 import TagView from './components/TagView';
 
+import global from './styles';
 
 export default class UsfulPortfolio extends Component {
   constructor(props) {
@@ -17,9 +19,9 @@ export default class UsfulPortfolio extends Component {
 
   render() {
     return (
-      <View>
+      <ScrollView style= {global.container}>
         <DetailedStoryItem />
-      </View>
+      </ScrollView>
     );
   }
 }
