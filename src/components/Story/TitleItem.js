@@ -7,7 +7,7 @@ import {
 Image
 } from 'react-native';
 
-import TagList from './TagList';
+import TagList from './StoryTagList';
 
 import global from '../../styles';
 
