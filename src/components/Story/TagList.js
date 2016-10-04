@@ -31,7 +31,7 @@ const style = StyleSheet.create({
   tag: {
     fontFamily: 'Courier New',
     color: '#B4B4B4',
-    fontSize: 12
+    fontSize: 10
   },
   list: {
     flexDirection: 'row',

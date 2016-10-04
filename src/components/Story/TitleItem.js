@@ -21,10 +21,10 @@ export default class TitleItem extends Component {
       <View style= {[styles.content, style.content]}>
           <View style= {style.row1}>
             <TouchableHighlight>
-              <Image style= {style.team}></Image>
+              <Image style= {style.team} source={require('../../img/judge.png')}></Image>
             </TouchableHighlight>
-            <TouchableHighlight style= {style.share}>
-              <Image></Image>
+            <TouchableHighlight >
+              <Image style= {style.share} source={require('../../img/share.png')}></Image>
             </TouchableHighlight>
           </View>
           <View style= {style.row2}>
@@ -40,18 +40,29 @@ export default class TitleItem extends Component {
 
 const style = StyleSheet.create({
     content: {
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
   row1: {
       flex: 1,
-      flexDirection: 'column'
+      flexDirection: 'column',
+    alignItems: 'center'
+  },
+  team: {
+    borderRadius: 22,
+    height: 45,
+    width: 45,
+    borderColor: 'transparent',
+    borderWidth: 0.4,
+    marginBottom: 20
+
   },
   row2: {
     flex: 3,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    marginRight: 15
   },
   title: {
-    fontSize: 20,
+    fontSize: 27,
     fontFamily: 'Avenir',
     fontWeight: 'bold',
     flexWrap: 'wrap'
