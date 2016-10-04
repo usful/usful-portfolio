@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import {
-    AppRegistry,
     StyleSheet,
     Text,
-    View
+    View,
+    ListView
 } from 'react-native';
 
-import styles from './styles';
+
+import TagView from './components/TagView';
+
 
 export default class UsfulPortfolio extends Component {
   constructor(props) {
     super(props);
+
   }
 
   render() {
     return (
-      <View>
-        <Text style={styles.global.title}>Hello World</Text>
-      </View>
-
+      <TagView/>
     );
   }
 }
+
