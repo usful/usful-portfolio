@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import {
-    AppRegistry,
     StyleSheet,
     Text,
-    View
+    View,
+    ListView
 } from 'react-native';
 
 import DetailedStoryItem from './components/Story/DetailedStoryItem';
+import TagView from './components/TagView';
 
 
 export default class UsfulPortfolio extends Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
     return (
-      <DetailedStoryItem />
+      <View>
+        <TagView/>
+        <DetailedStoryItem />
+      </View>
     );
   }
 }
