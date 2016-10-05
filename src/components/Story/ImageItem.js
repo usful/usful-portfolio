@@ -17,12 +17,10 @@ export default class ImageItem extends Component {
 
   render() {
     return (
-      <View style= {global.content}>
-        <Image style= {style.image} source= {this.props.image}/>
+      <View style={global.content}>
+        <Image style={style.image} source={this.props.image}/>
       </View>
-
     );
-
   }
 }
 
@@ -30,4 +28,4 @@ const style = StyleSheet.create({
   image: {
     width: width
   }
-})
+});

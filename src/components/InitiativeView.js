@@ -7,7 +7,7 @@ import {
 
 import global from '../styles';
 
-export default class ContactFooter extends Component {
+export default class InitiativeView extends Component {
   constructor(props) {
     super(props);
   }

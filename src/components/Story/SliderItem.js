@@ -19,8 +19,6 @@ export default class SliderItem extends Component {
       <View style={global.content}>
         <ImageSlider images={this.props.images} />
       </View>
-
     );
-
   }
 }

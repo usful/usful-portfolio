@@ -4,6 +4,7 @@ import {StyleSheet, Dimensions} from 'react-native';
 let {width, height} = Dimensions.get('window');
 
 export default StyleSheet.create({
+
     container: {
       flex: 1,
       width: width
@@ -37,5 +38,6 @@ export default StyleSheet.create({
       color: '#999',
       fontSize: 12
     }
+
   }
 );

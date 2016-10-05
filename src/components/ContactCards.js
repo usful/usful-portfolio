@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import {
     Animated,
-    Animation,
     StyleSheet,
-    Dimensions,
     Easing,
     Image,
     Text,
-    ListView,
-    ScrollView,
     TouchableOpacity,
-    Navigator,
     View
 } from 'react-native';
 
-let {height, width} = Dimensions.get('window');
+import Colours from '../styles/Colours';
+
+const TEXT_STYLE = {
+  fontStyle: 'italic',
+  color: Colours.textGrey,
+  fontSize: 18,
+};
 
 let styles = StyleSheet.create({
     container: {
@@ -23,7 +24,6 @@ let styles = StyleSheet.create({
         justifyContent: 'center',
     },
     card: {
-
         borderWidth: 1,
         borderRadius: 20,
         borderColor: '#00BFFF',
@@ -33,8 +33,6 @@ let styles = StyleSheet.create({
         backgroundColor: '#cfebf9',
         alignItems: 'center',
         marginHorizontal:10,
-
-
     },
     cardImage: {
         borderWidth:1,
@@ -52,92 +50,71 @@ let styles = StyleSheet.create({
         paddingTop: 30,
         fontWeight: '600',
         fontSize : 30,
-        color: '#A9A9A9'
-
-
+        color: Colours.textGrey
     },
     textEmail: {
-        fontStyle: 'italic',
-        color: '#A9A9A9',
-        fontSize: 18,
-
+      ... TEXT_STYLE
     },
     textInstagram: {
-        fontStyle: 'italic',
-        color: '#A9A9A9',
-        fontSize: 18,
-
+      ... TEXT_STYLE
     },
     textPhone: {
-        fontStyle: 'italic',
-        color: '#A9A9A9',
-        fontSize: 18,
-
+      ... TEXT_STYLE
     },
     textPositionTitle: {
-        paddingBottom: 20,
-        color: '#A9A9A9',
-        fontSize: 18,
-
+      paddingBottom: 20,
+      color: Colours.textGrey,
+      fontSize: 18,
     },
 });
 
 
 export default class ContactCards extends Component {
 
-    static defaultProps = {
-        index: 0
+  static defaultProps = {
+    index: 0
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      x: 0,
+      y: 0,
+      animate: new Animated.Value(0),
+      totalTabs: this.props.totalTabs
     };
+  }
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            x: 0,
-            y: 0,
-            animate: new Animated.Value(0),
-            totalTabs : this.props.totalTabs
-        };
-    }
+  render() {
 
+    let opacity = this.state.animate.interpolate({
+      inputRange: [0, this.props.index, this.state.totalTabs],
+      outputRange: [0.8, 1, 0.8]
+    });
 
-    _onMoveShouldSetResponder(e) {
-        return true;
-    }
+    let scale = this.state.animate.interpolate({
+      inputRange: [0, this.props.index, this.state.totalTabs],
+      outputRange: [1, 2, 1]
+    });
 
-
-    _onStartShouldSetResponder(e) {
-        return true;
-    }
-
-    render() {
-
-        return (
-            <Animated.View style={[styles.container]}>
-                <Animated.View
-                        onStartShouldSetResponder={this._onStartShouldSetResponder.bind(this)}
-                        onMoveShouldSetResponder={this._onMoveShouldSetResponder.bind(this)}
-                        style={[styles.card,
-                            {opacity: this.state.animate.interpolate({
-                                    inputRange: [0, this.props.index, this.state.totalTabs],
-                                    outputRange: [0.8,1,0.8]})},
-                            {transform: [
-                                {scale: this.state.animate.interpolate({
-                                    inputRange: [0, this.props.index, this.state.totalTabs],
-                                    outputRange: [1, 2, 1]})},
-                                ]}
-                            ]}>
-                    <Image source={{uri: this.props.uri}} style={styles.cardImage} />
-                    <View style={styles.contactInfo}>
-                        <Text style={styles.textName}>Team Member</Text>
-                        <Text style={styles.textPositionTitle}>Position /Contribution</Text>
-                        <Text style={styles.textInstagram}>I: handle</Text>
-                        <Text style={styles.textPhone}>T: @handle </Text>
-                        <Text style={styles.textEmail}>E: name@email.com</Text>
-                    </View>
-                </Animated.View>
-            </Animated.View>
-        );
-    }
+    return (
+      <Animated.View style={[styles.container]}>
+        <Animated.View
+          onStartShouldSetResponder={() => true}
+          onMoveShouldSetResponder={() => true}
+          style={[styles.card, {opacity: opacity, transform: [{scale: scale}]} ]}>
+          <Image source={{uri: this.props.uri}} style={styles.cardImage}/>
+          <View style={styles.contactInfo}>
+            <Text style={styles.textName}>Team Member</Text>
+            <Text style={styles.textPositionTitle}>Position /Contribution</Text>
+            <Text style={styles.textInstagram}>I: handle</Text>
+            <Text style={styles.textPhone}>T: @handle </Text>
+            <Text style={styles.textEmail}>E: name@email.com</Text>
+          </View>
+        </Animated.View>
+      </Animated.View>
+    );
+  }
 }
 
 

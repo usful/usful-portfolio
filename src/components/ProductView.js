@@ -17,7 +17,6 @@ export default class ProductView extends Component {
       <View>
         <Text style={styles.global.title}>Hello World</Text>
       </View>
-
     );
   }
 }
