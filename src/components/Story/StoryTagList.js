@@ -8,6 +8,10 @@ import {
 import global from '../../styles';
 
 export default class TagList extends Component {
+  static defaultProps = {
+    tags: []
+  };
+
   constructor(props) {
     super(props);
   }
@@ -15,13 +19,7 @@ export default class TagList extends Component {
   render() {
     return (
       <View style={style.list}>
-        {this.props.tags.map(function (name, index) {
-            return (
-              <Text key={index} style={style.tag}>{name} | </Text>
-            )
-          }
-        )
-        }
+        {this.props.tags.map((name, index) => <Text key={index} style={style.tag}>{name} | </Text>)}
       </View>
     )
   }
@@ -37,4 +35,4 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 10
   }
-})
+});

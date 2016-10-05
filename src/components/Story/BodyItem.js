@@ -18,14 +18,11 @@ export default class BodyItem extends Component {
       <View style={global.content}>
         <Text style={style.text}>{this.props.text}</Text>
       </View>
-
     );
-
   }
 }
 
 const style = StyleSheet.create({
-
   text: {
     fontFamily: 'Avenir',
     fontSize: 12,

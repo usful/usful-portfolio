@@ -17,8 +17,6 @@ export default class InitiativeView extends Component {
       <View>
         <Text style={styles.global.title}>Hello World</Text>
       </View>
-
     );
-
   }
 }

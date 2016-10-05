@@ -20,9 +20,7 @@ export default class FeatureImageItem extends Component {
         <Text style={style.byline}>{this.props.byline}</Text>
         <Text style={style.author}>{this.props.author}</Text>
       </View>
-
     );
-
   }
 }
 
@@ -49,4 +47,4 @@ const style = StyleSheet.create({
     fontFamily: 'Avenir-Oblique',
 
   }
-})
+});

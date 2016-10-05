@@ -17,21 +17,20 @@ export default class NextStoryButton extends Component {
   render() {
     return (
       <TouchableOpacity>
-      <View style={style.content}>
-        <View style= {style.row1}>
-          <Text style={style.title} >{this.props.title}</Text>
-          <Text style={style.next}>NEXT STORY</Text>
+        <View style={style.content}>
+          <View style={style.row1}>
+            <Text style={style.title}>{this.props.title}</Text>
+            <Text style={style.next}>NEXT STORY</Text>
+          </View>
+          <View style={style.row2}>
+            <Image style={style.image} source={this.props.image}/>
+          </View>
         </View>
-        <View style= {style.row2}>
-          <Image style={style.image} source={this.props.image}/>
-        </View>
-      </View>
-        </TouchableOpacity>
-
+      </TouchableOpacity>
     );
-
   }
 }
+
 const style = StyleSheet.create({
   content: {
     flexDirection: 'row',
@@ -63,5 +62,4 @@ const style = StyleSheet.create({
     fontFamily: 'Avenir',
     alignSelf: 'flex-start'
   }
-
-})
+});
