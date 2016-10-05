@@ -9,7 +9,6 @@ Image,
 Dimensions
 } from 'react-native';
 
-import global from '../../styles';
 import InitiativeRow from './InitiativeRow';
 import ContactFooter from '../ContactFooter';
 

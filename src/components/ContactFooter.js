@@ -9,11 +9,13 @@ TouchableOpacity
 
 import global from '../styles';
 
+import openLink from '../helpers/navigation/openLink';
+
 export default class ContactFooter extends Component {
   static defaultProps = {
-    email: '',
-    phone: '',
-    url: '',
+    email: 'mailto:info@monanetworks.com',
+    phone: 'tel:1234567890',
+    url: 'https://www.joinlane.com',
     address: '46 Stewart St, Toronto, ON, Canada, A1B 2C3'
   }
   constructor(props) {
@@ -25,16 +27,16 @@ export default class ContactFooter extends Component {
       <View style= {global.content}>
         <Text style={styles.title}>Contact Information</Text>
         <View style={styles.iconContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => openLink(this.props.email)} >
             <Image style={styles.icon} source={require('../img/share.png')} />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => openLink(this.props.phone)}>
             <Image style={styles.icon} source={require('../img/phone-call.png')} />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => openLink(this.props.email)}>
             <Image style={styles.icon} source={require('../img/mail.png')} />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => openLink(this.props.url)}>
             <Image style={styles.icon} source={require('../img/internet.png')} />
           </TouchableOpacity>
         </View>
