@@ -3,11 +3,13 @@
 import Model from 'models';
 
 import StoryModel from './StoryModel';
+import InitiativeModel from './InitiativeModel';
 
 const AppDataModel = new Model(
   'AppDataModel',
   {
-    stories: [StoryModel]
+    stories: [StoryModel],
+    initiatives: [InitiativeModel]
   }
 );
 

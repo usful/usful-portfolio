@@ -14,11 +14,10 @@ import DetailedStoryItem from './components/Story/DetailedStoryItem';
 
 import InitiativeView from './components/Initiative/InitiativeView';
 import global from './styles';
-import InitiativesTesterData from './data/InitiativesTesterData';
 
 import Portfolio from './components/Portfolio';
 import TagView from './components/TagView';
-
+import TopNav from './components/TopNav';
 
 export default class UsfulPortfolio extends Component {
   constructor(props) {
@@ -29,13 +28,13 @@ export default class UsfulPortfolio extends Component {
     return (
 
       <ScrollView style= {global.container}>
-        <DetailedStoryItem story={AppData.stories[0]} nextStory={AppData.stories[1]}/>
-        <InitiativeView data={InitiativesTesterData.data}/>
+        <TopNav />
+        <InitiativeView initiatives={AppData.initiatives}/>
       </ScrollView>
     );
 
 
-     );
+
 
   }
 }

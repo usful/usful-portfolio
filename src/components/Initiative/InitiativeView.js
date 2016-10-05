@@ -5,12 +5,15 @@ import {
 ScrollView,
     View,
 ListView,
-Image
+Image,
+Dimensions
 } from 'react-native';
 
 import global from '../../styles';
+import InitiativeRow from './InitiativeRow';
+import ContactFooter from '../ContactFooter';
 
-
+let {width,height} = Dimensions.get('window');
 
 export default class InitiativeView extends Component {
 
@@ -22,11 +25,14 @@ export default class InitiativeView extends Component {
 
   render() {
     return (
-      <View style={global.content}>
-          {this.props.data.map(obj =>
-            <Text style={styles.text}>{obj.description}</Text>
-          )}
-      </View>
+      <ScrollView >
+        <View style={styles.container}>
+          <InitiativeRow initiatives = {this.props.initiatives}/>
+        </View>
+        <View>
+          <ContactFooter />
+        </View>
+      </ScrollView>
 
     );
 
@@ -36,5 +42,16 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     color: '#000'
+  },
+  container: {
+    marginTop: 100,
+    height: height-100,
+    shadowOffset: {
+      height: 4,
+      width: 0
+    },
+    shadowColor: '#000',
+    shadowRadius: 2,
+    shadowOpacity: 0.2
   }
 })
