@@ -8,9 +8,10 @@ ScrollView
 } from 'react-native';
 
 import DetailedStoryItem from './components/Story/DetailedStoryItem';
-import TagView from './components/TagView';
-
+import TopNav from './components/TopNav';
+import InitiativeView from './components/Initiative/InitiativeView';
 import global from './styles';
+import InitiativesTesterData from './data/InitiativesTesterData';
 
 export default class UsfulPortfolio extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ export default class UsfulPortfolio extends Component {
   render() {
     return (
       <ScrollView style= {global.container}>
-        <DetailedStoryItem />
+        <InitiativeView data={InitiativesTesterData.data}/>
       </ScrollView>
     );
   }
