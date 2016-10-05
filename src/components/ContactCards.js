@@ -119,7 +119,7 @@ export default class ContactCards extends Component {
                         style={[styles.card,
                             {opacity: this.state.animate.interpolate({
                                     inputRange: [0, this.props.index, this.state.totalTabs],
-                                    outputRange: [0.8,1,0.8]})},
+                                    outputRange: [0.8, 1, 0.8]})},
                             {transform: [
                                 {scale: this.state.animate.interpolate({
                                     inputRange: [0, this.props.index, this.state.totalTabs],

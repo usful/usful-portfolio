@@ -18,32 +18,27 @@ import {
     View
 } from 'react-native';
 
-import InitiativeView from './InitiativeView';
 import StoriesFeed from './StoriesFeed';
-import StoryRow from './Story/StoryRow';
-import ProductView from './ProductView';
 import TopNav from './TopNav';
 
 
-let {height, width} = Dimensions.get('window');
+let {width, height} = Dimensions.get('window');
 const SCROLL_FPS = Math.round(1000/30);
 
 let stories = [
     {title: 'Story #1 Title Goes Here', author: "Merc", message: "something goes here", tags: ["erer", "tag2", "tag3"]},
     {title: 'Story #2 Title Goes Here', author: "Aaron", message: "something goes hereidnewhtjewtew", tags: ["erer", "tag2", "tag3"]},
-    {title: 'Story #3 Title Goes Here', author:" JAM", message: "random hahaaawew", tags: ["erer", "tag2", "tag3"]}
+    {title: 'Story #3 Title Goes Here', author:" JAM", message: "random hahaaawew", tags: ["erer", "tag2", "tag3"]},
+    {title: 'Story #4 Title Goes Here', author:" JAM", message: "random hahaaawew", tags: ["erer", "tag2", "tag3"]}
 ];
 
 let styles = StyleSheet.create({
 
     container: {
         backgroundColor: '#000',
-        flex: 1,
-    },
+        flex:1,
+        width: width
 
-    page: {
-        height: height,
-        width: width,
     },
     storiesScroll: {
         backgroundColor: '#000',
@@ -59,64 +54,83 @@ export default class Portfolio extends Component {
         super(props);
 
         this.state = {
-            page: 1,
-            offset: 0,
+            previousIndex: 0,
+            index: 0,
+            pageTransition: 0,
         };
     }
 
-    componentDidMount() {
-        //this._scrollView.scrollTo({x:375, y:0, animated: false});
+    shouldComponentUpdate(nextProps,nextState){
+        if (nextState.index !== this.state.index) return true;
+        if (nextState.pageTransition !== this.state.pageTransition) return true;
+        if (nextState.previousIndex !== this.state.previousIndex) return true;
+
+        return false;
     }
 
-
-    onStoriesScroll(e){
-
+    componentDidUpdate(){
     }
 
-    onTopNavScroll(e){
+    swipeEnds(e) {
+
         if ((e.nativeEvent.contentOffset.x % width) === 0) {
-            let newPage = e.nativeEvent.contentOffset.x / width;
 
-            if (this.state.page !== newPage) {
+            let oldIndex = this.state.index;
+            let newPage = e.nativeEvent.contentOffset.x / width
+            if (oldIndex !== newPage) {
+
                 this.setState({
-                    page: newPage,
-                    currentTab : newPage
-                })
+                    previousIndex: oldIndex,
+                    index : newPage,
+
+                });
             }
         }
+    }
+    onTopNavScroll(e){
+
+
+        let pageTransition = (e.nativeEvent.contentOffset.x % width) / width;
+        let nowIndex = Math.floor(e.nativeEvent.contentOffset.x / width);
+
+        this.setState({
+            pageTransition: pageTransition + nowIndex
+        });
+
     }
 
     render() {
         return(
         <View style={styles.container}>
 
-
-
             <ScrollView horizontal={true}
                         pagingEnabled={true}
-                        ref={(c) => this._scrollView = c}
-                        onScroll={(e) => this.onTopNavScroll(e)}
-                        scrollEventThrottle={SCROLL_FPS}>
+                        onScroll={(e) => {this.onTopNavScroll(e)}}
+                        scrollEventThrottle={SCROLL_FPS}
+                        onMomentumScrollEnd={(e) => this.swipeEnds(e)}>
 
-                <ProductView/>
+                <ScrollView scrollEventThrottle={SCROLL_FPS}
+                            showsVerticalScollIndicator={false}
+                            style={styles.storiesScroll}>
+                    {stories.map((data,i) => <StoriesFeed key={i} title={data.title} author={data.author} />)}
+                </ScrollView>
 
-                <ScrollView
-                  onScroll={(e) => this.onStoriesScroll(e)}
-                  scrollEventThrottle={SCROLL_FPS}
-                  showsVerticalScollIndicator={false}
-                  style={styles.storiesScroll}
-                >
+                <ScrollView scrollEventThrottle={SCROLL_FPS}
+                            showsVerticalScollIndicator={false}
+                            style={styles.storiesScroll}>
                     {stories.map((data,i) => <StoriesFeed key={i} title={data.title} author={data.author} />)}
                 </ScrollView>
 
 
-                <InitiativeView/>
+                <ScrollView scrollEventThrottle={SCROLL_FPS}
+                            showsVerticalScollIndicator={false}
+                            style={styles.storiesScroll}>
+                    {stories.map((data,i) => <StoriesFeed key={i} title={data.title} author={data.author} />)}
+                </ScrollView>
             </ScrollView>
-            <TopNav tab1Anim={this.state.tab1Anim}
-                    tab2Anim={this.state.tab2Anim}
-                    tab3Anim={this.state.tab3Anim}
-                    currentTab={this.state.currentTab}
-                    page={this.state.page}
+            <TopNav
+                    previousIndex={this.state.previousIndex}
+                    index={this.state.index}
                     pageTransition={this.state.pageTransition} />
 
         </View>);
