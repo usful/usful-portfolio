@@ -26,12 +26,6 @@ export default class ContactFooter extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      email: this.props.info[this.props.card].email,
-      phone: this.props.info[this.props.card].phone,
-      url: this.props.info[this.props.card].url,
-      address: this.props.info[this.props.card].address
-    }
 
   }
   shouldComponentUpdate(nextProps,nextState) {
