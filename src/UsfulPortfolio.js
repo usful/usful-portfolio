@@ -11,7 +11,7 @@ import AppData from './AppData';
 
 import DetailedStoryItem from './components/Story/DetailedStoryItem';
 
-
+import ProductView from './components/Product/ProductView';
 import InitiativeView from './components/Initiative/InitiativeView';
 import global from './styles';
 
@@ -24,12 +24,15 @@ export default class UsfulPortfolio extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    console.log(AppData.products[1].address);
+}
   render() {
     return (
 
       <ScrollView style= {global.container}>
         <TopNav />
-        <InitiativeView initiatives={AppData.initiatives}/>
+        <ProductView products={AppData.products}/>
       </ScrollView>
     );
 

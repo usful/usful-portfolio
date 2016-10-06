@@ -14,7 +14,7 @@ import InitiativeCard from './InitiativeCard';
 let {width, height} = Dimensions.get('window');
 
 
-export default class InitiativeView extends Component {
+export default class InitiativeRow extends Component {
 
   static defaultProps = {
     initiatives: [{

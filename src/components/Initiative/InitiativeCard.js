@@ -12,12 +12,11 @@ import global from '../../styles';
 
 
 
-export default class InitiativeView extends Component {
+export default class InitiativeCard extends Component {
 
   static defaultProps = {
     initiatives: [{
       name : '',
-      description: ''
     }]
 
   };
