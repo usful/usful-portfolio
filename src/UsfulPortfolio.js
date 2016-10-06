@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet,
-    Text,
-    View,
-    ListView
+  StyleSheet,
+  Text,
+  View,
+  ListView
 } from 'react-native';
 
 import AppData from './AppData';
@@ -20,6 +20,6 @@ export default class UsfulPortfolio extends Component {
   render() {
     return (
       <DetailedStoryItem story={AppData.stories[0]} nextStory={AppData.stories[1]}/>
-     );
+    );
   }
 }
