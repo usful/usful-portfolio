@@ -13,7 +13,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-let sampleText = `Welcoming Text goes here.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.`;
+let words = `Welcoming Text goes here. Lorem Ipsum is simply dummy text of the printing and typesetting industry.`;
 
 let styles = StyleSheet.create({
 
@@ -65,30 +65,25 @@ export default class EmailInput extends Component {
       email: '',
       valid: false,
       emailFadeIn: new Animated.Value(0),
-      wordsFadeIn: new Animated.Value(0)
     };
   }
 
   componentDidMount(){
-    Animated.sequence([
-      Animated.timing(
-        this.state.wordsFadeIn,
-        {toValue: 1, duration: 2000,}
-      ),
-      Animated.timing(
-        this.state.emailFadeIn,
-        {toValue: 1, duration: 2000,}
-      )
 
-    ]).start();
+    let animationArray = [];
+    for (let anim of this.anims) {
+      animationArray.push(Animated.timing(anim, {toValue: 1, duration: 500}));
+    }
+    animationArray.push(Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}));
+    Animated.sequence(animationArray).start();
   }
+
 
   getEmailValidationText() {
     if (this.state.valid) {
-      return "You are good"
+      return <Text>"You are good"</Text>;
     }
-
-    return "Email is invalid, please try again!"
+    return <Text>"Email is invalid, please try again!"</Text>;
   }
 
   validateEmail(email) {
@@ -111,18 +106,19 @@ export default class EmailInput extends Component {
     })
   }
 
-  //http://blog.arjun.io/react-native/mobile/cross-platform/2016/04/01/handling-the-keyboard-in-react-native.html
-
-
   render(){
+
+    this.anims = this.anims || words.split(' ').map(() => new Animated.Value(0));
 
     return(
       <View style={styles.container}>
 
-        <Animated.Text style={[styles.welcomeText,{opacity: this.state.wordsFadeIn}]}
-              numberOfLines={6}>
-          {sampleText}
-        </Animated.Text>
+        <Text style={styles.welcomeText}>
+
+        {words.split(' ').map((word,i) => <Animated.Text key={i}
+                                                      style={[{paddingVertical:15},{opacity: this.anims[i]}]}>{` ` + word}</Animated.Text>)}
+          </Text>
+
 
         <Animated.View style={{opacity: this.state.emailFadeIn}}>
 
