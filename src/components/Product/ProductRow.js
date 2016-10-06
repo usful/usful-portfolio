@@ -34,11 +34,10 @@ export default class ProductRow extends Component {
 
   handleScroll(e) {
 
-    if(e.nativeEvent.contentOffset.x/292 % 1 <= 0.2) {
+    if(e.nativeEvent.contentOffset.x/292 % 1 <= 0.2 && this.state.card !== (Math.round(e.nativeEvent.contentOffset.x /292))) {
       this.setState({
         card: (Math.round(e.nativeEvent.contentOffset.x /292))
     })
-
     }
   }
 
