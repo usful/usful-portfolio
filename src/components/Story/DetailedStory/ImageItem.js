@@ -5,8 +5,7 @@ import {
     View,
 Dimensions
 } from 'react-native';
-
-import global from '../../styles';
+import global from '../../../styles';
 
 let {width,height} = Dimensions.get('window');
 

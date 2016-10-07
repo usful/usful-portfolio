@@ -14,7 +14,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import AppData from './AppData';
 
-import DetailedStoryItem from './components/Story/DetailedStoryItem';
+import DetailedStoryItem from './components/Story/DetailedStory/DetailedStoryItem';
 import Portfolio from './components/Portfolio';
 import TagView from './components/TagView';
 
@@ -27,18 +27,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#999'
   }
 });
-
-const DetailedStoryDemoScene = {
-  id: 'DetailedStoryDemoScene'
-};
-
-const MainNavDemoScene = {
-  id: 'MainNavDemoScene'
-};
-
-const TagListDemoScene = {
-  id: 'TagListDemoScene'
-};
 
 export default class UsfulPortfolio extends Component {
   constructor(props) {
@@ -79,32 +67,18 @@ export default class UsfulPortfolio extends Component {
   }
 
   renderScene(route, navigator) {
+    let globalNavigatorProps = {navigator};
     function getScene() {
       switch (route.id) {
-        case 'DetailedStoryDemoScene': {
-          return <DetailedStoryItem story={AppData.stories[0]} nextStory={AppData.stories[1]}/>;
+        case 'DetailedStoryScene': {
+          return <DetailedStoryItem story={AppData.stories[route.storyId]} nextStory={AppData.stories[route.storyId + 1]}
+                                    {...globalNavigatorProps}/>;
         }
-        case 'MainNavDemoScene': {
-          return <Portfolio/>;
+        case 'MainNavScene': {
+          return <Portfolio
+            {...globalNavigatorProps}/>;
         }
-        case 'TagListDemoScene': {
-          return <TagView/>;
-        }
-        case 'StartScene': {
-          return (
-            <View>
-              <TouchableOpacity onPress={() => navigator.push(DetailedStoryDemoScene)}>
-                <Text>Detailed Story Demo</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigator.push(TagListDemoScene)}>
-                <Text>Tag List Demo</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigator.push(MainNavDemoScene)}>
-                <Text>Main Nav Demo</Text>
-              </TouchableOpacity>
-            </View>
-          )
-        }
+
       }
     }
 
@@ -117,7 +91,7 @@ export default class UsfulPortfolio extends Component {
         <StatusBar translucent={true} backgroundColor="rgba(0,0,0,0.2)"/>
         <Navigator
           ref="navigator"
-          initialRoute={{id: 'StartScene'}}
+          initialRoute={{id: 'MainNavScene'}}
           configureScene={() => this.configureScene()}
           renderScene={(route, navigator) => this.renderScene(route, navigator)}
           navigationBar={<Navigator.NavigationBar routeMapper={this.routeMapper} style={styles.navBar}/>}

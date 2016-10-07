@@ -7,16 +7,24 @@ TouchableOpacity,
     View
 } from 'react-native';
 
-import global from '../../styles';
+import global from '../../../styles';
 
 export default class NextStoryButton extends Component {
   constructor(props) {
     super(props);
   }
-
+_nextStory(e){
+  {this.props.navigator.push(
+    {
+      id: 'DetailedStoryScene',
+      storyId: 1
+    }
+  )}
+}
   render() {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={(e)=>this._nextStory(e)}>
         <View style={style.content}>
           <View style={style.row1}>
             <Text style={style.title}>{this.props.title}</Text>

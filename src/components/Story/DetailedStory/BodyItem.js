@@ -6,7 +6,7 @@ import {
     View
 } from 'react-native';
 
-import global from '../../styles';
+import global from '../../../styles';
 
 export default class BodyItem extends Component {
   constructor(props) {

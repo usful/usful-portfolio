@@ -5,7 +5,7 @@ import {
     View
 } from 'react-native';
 
-import global from '../../styles';
+import global from '../../../styles';
 
 export default class TagList extends Component {
   static defaultProps = {
