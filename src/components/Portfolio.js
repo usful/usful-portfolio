@@ -57,6 +57,8 @@ export default class Portfolio extends Component {
             previousIndex: 0,
             index: 0,
             pageTransition: 0,
+            hideNavBar: false,
+            hideAnimation: new Animated.Value(1)
         };
     }
 
@@ -64,12 +66,11 @@ export default class Portfolio extends Component {
         if (nextState.index !== this.state.index) return true;
         if (nextState.pageTransition !== this.state.pageTransition) return true;
         if (nextState.previousIndex !== this.state.previousIndex) return true;
-
+        if (nextState.hideNavBar !== this.state.hideNavBar) return true;
+        if (nextState.hideAnimation !== this.state.hideAnimation) return true;
         return false;
     }
 
-    componentDidUpdate(){
-    }
 
     swipeEnds(e) {
 
@@ -88,52 +89,75 @@ export default class Portfolio extends Component {
         }
     }
     onTopNavScroll(e){
-
-
         let pageTransition = (e.nativeEvent.contentOffset.x % width) / width;
         let nowIndex = Math.floor(e.nativeEvent.contentOffset.x / width);
-
         this.setState({
             pageTransition: pageTransition + nowIndex
         });
+    }
 
+    onStoriesScroll(e){
+      console.log(e.nativeEvent.contentOffset.y);
+    }
+
+    storiesScrollStarts(e) {
+      if(e.nativeEvent.contentOffset.y > 0) {
+        this.setState({hideNavBar: true})
+      } else {
+        console.log("show");
+        this.setState({hideNavBar: false})
+      }
+    }
+
+    storiesScrollEnds(e){
+      console.log("ends");
+      setTimeout(
+        () => { this.setState({hideNavBar: false}) },
+        2000
+      );
     }
 
     render() {
-        return(
-        <View style={styles.container}>
+          return(
+          <View style={styles.container}>
+              <ScrollView horizontal={true}
+                          pagingEnabled={true}
+                          onScroll={(e) => {this.onTopNavScroll(e)}}
+                          scrollEventThrottle={SCROLL_FPS}
+                          onMomentumScrollEnd={(e) => this.swipeEnds(e)}>
 
-            <ScrollView horizontal={true}
-                        pagingEnabled={true}
-                        onScroll={(e) => {this.onTopNavScroll(e)}}
-                        scrollEventThrottle={SCROLL_FPS}
-                        onMomentumScrollEnd={(e) => this.swipeEnds(e)}>
+                  <ScrollView scrollEventThrottle={SCROLL_FPS}
+                              showsVerticalScollIndicator={false}
+                              style={styles.storiesScroll}>
+                      {stories.map((data,i) => <StoriesFeed key={i} title={data.title} author={data.author} />)}
+                  </ScrollView>
 
-                <ScrollView scrollEventThrottle={SCROLL_FPS}
-                            showsVerticalScollIndicator={false}
-                            style={styles.storiesScroll}>
-                    {stories.map((data,i) => <StoriesFeed key={i} title={data.title} author={data.author} />)}
-                </ScrollView>
-
-                <ScrollView scrollEventThrottle={SCROLL_FPS}
-                            showsVerticalScollIndicator={false}
-                            style={styles.storiesScroll}>
-                    {stories.map((data,i) => <StoriesFeed key={i} title={data.title} author={data.author} />)}
-                </ScrollView>
+                  <ScrollView scrollEventThrottle={SCROLL_FPS}
+                              showsVerticalScollIndicator={false}
+                              style={styles.storiesScroll}
+                              onScroll={(e) => this.onStoriesScroll(e)}
+                              onMomentumScrollBegin={(e) => this.storiesScrollStarts(e)}
+                              onMomentumScrollEnd={(e) => this.storiesScrollEnds(e)}
+                  >
+                      {stories.map((data,i) => <StoriesFeed key={i} title={data.title} author={data.author} />)}
+                  </ScrollView>
 
 
-                <ScrollView scrollEventThrottle={SCROLL_FPS}
-                            showsVerticalScollIndicator={false}
-                            style={styles.storiesScroll}>
-                    {stories.map((data,i) => <StoriesFeed key={i} title={data.title} author={data.author} />)}
-                </ScrollView>
-            </ScrollView>
-            <TopNav
-                    previousIndex={this.state.previousIndex}
-                    index={this.state.index}
-                    pageTransition={this.state.pageTransition} />
+                  <ScrollView scrollEventThrottle={SCROLL_FPS}
+                              showsVerticalScollIndicator={false}
+                              style={styles.storiesScroll}>
+                      {stories.map((data,i) => <StoriesFeed key={i} title={data.title} author={data.author} />)}
+                  </ScrollView>
+              </ScrollView>
+              <TopNav
+                      hideNavBar={this.state.hideNavBar}
+                      previousIndex={this.state.previousIndex}
+                      index={this.state.index}
+                      pageTransition={this.state.pageTransition}
 
-        </View>);
-    }
+              />
 
-}
+          </View>);
+      }
+
+  }
