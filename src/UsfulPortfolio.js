@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Alert,
   StatusBar,
   StyleSheet,
   Text,
@@ -9,16 +10,20 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/Ionicons';
+
 import AppData from './AppData';
 
 import DetailedStoryItem from './components/Story/DetailedStoryItem';
 import Portfolio from './components/Portfolio';
 import TagView from './components/TagView';
 
+const NAV_BAR_HEIGHT = 50;
+
 const styles = StyleSheet.create({
   navBar: {
-    padding: 10,
-    height: 40,
+    paddingVertical: 10,
+    height: NAV_BAR_HEIGHT,
     backgroundColor: '#999'
   }
 });
@@ -46,17 +51,25 @@ export default class UsfulPortfolio extends Component {
       LeftButton: function (route, navigator, index, navState) {
         return (
           <TouchableOpacity onPress={() => navigator.pop()}>
-            <Text>Back</Text>
+            <View style={{paddingHorizontal: 10}}>
+              <Icon name="ios-arrow-back" size={25} color="#ffffff"/>
+            </View>
           </TouchableOpacity>
         );
       },
 
       RightButton: function (route, navigator, index, navState) {
-        return <Text>Right</Text>
+        return (
+          <TouchableOpacity onPress={() => Alert.alert('Menu?')}>
+            <View style={{paddingHorizontal: 10}}>
+              <Icon name="ios-menu" size={25} color="#ffffff"/>
+            </View>
+          </TouchableOpacity>
+        );
       },
 
       Title: function (route, navigator, index, navState) {
-        return <Text>{route.id}</Text>;
+        return <Text style={{color: '#fff'}}>{route.id}</Text>;
       }
     };
   }
@@ -95,7 +108,7 @@ export default class UsfulPortfolio extends Component {
       }
     }
 
-    return <View style={{flex: 1, marginTop: 40}}>{getScene()}</View>;
+    return <View style={{flex: 1, marginTop: NAV_BAR_HEIGHT}}>{getScene()}</View>;
   }
 
   render() {
