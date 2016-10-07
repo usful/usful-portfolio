@@ -18,9 +18,12 @@ let {height, width} = Dimensions.get('window');
 
 let styles = StyleSheet.create({
     container: {
+
         alignItems: 'center',
         flex: 1,
         justifyContent: 'center',
+        marginHorizontal:-50,
+
     },
     card: {
 
@@ -32,14 +35,12 @@ let styles = StyleSheet.create({
         paddingVertical: 30,
         backgroundColor: '#cfebf9',
         alignItems: 'center',
-        marginHorizontal:10,
-
+        marginHorizontal:-0,
 
     },
     cardImage: {
         borderWidth:1,
         borderColor: '#FFF',
-
         height: 180,
         borderRadius: 90,
         width: 180,
@@ -49,18 +50,16 @@ let styles = StyleSheet.create({
         alignItems: 'center'
     },
     textName: {
-        paddingTop: 30,
+        color: '#A9A9A9',
         fontWeight: '600',
         fontSize : 30,
-        color: '#A9A9A9'
-
+        paddingTop: 30,
 
     },
     textEmail: {
         fontStyle: 'italic',
         color: '#A9A9A9',
         fontSize: 18,
-
     },
     textInstagram: {
         fontStyle: 'italic',
@@ -82,23 +81,46 @@ let styles = StyleSheet.create({
     },
 });
 
-
+let animate =  new Animated.Value(0);
 export default class ContactCards extends Component {
 
     static defaultProps = {
-        index: 0
+        index: 0,
+        totalTabs:0,
     };
 
     constructor(props) {
         super(props);
-        this.state = {
-            x: 0,
-            y: 0,
-            animate: new Animated.Value(0),
-            totalTabs : this.props.totalTabs
-        };
+
     }
 
+    getZIndex(){
+      /* if (page == this.props.index) {
+        return {
+          zIndex: 2
+        }
+      } else if (page - 1 == this.props.index || page + 1 == this.props.index) {
+        return {
+          zIndex: 1
+        }
+      } else {
+        return {
+          zIndex: 0
+        }
+      } */
+    }
+
+    shouldComponentUpdate(nextProps, nextState){
+      if (nextProps.page !== this.props.index) return true;
+      if (nextProps.pageTransition !== this.props.pageTransition) {
+        let max = nextProps.pageTransition;
+        animate.setValue(max);
+        return true;
+      }
+      if(nextProps.totalTabs !== this.props.totalTabs) return true;
+      if(nextProps.uri !== this.props.uri) return true;
+      return false;
+    }
 
     _onMoveShouldSetResponder(e) {
         return true;
@@ -110,22 +132,28 @@ export default class ContactCards extends Component {
     }
 
     render() {
-
         return (
-            <Animated.View style={[styles.container]}>
+            <Animated.View style={[styles.container,this.getZIndex()]}>
                 <Animated.View
                         onStartShouldSetResponder={this._onStartShouldSetResponder.bind(this)}
                         onMoveShouldSetResponder={this._onMoveShouldSetResponder.bind(this)}
                         style={[styles.card,
-                            {opacity: this.state.animate.interpolate({
-                                    inputRange: [0, this.props.index, this.state.totalTabs],
-                                    outputRange: [0.8, 1, 0.8]})},
-                            {transform: [
-                                {scale: this.state.animate.interpolate({
-                                    inputRange: [0, this.props.index, this.state.totalTabs],
-                                    outputRange: [1, 2, 1]})},
-                                ]}
-                            ]}>
+                          {opacity: animate.interpolate({
+                          inputRange: [0, (this.props.index /this.props.totalTabs), 1],
+                          outputRange: [0.8, 1, 0.8]})},
+                        {transform: [
+                        {scale: animate.interpolate({
+                          inputRange: [0, (this.props.index /this.props.totalTabs), 1],
+                          outputRange: [0.5, 1, 0.8]})},
+
+                        {translateX: animate.interpolate({
+                          inputRange: [0, (this.props.index /this.props.totalTabs), 1],
+                          outputRange: [-20, 0, 20]
+                        })},
+                        {perspective: animate.interpolate({
+                          inputRange: [0, (this.props.index /this.props.totalTabs), 1],
+                          outputRange: [1, 1000 ,1]
+                        })}]}]}>
                     <Image source={{uri: this.props.uri}} style={styles.cardImage} />
                     <View style={styles.contactInfo}>
                         <Text style={styles.textName}>Team Member</Text>

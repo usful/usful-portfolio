@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import {
-  Animated,
-  Animation,
-  StyleSheet,
   Dimensions,
-  Easing,
-  Image,
-  Text,
-  ListView,
+  StyleSheet,
   ScrollView,
-  TouchableOpacity,
-  Navigator,
   View
 } from 'react-native';
 
@@ -28,26 +20,29 @@ let styles = StyleSheet.create({
   scrollView: {
     backgroundColor: '#FFFFFF',
     height: 300,
+    paddingHorizontal: 100,
   },
 });
-
 
 export default class Team extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      page: 0
-
+      page: 0,
+      pageTransition: 0
     };
   }
 
   _onScroll(e){
+    let fract = (e.nativeEvent.contentOffset.x/ width) / cards.length;
+    this.setState({
+      pageTransition: fract
+    });
   }
 
   render() {
     return (
-
       <ScrollView
         decelerationRate={0}
         directionalLockEnabled={true}
@@ -55,11 +50,16 @@ export default class Team extends Component {
         onScroll={(e) =>this._onScroll(e)}
         ref={(scrollView) => { _scrollView = scrollView; }}
         scrollEventThrottle={32}
-        snapToInterval={320}
+        snapToInterval={260}
         snapToAlignment= 'center'
         style={[styles.scrollView]}
-        zoomScale={1}>
-        {cards.map((data, i) => <ContactCards key={i} totalTabs={cards.length} index={i} uri={data.url} page={this.state.page} />)}
+        >
+        {cards.map((data, i) => <ContactCards key={i}
+                                              index={i}
+                                              page={this.state.page}
+                                              pageTransition={this.state.pageTransition}
+                                              totalTabs={cards.length}
+                                              uri={data.url}  />)}
       </ScrollView>
     );
   }
