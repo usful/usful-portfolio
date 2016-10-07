@@ -56,7 +56,7 @@ export default class UsfulPortfolio extends Component {
       },
 
       Title: function (route, navigator, index, navState) {
-        return <Text>{route.name}</Text>;
+        return <Text>{route.id}</Text>;
       }
     };
   }
