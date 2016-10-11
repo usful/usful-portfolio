@@ -1,67 +1,67 @@
 import React, { Component } from 'react';
 import {
-  Dimensions,
+  StatusBar,
   StyleSheet,
-  ScrollView,
+  Image,
+  Text,
   View
 } from 'react-native';
-
-
-let cards = [{url: 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.1997/p128x128/851549_767334479959628_274486868_n.png'},
-  {url: 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851561_767334496626293_1958532586_n.png'},
-  {url: 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851575_767334539959622_441598241_n.png'},
-  {url: 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851583_767334573292952_1519550680_n.png'}];
-
-
-let {height, width} = Dimensions.get('window');
+import SwipeSelector from 'react-native-swipe-selector';
 import ContactCards from './ContactCards';
 
-let styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: '#FFFFFF',
-    height: 300,
-    paddingHorizontal: 100,
-  },
-});
-
-export default class Team extends Component {
+export default class ExampleSwipe extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      page: 0,
-      pageTransition: 0
+      num: 0
     };
-  }
 
-  _onScroll(e){
-    let fract = (e.nativeEvent.contentOffset.x/ width) / cards.length;
-    this.setState({
-      pageTransition: fract
-    });
+    this.elements = [
+    ];
   }
 
   render() {
+
+    let elements = [].concat(this.elements).concat(
+      [
+        {id:1, name: "name1", jobPosition: "dosth", ig: "@asgdfgd"},
+        {id: 2, name: "name2", jobPosition: "dosth2", ig: "@a2fgd"},
+        {id: 3,name: "name3", jobPosition: "dosth3", ig: "@asgd2223fgd"},
+        {id: 4,name: "name4", jobPosition: "dosth4", ig: "@444fgd"},
+      ]);
+
     return (
-      <ScrollView
-        decelerationRate={0}
-        directionalLockEnabled={true}
-        horizontal={true}
-        onScroll={(e) =>this._onScroll(e)}
-        ref={(scrollView) => { _scrollView = scrollView; }}
-        scrollEventThrottle={32}
-        snapToInterval={260}
-        snapToAlignment= 'center'
-        style={[styles.scrollView]}
+      <View style={styles.container}>
+        <StatusBar hidden={true} />
+        <SwipeSelector onChange={
+          ({index:index}) => {
+            this.setState({num: index})
+          }
+        }
+                       leftPoint= {{x: -150, y: -50}}
+                       rightPoint= {{x: 150, y: -50}}
+                       scalingOptions={{padRightItems: 1, padLeftItems: 1}}
         >
-        {cards.map((data, i) => <ContactCards key={i}
-                                              index={i}
-                                              page={this.state.page}
-                                              pageTransition={this.state.pageTransition}
-                                              totalTabs={cards.length}
-                                              uri={data.url}  />)}
-      </ScrollView>
+          {elements.map((member,i) => <View id={i.toString()} key={i.toString()}>
+            <ContactCards   /></View>
+          )}
+        </SwipeSelector>
+
+      </View>
+
     );
   }
-
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF'
+  },
+  transparentView: {
+    backgroundColor: '#00000000'
+  }
+});
