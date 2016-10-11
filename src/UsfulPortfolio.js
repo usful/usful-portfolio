@@ -71,8 +71,8 @@ export default class UsfulPortfolio extends Component {
     function getScene() {
       switch (route.id) {
         case 'DetailedStoryScene': {
-          let story = AppData.stories.find(x => x.id === route.storyId));
-          return <DetailedStoryItem story={story} nextStory={AppData.stories[storyId + 1] || AppData.stories[0]}
+          let storyId = AppData.stories.indexOf(AppData.stories.find(x => x.id === route.storyId));
+          return <DetailedStoryItem story={AppData.stories[storyId]} nextStory={AppData.stories[storyId + 1] || AppData.stories[0]}
                                     {...globalNavigatorProps}/>;
         }
         case 'MainNavScene': {
