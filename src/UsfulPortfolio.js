@@ -13,7 +13,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import Navigation from './helpers/Navigation';
 import AppData from './AppData';
-
+import Team from './components/Team';
 import DetailedStoryItem from './components/Story/DetailedStory/DetailedStoryItem';
 import Portfolio from './components/Portfolio';
 import TagView from './components/TagView';
@@ -41,13 +41,19 @@ export default class UsfulPortfolio extends Component {
       console.log(route);
       switch (route.id) {
         case 'DetailedStoryScene': {
+
           let story = AppData.stories.findIndex(x => x.id === route.storyId);
           return <DetailedStoryItem story={AppData.stories[story]} nextStory={AppData.stories[story + 1] || AppData.stories[0]}
           />;
+
         }
         case 'MainNavScene': {
           return <Portfolio
             />;
+        }
+        case 'ContactCardScene': {
+          return <Team
+            {...globalNavigatorProps}/>;
         }
 
       }

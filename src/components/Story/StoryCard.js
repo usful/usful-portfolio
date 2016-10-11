@@ -62,7 +62,9 @@ export default class StoryCard extends Component {
 
 
   openStories(e) {
+
     Navigation.push({id: Navigation.DETAILED_STORY_SCENE.id, storyId: this.props.id});
+
   }
 
   render() {

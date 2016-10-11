@@ -35,7 +35,6 @@ export default class Team extends Component {
         decelerationRate={0}
         directionalLockEnabled={true}
         horizontal={true}
-        onScroll={(e) => this._onScroll(e)}
         scrollEventThrottle={32}
         snapToInterval={320}
         snapToAlignment='center'

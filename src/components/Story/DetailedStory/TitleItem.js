@@ -21,11 +21,19 @@ export default class TitleItem extends Component {
     super(props);
   }
 
+  _openTeamModal(e) {
+    {this.props.navigator.push({
+        id: 'ContactCardScene',
+        storyId: this.props.story.id,
+    }
+    )}
+  }
+
   render() {
     return (
       <View style={[global.content, style.content]}>
         <View style={style.row1}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress = {(e) => this._openTeamModal(e)}>
             <Image style={style.team} source={require('../../../img/judge.png')} />
           </TouchableOpacity>
           <TouchableOpacity >
