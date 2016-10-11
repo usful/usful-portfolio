@@ -84,7 +84,7 @@ export default class UsfulPortfolio extends Component {
       }
     }
 
-    return <View style={{flex: 1, marginTop: NAV_BAR_HEIGHT}}>{getScene()}</View>;
+    return getScene();
   }
 
   render() {
@@ -96,7 +96,7 @@ export default class UsfulPortfolio extends Component {
           initialRoute={{id: 'MainNavScene'}}
           configureScene={() => this.configureScene()}
           renderScene={(route, navigator) => this.renderScene(route, navigator)}
-          navigationBar={<Navigator.NavigationBar routeMapper={this.routeMapper} style={styles.navBar}/>}
+          //navigationBar={<Navigator.NavigationBar routeMapper={this.routeMapper} style={styles.navBar}/>}
         />
       </View>
     );

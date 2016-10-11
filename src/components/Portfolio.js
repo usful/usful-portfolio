@@ -31,9 +31,7 @@ const SCROLL_FPS = Math.round(1000/30);
 let styles = StyleSheet.create({
   container: {
     backgroundColor: '#000',
-    flex: 1,
   },
-
   page: {
     height: height,
     width: width,
