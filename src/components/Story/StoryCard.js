@@ -61,11 +61,10 @@ export default class StoryCard extends Component {
 
 
   openStories(e) {
-    console.log(this.props.id);
-    {this.props.navigator.push({
+    this.props.navigator.push({
       id: 'DetailedStoryScene',
       storyId: this.props.id
-    })}
+    })
   }
 
   render() {

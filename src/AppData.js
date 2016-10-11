@@ -1,7 +1,7 @@
 'use strict';
 
 import AppDataModel from './models/AppDataModel';
-import GUID from './helpers/formatters/guid';
+import GUID from './helpers/guid';
 
 const AppData = new AppDataModel(
   {
