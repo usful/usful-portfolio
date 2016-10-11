@@ -64,7 +64,7 @@ export default class StoriesFeed extends Component {
   return(
     <View>
     {this.props.stories.map((data, index) =>
-      <StoryCard key={index} ident={key} title={data.name} navigator = {this.props.navigator} author={data.author}/>
+      <StoryCard key={index} id = {data.id} title={data.name} navigator = {this.props.navigator} author={data.author}/>
     )}
     </View>
     );

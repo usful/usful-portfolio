@@ -102,7 +102,7 @@ export default class Portfolio extends Component {
             scrollEventThrottle={SCROLL_FPS}
             showsVerticalScollIndicator={false}
             style={styles.listScroll}>
-            <StoryFeed stories = {AppData.stories}/>
+            <StoryFeed navigator = {this.props.navigator} stories = {AppData.stories}/>
           </ScrollView>
 
           <ScrollView

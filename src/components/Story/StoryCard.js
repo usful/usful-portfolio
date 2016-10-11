@@ -60,17 +60,18 @@ export default class StoryCard extends Component {
   }
 
 
-  openStories() {
+  openStories(e) {
+    console.log(this.props.id);
     {this.props.navigator.push({
       id: 'DetailedStoryScene',
-      storyId: this.props.ident
+      storyId: this.props.id
     })}
   }
 
   render() {
     return (
 
-      <TouchableOpacity onPress={(e) => this.openStories()}>
+      <TouchableOpacity onPress={(e) => this.openStories(e)}>
         <View>
           <View style={styles.container}>
             <View style={styles.rightContainer}>

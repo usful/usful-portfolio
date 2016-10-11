@@ -17,7 +17,7 @@ _nextStory(e){
   {this.props.navigator.push(
     {
       id: 'DetailedStoryScene',
-      storyId: 1
+      storyId: this.props.story.id
     }
   )}
 }
@@ -27,7 +27,7 @@ _nextStory(e){
         onPress={(e)=>this._nextStory(e)}>
         <View style={style.content}>
           <View style={style.row1}>
-            <Text style={style.title}>{this.props.title}</Text>
+            <Text style={style.title}>{this.props.story.name}</Text>
             <Text style={style.next}>NEXT STORY</Text>
           </View>
           <View style={style.row2}>
