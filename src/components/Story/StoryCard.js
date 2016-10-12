@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
+import Navigation from '../../helpers/Navigation';
 import {
-    StyleSheet,
-    Dimensions,
-    Text,
-    View,
-    TouchableHighlight
+  StyleSheet,
+  Dimensions,
+  Text,
+  View,
+  TouchableOpacity
 } from 'react-native';
-
-let stories = [
-    {title: 'Story #1 Title Goes Here', author: "Merc", message: "something goes here", tags: ["erer", "tag2", "tag3"]},
-    {title: 'Story #2 Title Goes Here', author: "Aaron", message: "something goes hereidnewhtjewtew", tags: ["erer", "tag2", "tag3"]},
-    {title: 'Story #3 Title Goes Here', author:" JAM", message: "random hahaaawew", tags: ["erer", "tag2", "tag3"]},
-    {title: 'Story #4 Title Goes Here', author:"jay", message: "randw", tags: ["erer", "tag2", "tag3"]}
-];
 
 let {height, width} = Dimensions.get('window');
 
@@ -25,7 +19,7 @@ let styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#fff',
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
@@ -59,7 +53,7 @@ let styles = StyleSheet.create({
   },
 });
 
-export default class StoriesFeed extends Component {
+export default class StoryCard extends Component {
 
 
   constructor(props) {
@@ -67,14 +61,14 @@ export default class StoriesFeed extends Component {
   }
 
 
-  openStories() {
-    return true;
+  openStories(e) {
+    Navigation.push({id: Navigation.DETAILED_STORY_SCENE.id, storyId: this.props.id});
   }
 
   render() {
     return (
 
-      <TouchableHighlight onPress={(e) => this.openStories()}>
+      <TouchableOpacity onPress={(e) => this.openStories(e)}>
         <View>
           <View style={styles.container}>
             <View style={styles.rightContainer}>
@@ -84,7 +78,7 @@ export default class StoriesFeed extends Component {
           </View>
           <View style={styles.separator}/>
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     );
   }
 }

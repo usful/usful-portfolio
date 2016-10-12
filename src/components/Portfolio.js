@@ -13,15 +13,16 @@ import {
     Text,
     ListView,
     ScrollView,
-    Navigator,
     TouchableHighlight,
     View
 } from 'react-native';
 
 import AppData from '../AppData';
 
-import FeaturedList from './StoriesFeed';
+import StoryFeed from './Story/StoriesFeed';
 import TopNav from './TopNav';
+import InitiativeView from './Initiative/InitiativeView';
+import ProductView from './Product/ProductView';
 
 let {height, width} = Dimensions.get('window');
 const SCROLL_FPS = Math.round(1000/30);
@@ -29,18 +30,16 @@ const SCROLL_FPS = Math.round(1000/30);
 let styles = StyleSheet.create({
   container: {
     backgroundColor: '#000',
-    flex: 1,
   },
-
   page: {
     height: height,
     width: width,
   },
-  storiesScroll: {
-    backgroundColor: '#000',
+  listScroll: {
+    backgroundColor: '#fff',
     height: height,
     width: width,
-  },
+  }
 });
 
 export default class Portfolio extends Component {
@@ -91,29 +90,26 @@ export default class Portfolio extends Component {
             onScroll={(e) => this.onStoriesScroll(e)}
             scrollEventThrottle={SCROLL_FPS}
             showsVerticalScollIndicator={false}
-            style={styles.storiesScroll}>
-            {AppData.stories.map((data, i) => <FeaturedList key={i} title={data.name} author={data.author}
-                                                    offset={this.state.offset}/>)}
+            style={styles.listScroll}>
+            <ProductView products = {AppData.products}/>
           </ScrollView>
 
           <ScrollView
             onScroll={(e) => this.onStoriesScroll(e)}
             scrollEventThrottle={SCROLL_FPS}
             showsVerticalScollIndicator={false}
-            style={styles.storiesScroll}>
-            {AppData.stories.map((data, i) => <FeaturedList key={i} title={data.name} author={data.author}
-                                                    offset={this.state.offset}/>)}
+            style={styles.listScroll}>
+            <StoryFeed stories = {AppData.stories}/>
           </ScrollView>
-
 
           <ScrollView
             onScroll={(e) => this.onStoriesScroll(e)}
             scrollEventThrottle={SCROLL_FPS}
             showsVerticalScollIndicator={false}
-            style={styles.storiesScroll}>
-            {AppData.stories.map((data, i) => <FeaturedList key={i} title={data.name} author={data.author}
-                                                    offset={this.state.offset}/>)}
+            style={styles.listScroll}>
+            <InitiativeView initiatives = {AppData.initiatives}/>
           </ScrollView>
+
         </ScrollView>
         <TopNav currentTab={this.state.currentTab}
                 page={this.state.page}

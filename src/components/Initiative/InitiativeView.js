@@ -28,9 +28,7 @@ export default class InitiativeView extends Component {
         <View style={styles.container}>
           <InitiativeRow initiatives = {this.props.initiatives}/>
         </View>
-        <View>
           <ContactFooter />
-        </View>
       </ScrollView>
 
     );

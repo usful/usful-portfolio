@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Navigation from '../../../helpers/Navigation';
 import {
     StyleSheet,
     Text,
@@ -7,19 +8,23 @@ TouchableOpacity,
     View
 } from 'react-native';
 
-import global from '../../styles';
+import global from '../../../styles';
 
 export default class NextStoryButton extends Component {
   constructor(props) {
     super(props);
   }
+_nextStory(e){
+    Navigation.push({id: Navigation.DETAILED_STORY_SCENE.id, storyId: this.props.story.id});
+  }
 
   render() {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={(e)=>this._nextStory(e)}>
         <View style={style.content}>
           <View style={style.row1}>
-            <Text style={style.title}>{this.props.title}</Text>
+            <Text style={style.title}>{this.props.story.name}</Text>
             <Text style={style.next}>NEXT STORY</Text>
           </View>
           <View style={style.row2}>
