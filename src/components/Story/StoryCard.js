@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Navigation from '../../helpers/Navigation';
 import {
   StyleSheet,
   Dimensions,
@@ -61,10 +62,7 @@ export default class StoryCard extends Component {
 
 
   openStories(e) {
-    this.props.navigator.push({
-      id: 'DetailedStoryScene',
-      storyId: this.props.id
-    })
+    Navigation.push({id: Navigation.DETAILED_STORY_SCENE.id, storyId: this.props.id});
   }
 
   render() {

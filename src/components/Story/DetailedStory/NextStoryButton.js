@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Navigation from '../../../helpers/Navigation';
 import {
     StyleSheet,
     Text,
@@ -14,13 +15,9 @@ export default class NextStoryButton extends Component {
     super(props);
   }
 _nextStory(e){
-  {this.props.navigator.push(
-    {
-      id: 'DetailedStoryScene',
-      storyId: this.props.story.id
-    }
-  )}
-}
+    Navigation.push({id: Navigation.DETAILED_STORY_SCENE.id, storyId: this.props.story.id});
+  }
+
   render() {
     return (
       <TouchableOpacity

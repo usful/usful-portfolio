@@ -13,7 +13,6 @@ import {
     Text,
     ListView,
     ScrollView,
-    Navigator,
     TouchableHighlight,
     View
 } from 'react-native';
@@ -100,7 +99,7 @@ export default class Portfolio extends Component {
             scrollEventThrottle={SCROLL_FPS}
             showsVerticalScollIndicator={false}
             style={styles.listScroll}>
-            <StoryFeed navigator = {this.props.navigator} stories = {AppData.stories}/>
+            <StoryFeed stories = {AppData.stories}/>
           </ScrollView>
 
           <ScrollView

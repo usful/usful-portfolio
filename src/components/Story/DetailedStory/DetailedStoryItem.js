@@ -43,7 +43,7 @@ export default class DetailedStoryItem extends Component {
         <ImageItem image={require('../../../img/350-200.png')}/>
         <BodyItem text={this.props.story.description}/>
 
-        <NextStoryButton navigator = {this.props.navigator} story={this.props.nextStory} image={require('../../../img/footer.png')}/>
+        <NextStoryButton story={this.props.nextStory} image={require('../../../img/footer.png')}/>
       </ScrollView>
     );
   }
