@@ -31,7 +31,7 @@ export default class DetailedStoryItem extends Component {
     return (
       <ScrollView style={global.container}>
         <HeaderItem image={require('../../../img/350-200.png')} date={longDateFormatter(this.props.story.date)}/>
-        <TitleItem navigator = {this.props.navigator} story ={this.props.story} title={this.props.story.name} tags={this.props.story.tags}/>
+        <TitleItem story ={this.props.story} title={this.props.story.name} tags={this.props.story.tags}/>
         <BodyItem text={this.props.story.description}/>
         <FeatureImageItem image={require('../../../img/250-250.png')}
                           byline={this.props.story.name}

@@ -15,6 +15,10 @@ export default class Navigation {
     id: 'DetailedStoryScene'
   };
 
+  static CONTACT_CARD_SCENE = {
+    id: 'ContactCardScene'
+  };
+
   static routes = [];
   static route = {};
 

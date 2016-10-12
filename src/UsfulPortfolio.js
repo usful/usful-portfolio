@@ -40,20 +40,20 @@ export default class UsfulPortfolio extends Component {
   renderScene(route, navigator) {
       console.log(route);
       switch (route.id) {
-        case 'DetailedStoryScene': {
+        case Navigation.DETAILED_STORY_SCENE.id: {
 
           let story = AppData.stories.findIndex(x => x.id === route.storyId);
           return <DetailedStoryItem story={AppData.stories[story]} nextStory={AppData.stories[story + 1] || AppData.stories[0]}
           />;
 
         }
-        case 'MainNavScene': {
+        case Navigation.MAIN_SCENE.id: {
           return <Portfolio
             />;
         }
-        case 'ContactCardScene': {
+        case Navigation.CONTACT_CARD_SCENE.id: {
           return <Team
-            {...globalNavigatorProps}/>;
+            />;
         }
 
       }

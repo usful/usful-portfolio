@@ -6,7 +6,7 @@ import {
     View,
 Image
 } from 'react-native';
-
+import Navigation from '../../../helpers/Navigation';
 import TagList from './StoryTagList';
 
 import global from '../../../styles';
@@ -22,12 +22,9 @@ export default class TitleItem extends Component {
   }
 
   _openTeamModal(e) {
-    {this.props.navigator.push({
-        id: 'ContactCardScene',
-        storyId: this.props.story.id,
+    Navigation.push({id: Navigation.CONTACT_CARD_SCENE.id, storyId: this.props.id});
     }
-    )}
-  }
+
 
   render() {
     return (
