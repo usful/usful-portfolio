@@ -14,6 +14,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  icon: {
+    height:200,
+    width: 200
   }
 })
 
@@ -30,7 +34,7 @@ export default class SplashPage extends Component{
   componentDidMount(){
     Animated.timing(
       this.state.animated,
-      {toValue: 1}
+      {toValue: 1,duration: 1000,}
     ).start();
   }
 
@@ -39,7 +43,7 @@ export default class SplashPage extends Component{
     return (
       <View style={styles.container}>
 
-        <Animated.Image style={{opacity: this.state.animated}} source={require('../../assets/logo.png')}></Animated.Image>
+        <Animated.Image style={[styles.icon, {opacity: this.state.animated}]} source={require('../../assets/Portfolioicon.png')}></Animated.Image>
 
       </View>);
   }
