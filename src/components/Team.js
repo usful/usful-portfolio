@@ -34,22 +34,13 @@ export default class ExampleSwipe extends Component {
     return (
       <View style={styles.container}>
 
-        <SwipeSelector onChange={
-          ({index:index}) => {
-            this.setState({num: index})
-          }
-        }
+        <SwipeSelector onChange={({index:index}) => {this.setState({num: index})}}
                        leftPoint= {{x: -150, y: -50}}
                        rightPoint= {{x: 150, y: -50}}
-                       scalingOptions={{padRightItems: 1, padLeftItems: 1}}
-        >
-          {elements.map((member,i) => <View id={i.toString()} key={i.toString()}>
-            <ContactCards   /></View>
-          )}
+                       scalingOptions={{padRightItems: 1, padLeftItems: 1}}>
+          {elements.map((member,i) => <View id={i.toString()} key={i.toString()}><ContactCards/></View>)}
         </SwipeSelector>
-
       </View>
-
     );
   }
 }
