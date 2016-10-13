@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
 import {
+    Animated,
     StyleSheet,
+    Easing,
     Dimensions,
     Image,
+    Text,
+    TouchableOpacity,
+    View
     ScrollView,
     View,
     Text
 } from 'react-native';
+
+import Colours from '../styles/Colours';
+
+const TEXT_STYLE = {
+  fontStyle: 'italic',
+  color: Colours.textGrey,
+  fontSize: 18,
+};
 
 let styles = StyleSheet.create({
     container: {
@@ -18,7 +31,6 @@ let styles = StyleSheet.create({
 
     },
     card: {
-
         borderWidth: 1,
 
         borderColor: '#00BFFF',
@@ -95,40 +107,40 @@ let styles = StyleSheet.create({
 
 export default class ContactCards extends Component {
 
-    constructor(props) {
-        super(props);
+  static defaultProps = {
+    index: 0
+  };
 
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    render() {
-        return (
-            <View style={[styles.container]}>
-                <View style={[styles.card]}>
-                  <View style={styles.pageAndClose}>
-                    <Text style={styles.page}>page/total</Text>
-                    <Text style={styles.close}>CLOSE</Text>
-                  </View>
-                    <Image source={{uri: this.props.uri}} style={styles.cardImage} />
-                    <View style={styles.contactInfo}>
-                        <Text style={styles.textName}>Clinton Robinson</Text>
-                        <Text style={styles.textTags}>Tag1/ Tag2/ Tag3</Text>
-                        <Text style={styles.textDescription}>Flexbox works the same way in React Native as it does in CSS on the web, with a few exceptions. The defaults are different, the flex parameter only supports a single number.</Text>
-                    </View>
+  render() {
+    return (
+      <View style={[styles.container]}>
+        <View style={[styles.card]}>
+          <View style={styles.pageAndClose}>
+            <Text style={styles.page}>page/total</Text>
+            <Text style={styles.close}>CLOSE</Text>
+          </View>
+          <Image source={{uri: this.props.uri}} style={styles.cardImage}/>
+          <View style={styles.contactInfo}>
+            <Text style={styles.textName}>Clinton Robinson</Text>
+            <Text style={styles.textTags}>Tag1/ Tag2/ Tag3</Text>
+            <Text style={styles.textDescription}>Flexbox works the same way in React Native as it does in CSS on the
+              web, with a few exceptions. The defaults are different, the flex parameter only supports a single
+              number.</Text>
+          </View>
 
-                </View>
-              <View style={styles.socialMediaBox}>
+        </View>
+        <View style={styles.socialMediaBox}>
 
-                <Image source={require('../../assets/Instagram.png')} style={styles.mediaIcon} />
-                <Image source={require('../../assets/Github.png')} style={styles.mediaIcon} />
-                <Image source={require('../../assets/twitter.png')} style={styles.mediaIcon} />
+          <Image source={require('../../assets/Instagram.png')} style={styles.mediaIcon}/>
+          <Image source={require('../../assets/Github.png')} style={styles.mediaIcon}/>
+          <Image source={require('../../assets/twitter.png')} style={styles.mediaIcon}/>
 
-
-              </View>
-            </View>
-        );
-    }
+        </View>
+      </View>
+    );
+  }
 }
-
-
-
-

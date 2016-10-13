@@ -6,7 +6,7 @@ import {
   ListView
 } from 'react-native';
 
-import StoriesData from '../data/Stories';
+import AppData from '../AppData';
 
 import StoryRow from './Story/StoryRow';
 import TagInput from './TagInput';
@@ -24,12 +24,12 @@ export default class TagView extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (story1, story2) => story1.name !== story2.name});
 
     this.state = {
-      dataSource: this.ds.cloneWithRows(StoriesData.data),
+      dataSource: this.ds.cloneWithRows(AppData.stories),
     };
   }
 
   onTagsChanged(tags) {
-    let stories = StoriesData.data.filter((story) => {
+    let stories = AppData.stories.filter((story) => {
       let matched = 0;
 
       for (let tag of tags) {
@@ -49,7 +49,7 @@ export default class TagView extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TagInput onTagsChanged={(tags) => this.onTagsChanged(tags)} />
+        <TagInput onTagsChanged={(tags) => this.onTagsChanged(tags)}/>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(rowData) => <StoryRow story={rowData}/>}
