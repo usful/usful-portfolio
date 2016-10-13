@@ -72,11 +72,10 @@ export default class UsfulPortfolio extends Component {
       }
     }
 
-
   render() {
     return (
       <View style={ {flex:1} } >
-        <StatusBar translucent={true} backgroundColor="rgba(0,0,0,0.2)"/>
+        <StatusBar translucent={true} backgroundColor="rgb(0,0,0)"/>
         <Navigator
           ref={(el) => Navigation.navigator = el}
           initialRoute={Navigation.MAIN_SCENE}
