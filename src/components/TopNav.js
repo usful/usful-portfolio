@@ -72,11 +72,12 @@ export default class TopNav extends Component {
       }
       if (this.props.previousIndex !== nextProps.previousIndex) return true;
       if (this.props.index !== nextProps.index) return true;
-      if (this.props.hideNavBar!== nextProps.hideNavBar) {
-        this.showOrHide();
-        return true;
-      }
+      if (this.props.hideNavBar!== nextProps.hideNavBar) return true;
       return true;
+    }
+
+    componentWillReceiveProps(nextProps) {
+      this.showOrHide();
     }
 
     componentDidUpdate(){
@@ -85,52 +86,61 @@ export default class TopNav extends Component {
 
 
     showOrHide() {
-
-        if(this.props.hideNavBar) {
-          Animated.timing(
-            navBarFading,
-            {toValue: 1}
-          ).start();
-        } else {
-          Animated.timing(
-            navBarFading,
-            {toValue: 0}
-          ).start();
-        }
+      Animated.timing(navBarFading, {toValue: this.props.hideNavBar ? 1 : 0});
     }
 
     render() {
-        return (
+      let translateX1 = animationProgress.interpolate({
+        inputRange: inputRange,
+        outputRange: [130, 20, -120],
+      });
+
+      let opacity1 = animationProgress.interpolate({
+        inputRange: inputRange,
+        outputRange: [1, 0.7, 0.7],
+      });
+
+      let translateX2 = animationProgress.interpolate({
+        inputRange: inputRange,
+        outputRange: [110, 0, -100],
+      });
+
+      let opacity2 = animationProgress.interpolate({
+        inputRange: inputRange,
+        outputRange: [0.5, 1, 0.5],
+      });
+
+
+      let translateX3 = animationProgress.interpolate({
+        inputRange: inputRange,
+        outputRange: [110, -20, -130],
+      });
+
+      let opacity3 = animationProgress.interpolate({
+        inputRange: inputRange,
+        outputRange: [0.7, 0.7, 1],
+      });
+
+
+      return (
             <Animated.View style={[styles.container, {opacity: navBarFading}]}>
               <Animated.View
                 style={[{
                     transform: [{
-                        translateX: animationProgress.interpolate({
-                          inputRange: inputRange,
-                          outputRange: [130, 20, -120],
-                        }),
+                        translateX: translateX1,
                       },
                     ],
-                    opacity: animationProgress.interpolate({
-                      inputRange: inputRange,
-                      outputRange: [1, 0.7, 0.7],
-                    }),
+                    opacity: opacity1,
                   },
                 ]}>
                 <Text style={[this.getTextStyle(1),styles.navBarTitle]}>Products</Text>
               </Animated.View>
               <Animated.View
                 style={[{transform: [{
-                        translateX: animationProgress.interpolate({
-                          inputRange: inputRange,
-                          outputRange: [110, 0, -100],
-                        }),
+                        translateX: translateX2
                       },
                     ],
-                    opacity: animationProgress.interpolate({
-                      inputRange: inputRange,
-                      outputRange: [0.5, 1, 0.5],
-                    }),
+                    opacity: opacity2,
                   },
                 ]}>
                 <Text style={[this.getTextStyle(1),styles.navBarTitle]}>Stories</Text>
@@ -138,16 +148,10 @@ export default class TopNav extends Component {
               <Animated.View
                 style={[
                   {transform: [
-                      {translateX: animationProgress.interpolate({
-                          inputRange: inputRange,
-                          outputRange: [110, -20, -130],
-                        }),
+                      {translateX: translateX3,
                       },
                     ],
-                    opacity: animationProgress.interpolate({
-                      inputRange: inputRange,
-                      outputRange: [0.7,0.7,1] ,
-                    }),
+                    opacity: opacity3,
                   },
                 ]}>
                 <Text style={[this.getTextStyle(1),styles.navBarTitle]}>Initiatives</Text>
