@@ -13,10 +13,11 @@ import {
     View
 } from 'react-native';
 
-import AppData from '../AppData';
+import AppData from '../../AppData';
+import Navigation from '../../helpers/Navigation';
 
-import StoryCard from './Story/StoryCard';
-import TopNav from './TopNav';
+import StoryCard from '../Story/StoryCard';
+import TopNav from '../TopNav';
 
 let {width, height} = Dimensions.get('window');
 const SCROLL_FPS = Math.round(1000/30);
@@ -34,7 +35,7 @@ let styles = StyleSheet.create({
     }
 });
 
-export default class Portfolio extends Component {
+export default class PortfolioScene extends Component {
 
   constructor(props) {
     super(props);
@@ -93,6 +94,13 @@ export default class Portfolio extends Component {
     setTimeout(() => this.setState({hideNavBar: false}), 2000);
   }
 
+  goStory(story) {
+    Navigation.push({
+      id: 'DetailedStoryScene',
+      story: story
+    })
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -105,7 +113,7 @@ export default class Portfolio extends Component {
           <ScrollView scrollEventThrottle={SCROLL_FPS}
                       showsVerticalScollIndicator={false}
                       style={styles.storiesScroll}>
-            {AppData.stories.map(story => <StoryCard key={story.id} title={story.name} author={story.author}/>)}
+            {AppData.stories.map(story => <StoryCard key={story.id} story={story} onStoryPressed={() => this.goStory(story)}/>)}
           </ScrollView>
 
           <ScrollView scrollEventThrottle={SCROLL_FPS}
@@ -114,14 +122,14 @@ export default class Portfolio extends Component {
                       onScroll={(e) => this.onStoriesScroll(e)}
                       onMomentumScrollBegin={(e) => this.storiesScrollStarts(e)}
                       onMomentumScrollEnd={(e) => this.storiesScrollEnds(e)}>
-            {AppData.stories.map(story => <StoryCard key={story.id} title={story.name} author={story.author}/>)}
+            {AppData.stories.map(story => <StoryCard key={story.id} story={story} onStoryPressed={() => this.goStory(story)}/>)}
           </ScrollView>
 
           <ScrollView scrollEventThrottle={SCROLL_FPS}
                       showsVerticalScollIndicator={false}
                       style={styles.storiesScroll}>
 
-            {AppData.stories.map(story => <StoryCard key={story.id} title={story.name} author={story.author}/>)}
+            {AppData.stories.map(story => <StoryCard key={story.id} story={story} onStoryPressed={() => this.goStory(story)}/>)}
           </ScrollView>
         </ScrollView>
         <TopNav

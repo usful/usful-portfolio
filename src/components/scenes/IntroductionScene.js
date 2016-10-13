@@ -1,6 +1,5 @@
-/**
- * Created by mercedes on 2016-10-04.
- */
+'use strict';
+
 import React, { Component } from 'react';
 import ReactNative, {
   Animated,
@@ -11,19 +10,18 @@ import ReactNative, {
   Text,
   View,
   TouchableHighlight,
-
 } from 'react-native';
 
 
+import {updateCell, getSheetValues} from  '../../../api/GoogleSheets';
+import KeyboardHandler from '../KeyboardHandler';
 
-import {updateCell, getSheetValues} from  '../../api/GoogleSheets';
-import KeyboardHandler from './KeyboardHandler';
-import style from '../styles';
+import Navigation from '../../helpers/Navigation';
+
 let {width, height} = Dimensions.get('window');
 let words = `Welcoming Text goes here. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Are you ready to be Usful?`;
 
 let styles = StyleSheet.create({
-
   view:{
     backgroundColor: 'black',
     height: height,
@@ -77,7 +75,7 @@ let styles = StyleSheet.create({
 
 });
 
-export default class EmailInput extends Component {
+export default class IntroductionScene extends Component {
 
   constructor(props) {
     super(props);
@@ -91,7 +89,7 @@ export default class EmailInput extends Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
 
     let animationArray = [];
     for (let anim of this.anims) {
@@ -113,53 +111,54 @@ export default class EmailInput extends Component {
 
   validateEmail(email) {
     console.log("validating");
-    let regex =  new RegExp(/^\S+@((?=[^.])[\S]+\.)*(?=[^.])[\S]+\.(?=[^.])[\S]+$/);
+    let regex = new RegExp(/^\S+@((?=[^.])[\S]+\.)*(?=[^.])[\S]+\.(?=[^.])[\S]+$/);
 
     if (regex.test(email)) {
-      this.setState({valid:true}, () => updateCell(null, null, this.state.email, null, (error) => {console.log("error")}));
+      this.setState({valid: true}, () => updateCell(null, null, this.state.email, null, (error) => {
+        console.log("error")
+      }));
       return true;
     }
     return false;
   }
 
-  render(){
+  render() {
     this.anims = this.anims || words.split(' ').map(() => new Animated.Value(0));
 
-    return(
+    return (
       <View style={styles.view}>
-      <KeyboardHandler ref='kh' offset={100}>
-        <View style={styles.container}>
-          <Text style={[styles.font,styles.welcomeText]}>
-          {words.split(' ').map((word,i) =>
-            <Animated.Text key={i}
-                           style={[{paddingVertical:15},
-                                  {opacity: this.anims[i]}]}>
-              {word + ` `}
-            </Animated.Text>)}
-          </Text>
-          <Animated.View style={{opacity: this.state.emailFadeIn}}>
-            <TextInput
-              ref="email"
-              placeholder="Email Input"
-              placeholderTextColor='white'
-              clearButtonMode='while-editing'
-              keyboardAppearance='dark'
-              style={styles.emailInput}
-              onFocus={()=>this.refs.kh.inputFocused(this,'email')}
-              onChangeText={(text) => this.setState({email:text})}
-              onSubmitEditing={() => this.validateEmail(this.state.email)}
-              value={this.state.email}></TextInput>
-            <Text>{this.getEmailValidationText()}</Text>
-          </Animated.View>
-          <Text style={[styles.font, styles.skip]}>SKIP</Text>
+        <KeyboardHandler ref='kh' offset={100}>
+          <View style={styles.container}>
+            <Text style={[styles.font, styles.welcomeText]}>
+              {words.split(' ').map((word, i) =>
+                <Animated.Text key={i}
+                               style={[{paddingVertical: 15},
+                                 {opacity: this.anims[i]}]}>
+                  {word + ` `}
+                </Animated.Text>)}
+            </Text>
+
+            <Animated.View style={{opacity: this.state.emailFadeIn}}>
+              <TextInput
+                ref="email"
+                placeholder="Email Input"
+                placeholderTextColor='white'
+                clearButtonMode='while-editing'
+                keyboardAppearance='dark'
+                style={styles.emailInput}
+                onFocus={()=>this.refs.kh.inputFocused(this, 'email')}
+                onChangeText={(text) => this.setState({email: text})}
+                onSubmitEditing={() => this.validateEmail(this.state.email)}
+                value={this.state.email}/>
+              <Text>{this.getEmailValidationText()}</Text>
+            </Animated.View>
+
+            <TouchableHighlight onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
+              <Text style={[styles.font, styles.skip]}>SKIP</Text>
+            </TouchableHighlight>
+          </View>
+        </KeyboardHandler>
       </View>
-      </KeyboardHandler>
-      </View>
-  );
+    );
   }
-
 }
-
-/**
- * Created by mercedes on 2016-10-04.
- */
