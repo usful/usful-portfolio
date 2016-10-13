@@ -33,7 +33,7 @@ export default class ExampleSwipe extends Component {
 
     return (
       <View style={styles.container}>
-        <StatusBar hidden={true} />
+
         <SwipeSelector onChange={
           ({index:index}) => {
             this.setState({num: index})
@@ -59,9 +59,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF'
+    backgroundColor: 'grey'
   },
-  transparentView: {
-    backgroundColor: '#00000000'
-  }
+
 });

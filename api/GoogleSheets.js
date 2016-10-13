@@ -1,5 +1,9 @@
 
 import config from '../config';
+//import Google from 'googleapis';
+//import { GoogleSignin } from 'react-native-google-signin';
+
+
 
 export function getSheetValues(callback){
 
@@ -25,19 +29,24 @@ export function getSheetValues(callback){
 
 export function updateCell(col, row, val, successCallback, errorCallback) {
 
-  let baseURL = `https://sheets.googleapis.com/v4/spreadsheets/${config.spreadsheetId}/values/Sheet1!:append`;
+  /*GoogleSignin.configure({
+    scopes: [config.scope],
+    webClientId: config.clientId
+  }); */
+
+  let baseURL = `https://sheets.googleapis.com/v4/spreadsheets/${config.spreadsheetId}/values/Sheet1!:append?insertDataOption=INSERT_ROWS&valueInputOption=RAW&key=${config.apiKey}`;
 
   (async() => {
 
     let opts = {
-      method: 'PUT',
-      body: {
+      method: 'POST',
+      body: JSON.stringify({
         "range": 'Sheet1!',
         "majorDimension": 'ROWS',
         "values": [
           val
         ],
-      }
+      })
     }
     try {
       let response = await fetch(baseURL, opts);
