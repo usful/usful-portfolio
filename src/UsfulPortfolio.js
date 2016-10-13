@@ -13,7 +13,7 @@ import {
 import Navigation from './helpers/Navigation';
 import AppData from './AppData';
 import Team from './components/Team';
-import DetailedContentItem from './components/DetailedContent/DetailedContentItem';
+import DetailedContentItem from './components/Content/DetailedContentItem';
 import Portfolio from './components/Portfolio';
 
 export default class UsfulPortfolio extends Component {
@@ -30,9 +30,9 @@ export default class UsfulPortfolio extends Component {
         case Navigation.DETAILED_STORY_SCENE.id: {
 
           let stories = AppData.content.filter(x => x.type === 'Story');
-          let story = stories.findIndex(x => x._id === route.storyId);
+          let story = AppData.content.findIndex(x => x._id === route.storyId);
           console.log(story);
-          return <DetailedContentItem content={stories[story]} nextContent={stories[story + 1] || stories[0]}
+          return <DetailedContentItem content={stories[story]} nextContent={stories[story + 1]}
           />;
 
         }
@@ -40,7 +40,7 @@ export default class UsfulPortfolio extends Component {
 
           let initiatives = AppData.content.filter(x => x.type === 'Initiative');
           let initiative = initiatives.findIndex(x => x._id === route.initiativeId);
-          return <DetailedContentItem content={initiatives[initiative]} nextContent={initiatives[initiative + 1] || initiatives[0]}
+          return <DetailedContentItem content={initiatives[initiative]} nextContent={initiatives[initiative + 1]}
           />;
 
         }
@@ -48,7 +48,7 @@ export default class UsfulPortfolio extends Component {
 
           let products = AppData.content.filter(x => x.type === 'Product');
           let product = products.findIndex(x => x._id === route.productId);
-          return <DetailedContentItem content={products[product]} next Content={products[product + 1] || products[0]}
+          return <DetailedContentItem content={products[product]} nextContent={products[product + 1]}
           />;
 
         }

@@ -32,7 +32,7 @@ export default class DetailedContentItem extends Component {
   render() {
     return (
       <ScrollView style={global.container}>
-        <CloseButton/>
+
         <HeaderItem image={require('../../img/350-200.png')} date={longDateFormatter(this.props.content.date)}/>
         <TitleItem content ={this.props.content} title={this.props.content.name} tags={this.props.content.tags}/>
         <BodyItem text={this.props.content.description}/>
@@ -47,6 +47,7 @@ export default class DetailedContentItem extends Component {
         <BodyItem text={this.props.content.description}/>
 
         <NextContentButton content ={this.props.nextContent} image={require('../../img/footer.png')}/>
+        <CloseButton/>
       </ScrollView>
     );
   }

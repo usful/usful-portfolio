@@ -20,16 +20,16 @@ _nextContent(e){
 
       case 'Story':
       {
-        Navigation.push({id: Navigation.DETAILED_STORY_SCENE.id, storyId: this.props.content._id});
+        Navigation.push({id: Navigation.DETAILED_STORY_SCENE.id, storyId: this.props.content.id});
 
       }
       case 'Initiative':
       {
-        Navigation.push({id: Navigation.DETAILED_INITIATIVE_SCENE.id, initiativeId: this.props.content._id});
+        Navigation.push({id: Navigation.DETAILED_INITIATIVE_SCENE.id, initiativeId: this.props.content.id});
       }
       case 'Product':
       {
-        Navigation.push({id: Navigation.DETAILED_PRODUCT_SCENE.id, productId: this.props.content._id});
+        Navigation.push({id: Navigation.DETAILED_PRODUCT_SCENE.id, productId: this.props.content.id});
       }
 
     }

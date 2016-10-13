@@ -58,7 +58,7 @@ export default class ProductRow extends Component {
             <View style={styles.textContainer}>
               <Text style={styles.text}>{obj.description}</Text>
             </View>
-            <ProductCard name={obj.name}/>
+            <ProductCard id= {obj._id} name={obj.name}/>
           </View>)}
       </ScrollView>
       <ContactFooter card = {this.state.card} info = {this.props.products}/>
