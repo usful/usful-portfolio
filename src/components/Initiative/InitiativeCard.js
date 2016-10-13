@@ -10,8 +10,6 @@ import {
 
 import global from '../../styles';
 
-
-
 export default class InitiativeCard extends Component {
 
   static defaultProps = {

@@ -9,7 +9,9 @@
     "models": "git://github.com/usful/models.git",
     "moment": "^2.15.1",
     "react": "15.3.2",
-    "react-native": "0.34.1",
+    "react-native": "^0.35.0",
+    "react-native-keyboard-aware-scroll-view": "^0.2.1",
+    "react-native-swipe-selector": "git+https://github.com/usful/react-native-swipe-selector.git",
     "react-native-image-slider": "^1.1.5",
     "react-native-vector-icons": "^2.1.0"
   }

@@ -2,13 +2,20 @@
 
 import React from 'react';
 
-let navigator;
-
-
 export default class Navigation {
 
-  static MAIN_SCENE = {
-    id: 'MainNavScene'
+  static navigator = null;
+
+  static SPLASH_SCENE = {
+    id: 'SplashScene'
+  };
+
+  static INTRODUCTION_SCENE = {
+    id: 'IntroductionScene'
+  };
+
+  static PORTFOLIO_SCENE = {
+    id: 'PortfolioScene'
   };
 
   static DETAILED_STORY_SCENE = {
@@ -18,26 +25,18 @@ export default class Navigation {
   static routes = [];
   static route = {};
 
-  static set navigator(val) {
-    navigator = val;
-  }
-
   static initRoutes(route) {
     Navigation.route = route;
     Navigation.routes = [route];
   }
 
-  static goStory (){
-
-  }
-
   static push(route) {
     Navigation.routes.push(route);
-      navigator.push(route)
+    this.navigator.push(route)
   }
 
   static pop() {
-    navigator.pop();
+    this.navigator.pop();
     return Navigation.routes.pop();
   }
 

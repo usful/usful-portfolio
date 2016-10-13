@@ -3,10 +3,14 @@ import {
     Animated,
     StyleSheet,
     Easing,
+    Dimensions,
     Image,
     Text,
     TouchableOpacity,
     View
+    ScrollView,
+    View,
+    Text
 } from 'react-native';
 
 import Colours from '../styles/Colours';
@@ -21,53 +25,85 @@ let styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flex: 1,
-        justifyContent: 'center',
+
+        marginHorizontal:-50,
+        backgroundColor : 'grey'
+
     },
     card: {
         borderWidth: 1,
-        borderRadius: 20,
+
         borderColor: '#00BFFF',
-        width: 300,
-        height: 450,
+        width: 250,
+        height: 420,
         paddingVertical: 30,
-        backgroundColor: '#cfebf9',
+        backgroundColor: 'black',
         alignItems: 'center',
-        marginHorizontal:10,
+        marginHorizontal:-0,
     },
     cardImage: {
         borderWidth:1,
         borderColor: '#FFF',
-
-        height: 180,
-        borderRadius: 90,
-        width: 180,
+        height: 120,
+        marginTop: 30,
+        width: 120,
         backgroundColor:'white'
+    },
+    page: {
+      color: 'white',
+
+    },
+    close: {
+      paddingLeft: 90,
+      color: 'white'
     },
     contactInfo: {
         alignItems: 'center'
     },
-    textName: {
-        paddingTop: 30,
-        fontWeight: '600',
-        fontSize : 30,
-        color: Colours.textGrey
+    pageAndClose: {
+      flexDirection : 'row',
+      position: 'absolute',
+      top:20,
+      left: 20,
     },
-    textEmail: {
-      ... TEXT_STYLE
-    },
-    textInstagram: {
-      ... TEXT_STYLE
-    },
-    textPhone: {
-      ... TEXT_STYLE
-    },
-    textPositionTitle: {
-      paddingBottom: 20,
-      color: Colours.textGrey,
-      fontSize: 18,
-    },
-});
+    textDescription: {
+        color: '#A9A9A9',
+        fontSize : 12,
+        lineHeight: 15,
+        marginHorizontal: 45,
+        paddingTop: 10,
+        justifyContent: 'space-between'
 
+    },
+    textName: {
+        marginTop: 30,
+        fontWeight: '600',
+        color: '#A9A9A9',
+        fontSize: 18,
+    },
+
+    textTags: {
+      fontStyle: 'italic',
+        paddingBottom: 18,
+        color: '#A9A9A9',
+        fontSize: 12,
+        paddingTop:5,
+
+    },
+    socialMediaBox:{
+      flexDirection: 'row',
+      backgroundColor: 'transparent',
+      width: 250,
+      paddingVertical:10,
+      justifyContent: 'center'
+    },
+    mediaIcon: {
+      width: 30,
+      height:30,
+      margin: 5,
+
+    }
+});
 
 export default class ContactCards extends Component {
 
@@ -77,46 +113,34 @@ export default class ContactCards extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      x: 0,
-      y: 0,
-      animate: new Animated.Value(0),
-      totalTabs: this.props.totalTabs
-    };
   }
 
   render() {
-
-    let opacity = this.state.animate.interpolate({
-      inputRange: [0, this.props.index, this.state.totalTabs],
-      outputRange: [0.8, 1, 0.8]
-    });
-
-    let scale = this.state.animate.interpolate({
-      inputRange: [0, this.props.index, this.state.totalTabs],
-      outputRange: [1, 2, 1]
-    });
-
     return (
-      <Animated.View style={[styles.container]}>
-        <Animated.View
-          onStartShouldSetResponder={() => true}
-          onMoveShouldSetResponder={() => true}
-          style={[styles.card, {opacity: opacity, transform: [{scale: scale}]} ]}>
+      <View style={[styles.container]}>
+        <View style={[styles.card]}>
+          <View style={styles.pageAndClose}>
+            <Text style={styles.page}>page/total</Text>
+            <Text style={styles.close}>CLOSE</Text>
+          </View>
           <Image source={{uri: this.props.uri}} style={styles.cardImage}/>
           <View style={styles.contactInfo}>
-            <Text style={styles.textName}>Team Member</Text>
-            <Text style={styles.textPositionTitle}>Position /Contribution</Text>
-            <Text style={styles.textInstagram}>I: handle</Text>
-            <Text style={styles.textPhone}>T: @handle </Text>
-            <Text style={styles.textEmail}>E: name@email.com</Text>
+            <Text style={styles.textName}>Clinton Robinson</Text>
+            <Text style={styles.textTags}>Tag1/ Tag2/ Tag3</Text>
+            <Text style={styles.textDescription}>Flexbox works the same way in React Native as it does in CSS on the
+              web, with a few exceptions. The defaults are different, the flex parameter only supports a single
+              number.</Text>
           </View>
-        </Animated.View>
-      </Animated.View>
+
+        </View>
+        <View style={styles.socialMediaBox}>
+
+          <Image source={require('../../assets/Instagram.png')} style={styles.mediaIcon}/>
+          <Image source={require('../../assets/Github.png')} style={styles.mediaIcon}/>
+          <Image source={require('../../assets/twitter.png')} style={styles.mediaIcon}/>
+
+        </View>
+      </View>
     );
   }
 }
-
-
-
-
