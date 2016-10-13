@@ -2,17 +2,16 @@
 
 import Model from 'models';
 
-import StoryModel from './StoryModel';
-import InitiativeModel from './InitiativeModel';
-import ProductModel from './ProductModel';
+import ContentModel from './ContentModel';
+
 
 const AppDataModel = new Model(
   'AppDataModel',
   {
-    stories: [StoryModel],
-    initiatives: [InitiativeModel],
-    products: [ProductModel]
+    content: [ContentModel],
+    teamMembers: [String],
   }
 );
 
 export default AppDataModel;
+

@@ -14,7 +14,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Navigation from './helpers/Navigation';
 import AppData from './AppData';
 import Team from './components/Team';
-import DetailedStoryItem from './components/Story/DetailedStory/DetailedStoryItem';
+import DetailedContentItem from './components/DetailedContent/DetailedContentItem';
 import Portfolio from './components/Portfolio';
 import TagView from './components/TagView';
 
@@ -38,12 +38,25 @@ export default class UsfulPortfolio extends Component {
   }
 
   renderScene(route, navigator) {
-      console.log(route);
       switch (route.id) {
         case Navigation.DETAILED_STORY_SCENE.id: {
 
-          let story = AppData.stories.findIndex(x => x.id === route.storyId);
-          return <DetailedStoryItem story={AppData.stories[story]} nextStory={AppData.stories[story + 1] || AppData.stories[0]}
+          let story = AppData.content.findIndex(x => x.id === route.storyId && x.type === 'Story');
+          return <DetailedContentItem content={AppData.content[story]} nextContent={AppData.content[story + 1] || AppData.content[0]}
+          />;
+
+        }
+        case Navigation.DETAILED_INITIATIVE_SCENE.id: {
+
+          let initiative = AppData.content.findIndex(x => x.id === route.initiativeId && x.type === 'Initiative');
+          return <DetailedContentItem content={AppData.content[initiative]} nextContent={AppData.content[initiative + 1] || AppData.content[0]}
+          />;
+
+        }
+        case Navigation.DETAILED_PRODUCT_SCENE.id: {
+
+          let product = AppData.content.findIndex(x => x.id === route.productId && x.type === 'Product');
+          return <DetailedContentItem content={AppData.content[product]} nextContent={AppData.content[product + 1] || AppData.content[0]}
           />;
 
         }

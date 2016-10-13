@@ -6,10 +6,10 @@ import {
     View,
 Image
 } from 'react-native';
-import Navigation from '../../../helpers/Navigation';
+import Navigation from '../../helpers/Navigation';
 import TagList from './StoryTagList';
 
-import global from '../../../styles';
+import global from '../../styles';
 
 export default class TitleItem extends Component {
   static defaultProps = {
@@ -31,10 +31,10 @@ export default class TitleItem extends Component {
       <View style={[global.content, style.content]}>
         <View style={style.row1}>
           <TouchableOpacity onPress = {(e) => this._openTeamModal(e)}>
-            <Image style={style.team} source={require('../../../img/judge.png')} />
+            <Image style={style.team} source={require('../../img/judge.png')} />
           </TouchableOpacity>
           <TouchableOpacity >
-            <Image style={style.share} source={require('../../../img/share.png')} />
+            <Image style={style.share} source={require('../../img/share.png')} />
           </TouchableOpacity>
         </View>
         <View style={style.row2}>

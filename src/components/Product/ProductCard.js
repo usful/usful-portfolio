@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import Navigation from '../../helpers/Navigation';
 import {
   StyleSheet,
   Text,
+  TouchableOpacity,
   ScrollView,
   View,
   ListView,
@@ -25,12 +27,20 @@ export default class ProductCard extends Component {
     super(props);
 
   }
+  openProducts() {
+
+    Navigation.push({id: Navigation.DETAILED_PRODUCT_SCENE.id, productId: this.props.id});
+
+  }
 
   render() {
     return (
+      <TouchableOpacity
+      onPress={() => this.openProducts()} >
       <View style={[styles.card]}>
         <Text style= {styles.text}>{this.props.name}</Text>
       </View>
+      </TouchableOpacity>
 
     );
 

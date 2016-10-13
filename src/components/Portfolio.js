@@ -91,7 +91,7 @@ export default class Portfolio extends Component {
             scrollEventThrottle={SCROLL_FPS}
             showsVerticalScollIndicator={false}
             style={styles.listScroll}>
-            <ProductView products = {AppData.products}/>
+            <ProductView products = {AppData.content.filter((x) => x.type = 'Product')}/>
           </ScrollView>
 
           <ScrollView
@@ -99,7 +99,7 @@ export default class Portfolio extends Component {
             scrollEventThrottle={SCROLL_FPS}
             showsVerticalScollIndicator={false}
             style={styles.listScroll}>
-            <StoryFeed stories = {AppData.stories}/>
+            <StoryFeed stories = {AppData.content.filter((x) => x.type = 'Story')}/>
           </ScrollView>
 
           <ScrollView
@@ -107,7 +107,7 @@ export default class Portfolio extends Component {
             scrollEventThrottle={SCROLL_FPS}
             showsVerticalScollIndicator={false}
             style={styles.listScroll}>
-            <InitiativeView initiatives = {AppData.initiatives}/>
+            <InitiativeView initiatives = {AppData.content.filter((x) => x.type = 'Initiative')}/>
           </ScrollView>
 
         </ScrollView>

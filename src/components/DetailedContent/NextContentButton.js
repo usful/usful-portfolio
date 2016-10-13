@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navigation from '../../../helpers/Navigation';
+import Navigation from '../../helpers/Navigation';
 import {
     StyleSheet,
     Text,
@@ -8,23 +8,38 @@ TouchableOpacity,
     View
 } from 'react-native';
 
-import global from '../../../styles';
 
 export default class NextStoryButton extends Component {
   constructor(props) {
     super(props);
   }
-_nextStory(e){
-    Navigation.push({id: Navigation.DETAILED_STORY_SCENE.id, storyId: this.props.story.id});
+
+_nextContent(e){
+    switch(this.props.content.type){
+      case 'Story':
+      {
+        Navigation.push({id: Navigation.DETAILED_STORY_SCENE.id, storyId: this.props.content.id});
+      }
+      case 'Initiative':
+      {
+        Navigation.push({id: Navigation.DETAILED_INITIATIVE_SCENE.id, initiativeId: this.props.content.id});
+      }
+      case 'Product':
+      {
+        Navigation.push({id: Navigation.DETAILED_PRODUCT_SCENE.id, productId: this.props.content.id});
+      }
+
+    }
+
   }
 
   render() {
     return (
       <TouchableOpacity
-        onPress={(e)=>this._nextStory(e)}>
+        onPress={(e)=>this._nextContent(e)}>
         <View style={style.content}>
           <View style={style.row1}>
-            <Text style={style.title}>{this.props.story.name}</Text>
+            <Text style={style.title}>{this.props.content.name}</Text>
             <Text style={style.next}>NEXT STORY</Text>
           </View>
           <View style={style.row2}>

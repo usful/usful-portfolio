@@ -19,6 +19,14 @@ export default class Navigation {
     id: 'ContactCardScene'
   };
 
+  static DETAILED_INITIATIVE_SCENE = {
+    id: 'DetailedInitiativeScene'
+  };
+
+  static DETAILED_PRODUCT_SCENE = {
+    id: 'DetailedProductScene'
+  };
+
   static routes = [];
   static route = {};
 
@@ -31,18 +39,16 @@ export default class Navigation {
     Navigation.routes = [route];
   }
 
-  static goStory (){
-
-  }
-
   static push(route) {
     Navigation.routes.push(route);
-      navigator.push(route)
+    navigator.push(route)
   }
 
   static pop() {
     navigator.pop();
-    return Navigation.routes.pop();
+  }
+  static popToRoute(route) {
+    navigator.popToRoute(route);
   }
 
 }

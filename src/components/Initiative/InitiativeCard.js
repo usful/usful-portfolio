@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import Navigation from '../../helpers/Navigation';
 import {
   StyleSheet,
   Text,
   ScrollView,
   View,
   ListView,
+  TouchableOpacity,
   Image
 } from 'react-native';
 
@@ -25,12 +27,20 @@ export default class InitiativeCard extends Component {
     super(props);
 
   }
+  openInitiatives() {
+
+    Navigation.push({id: Navigation.DETAILED_INITIATIVE_SCENE.id, initiativeId: this.props.id});
+
+  }
 
   render() {
     return (
+      <TouchableOpacity
+        onPress={() => this.openInitiatives()} >
       <View style={[styles.card]}>
         <Text style= {styles.text}>{this.props.name}</Text>
       </View>
+      </TouchableOpacity>
 
     );
 
