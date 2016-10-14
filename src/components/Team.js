@@ -9,7 +9,7 @@ import {
 import SwipeSelector from 'react-native-swipe-selector';
 import ContactCards from './ContactCards';
 
-export default class ExampleSwipe extends Component {
+export default class Team extends Component {
 
   constructor(props) {
     super(props);
@@ -22,6 +22,8 @@ export default class ExampleSwipe extends Component {
   }
 
   render() {
+
+    //going to be replaced by [PersonModel]
 
     let elements = [].concat(this.elements).concat(
       [
@@ -38,7 +40,7 @@ export default class ExampleSwipe extends Component {
                        leftPoint= {{x: -150, y: -50}}
                        rightPoint= {{x: 150, y: -50}}
                        scalingOptions={{padRightItems: 1, padLeftItems: 1}}>
-          {elements.map((member,i) => <View id={i.toString()} key={i.toString()}><ContactCards/></View>)}
+          {elements.map((member,i) => <View id={i.toString()} key={i.toString()}><ContactCards id={i} totalCards={elements.length}/></View>)}
         </SwipeSelector>
       </View>
     );

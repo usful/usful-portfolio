@@ -20,8 +20,10 @@ let {width, height} = Dimensions.get('window');
 
 const styles= StyleSheet.create({
     activeText: {
+      fontSize: 20,
       opacity: 1,
-      color: '#ffffff'
+      color: '#ffffff',
+      fontFamily: 'Courier New'
     },
     container: {
         position: 'absolute',
@@ -30,10 +32,10 @@ const styles= StyleSheet.create({
         justifyContent: 'center',
         top: 0,
         left: 0,
-        paddingTop: 20,
+        paddingVertical: 10,
         width: width ,
-        height:45,
-        backgroundColor: '#44c7ff',
+        height: 75,
+        backgroundColor: 'black',
         opacity: 0.5
 
     },
@@ -83,7 +85,7 @@ export default class TopNav extends Component {
     render() {
       let translateX1 = animationProgress.interpolate({
         inputRange: inputRange,
-        outputRange: [240, 135, 20, -90],
+        outputRange: [270, 190, 20, -130],
       });
 
       let opacity1 = animationProgress.interpolate({
@@ -93,7 +95,7 @@ export default class TopNav extends Component {
 
       let translateX2 = animationProgress.interpolate({
         inputRange: inputRange,
-        outputRange: [195, 110, 0, -100],
+        outputRange: [195, 190, 15, -140],
       });
 
       let opacity2 = animationProgress.interpolate({
@@ -104,7 +106,7 @@ export default class TopNav extends Component {
 
       let translateX3 = animationProgress.interpolate({
         inputRange: inputRange,
-        outputRange: [150, 110, -20, -130],
+        outputRange: [200, 170, 10, -170],
       });
 
       let opacity3 = animationProgress.interpolate({

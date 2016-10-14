@@ -7,13 +7,12 @@ import {
     Image,
     Text,
     TouchableOpacity,
-    View
     ScrollView,
     View,
-    Text
 } from 'react-native';
 
 import Colours from '../styles/Colours';
+import Font from '../styles/Font';
 
 const TEXT_STYLE = {
   fontStyle: 'italic',
@@ -23,39 +22,39 @@ const TEXT_STYLE = {
 
 let styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-        flex: 1,
+      alignItems: 'center',
+      flex: 1,
 
-        marginHorizontal:-50,
-        backgroundColor : 'grey'
+      marginHorizontal:-50,
+      backgroundColor : 'grey'
 
     },
     card: {
-        borderWidth: 1,
-
-        borderColor: '#00BFFF',
-        width: 250,
-        height: 420,
-        paddingVertical: 30,
-        backgroundColor: 'black',
-        alignItems: 'center',
-        marginHorizontal:-0,
+      width: 250,
+      height: 420,
+      paddingVertical: 30,
+      backgroundColor: 'black',
+      alignItems: 'center',
+      marginHorizontal:-0,
     },
     cardImage: {
-        borderWidth:1,
-        borderColor: '#FFF',
-        height: 120,
-        marginTop: 30,
-        width: 120,
-        backgroundColor:'white'
+      borderWidth:1,
+      borderColor: '#FFF',
+      height: 120,
+      marginTop: 30,
+      width: 120,
+      backgroundColor:'white',
+      opacity: 0.5
     },
     page: {
       color: 'white',
+      fontFamily: Font.fontFamily
 
     },
     close: {
-      paddingLeft: 90,
-      color: 'white'
+      paddingLeft: 120,
+      color: 'white',
+      fontFamily: Font.fontFamily
     },
     contactInfo: {
         alignItems: 'center'
@@ -67,27 +66,30 @@ let styles = StyleSheet.create({
       left: 20,
     },
     textDescription: {
-        color: '#A9A9A9',
-        fontSize : 12,
-        lineHeight: 15,
-        marginHorizontal: 45,
-        paddingTop: 10,
-        justifyContent: 'space-between'
+      color: '#A9A9A9',
+      fontSize : 12,
+      lineHeight: 15,
+      marginHorizontal: 25,
+      paddingTop: 10,
+      fontFamily: Font.fontFamily,
+      alignItems: 'stretch'
 
     },
     textName: {
-        marginTop: 30,
-        fontWeight: '600',
-        color: '#A9A9A9',
-        fontSize: 18,
+      marginTop: 30,
+      fontWeight: '600',
+      color: '#A9A9A9',
+      fontSize: 18,
+      fontFamily: Font.fontFamily
     },
 
     textTags: {
       fontStyle: 'italic',
-        paddingBottom: 18,
-        color: '#A9A9A9',
-        fontSize: 12,
-        paddingTop:5,
+      paddingBottom: 18,
+      color: '#A9A9A9',
+      fontSize: 12,
+      paddingTop:5,
+      fontFamily: Font.fontFamily,
 
     },
     socialMediaBox:{
@@ -120,7 +122,7 @@ export default class ContactCards extends Component {
       <View style={[styles.container]}>
         <View style={[styles.card]}>
           <View style={styles.pageAndClose}>
-            <Text style={styles.page}>page/total</Text>
+            <Text style={styles.page}> {this.props.id}/{this.props.totalCards}</Text>
             <Text style={styles.close}>CLOSE</Text>
           </View>
           <Image source={{uri: this.props.uri}} style={styles.cardImage}/>
