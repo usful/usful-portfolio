@@ -32,22 +32,22 @@ export default class UsfulPortfolio extends Component {
       switch (route.id) {
         case Navigation.DETAILED_STORY_SCENE.id: {
 
-          let story = AppData.content.findIndex(x => x._id === route.storyId);
-          return <DetailedContentItem content={stories[story]} nextContent={stories[story + 1]}
+          let story = stories.findIndex(x => x._id === route.storyId);
+          return <DetailedContentItem content={stories[story]} nextContent={stories[story + 1] || stories[0]}
           />;
 
         }
         case Navigation.DETAILED_INITIATIVE_SCENE.id: {
 
           let initiative = initiatives.findIndex(x => x._id === route.initiativeId);
-          return <DetailedContentItem content={initiatives[initiative]} nextContent={initiatives[initiative + 1]}
+          return <DetailedContentItem content={initiatives[initiative]} nextContent={initiatives[initiative + 1] ||initiatives[0]}
           />;
 
         }
         case Navigation.DETAILED_PRODUCT_SCENE.id: {
 
           let product = products.findIndex(x => x._id === route.productId);
-          return <DetailedContentItem content={products[product]} nextContent={products[product + 1]}
+          return <DetailedContentItem content={products[product]} nextContent={products[product + 1] || products[0]}
           />;
 
         }

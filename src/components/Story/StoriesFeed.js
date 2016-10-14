@@ -6,6 +6,7 @@ import {
     View,
     TouchableOpacity
 } from 'react-native';
+import ContactFooter from '../ContactFooter';
 import StoryCard from './StoryCard';
 
 let {height, width} = Dimensions.get('window');
@@ -17,13 +18,15 @@ let styles = StyleSheet.create({
     fontStyle: 'italic',
     marginBottom: 10,
   },
+
   container: {
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    padding: 50,
+    shadowOffset: {
+      height: 4,
+      width: 0
+    },
+    shadowColor: '#000',
+    shadowRadius: 2,
+    shadowOpacity: 0.2
 
   },
   rect: {
@@ -63,10 +66,14 @@ export default class StoriesFeed extends Component {
   render() {
   return(
     <View>
+    <View style = {styles.container}>
     {this.props.stories.map((data, index) =>
       <StoryCard key={index} id = {data._id} title={data.name} author={data.author}/>
     )}
+
     </View>
+    <ContactFooter />
+      </View>
     );
   }
 }

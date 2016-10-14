@@ -15,7 +15,6 @@ export default class NextStoryButton extends Component {
   }
 
 _nextContent(e){
-    console.log(this.props.content._id);
     switch(this.props.content.type){
 
       case 'Story':
@@ -43,7 +42,7 @@ _nextContent(e){
         <View style={style.content}>
           <View style={style.row1}>
             <Text style={style.title}>{this.props.content.name}</Text>
-            <Text style={style.next}>NEXT STORY</Text>
+            <Text style={style.next}>NEXT {this.props.content.type.toUpperCase()}</Text>
           </View>
           <View style={style.row2}>
             <Image style={style.image} source={this.props.image}/>
@@ -83,6 +82,7 @@ const style = StyleSheet.create({
     marginTop: 15,
     fontSize: 13,
     fontFamily: 'Avenir',
-    alignSelf: 'flex-start'
+    alignSelf: 'flex-start',
+
   }
 });

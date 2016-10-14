@@ -33,8 +33,7 @@ export default class ProductRow extends Component {
   }
 
   handleScroll(e) {
-
-    if(e.nativeEvent.contentOffset.x/292 % 1 <= 0.2 && this.state.card !== (Math.round(e.nativeEvent.contentOffset.x /292))) {
+    if(e.nativeEvent.contentOffset.x/250 % 1 <= 0.2 && this.state.card !== (Math.round(e.nativeEvent.contentOffset.x /292))) {
       this.setState({
         card: (Math.round(e.nativeEvent.contentOffset.x /292))
     })
@@ -49,7 +48,7 @@ export default class ProductRow extends Component {
         snapToInterval={320}
         decelerationRate={0}
         snapToAlignment={'center'}
-        scrollEventThrottle={200}
+        scrollEventThrottle={1000/30}
         onScroll={(e) => this.handleScroll(e)}
         showsHorizontalScrollIndicator={false}
         style={styles.cardScroll}>
@@ -61,7 +60,7 @@ export default class ProductRow extends Component {
             <ProductCard id= {obj._id} name={obj.name}/>
           </View>)}
       </ScrollView>
-      <ContactFooter card = {this.state.card} info = {this.props.products}/>
+      <ContactFooter card = {this.state.card} contact = {this.props.products[this.state.card].contactInfo}/>
       </ScrollView>
 
 

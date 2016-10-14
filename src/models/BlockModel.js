@@ -11,7 +11,6 @@ import QuoteBlockModel from './QuoteBlockModel';
 const BlockModel = new Model(
   'BlockModel',
   [
-    DocumentProperties,
   {
       blockType: String,
       animation : String,

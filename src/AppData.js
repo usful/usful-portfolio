@@ -290,7 +290,7 @@ const AppData = new AppDataModel(
         contactInfo: {
           email: 'rishabh@monanetworks.com',
           phone: '123-456-7890',
-          uri: 'http://www.lane.com',
+          uri: 'http://www.hypebeast.com',
           address: '123 Stewart Cres, Toronto, ON, Canada, A1B 2D4 '
         }
       },
@@ -367,7 +367,7 @@ const AppData = new AppDataModel(
           email: 'rishabh@monanetworks.com',
           phone: '123-456-7890',
           uri: 'http://www.lane.com',
-          address: '123 Stewart Cres, Toronto, ON, Canada, A1B 2D4 '
+          address: '123 Stewart Rd, Toronto, ON, Canada, A1B 2D4 '
         }
       },
       {
