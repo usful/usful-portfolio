@@ -50,7 +50,8 @@ const styles= StyleSheet.create({
     },
 
 });
-const inputRange = [ 0, 1, 2];
+const inputRange = [ -1,  0 , 1, 2 ];
+//animationProgress is for words and opacity animation of navBar
 let animationProgress =  new Animated.Value(0);
 let navBarFading = new Animated.Value(1);
 
@@ -66,10 +67,7 @@ export default class TopNav extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState){
-      if (this.props.pageTransition !== nextProps.pageTransition) {
-        animationProgress.setValue(nextProps.pageTransition);
-        return true;
-      }
+      if (this.props.pageTransition !== nextProps.pageTransition) return true;
       if (this.props.previousIndex !== nextProps.previousIndex) return true;
       if (this.props.index !== nextProps.index) return true;
       if (this.props.hideNavBar!== nextProps.hideNavBar) return true;
@@ -77,48 +75,41 @@ export default class TopNav extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-      this.showOrHide();
+      animationProgress.setValue(nextProps.pageTransition);
+      navBarFading.setValue(this.props.hideNavBar? 0: 1);
     }
 
-    componentDidUpdate(){
-      setTimeout(() => { Animated.timing(navBarFading, {toValue: 0}).start() }, 2000);
-    }
-
-
-    showOrHide() {
-      Animated.timing(navBarFading, {toValue: this.props.hideNavBar ? 1 : 0});
-    }
 
     render() {
       let translateX1 = animationProgress.interpolate({
         inputRange: inputRange,
-        outputRange: [130, 20, -120],
+        outputRange: [240, 135, 20, -90],
       });
 
       let opacity1 = animationProgress.interpolate({
         inputRange: inputRange,
-        outputRange: [1, 0.7, 0.7],
+        outputRange: [1, 1, 0.7, 0.7],
       });
 
       let translateX2 = animationProgress.interpolate({
         inputRange: inputRange,
-        outputRange: [110, 0, -100],
+        outputRange: [195, 110, 0, -100],
       });
 
       let opacity2 = animationProgress.interpolate({
         inputRange: inputRange,
-        outputRange: [0.5, 1, 0.5],
+        outputRange: [0.5, 0.5, 1, 0.5],
       });
 
 
       let translateX3 = animationProgress.interpolate({
         inputRange: inputRange,
-        outputRange: [110, -20, -130],
+        outputRange: [150, 110, -20, -130],
       });
 
       let opacity3 = animationProgress.interpolate({
         inputRange: inputRange,
-        outputRange: [0.7, 0.7, 1],
+        outputRange: [0.7, 0.7, 0.7, 1],
       });
 
 
