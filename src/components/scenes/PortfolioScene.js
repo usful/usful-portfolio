@@ -81,7 +81,8 @@ export default class PortfolioScene extends Component {
   onStoriesScroll(e) {
     let direction = true;
     let currentOffset = e.nativeEvent.contentOffset.y;
-    if (currentOffset <= 0) {
+    console.log(currentOffset,height);
+    if ((currentOffset <= 0)) {
       direction = false;
     } else if (currentOffset > offset) {
       direction = true;
@@ -93,7 +94,7 @@ export default class PortfolioScene extends Component {
   }
 
   swipeEnds(e) {
-
+    setTimeout(() => {this.setState({ hideNavBar: true})}, 2000);
   }
 
   navSwipeEnds(e) {
@@ -107,8 +108,7 @@ export default class PortfolioScene extends Component {
         });
       }
     }
-
-    //setTimeout(() => {this.setState({ hideNavBar: false})}, 2000);
+    setTimeout(() => {this.setState({ hideNavBar: true})}, 2000);
   }
 
   goStory(story) {
