@@ -14,7 +14,7 @@ export default class NextStoryButton extends Component {
     super(props);
   }
 
-_nextContent(e){
+_nextContent(){
     switch(this.props.content.type){
 
       case 'Story':
@@ -38,7 +38,7 @@ _nextContent(e){
   render() {
     return (
       <TouchableOpacity
-        onPress={(e)=>this._nextContent(e)}>
+        onPress={()=>this._nextContent()}>
         <View style={style.content}>
           <View style={style.row1}>
             <Text style={style.title}>{this.props.content.name}</Text>

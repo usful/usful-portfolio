@@ -20,6 +20,7 @@ import ImageItem from './ImageItem';
 import NextContentButton from './NextContentButton';
 
 export default class DetailedContentItem extends Component {
+
   static defaultProps = {
     content: {},
     nextContent: {}
@@ -30,21 +31,36 @@ export default class DetailedContentItem extends Component {
   }
 
   render() {
+    let blocks = this.props.content.blocks;
     return (
       <ScrollView style={global.container}>
 
         <HeaderItem image={require('../../img/350-200.png')} date={longDateFormatter(this.props.content.date)}/>
         <TitleItem content ={this.props.content} title={this.props.content.name} tags={this.props.content.tags}/>
-        <BodyItem text={this.props.content.description}/>
-        <FeatureImageItem image={require('../../img/250-250.png')}
-                          byline={this.props.content.name}
-                          author={this.props.content.author}/>
-        <BodyItem text={this.props.content.description}/>
-        <SliderItem
-          images={[require('../../img/350-200.png'), require('../../img/350-200.png'), require('../../img/350-200.png'), require('../../img/350-200.png'), require('../../img/350-200.png')]}/>
-        <BodyItem text={this.props.content.description}/>
-        <ImageItem image={require('../../img/350-200.png')}/>
-        <BodyItem text={this.props.content.description}/>
+
+        {blocks.map(function(block, index) {
+        switch(block.blockType){
+
+          case 'CopyBlock' : {
+            return <BodyItem key={index} text={block.copyBlock.text} />
+        }
+          case 'LegalBlock' : {
+            return <BodyItem key={index} text={block.legalBlock.text} />
+          }
+          case 'MediaBlock' : {
+            return <ImageItem key={index} image={require('../../img/350-200.png')}/>
+          }
+          case 'MediaCarouselBlock' : {
+            return <SliderItem key={index} images={[require('../../img/350-200.png'), require('../../img/350-200.png'), require('../../img/350-200.png'), require('../../img/350-200.png'), require('../../img/350-200.png')]}/>
+          }
+          case 'QuoteBlock' : {
+            return <FeatureImageItem image={require('../../img/350-200.png')} key={index} author={block.quoteBlock.author} byline={block.quoteBlock.text} />
+          }
+          default: {
+            return <View key={index} ></View>
+          }
+        }})
+        }
 
         <NextContentButton content ={this.props.nextContent} image={require('../../img/footer.png')}/>
         <CloseButton/>
