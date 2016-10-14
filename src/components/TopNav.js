@@ -76,7 +76,7 @@ export default class TopNav extends Component {
 
     componentWillReceiveProps(nextProps) {
       animationProgress.setValue(nextProps.pageTransition);
-      navBarFading.setValue(this.props.hideNavBar? 0: 1);
+      navBarFading.setValue(nextProps.hideNavBar? 0: 1);
     }
 
 
