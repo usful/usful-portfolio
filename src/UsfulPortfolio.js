@@ -26,19 +26,19 @@ export default class UsfulPortfolio extends Component {
   }
 
   renderScene(route, navigator) {
+    let stories = AppData.content.filter(x => x.type === 'Story');
+    let initiatives = AppData.content.filter(x => x.type === 'Initiative');
+    let products = AppData.content.filter(x => x.type === 'Product');
       switch (route.id) {
         case Navigation.DETAILED_STORY_SCENE.id: {
 
-          let stories = AppData.content.filter(x => x.type === 'Story');
           let story = AppData.content.findIndex(x => x._id === route.storyId);
-          console.log(story);
           return <DetailedContentItem content={stories[story]} nextContent={stories[story + 1]}
           />;
 
         }
         case Navigation.DETAILED_INITIATIVE_SCENE.id: {
 
-          let initiatives = AppData.content.filter(x => x.type === 'Initiative');
           let initiative = initiatives.findIndex(x => x._id === route.initiativeId);
           return <DetailedContentItem content={initiatives[initiative]} nextContent={initiatives[initiative + 1]}
           />;
@@ -46,14 +46,13 @@ export default class UsfulPortfolio extends Component {
         }
         case Navigation.DETAILED_PRODUCT_SCENE.id: {
 
-          let products = AppData.content.filter(x => x.type === 'Product');
           let product = products.findIndex(x => x._id === route.productId);
           return <DetailedContentItem content={products[product]} nextContent={products[product + 1]}
           />;
 
         }
         case Navigation.MAIN_SCENE.id: {
-          return <Portfolio
+          return <Portfolio content = {AppData.content}
             />;
         }
         case Navigation.CONTACT_CARD_SCENE.id: {

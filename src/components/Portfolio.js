@@ -17,8 +17,6 @@ import {
     View
 } from 'react-native';
 
-import AppData from '../AppData';
-
 import StoryFeed from './Story/StoriesFeed';
 import TopNav from './TopNav';
 import InitiativeView from './Initiative/InitiativeView';
@@ -91,7 +89,7 @@ export default class Portfolio extends Component {
             scrollEventThrottle={SCROLL_FPS}
             showsVerticalScollIndicator={false}
             style={styles.listScroll}>
-            <ProductView products = {AppData.content.filter(x => x.type === 'Product')}/>
+            <ProductView products = {this.props.content.filter(x => x.type === 'Product')}/>
           </ScrollView>
 
           <ScrollView
@@ -99,7 +97,7 @@ export default class Portfolio extends Component {
             scrollEventThrottle={SCROLL_FPS}
             showsVerticalScollIndicator={false}
             style={styles.listScroll}>
-            <StoryFeed stories = {AppData.content.filter(x => x.type === 'Story')}/>
+            <StoryFeed stories = {this.props.content.filter(x => x.type === 'Story')}/>
           </ScrollView>
 
           <ScrollView
@@ -107,7 +105,7 @@ export default class Portfolio extends Component {
             scrollEventThrottle={SCROLL_FPS}
             showsVerticalScollIndicator={false}
             style={styles.listScroll}>
-            <InitiativeView initiatives = {AppData.content.filter(x => x.type === 'Initiative')}/>
+            <InitiativeView initiatives = {this.props.content.filter(x => x.type === 'Initiative')}/>
           </ScrollView>
 
         </ScrollView>

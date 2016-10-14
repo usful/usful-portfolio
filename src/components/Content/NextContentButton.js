@@ -15,21 +15,21 @@ export default class NextStoryButton extends Component {
   }
 
 _nextContent(e){
-
+    console.log(this.props.content._id);
     switch(this.props.content.type){
 
       case 'Story':
       {
-        Navigation.push({id: Navigation.DETAILED_STORY_SCENE.id, storyId: this.props.content.id});
+        Navigation.push({id: Navigation.DETAILED_STORY_SCENE.id, storyId: this.props.content._id});
 
       }
       case 'Initiative':
       {
-        Navigation.push({id: Navigation.DETAILED_INITIATIVE_SCENE.id, initiativeId: this.props.content.id});
+        Navigation.push({id: Navigation.DETAILED_INITIATIVE_SCENE.id, initiativeId: this.props.content._id});
       }
       case 'Product':
       {
-        Navigation.push({id: Navigation.DETAILED_PRODUCT_SCENE.id, productId: this.props.content.id});
+        Navigation.push({id: Navigation.DETAILED_PRODUCT_SCENE.id, productId: this.props.content._id});
       }
 
     }
