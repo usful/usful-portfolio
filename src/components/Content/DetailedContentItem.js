@@ -33,6 +33,7 @@ export default class DetailedContentItem extends Component {
 
   render() {
     let blocks = this.props.content.blocks;
+
     return (
       <ScrollView style={global.container}>
 
@@ -40,7 +41,7 @@ export default class DetailedContentItem extends Component {
         <TitleItem content={this.props.content} title={this.props.content.name} tags={this.props.content.tags}/>
 
         {blocks.map((block, index) => {
-          switch (block.type) {
+          switch (block._type) {
             case 'CopyBlock':
               return <BodyItem key={index} text={block.text}/>;
             case 'LegalBlock':
@@ -56,7 +57,7 @@ export default class DetailedContentItem extends Component {
                                        author={block.author}
                                        byline={block.text}/>;
             default:
-              return <View key={index} />;
+              return <View key={index}><Text>{block._type}</Text></View>;
           }
         })}
         <NextContentButton content={this.props.nextContent} image={require('../../img/footer.png')}/>

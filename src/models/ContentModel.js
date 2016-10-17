@@ -14,7 +14,7 @@ const ContentModel = Model.create(
     author: PersonModel,
     date: Date,
     tags: [String],
-    blocks: [BlockModel],
+    blocks: [Object],
     team: [PersonModel],
     contactInfo: ContactModel
   }
