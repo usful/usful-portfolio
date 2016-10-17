@@ -1,25 +1,23 @@
 'use strict';
 
 import Model from 'models';
-import BlockModel from './BlockModel';
+import BlockModel from './blocks/BlockModel';
 import ContactModel from './ContactModel';
-import DocumentProperties from './properties/DocumentProperties';
+import NamedDocumentProperties from './properties/NamedDocumentProperties';
+import PersonModel from './PersonModel';
 
 const ContentModel = Model.create(
   'Content',
-  [
-    DocumentProperties,
   {
+    ... NamedDocumentProperties,
     type: String,
-    name: String,
-    author: String,
-    description: String,
+    author: PersonModel,
     date: Date,
     tags: [String],
     blocks: [BlockModel],
-    teamMembers: [String],
+    team: [PersonModel],
     contactInfo: ContactModel
-  }]
+  }
 );
 
 export default ContentModel;

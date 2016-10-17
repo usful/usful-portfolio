@@ -2,13 +2,20 @@
 
 import React from 'react';
 
-let navigator;
-
-
 export default class Navigation {
 
-  static MAIN_SCENE = {
-    id: 'MainNavScene'
+  static navigator = null;
+
+  static SPLASH_SCENE = {
+    id: 'SplashScene'
+  };
+
+  static INTRODUCTION_SCENE = {
+    id: 'IntroductionScene'
+  };
+
+  static PORTFOLIO_SCENE = {
+    id: 'PortfolioScene'
   };
 
   static DETAILED_STORY_SCENE = {
@@ -30,10 +37,6 @@ export default class Navigation {
   static routes = [];
   static route = {};
 
-  static set navigator(val) {
-    navigator = val;
-  }
-
   static initRoutes(route) {
     Navigation.route = route;
     Navigation.routes = [route];
@@ -41,14 +44,29 @@ export default class Navigation {
 
   static push(route) {
     Navigation.routes.push(route);
-    navigator.push(route)
+    this.navigator.push(route)
   }
 
   static pop() {
-    navigator.pop();
-  }
-  static popToRoute(route) {
-    navigator.popToRoute(route);
+    this.navigator.pop();
+    return Navigation.routes.pop();
   }
 
+  static popToRoute(route) {
+    this.navigator.popToRoute(route);
+  }
+
+  static goContent(content) {
+    switch (content.type) {
+      case 'Story':
+        this.push({id: this.DETAILED_STORY_SCENE.id, content: content});
+        break;
+      case 'Initiative':
+        this.push({id: this.DETAILED_INITIATIVE_SCENE.id, content: content});
+        break;
+      case 'Product':
+        this.push({id: this.DETAILED_PRODUCT_SCENE.id, content: content});
+        break;
+    }
+  }
 }

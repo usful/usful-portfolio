@@ -6,11 +6,6 @@ import {
   View
 } from 'react-native';
 
-let cards = [{url: 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.1997/p128x128/851549_767334479959628_274486868_n.png'},
-  {url: 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851561_767334496626293_1958532586_n.png'},
-  {url: 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851575_767334539959622_441598241_n.png'},
-  {url: 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851583_767334573292952_1519550680_n.png'}];
-
 import ContactCards from './ContactCards';
 
 let styles = StyleSheet.create({
@@ -21,6 +16,12 @@ let styles = StyleSheet.create({
 });
 
 export default class Team extends Component {
+
+  static defaultProps = {
+    content: {
+      team: []
+    }
+  };
 
   constructor(props) {
     super(props);
@@ -41,11 +42,13 @@ export default class Team extends Component {
         style={[styles.scrollView]}
         zoomScale={1}>
 
-        {cards.map((data, i) => <ContactCards key={i}
-                                              totalTabs={cards.length}
-                                              index={i}
-                                              uri={data.url}
-                                              page={this.state.page}/>)}
+        {this.props.content.team.map((data, i) =>
+          <ContactCards key={i}
+                        totalTabs={cards.length}
+                        index={i}
+                        uri={data.url}
+                        page={this.state.page}/>
+        )}
       </ScrollView>
     );
   }

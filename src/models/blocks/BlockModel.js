@@ -1,7 +1,9 @@
 'use strict';
 
 import Model from 'models';
-import DocumentProperties from './properties/DocumentProperties';
+
+import BlockProperties from '../properties/BlockProperties';
+
 import CopyBlockModel from './CopyBlockModel';
 import LegalBlockModel from './LegalBlockModel';
 import MediaBlockModel from './MediaBlockModel';
@@ -10,16 +12,9 @@ import QuoteBlockModel from './QuoteBlockModel';
 
 const BlockModel = new Model(
   'BlockModel',
-  [
   {
-      blockType: String,
-      animation : String,
-      copyBlock: CopyBlockModel,
-      legalBlock: LegalBlockModel,
-      mediaBlock: MediaBlockModel,
-      mediaCarouselBlock: MediaCarouselBlockModel,
-      quoteBlock: QuoteBlockModel
-  }]
+    ... BlockProperties
+  }
 );
 
 export default BlockModel;

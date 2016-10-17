@@ -1,57 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Navigation from '../../helpers/Navigation';
 import {
-    StyleSheet,
-    Text,
-Image,
-TouchableOpacity,
-    View
+  StyleSheet,
+  Text,
+  Image,
+  TouchableOpacity,
+  View
 } from 'react-native';
-
-
-export default class NextStoryButton extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-_nextContent(){
-    switch(this.props.content.type){
-
-      case 'Story':
-      {
-        Navigation.push({id: Navigation.DETAILED_STORY_SCENE.id, storyId: this.props.content._id});
-
-      }
-      case 'Initiative':
-      {
-        Navigation.push({id: Navigation.DETAILED_INITIATIVE_SCENE.id, initiativeId: this.props.content._id});
-      }
-      case 'Product':
-      {
-        Navigation.push({id: Navigation.DETAILED_PRODUCT_SCENE.id, productId: this.props.content._id});
-      }
-
-    }
-
-  }
-
-  render() {
-    return (
-      <TouchableOpacity
-        onPress={()=>this._nextContent()}>
-        <View style={style.content}>
-          <View style={style.row1}>
-            <Text style={style.title}>{this.props.content.name}</Text>
-            <Text style={style.next}>NEXT {this.props.content.type.toUpperCase()}</Text>
-          </View>
-          <View style={style.row2}>
-            <Image style={style.image} source={this.props.image}/>
-          </View>
-        </View>
-      </TouchableOpacity>
-    );
-  }
-}
 
 const style = StyleSheet.create({
   content: {
@@ -86,3 +41,29 @@ const style = StyleSheet.create({
 
   }
 });
+
+export default class NextStoryButton extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  nextContent() {
+    Navigation.goContent(this.props.content);
+  }
+
+  render() {
+    return (
+      <TouchableOpacity onPress={() => this.nextContent()}>
+        <View style={style.content}>
+          <View style={style.row1}>
+            <Text style={style.title}>{this.props.content.name}</Text>
+            <Text style={style.next}>NEXT {this.props.content.type.toUpperCase()}</Text>
+          </View>
+          <View style={style.row2}>
+            <Image style={style.image} source={this.props.image}/>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+}

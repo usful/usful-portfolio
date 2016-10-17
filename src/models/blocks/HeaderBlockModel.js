@@ -1,12 +1,13 @@
 'use strict';
 
 import Model from 'models';
-import MediaModel from './MediaModel';
+import MediaModel from '../MediaModel';
+import BlockProperties from '../properties/BlockProperties';
 
 const HeaderBlockModel = Model.create(
   'HeaderBlock',
   {
-    text: String,
+    ... BlockProperties,
     media: [MediaModel]
   }
 );

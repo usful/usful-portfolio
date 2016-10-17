@@ -1,12 +1,12 @@
 'use strict';
 
 import Model from 'models';
-import MediaModel from './MediaModel';
+import BlockProperties from '../properties/BlockProperties';
 
 const LegalBlockModel = Model.create(
   'LegalBlock',
   {
-    text: String,
+    ... BlockProperties
   }
 );
 

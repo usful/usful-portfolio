@@ -49,7 +49,7 @@ export default class TagView extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TagInput onTagsChanged={(tags) => this.onTagsChanged(tags)} />
+        <TagInput onTagsChanged={(tags) => this.onTagsChanged(tags)}/>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(rowData) => <StoryRow story={rowData}/>}

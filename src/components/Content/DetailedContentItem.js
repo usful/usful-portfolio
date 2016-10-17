@@ -9,6 +9,7 @@ import {
 import global from '../../styles';
 
 import longDateFormatter from '../../helpers/formatters/longDate';
+import Navigation from '../../helpers/Navigation';
 
 import CloseButton from './CloseButton';
 import HeaderItem from './HeaderItem';
@@ -36,34 +37,30 @@ export default class DetailedContentItem extends Component {
       <ScrollView style={global.container}>
 
         <HeaderItem image={require('../../img/350-200.png')} date={longDateFormatter(this.props.content.date)}/>
-        <TitleItem content ={this.props.content} title={this.props.content.name} tags={this.props.content.tags}/>
+        <TitleItem content={this.props.content} title={this.props.content.name} tags={this.props.content.tags}/>
 
-        {blocks.map(function(block, index) {
-        switch(block.blockType){
-
-          case 'CopyBlock' : {
-            return <BodyItem key={index} text={block.copyBlock.text} />
-        }
-          case 'LegalBlock' : {
-            return <BodyItem key={index} text={block.legalBlock.text} />
+        {blocks.map((block, index) => {
+          switch (block.type) {
+            case 'CopyBlock':
+              return <BodyItem key={index} text={block.text}/>;
+            case 'LegalBlock':
+              return <BodyItem key={index} text={block.text}/>;
+            case 'MediaBlock':
+              return <ImageItem key={index} image={require('../../img/350-200.png')}/>;
+            case 'MediaCarouselBlock':
+              return <SliderItem key={index}
+                                 images={[require('../../img/350-200.png'), require('../../img/350-200.png'), require('../../img/350-200.png'), require('../../img/350-200.png'), require('../../img/350-200.png')]}/>;
+            case 'QuoteBlock':
+              return <FeatureImageItem image={require('../../img/350-200.png')}
+                                       key={index}
+                                       author={block.author}
+                                       byline={block.text}/>;
+            default:
+              return <View key={index} />;
           }
-          case 'MediaBlock' : {
-            return <ImageItem key={index} image={require('../../img/350-200.png')}/>
-          }
-          case 'MediaCarouselBlock' : {
-            return <SliderItem key={index} images={[require('../../img/350-200.png'), require('../../img/350-200.png'), require('../../img/350-200.png'), require('../../img/350-200.png'), require('../../img/350-200.png')]}/>
-          }
-          case 'QuoteBlock' : {
-            return <FeatureImageItem image={require('../../img/350-200.png')} key={index} author={block.quoteBlock.author} byline={block.quoteBlock.text} />
-          }
-          default: {
-            return <View key={index} ></View>
-          }
-        }})
-        }
-
-        <NextContentButton content ={this.props.nextContent} image={require('../../img/footer.png')}/>
-        <CloseButton/>
+        })}
+        <NextContentButton content={this.props.nextContent} image={require('../../img/footer.png')}/>
+        <CloseButton onPress={() => Navigation.pop()}/>
       </ScrollView>
     );
   }

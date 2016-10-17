@@ -1,56 +1,38 @@
 import React, { Component } from 'react';
-import Navigation from '../../helpers/Navigation';
+
 import {
   StyleSheet,
   Text,
-  ScrollView,
   View,
-  ListView,
   TouchableOpacity,
-  Image
 } from 'react-native';
-
-import global from '../../styles';
-
-
 
 export default class InitiativeCard extends Component {
 
   static defaultProps = {
-    initiatives: [{
-      name : '',
-    }]
-
+    content: {},
+    onContentPressed: (content) => {}
   };
 
   constructor(props) {
     super(props);
-
-  }
-  openInitiatives() {
-
-    Navigation.push({id: Navigation.DETAILED_INITIATIVE_SCENE.id, initiativeId: this.props.id});
-
   }
 
   render() {
     return (
-      <TouchableOpacity
-        onPress={() => this.openInitiatives()} >
-      <View style={[styles.card]}>
-        <Text style= {styles.text}>{this.props.name}</Text>
-      </View>
+      <TouchableOpacity onPress={() => this.props.onContentPressed(this.props.content)}>
+        <View style={[styles.card]}>
+          <Text style={styles.text}>{this.props.content.name}</Text>
+        </View>
       </TouchableOpacity>
-
     );
-
   }
 }
+
 const styles = StyleSheet.create({
   text: {
     fontSize: 25,
     color: '#A9A9A9',
-
   },
   card: {
     flex: 1,
@@ -63,6 +45,5 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#EFEFEF',
     marginHorizontal: 10,
-
   }
-})
+});

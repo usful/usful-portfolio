@@ -1,5 +1,7 @@
+'use strict';
+
 import React, { Component } from 'react';
-import Navigation from '../../helpers/Navigation';
+
 import {
   StyleSheet,
   Dimensions,
@@ -7,6 +9,8 @@ import {
   View,
   TouchableOpacity
 } from 'react-native';
+
+import Navigation from '../../helpers/Navigation';
 
 let {height, width} = Dimensions.get('window');
 
@@ -48,34 +52,28 @@ let styles = StyleSheet.create({
     marginBottom: 8,
     maxWidth: 200,
     textAlign: 'center',
-
-
   },
 });
 
 export default class StoryCard extends Component {
 
+  static defaultProps = {
+    content: {},
+    onContentPressed: (content) => {}
+  };
 
   constructor(props) {
     super(props);
   }
 
-
-  openStories(e) {
-
-    Navigation.push({id: Navigation.DETAILED_STORY_SCENE.id, storyId: this.props.id});
-
-  }
-
   render() {
     return (
-
-      <TouchableOpacity onPress={(e) => this.openStories(e)}>
+      <TouchableOpacity onPress={(e) => this.props.onContentPressed(this.props.content)}>
         <View>
           <View style={styles.container}>
             <View style={styles.rightContainer}>
-              <Text style={styles.title}>{this.props.title}</Text>
-              <Text style={styles.author}>{this.props.author}</Text>
+              <Text style={styles.title}>{this.props.content.name}</Text>
+              <Text style={styles.author}>{this.props.content.author.name}</Text>
             </View>
           </View>
           <View style={styles.separator}/>

@@ -21,12 +21,13 @@ export default class ContactFooter extends Component {
       uri: 'http://www.lane.com',
       address: '123 Stewart Rd, Toronto, ON, Canada, A1B 2D4 '
     }
-  }
+  };
 
   constructor(props) {
     super(props);
   }
-  shouldComponentUpdate(nextProps,nextState) {
+
+  shouldComponentUpdate(nextProps, nextState) {
     return (
       nextProps.card != this.props.card ||
       nextProps.contact != this.props.contact
@@ -35,7 +36,7 @@ export default class ContactFooter extends Component {
 
   render() {
     return (
-      <View style= {global.content}>
+      <View style={global.content}>
         <Text style={styles.title}>Contact Information</Text>
         <View style={styles.iconContainer}>
           <TouchableOpacity onPress={() => openLink(this.props.contact.uri)} >
@@ -56,6 +57,7 @@ export default class ContactFooter extends Component {
     );
   }
 }
+
 const styles= StyleSheet.create({
   iconContainer: {
     marginTop: 20,
@@ -79,4 +81,4 @@ const styles= StyleSheet.create({
     paddingHorizontal: 40,
     color: '#B4B4B4'
   }
-})
+});

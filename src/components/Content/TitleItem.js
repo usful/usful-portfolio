@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet,
-    TouchableOpacity,
-    Text,
-    View,
-Image
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  Image
 } from 'react-native';
+
 import Navigation from '../../helpers/Navigation';
 import TagList from './StoryTagList';
 
@@ -21,20 +22,19 @@ export default class TitleItem extends Component {
     super(props);
   }
 
-  _openTeamModal(e) {
-    Navigation.push({id: Navigation.CONTACT_CARD_SCENE.id, storyId: this.props.id});
-    }
-
+  openTeamModal() {
+    Navigation.push({id: Navigation.CONTACT_CARD_SCENE.id, content: this.props.content});
+  }
 
   render() {
     return (
       <View style={[global.content, style.content]}>
         <View style={style.row1}>
-          <TouchableOpacity onPress = {(e) => this._openTeamModal(e)}>
-            <Image style={style.team} source={require('../../img/judge.png')} />
+          <TouchableOpacity onPress={(e) => this.openTeamModal()}>
+            <Image style={style.team} source={require('../../img/judge.png')}/>
           </TouchableOpacity>
           <TouchableOpacity >
-            <Image style={style.share} source={require('../../img/share.png')} />
+            <Image style={style.share} source={require('../../img/share.png')}/>
           </TouchableOpacity>
         </View>
         <View style={style.row2}>

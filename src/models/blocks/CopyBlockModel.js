@@ -2,10 +2,12 @@
 
 import Model from 'models';
 
+import BlockProperties from '../properties/BlockProperties';
+
 const CopyBlockModel = Model.create(
   'CopyBlock',
   {
-    text: String,
+    ... BlockProperties
   }
 );
 

@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import {
-  Alert,
   StatusBar,
-  StyleSheet,
-  Text,
   View,
-  ListView,
   Navigator,
-  TouchableOpacity
 } from 'react-native';
 
 import Navigation from './helpers/Navigation';
 import AppData from './AppData';
+
 import Team from './components/Team';
 import DetailedContentItem from './components/Content/DetailedContentItem';
-import Portfolio from './components/Portfolio';
+import PortfolioScene from './components/scenes/PortfolioScene';
+import SplashScene from './components/scenes/SplashScene';
+import IntroductionScene from './components/scenes/IntroductionScene';
 
 export default class UsfulPortfolio extends Component {
   constructor(props) {
@@ -26,52 +24,33 @@ export default class UsfulPortfolio extends Component {
   }
 
   renderScene(route, navigator) {
-    let stories = AppData.content.filter(x => x.type === 'Story');
-    let initiatives = AppData.content.filter(x => x.type === 'Initiative');
-    let products = AppData.content.filter(x => x.type === 'Product');
-      switch (route.id) {
-        case Navigation.DETAILED_STORY_SCENE.id: {
-
-          let story = stories.findIndex(x => x._id === route.storyId);
-          return <DetailedContentItem content={stories[story]} nextContent={stories[story + 1] || stories[0]}
-          />;
-
-        }
-        case Navigation.DETAILED_INITIATIVE_SCENE.id: {
-
-          let initiative = initiatives.findIndex(x => x._id === route.initiativeId);
-          return <DetailedContentItem content={initiatives[initiative]} nextContent={initiatives[initiative + 1] ||initiatives[0]}
-          />;
-
-        }
-        case Navigation.DETAILED_PRODUCT_SCENE.id: {
-
-          let product = products.findIndex(x => x._id === route.productId);
-          return <DetailedContentItem content={products[product]} nextContent={products[product + 1] || products[0]}
-          />;
-
-        }
-        case Navigation.MAIN_SCENE.id: {
-          return <Portfolio content = {AppData.content}
-            />;
-        }
-        case Navigation.CONTACT_CARD_SCENE.id: {
-          return <Team
-            />;
-        }
-
-      }
+    switch (route.id) {
+      case Navigation.DETAILED_STORY_SCENE.id:
+        return <DetailedContentItem content={route.content} nextContent={AppData.getNextContent(route.content)}/>;
+      case Navigation.DETAILED_INITIATIVE_SCENE.id:
+        return <DetailedContentItem content={route.content} nextContent={AppData.getNextContent(route.content)}/>;
+      case Navigation.DETAILED_PRODUCT_SCENE.id:
+        return <DetailedContentItem content={route.content} nextContent={AppData.getNextContent(route.content)}/>;
+      case Navigation.SPLASH_SCENE.id:
+        return <SplashScene/>;
+      case Navigation.INTRODUCTION_SCENE.id:
+        return <IntroductionScene/>;
+      case Navigation.PORTFOLIO_SCENE.id:
+        return <PortfolioScene/>;
+      case Navigation.CONTACT_CARD_SCENE.id:
+        return <Team content={route.content}/>;
     }
+  }
 
   render() {
     return (
-      <View style={ {flex:1} } >
+      <View style={ {flex:1} }>
         <StatusBar translucent={true} backgroundColor="rgb(0,0,0)"/>
         <Navigator
           ref={(el) => Navigation.navigator = el}
-          initialRoute={Navigation.MAIN_SCENE}
+          initialRoute={Navigation.SPLASH_SCENE}
           configureScene={() => this.configureScene()}
-          renderScene={this.renderScene.bind(this)}
+          renderScene={(route, navigator) => this.renderScene(route, navigator)}
         />
       </View>
     );
