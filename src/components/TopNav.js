@@ -80,10 +80,10 @@ export default class TopNav extends Component {
 
   render() {
     let transform1 = [{
-      translateX: {
+      translateX: animationProgress.interpolate({
         inputRange: inputRange,
         outputRange: [240, 135, 20, -90],
-      }
+      })
     }];
 
     let opacity1 = animationProgress.interpolate({
@@ -92,10 +92,10 @@ export default class TopNav extends Component {
     });
 
     let transform2 = [{
-      translateX: {
+      translateX: animationProgress.interpolate({
         inputRange: inputRange,
         outputRange: [195, 110, 0, -100],
-      }
+      })
     }];
 
     let opacity2 = animationProgress.interpolate({
@@ -104,10 +104,10 @@ export default class TopNav extends Component {
     });
 
     let transform3 = [{
-      translateX: {
+      translateX: animationProgress.interpolate({
         inputRange: inputRange,
         outputRange: [150, 110, -20, -130],
-      }
+      })
     }];
 
     let opacity3 = animationProgress.interpolate({

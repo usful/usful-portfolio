@@ -8,8 +8,8 @@ import {
 import Navigation from './helpers/Navigation';
 import AppData from './AppData';
 
-import DetailedStoryItem from './components/Story/DetailedStory/DetailedStoryItem';
-
+import Team from './components/Team';
+import DetailedContentItem from './components/Content/DetailedContentItem';
 import PortfolioScene from './components/scenes/PortfolioScene';
 import SplashScene from './components/scenes/SplashScene';
 import IntroductionScene from './components/scenes/IntroductionScene';
@@ -25,24 +25,27 @@ export default class UsfulPortfolio extends Component {
 
   renderScene(route, navigator) {
     switch (route.id) {
-      case 'SplashScene':
+      case Navigation.DETAILED_STORY_SCENE.id:
+        return <DetailedContentItem content={route.content} nextContent={AppData.getNextContent(route.content)}/>;
+      case Navigation.DETAILED_INITIATIVE_SCENE.id:
+        return <DetailedContentItem content={route.content} nextContent={AppData.getNextContent(route.content)}/>;
+      case Navigation.DETAILED_PRODUCT_SCENE.id:
+        return <DetailedContentItem content={route.content} nextContent={AppData.getNextContent(route.content)}/>;
+      case Navigation.SPLASH_SCENE.id:
         return <SplashScene/>;
-      case 'IntroductionScene':
+      case Navigation.INTRODUCTION_SCENE.id:
         return <IntroductionScene/>;
-      case 'PortfolioScene':
+      case Navigation.PORTFOLIO_SCENE.id:
         return <PortfolioScene/>;
-      case 'DetailedStoryScene':
-        let story = AppData.stories.findIndex(x => x.id === route.story.id);
-
-        return <DetailedStoryItem story={AppData.stories[story]}
-                                  nextStory={AppData.stories[story + 1] || AppData.stories[0]}/>;
+      case Navigation.CONTACT_CARD_SCENE.id:
+        return <Team content={route.content}/>;
     }
   }
 
   render() {
     return (
-      <View style={ {flex:1} } >
-        <StatusBar translucent={true} backgroundColor="rgba(0,0,0,0.2)"/>
+      <View style={ {flex:1} }>
+        <StatusBar translucent={true} backgroundColor="rgb(0,0,0)"/>
         <Navigator
           ref={(el) => Navigation.navigator = el}
           initialRoute={Navigation.SPLASH_SCENE}

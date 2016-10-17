@@ -1,46 +1,40 @@
+'use strict';
+
 import React, { Component } from 'react';
+
 import {
   StyleSheet,
   Text,
-  ScrollView,
+  TouchableOpacity,
   View,
-  ListView,
-  Image
 } from 'react-native';
-
-import global from '../../styles';
-
-
 
 export default class ProductCard extends Component {
 
   static defaultProps = {
-    products: [{
-      name : '',
-    }]
-
+    content: {},
+    onContentPressed: (content) => {}
   };
 
   constructor(props) {
     super(props);
-
   }
 
   render() {
     return (
-      <View style={[styles.card]}>
-        <Text style= {styles.text}>{this.props.name}</Text>
-      </View>
-
+      <TouchableOpacity onPress={() => this.props.onContentPressed(this.props.content)}>
+        <View style={[styles.card]}>
+          <Text style={styles.text}>{this.props.content.name}</Text>
+        </View>
+      </TouchableOpacity>
     );
-
   }
 }
+
 const styles = StyleSheet.create({
   text: {
     fontSize: 25,
     color: '#A9A9A9',
-
   },
   card: {
     flex: 1,
@@ -53,6 +47,5 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#EFEFEF',
     marginHorizontal: 10,
-
   }
-})
+});

@@ -22,6 +22,18 @@ export default class Navigation {
     id: 'DetailedStoryScene'
   };
 
+  static CONTACT_CARD_SCENE = {
+    id: 'ContactCardScene'
+  };
+
+  static DETAILED_INITIATIVE_SCENE = {
+    id: 'DetailedInitiativeScene'
+  };
+
+  static DETAILED_PRODUCT_SCENE = {
+    id: 'DetailedProductScene'
+  };
+
   static routes = [];
   static route = {};
 
@@ -40,4 +52,21 @@ export default class Navigation {
     return Navigation.routes.pop();
   }
 
+  static popToRoute(route) {
+    this.navigator.popToRoute(route);
+  }
+
+  static goContent(content) {
+    switch (content.type) {
+      case 'Story':
+        this.push({id: this.DETAILED_STORY_SCENE.id, content: content});
+        break;
+      case 'Initiative':
+        this.push({id: this.DETAILED_INITIATIVE_SCENE.id, content: content});
+        break;
+      case 'Product':
+        this.push({id: this.DETAILED_PRODUCT_SCENE.id, content: content});
+        break;
+    }
+  }
 }

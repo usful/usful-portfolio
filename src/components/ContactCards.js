@@ -1,108 +1,88 @@
 import React, { Component } from 'react';
 import {
-    Animated,
-    StyleSheet,
-    Easing,
-    Dimensions,
-    Image,
-    Text,
-    TouchableOpacity,
-    View
-    ScrollView,
-    View,
-    Text
+  StyleSheet,
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
-import Colours from '../styles/Colours';
-
-const TEXT_STYLE = {
-  fontStyle: 'italic',
-  color: Colours.textGrey,
-  fontSize: 18,
-};
-
 let styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        flex: 1,
+  container: {
+    alignItems: 'center',
+    flex: 1,
+    marginHorizontal: -50,
+    backgroundColor: 'grey'
+  },
+  card: {
+    borderWidth: 1,
+    borderColor: '#00BFFF',
+    width: 250,
+    height: 420,
+    paddingVertical: 30,
+    backgroundColor: 'black',
+    alignItems: 'center',
+    marginHorizontal: -0,
+  },
+  cardImage: {
+    borderWidth: 1,
+    borderColor: '#FFF',
+    height: 120,
+    marginTop: 30,
+    width: 120,
+    backgroundColor: 'white'
+  },
+  page: {
+    color: 'white',
+  },
+  close: {
+    paddingLeft: 90,
+    color: 'white'
+  },
+  contactInfo: {
+    alignItems: 'center'
+  },
+  pageAndClose: {
+    flexDirection: 'row',
+    position: 'absolute',
+    top: 20,
+    left: 20,
+  },
+  textDescription: {
+    color: '#A9A9A9',
+    fontSize: 12,
+    lineHeight: 15,
+    marginHorizontal: 45,
+    paddingTop: 10,
+    justifyContent: 'space-between'
+  },
+  textName: {
+    marginTop: 30,
+    fontWeight: '600',
+    color: '#A9A9A9',
+    fontSize: 18,
+  },
+  textTags: {
+    fontStyle: 'italic',
+    paddingBottom: 18,
+    color: '#A9A9A9',
+    fontSize: 12,
+    paddingTop: 5,
 
-        marginHorizontal:-50,
-        backgroundColor : 'grey'
+  },
+  socialMediaBox: {
+    flexDirection: 'row',
+    backgroundColor: 'transparent',
+    width: 250,
+    paddingVertical: 10,
+    justifyContent: 'center'
+  },
+  mediaIcon: {
+    width: 30,
+    height: 30,
+    margin: 5,
 
-    },
-    card: {
-        borderWidth: 1,
-
-        borderColor: '#00BFFF',
-        width: 250,
-        height: 420,
-        paddingVertical: 30,
-        backgroundColor: 'black',
-        alignItems: 'center',
-        marginHorizontal:-0,
-    },
-    cardImage: {
-        borderWidth:1,
-        borderColor: '#FFF',
-        height: 120,
-        marginTop: 30,
-        width: 120,
-        backgroundColor:'white'
-    },
-    page: {
-      color: 'white',
-
-    },
-    close: {
-      paddingLeft: 90,
-      color: 'white'
-    },
-    contactInfo: {
-        alignItems: 'center'
-    },
-    pageAndClose: {
-      flexDirection : 'row',
-      position: 'absolute',
-      top:20,
-      left: 20,
-    },
-    textDescription: {
-        color: '#A9A9A9',
-        fontSize : 12,
-        lineHeight: 15,
-        marginHorizontal: 45,
-        paddingTop: 10,
-        justifyContent: 'space-between'
-
-    },
-    textName: {
-        marginTop: 30,
-        fontWeight: '600',
-        color: '#A9A9A9',
-        fontSize: 18,
-    },
-
-    textTags: {
-      fontStyle: 'italic',
-        paddingBottom: 18,
-        color: '#A9A9A9',
-        fontSize: 12,
-        paddingTop:5,
-
-    },
-    socialMediaBox:{
-      flexDirection: 'row',
-      backgroundColor: 'transparent',
-      width: 250,
-      paddingVertical:10,
-      justifyContent: 'center'
-    },
-    mediaIcon: {
-      width: 30,
-      height:30,
-      margin: 5,
-
-    }
+  }
 });
 
 export default class ContactCards extends Component {

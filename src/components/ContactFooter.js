@@ -13,13 +13,14 @@ import openLink from '../helpers/navigation/openLink';
 
 export default class ContactFooter extends Component {
   static defaultProps = {
-    info: [{
-      email: 'mailto:info@monanetworks.com',
-      phone: 'tel:1234567890',
-      url: 'https://www.joinlane.com',
-      address: '46 Stewart St, Toronto, ON, Canada, A1B 2C3'
-    }],
-    card: 0
+    card: 0,
+    contact:
+    {
+      email: 'rishabh@monanetworks.com',
+      phone: '123-456-7890',
+      uri: 'http://www.lane.com',
+      address: '123 Stewart Rd, Toronto, ON, Canada, A1B 2D4 '
+    }
   };
 
   constructor(props) {
@@ -29,8 +30,8 @@ export default class ContactFooter extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return (
       nextProps.card != this.props.card ||
-      nextProps.info != this.props.info
-    )
+      nextProps.contact != this.props.contact
+)
   }
 
   render() {
@@ -38,20 +39,20 @@ export default class ContactFooter extends Component {
       <View style={global.content}>
         <Text style={styles.title}>Contact Information</Text>
         <View style={styles.iconContainer}>
-          <TouchableOpacity onPress={() => openLink(this.props.info[this.props.card].url)}>
-            <Image style={styles.icon} source={require('../img/share.png')}/>
+          <TouchableOpacity onPress={() => openLink(this.props.contact.uri)} >
+            <Image style={styles.icon} source={require('../img/share.png')} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => openLink(this.props.info[this.props.card].url)}>
-            <Image style={styles.icon} source={require('../img/phone-call.png')}/>
+          <TouchableOpacity onPress={() => openLink(this.props.contact.uri)}>
+            <Image style={styles.icon} source={require('../img/phone-call.png')} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => openLink(this.props.info[this.props.card].url)}>
-            <Image style={styles.icon} source={require('../img/mail.png')}/>
+          <TouchableOpacity onPress={() => openLink(this.props.contact.uri)}>
+            <Image style={styles.icon} source={require('../img/mail.png')} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => openLink(this.props.info[this.props.card].url)}>
-            <Image style={styles.icon} source={require('../img/internet.png')}/>
+          <TouchableOpacity onPress={() => openLink(this.props.contact.uri)}>
+            <Image style={styles.icon} source={require('../img/internet.png')} />
           </TouchableOpacity>
         </View>
-        <Text style={styles.address}>{this.props.info[this.props.card].address}</Text>
+        <Text style={styles.address}>{this.props.contact.address}</Text>
       </View>
     );
   }

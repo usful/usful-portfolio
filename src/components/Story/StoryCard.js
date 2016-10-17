@@ -10,6 +10,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import Navigation from '../../helpers/Navigation';
+
 let {height, width} = Dimensions.get('window');
 
 let styles = StyleSheet.create({
@@ -56,8 +58,8 @@ let styles = StyleSheet.create({
 export default class StoryCard extends Component {
 
   static defaultProps = {
-    story: {},
-    onStoryPressed: (story) => {}
+    content: {},
+    onContentPressed: (content) => {}
   };
 
   constructor(props) {
@@ -66,13 +68,12 @@ export default class StoryCard extends Component {
 
   render() {
     return (
-
-      <TouchableOpacity onPress={(e) => this.props.onStoryPressed(this.props.story)}>
+      <TouchableOpacity onPress={(e) => this.props.onContentPressed(this.props.content)}>
         <View>
           <View style={styles.container}>
             <View style={styles.rightContainer}>
-              <Text style={styles.title}>{this.props.story.name}</Text>
-              <Text style={styles.author}>{this.props.story.author}</Text>
+              <Text style={styles.title}>{this.props.content.name}</Text>
+              <Text style={styles.author}>{this.props.content.author.name}</Text>
             </View>
           </View>
           <View style={styles.separator}/>

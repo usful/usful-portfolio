@@ -6,7 +6,7 @@ import {
     Image
 } from 'react-native';
 
-import global from '../../../styles';
+import global from '../../styles';
 
 export default class FeatureImageItem extends Component {
   constructor(props) {
