@@ -117,6 +117,10 @@ export default class PortfolioScene extends Component {
     setTimeout(() => this.setState({hideNavBar: true}), 2000);
   }
 
+  onContentPressed(content){
+    Navigation.goContent(content);
+  }
+
   render() {
     return (
       <View style={styles.container}>

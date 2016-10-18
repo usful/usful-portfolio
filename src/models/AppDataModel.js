@@ -20,10 +20,10 @@ const AppDataModel = new Model(
     get products() {
       return this.content.filter(x => x.type === 'Product');
     },
-    //TODO: not working, need to figure out why next item isn't being passed, only works on first card
+
     getNextContent(content) {
       function _getNext(arr) {
-        return arr[arr.findIndex(x => x.id === arr.id) + 1] || arr[0];
+        return arr[arr.findIndex(x => x._id === content._id) + 1] || arr[0];
       }
 
       switch (content.type) {
