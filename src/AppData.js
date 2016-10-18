@@ -3,59 +3,17 @@
 import AppDataModel from './models/AppDataModel';
 import GUID from './helpers/guid';
 
-let team = [
-  {
-    _id: GUID(),
-    name: 'Clinton Robinson',
-    description: 'Something.',
-    tags: ['Vision', 'Leadership', 'Technology']
-  }, {
-    _id: GUID(),
-    name: 'Kofi Gyekye',
-    description: 'Something Else.',
-    tags: ['Relationships', 'Stuff', 'More Stuff']
-  }, {
-    _id: GUID(),
-    name: 'Rhea Claus',
-    description: 'Something Else.',
-    tags: ['Relationships', 'Stuff', 'More Stuff']
-  }, {
-    _id: GUID(),
-    name: 'Mecha Clarke',
-    description: 'Something Else.',
-    tags: ['Relationships', 'Stuff', 'More Stuff']
-  }, {
-    _id: GUID(),
-    name: 'Juliana Ciccarelli',
-    description: 'Something Else.',
-    tags: ['Relationships', 'Stuff', 'More Stuff']
-  }, {
-    _id: GUID(),
-    name: 'Casey Pierria',
-    description: 'Something Else.',
-    tags: ['Relationships', 'Stuff', 'More Stuff']
-  }, {
-    _id: GUID(),
-    name: 'Alexandra Panagoulia',
-    description: 'Something Else.',
-    tags: ['Relationships', 'Stuff', 'More Stuff']
-  }, {
-    _id: GUID(),
-    name: 'Jessica Graziani',
-    description: 'Something Else.',
-    tags: ['Relationships', 'Stuff', 'More Stuff']
-  }, {
-    _id: GUID(),
-    name: 'Rishabh Nag',
-    description: 'Something Else.',
-    tags: ['Relationships', 'Stuff', 'More Stuff']
-  }, {
-    _id: GUID(),
-    name: 'Mercedes',
-    description: 'Something Else.',
-    tags: ['Relationships', 'Stuff', 'More Stuff']
-  }
-];
+//Moving test data out into its own files for reusability and to stop this file from growing forever.
+import team from './data/team';
+import media from './data/media';
+
+/**
+ * Quick helper function for test data to grab a random media.
+ * @returns {*}
+ */
+function randomMedia() {
+  return media[Math.floor(Math.random() * media.length)];
+}
 
 let storyBlocks = [
   {
@@ -113,8 +71,10 @@ const AppData = new AppDataModel(
     content: [
       {
         _id: GUID(),
+        hero: randomMedia(),
         type: 'Story',
-        name: 'Nanoleaf and the Usful Team Partner to Brighten Space',
+        name: 'Better Bulbs',
+        title: 'Nanoleaf and the Usful Team Partner to Brighten Space',
         author: team[0],
         date: new Date(),
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
@@ -129,7 +89,9 @@ const AppData = new AppDataModel(
       {
         _id: GUID(),
         type: 'Story',
+        hero: randomMedia(),
         name: 'Usful goes to Mars',
+        title: 'It is now time to start colonizing other planets because it will be fun',
         author: team[0],
         date: new Date(),
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
@@ -144,7 +106,9 @@ const AppData = new AppDataModel(
       {
         _id: GUID(),
         type: 'Story',
+        hero: randomMedia(),
         name: 'Launching the Anthropocene',
+        title: 'Earth is running out of stuff and we need to do something about it.',
         author: team[0],
         date: new Date(),
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
@@ -159,7 +123,9 @@ const AppData = new AppDataModel(
       {
         _id: GUID(),
         type: 'Story',
+        hero: randomMedia(),
         name: 'Nanoleaf Does something else',
+        title: 'Some other stuff was done by NanoLeaf, and its really great.',
         author: team[0],
         date: new Date(),
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
@@ -174,7 +140,9 @@ const AppData = new AppDataModel(
       {
         _id: GUID(),
         type: 'Story',
-        name: 'Nanoleaf and the Usful Team Partner to Brighten Space',
+        name: 'Even more LEDS',
+        title: 'Nanoleaf and the Usful Team Partner to Brighten Space.',
+        hero: randomMedia(),
         author: team[1],
         date: new Date(),
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
