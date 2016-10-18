@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-
+import Navigation from '../../helpers/Navigation';
 import {
   StyleSheet,
   Text,
@@ -13,18 +13,22 @@ export default class ProductCard extends Component {
 
   static defaultProps = {
     content: {},
-    onContentPressed: (content) => {}
+
   };
 
   constructor(props) {
     super(props);
   }
 
+  onContentPressed(content){
+    Navigation.goContent(content)
+  }
+
   render() {
     return (
-      <TouchableOpacity onPress={() => this.props.onContentPressed(this.props.content)}>
+      <TouchableOpacity onPress={() => this.onContentPressed(this.props.content)}>
         <View style={[styles.card]}>
-          <Text style={styles.text}>{this.props.content.name}</Text>
+          <Text style={styles.text}>{this.props.name}</Text>
         </View>
       </TouchableOpacity>
     );

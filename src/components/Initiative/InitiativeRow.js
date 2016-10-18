@@ -45,7 +45,7 @@ export default class InitiativeRow extends Component {
             <View style={styles.textContainer}>
             <Text style={styles.text}>{obj.description}</Text>
             </View>
-            <InitiativeCard id={obj._id} name={obj.name}/>
+            <InitiativeCard content={obj} id={obj._id} name={obj.name}/>
           </View>)}
       </ScrollView>
 
