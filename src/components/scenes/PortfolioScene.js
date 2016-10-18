@@ -145,7 +145,7 @@ export default class PortfolioScene extends Component {
                       onScroll={(e) => this.onStoriesScroll(e)}
                       onMomentumScrollEnd={(e) => this.swipeEnds(e)}>
             {AppData.stories.map(story =>
-              <StoryCard key={story._id} content={story} onContentPressed={() => this.onContentPressed(story)}/>
+              <StoryCard key={story._id} content={story} onPress={() => this.onContentPressed(story)}/>
             )}
           </ScrollView>
 

@@ -7,59 +7,69 @@ import {
   Dimensions,
   Text,
   View,
+  Image,
   TouchableOpacity
 } from 'react-native';
 
-import Navigation from '../../helpers/Navigation';
+import LinearGradient from 'react-native-linear-gradient';
 
 let {height, width} = Dimensions.get('window');
 
+const CARD_HEIGHT = 350;
+
 let styles = StyleSheet.create({
-  author: {
-    color: '#656565',
-    fontSize: 20,
-    fontStyle: 'italic',
-    marginBottom: 10,
-  },
   container: {
-    alignItems: 'center',
-    backgroundColor: '#fff',
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    padding: 50,
-
-  },
-  rect: {
-    borderWidth: 1,
-    borderColor: 'black',
-    minHeight: 200,
-    width: width,
-
-  },
-  rightContainer: {
     alignItems: 'center',
+    height: CARD_HEIGHT,
+    paddingHorizontal: 50,
+    marginBottom: 10
+  },
+  linearGradient: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: width,
+    height: CARD_HEIGHT
+  },
+  textContainer: {
+    backgroundColor: 'transparent',
     flex: 1,
   },
-  separator: {
-    backgroundColor: '#85cee3',
-    height: 2,
-  },
-  title: {
-    color: '#9a9a9a',
+  name: {
+    backgroundColor: 'transparent',
+    color: '#ffffff',
+    fontFamily: 'Courier New',
     fontSize: 28,
     fontWeight: '500',
-    marginBottom: 8,
-    maxWidth: 200,
     textAlign: 'center',
+    marginBottom: 34,
   },
+  title: {
+    backgroundColor: 'transparent',
+    color: '#ffffff',
+    fontFamily: 'Courier New',
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: '400',
+    lineHeight: 22
+  },
+  image: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    height: CARD_HEIGHT,
+    width: width
+  }
 });
 
 export default class StoryCard extends Component {
 
   static defaultProps = {
     content: {},
-    onContentPressed: (content) => {}
+    onPress: (content) => {}
   };
 
   constructor(props) {
@@ -67,16 +77,17 @@ export default class StoryCard extends Component {
   }
 
   render() {
+    let story = this.props.content;
+
     return (
-      <TouchableOpacity onPress={(e) => this.props.onContentPressed(this.props.content)}>
-        <View>
-          <View style={styles.container}>
-            <View style={styles.rightContainer}>
-              <Text style={styles.title}>{this.props.content.name}</Text>
-              <Text style={styles.author}>{this.props.content.author.name}</Text>
-            </View>
+      <TouchableOpacity onPress={(e) => this.props.onPress(story)}>
+        <View style={styles.container}>
+          <Image style={styles.image} source={story.hero.uri} resizeMode="cover"/>
+          <LinearGradient colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0.4)']} style={styles.linearGradient}/>
+          <View style={styles.textContainer}>
+            <Text style={styles.name}>{story.name.toUpperCase()}</Text>
+            <Text style={styles.title}>{story.title}</Text>
           </View>
-          <View style={styles.separator}/>
         </View>
       </TouchableOpacity>
     );
