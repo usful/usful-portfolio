@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
 import {
-  StatusBar,
   StyleSheet,
-  Image,
   Text,
+  ScrollView,
   View
 } from 'react-native';
-import SwipeSelector from 'react-native-swipe-selector';
+
 import ContactCards from './ContactCards';
 
+let styles = StyleSheet.create({
+  scrollView: {
+    backgroundColor: '#FFFFFF',
+    height: 300,
+  },
+});
+
 export default class Team extends Component {
+
+  static defaultProps = {
+    content: {
+      team: []
+    }
+  };
 
   constructor(props) {
     super(props);
     this.state = {
-      num: 0
+      page: 0
     };
-
-    this.elements = [
-    ];
   }
 
   render() {
@@ -32,27 +41,25 @@ export default class Team extends Component {
         {id: 3,name: "name3", jobPosition: "dosth3", ig: "@asgd2223fgd"},
         {id: 4,name: "name4", jobPosition: "dosth4", ig: "@444fgd"},
       ]);
-
     return (
-      <View style={styles.container}>
+      <ScrollView
+        decelerationRate={0}
+        directionalLockEnabled={true}
+        horizontal={true}
+        scrollEventThrottle={32}
+        snapToInterval={320}
+        snapToAlignment='center'
+        style={[styles.scrollView]}
+        zoomScale={1}>
 
-        <SwipeSelector onChange={({index:index}) => {this.setState({num: index})}}
-                       leftPoint= {{x: -150, y: -50}}
-                       rightPoint= {{x: 150, y: -50}}
-                       scalingOptions={{padRightItems: 1, padLeftItems: 1}}>
-          {elements.map((member,i) => <View id={i.toString()} key={i.toString()}><ContactCards id={i} totalCards={elements.length}/></View>)}
-        </SwipeSelector>
-      </View>
+        {this.props.content.team.map((data, i) =>
+          <ContactCards key={i}
+                        totalTabs={cards.length}
+                        index={i}
+                        uri={data.url}
+                        page={this.state.page}/>
+        )}
+      </ScrollView>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'grey'
-  },
-
-});

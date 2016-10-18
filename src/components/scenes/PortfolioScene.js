@@ -1,39 +1,42 @@
 'use strict';
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+
 import {
-    Alert,
-    StyleSheet,
-    Dimensions,
-    Animated,
-    Text,
-    ListView,
-    ScrollView,
-    TouchableHighlight,
-    View
+  Alert,
+  StyleSheet,
+  Dimensions,
+  Animated,
+  Text,
+  ScrollView,
+  View
 } from 'react-native';
 
 import AppData from '../../AppData';
 import Navigation from '../../helpers/Navigation';
 
 import StoryCard from '../Story/StoryCard';
+import ProductCard from '../Product/ProductCard';
+import InitiativeCard from '../Initiative/InitiativeCard';
+
 import TopNav from '../TopNav';
 
 let {width, height} = Dimensions.get('window');
 let offset = 0;
-const SCROLL_FPS = Math.round(1000/30);
+
+const SCROLL_FPS = Math.round(1000 / 30);
 
 let styles = StyleSheet.create({
-    container: {
-      backgroundColor: '#000',
-      flex: 1,
-      width: width
-    },
-    storiesScroll: {
-      backgroundColor: '#000',
-      height: height,
-      width: width,
-    }
+  container: {
+    backgroundColor: '#000',
+    flex: 1,
+    width: width
+  },
+  storiesScroll: {
+    backgroundColor: '#000',
+    height: height,
+    width: width,
+  }
 });
 
 export default class PortfolioScene extends Component {
@@ -50,10 +53,9 @@ export default class PortfolioScene extends Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     //land Stories first
-    this.refs.scrollView.scrollTo({x: 375, y: 0, animated:true});
-
+    this.refs.scrollView.scrollTo({x: width, y: 0, animated: true});
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -66,12 +68,12 @@ export default class PortfolioScene extends Component {
     return true;
   }
 
-
-
   onTopNavScroll(e) {
     let pageTransition = (e.nativeEvent.contentOffset.x % width) / width;
     let nowIndex = Math.floor(e.nativeEvent.contentOffset.x / width);
-    if (nowIndex > 0) pageTransition += nowIndex ;
+
+    if (nowIndex > 0) pageTransition += nowIndex;
+
     this.setState({
       pageTransition: pageTransition,
       hideNavBar: false
@@ -81,8 +83,10 @@ export default class PortfolioScene extends Component {
   onStoriesScroll(e) {
     let direction = true;
     let currentOffset = e.nativeEvent.contentOffset.y;
+
     console.log(currentOffset,height);
     //handle Bottom, need to know stories.length
+
     if ((currentOffset <= 0)) {
       direction = false;
     } else if (currentOffset > offset) {
@@ -90,7 +94,9 @@ export default class PortfolioScene extends Component {
     } else {
       direction = false;
     }
+
     offset = currentOffset;
+
     this.setState({hideNavBar: direction});
   }
 
@@ -102,6 +108,7 @@ export default class PortfolioScene extends Component {
     if ((e.nativeEvent.contentOffset.x % width) === 0) {
       let oldIndex = this.state.index;
       let newPage = e.nativeEvent.contentOffset.x / width;
+
       if (oldIndex !== newPage) {
         this.setState({
           previousIndex: oldIndex,
@@ -112,11 +119,8 @@ export default class PortfolioScene extends Component {
     //setTimeout(() => {this.setState({ hideNavBar: true})}, 2000);
   }
 
-  goStory(story) {
-    Navigation.push({
-      id: 'DetailedStoryScene',
-      story: story
-    })
+  onContentPressed(content) {
+    Navigation.goContent(content);
   };
 
   render() {
@@ -132,7 +136,9 @@ export default class PortfolioScene extends Component {
           <ScrollView scrollEventThrottle={SCROLL_FPS}
                       showsVerticalScollIndicator={false}
                       style={styles.storiesScroll}>
-            {AppData.stories.map(story => <StoryCard key={story.id} story={story} onStoryPressed={() => this.goStory(story)}/>)}
+            {AppData.products.map(product =>
+              <ProductCard key={product._id} content={product} onContentPressed={() => this.onContentPressed(product)}/>
+            )}
           </ScrollView>
 
           <ScrollView scrollEventThrottle={SCROLL_FPS}
@@ -140,16 +146,20 @@ export default class PortfolioScene extends Component {
                       style={styles.storiesScroll}
                       onScroll={(e) => this.onStoriesScroll(e)}
                       onMomentumScrollEnd={(e) => this.swipeEnds(e)}>
-            {AppData.stories.map(story => <StoryCard key={story.id} story={story} onStoryPressed={() => this.goStory(story)}/>)}
+            {AppData.stories.map(story =>
+              <StoryCard key={story._id} content={story} onContentPressed={() => this.onContentPressed(story)}/>
+            )}
           </ScrollView>
 
           <ScrollView scrollEventThrottle={SCROLL_FPS}
                       showsVerticalScollIndicator={false}
                       style={styles.storiesScroll}>
-
-            {AppData.stories.map(story => <StoryCard key={story.id} story={story} onStoryPressed={() => this.goStory(story)}/>)}
+            {AppData.initiatives.map(initiative =>
+              <InitiativeCard key={initiative._id} content={initiative} onContentPressed={() => this.onContentPressed(initiative)}/>
+            )}
           </ScrollView>
         </ScrollView>
+
         <TopNav
           hideNavBar={this.state.hideNavBar}
           previousIndex={this.state.previousIndex}

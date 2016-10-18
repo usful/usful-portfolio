@@ -22,89 +22,88 @@ const TEXT_STYLE = {
 
 let styles = StyleSheet.create({
     container: {
-      alignItems: 'center',
-      flex: 1,
+    alignItems: 'center',
+    flex: 1,
+    marginHorizontal:-50,
+    backgroundColor : 'grey'
 
-      marginHorizontal:-50,
-      backgroundColor : 'grey'
-
-    },
+  },
     card: {
-      width: 250,
-      height: 420,
-      paddingVertical: 30,
-      backgroundColor: 'black',
-      alignItems: 'center',
-      marginHorizontal:-0,
-    },
+    width: 250,
+    height: 420,
+    paddingVertical: 30,
+    backgroundColor: 'black',
+    alignItems: 'center',
+    marginHorizontal:-0,
+  },
     cardImage: {
-      borderWidth:1,
-      borderColor: '#FFF',
-      height: 120,
-      marginTop: 30,
-      width: 120,
-      backgroundColor:'white',
-      opacity: 0.5
-    },
+    borderWidth:1,
+    borderColor: '#FFF',
+    height: 120,
+    marginTop: 30,
+    width: 120,
+    backgroundColor:'white',
+    opacity: 0.5
+  },
     page: {
-      color: 'white',
-      fontFamily: Font.fontFamily
+    color: 'white',
+    fontFamily: Font.fontFamily
 
-    },
+  },
     close: {
-      paddingLeft: 120,
-      color: 'white',
-      fontFamily: Font.fontFamily
-    },
+    paddingLeft: 120,
+    color: 'white',
+    fontFamily: Font.fontFamily
+  },
     contactInfo: {
-        alignItems: 'center'
-    },
+    alignItems: 'center'
+  },
     pageAndClose: {
-      flexDirection : 'row',
-      position: 'absolute',
-      top:20,
-      left: 20,
-    },
+    flexDirection : 'row',
+    position: 'absolute',
+    top:20,
+    left: 20,
+  },
     textDescription: {
-      color: '#A9A9A9',
-      fontSize : 12,
-      lineHeight: 15,
-      marginHorizontal: 25,
-      paddingTop: 10,
-      fontFamily: Font.fontFamily,
-      alignItems: 'stretch'
+    color: '#A9A9A9',
+    fontSize : 12,
+    lineHeight: 15,
+    marginHorizontal: 25,
+    paddingTop: 10,
+    fontFamily: Font.fontFamily,
+    alignItems: 'stretch'
 
-    },
+  },
     textName: {
-      marginTop: 30,
-      fontWeight: '600',
-      color: '#A9A9A9',
-      fontSize: 18,
-      fontFamily: Font.fontFamily
-    },
+    marginTop: 30,
+    fontWeight: '600',
+    color: '#A9A9A9',
+    fontSize: 18,
+    fontFamily: Font.fontFamily
+  },
 
     textTags: {
-      fontStyle: 'italic',
-      paddingBottom: 18,
-      color: '#A9A9A9',
-      fontSize: 12,
-      paddingTop:5,
-      fontFamily: Font.fontFamily,
+    fontStyle: 'italic',
+    paddingBottom: 18,
+    color: '#A9A9A9',
+    fontSize: 12,
+    paddingTop:5,
+    fontFamily: Font.fontFamily,
 
-    },
+  },
     socialMediaBox:{
-      flexDirection: 'row',
-      backgroundColor: 'transparent',
-      width: 250,
-      paddingVertical:10,
-      justifyContent: 'center'
-    },
+    flexDirection: 'row',
+    backgroundColor: 'transparent',
+    width: 250,
+    paddingVertical:10,
+    justifyContent: 'center'
+  },
     mediaIcon: {
-      width: 30,
-      height:30,
-      margin: 5,
+    width: 30,
+    height:30,
+    margin: 5,
 
-    }
+  }
 });
 
 export default class ContactCards extends Component {

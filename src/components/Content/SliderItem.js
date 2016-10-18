@@ -5,7 +5,7 @@ import {
   View
 } from 'react-native';
 
-import global from '../../../styles';
+import global from '../../styles';
 
 import ImageSlider from 'react-native-image-slider';
 

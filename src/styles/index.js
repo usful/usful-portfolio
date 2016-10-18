@@ -7,7 +7,8 @@ export default StyleSheet.create({
 
     container: {
       flex: 1,
-      width: width
+      width: width,
+      backgroundColor: '#fff'
     },
     content: {
       flexDirection: 'column',

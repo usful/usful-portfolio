@@ -1,14 +1,13 @@
 import Model from 'models';
 
+import NamedDocumentProperties from './properties/NamedDocumentProperties';
 import SocialMediaModel from './SocialMediaModel';
 
 const PersonModel = Model.create(
   'Person',
   {
-    id: String,
-    name: String,
+    ... NamedDocumentProperties,
     tags: [String],
-    description: String,
     socialAccounts: [SocialMediaModel]
   }
 );

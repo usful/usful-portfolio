@@ -1,44 +1,38 @@
 import React, { Component } from 'react';
+
 import {
   StyleSheet,
   Text,
-  ScrollView,
   View,
-  ListView,
-  Image
+  TouchableOpacity,
 } from 'react-native';
-
-import global from '../../styles';
 
 export default class InitiativeCard extends Component {
 
   static defaultProps = {
-    initiatives: [{
-      name : '',
-    }]
-
+    content: {},
+    onContentPressed: (content) => {}
   };
 
   constructor(props) {
     super(props);
-
   }
 
   render() {
     return (
-      <View style={[styles.card]}>
-        <Text style= {styles.text}>{this.props.name}</Text>
-      </View>
-
+      <TouchableOpacity onPress={() => this.props.onContentPressed(this.props.content)}>
+        <View style={[styles.card]}>
+          <Text style={styles.text}>{this.props.content.name}</Text>
+        </View>
+      </TouchableOpacity>
     );
-
   }
 }
+
 const styles = StyleSheet.create({
   text: {
     fontSize: 25,
     color: '#A9A9A9',
-
   },
   card: {
     flex: 1,
@@ -51,6 +45,5 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#EFEFEF',
     marginHorizontal: 10,
-
   }
-})
+});

@@ -1,6 +1,6 @@
 import Model from 'models';
 
-const SociaMediaModel = Model.create(
+const SocialMediaModel = Model.create(
   'SocialMedia',
   {
     id: String,
