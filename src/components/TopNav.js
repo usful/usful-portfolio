@@ -87,7 +87,8 @@ export default class TopNav extends Component {
       translateX: animationProgress.interpolate({
         inputRange: inputRange,
         outputRange: [270, 190, 20, -130],
-      });
+      })
+    }];
 
     let opacity1 = animationProgress.interpolate({
       inputRange: inputRange,
@@ -98,23 +99,25 @@ export default class TopNav extends Component {
       translateX: animationProgress.interpolate({
         inputRange: inputRange,
         outputRange: [195, 190, 15, -140],
-      });
+      })
+    }];
 
-      let opacity2 = animationProgress.interpolate({
+    let opacity2 = animationProgress.interpolate({
         inputRange: inputRange,
         outputRange: [0.5, 0.5, 1, 0.5],
-      });
+    });
 
     let transform3 = [{
       translateX: animationProgress.interpolate({
         inputRange: inputRange,
         outputRange: [200, 170, 10, -170],
-      });
+      })
+    }];
 
-      let opacity3 = animationProgress.interpolate({
+    let opacity3 = animationProgress.interpolate({
         inputRange: inputRange,
         outputRange: [0.7, 0.7, 0.7, 1],
-      });
+    });
 
     return (
       <Animated.View style={[styles.container, {opacity: navBarFading}]}>
