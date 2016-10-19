@@ -25,7 +25,7 @@ export default class InitiativeCard extends Component {
     return (
       <TouchableOpacity onPress={() => this.onContentPressed(this.props.content)}>
         <View style={[styles.card]}>
-          <Text style={styles.text}>{this.props.name}</Text>
+          <Text style={styles.text}>{this.props.content.name}</Text>
         </View>
       </TouchableOpacity>
     );
