@@ -39,8 +39,9 @@ const styles = StyleSheet.create({
     color: '#000'
   },
   container: {
-    marginTop: 100,
-    height: height - 100,
+    backgroundColor: '#18232c',
+    paddingTop: 100,
+    height: height,
     shadowOffset: {
       height: 4,
       width: 0
