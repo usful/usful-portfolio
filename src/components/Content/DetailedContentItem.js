@@ -37,7 +37,7 @@ export default class DetailedContentItem extends Component {
     return (
       <ScrollView style={global.container}>
 
-        <HeaderItem image={require('../../img/350-200.png')} date={longDateFormatter(this.props.content.date)}/>
+        <HeaderItem image={this.props.content.header.uri} date={longDateFormatter(this.props.content.date)}/>
         <TitleItem content={this.props.content} title={this.props.content.name} tags={this.props.content.tags}/>
 
         {blocks.map((block, index) => {
@@ -47,12 +47,12 @@ export default class DetailedContentItem extends Component {
             case 'LegalBlock':
               return <BodyItem key={index} text={block.text}/>;
             case 'MediaBlock':
-              return <ImageItem key={index} image={require('../../img/350-200.png')}/>;
+              return <ImageItem key={index} image={block.media.uri}/>;
             case 'MediaCarouselBlock':
               return <SliderItem key={index}
-                                 images={[require('../../img/350-200.png'), require('../../img/350-200.png'), require('../../img/350-200.png'), require('../../img/350-200.png'), require('../../img/350-200.png')]}/>;
+                                 images={block.media.map((img) => img.uri)}/>;
             case 'QuoteBlock':
-              return <FeatureImageItem image={require('../../img/350-200.png')}
+              return <FeatureImageItem image={block.media.uri}
                                        key={index}
                                        author={block.author}
                                        byline={block.text}/>;
@@ -60,7 +60,7 @@ export default class DetailedContentItem extends Component {
               return <View key={index}><Text>{block._type}</Text></View>;
           }
         })}
-        <NextContentButton content={this.props.nextContent} image={require('../../img/footer.png')}/>
+        <NextContentButton content={this.props.nextContent} image={this.props.content.footer.uri}/>
         <CloseButton onPress={() => Navigation.pop()}/>
       </ScrollView>
     );

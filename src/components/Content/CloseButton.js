@@ -38,7 +38,7 @@ const style = StyleSheet.create({
     textAlign: 'center',
     fontSize: 15,
     fontFamily: 'Courier New',
-    fontWeight: 'bold',
+    fontWeight: '500',
     color: '#000',
     flexWrap: 'wrap',
   }

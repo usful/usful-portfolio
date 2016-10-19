@@ -23,6 +23,7 @@ let storyBlocks = [
 
   {
     _type: 'QuoteBlock',
+    media: randomMedia(),
     text: 'Nanoleaf and the Usful Team Partner to Brighten Space',
     author: 'Clint'
   },
@@ -32,7 +33,7 @@ let storyBlocks = [
   },
   {
     _type: 'MediaCarouselBlock',
-    media: {},
+    media: [randomMedia(),randomMedia(),randomMedia(),randomMedia()],
     height: 300,
     scaleMode: 'contain'
   },
@@ -42,7 +43,7 @@ let storyBlocks = [
   },
   {
     _type: 'MediaBlock',
-    media: {}
+    media: randomMedia()
   },
   {
     _type: 'CopyBlock',
@@ -57,7 +58,7 @@ let initiativeBlocks = [
   },
   {
     _type: 'MediaBlock',
-    media: {}
+    media: randomMedia()
   },
   {
     _type: 'CopyBlock',
@@ -74,11 +75,13 @@ const AppData = new AppDataModel(
         hero: randomMedia(),
         type: 'Story',
         name: 'Better Bulbs',
+        header: randomMedia(),
         title: 'Nanoleaf and the Usful Team Partner to Brighten Space',
         author: team[0],
         date: new Date(),
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
         tags: ['EXPERIENTIAL', 'USFUL HOUSE', '#FFTO'],
+        footer: randomMedia(),
         blocks: storyBlocks,
         teamMembers: [
           team[0],
@@ -91,11 +94,13 @@ const AppData = new AppDataModel(
         type: 'Story',
         hero: randomMedia(),
         name: 'Usful goes to Mars',
+        header: randomMedia(),
         title: 'It is now time to start colonizing other planets because it will be fun',
         author: team[0],
         date: new Date(),
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
         tags: ['EXPERIENTIAL', 'USFUL HOUSE', '#FFTO'],
+        footer: randomMedia(),
         blocks: storyBlocks,
         teamMembers: [
           team[0],
@@ -108,11 +113,13 @@ const AppData = new AppDataModel(
         type: 'Story',
         hero: randomMedia(),
         name: 'Launching the Anthropocene',
+        header: randomMedia(),
         title: 'Earth is running out of stuff and we need to do something about it.',
         author: team[0],
         date: new Date(),
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
         tags: ['EXPERIENTIAL', 'USFUL HOUSE', '#FFTO'],
+        footer: randomMedia(),
         blocks: storyBlocks,
         teamMembers: [
           team[0],
@@ -125,11 +132,13 @@ const AppData = new AppDataModel(
         type: 'Story',
         hero: randomMedia(),
         name: 'Nanoleaf Does something else',
+        header: randomMedia(),
         title: 'Some other stuff was done by NanoLeaf, and its really great.',
         author: team[0],
         date: new Date(),
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
         tags: ['TEST', 'GMAIL', '#FTFY'],
+        footer: randomMedia(),
         blocks: storyBlocks,
         teamMembers: [
           team[2],
@@ -141,12 +150,14 @@ const AppData = new AppDataModel(
         _id: GUID(),
         type: 'Story',
         name: 'Even more LEDS',
+        header: randomMedia(),
         title: 'Nanoleaf and the Usful Team Partner to Brighten Space.',
         hero: randomMedia(),
         author: team[1],
         date: new Date(),
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
         tags: ['EXPERIENTIAL', 'USFUL HOUSE', '#FFTO'],
+        footer: randomMedia(),
         blocks: storyBlocks,
         teamMembers: [
           team[4],
@@ -158,9 +169,11 @@ const AppData = new AppDataModel(
         _id: GUID(),
         type: 'Product',
         name: 'Lane',
+        header: randomMedia(),
         author: team[2],
         date: new Date(),
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        footer: randomMedia(),
         blocks: storyBlocks,
         teamMembers: [
           team[0],
@@ -178,9 +191,11 @@ const AppData = new AppDataModel(
         _id: GUID(),
         type: 'Product',
         name: 'XM',
+        header: randomMedia(),
         author: team[3],
         date: new Date(),
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        footer: randomMedia(),
         blocks: storyBlocks,
         teamMembers: [
           team[2],
@@ -198,9 +213,11 @@ const AppData = new AppDataModel(
         _id: GUID(),
         type: 'Initiative',
         name: 'Resource Crisis',
+        header: randomMedia(),
         author: team[4],
         date: new Date(),
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        footer: randomMedia(),
         blocks: initiativeBlocks,
         teamMembers: [
           team[1],
@@ -212,9 +229,11 @@ const AppData = new AppDataModel(
         _id: GUID(),
         type: 'Initiative',
         name: 'Human Condition',
+        header: randomMedia(),
         author: team[5],
         date: new Date(),
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        footer: randomMedia(),
         blocks: initiativeBlocks,
         teamMembers: [
           team[3],
@@ -226,9 +245,11 @@ const AppData = new AppDataModel(
         _id: GUID(),
         type: 'Initiative',
         name: 'Artificial Intelligence',
+        header: randomMedia(),
         author: team[6],
         date: new Date(),
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        footer: randomMedia(),
         blocks: initiativeBlocks,
         teamMembers: [
           team[6],

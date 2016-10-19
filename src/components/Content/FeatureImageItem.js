@@ -36,7 +36,7 @@ const style = StyleSheet.create({
     marginTop: 20,
     textAlign: 'center',
     fontSize: 27,
-    fontFamily: 'Avenir',
+    fontFamily: 'Courier New',
     fontWeight: 'bold',
     flexWrap: 'wrap',
     marginHorizontal: 40
@@ -44,7 +44,7 @@ const style = StyleSheet.create({
   author: {
     marginTop: 20,
     fontSize: 15,
-    fontFamily: 'Avenir-Oblique',
+    fontFamily: 'CourierNewPS-ItalicMT',
 
   }
 });

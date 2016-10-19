@@ -18,12 +18,14 @@ const ContentModel = Model.create(
     ... NamedDocumentProperties,
     type: String,
     title: String,
+    header: MediaModel,
     author: PersonModel,
     date: Date,
     hero: MediaModel,
     tags: [String],
     blocks: [Object],
     team: [PersonModel],
+    footer: MediaModel,
     contactInfo: ContactModel
   }
 );

@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10
   },
   text: {
-    fontFamily: 'Avenir',
+    fontFamily: 'Avenir-Book',
     fontSize: 18,
     color: '#A9A9A9',
     flexWrap: 'wrap',
