@@ -20,9 +20,10 @@ const AppDataModel = new Model(
     get products() {
       return this.content.filter(x => x.type === 'Product');
     },
+
     getNextContent(content) {
       function _getNext(arr) {
-        return arr[arr.findIndex(x => x.id === x.id) + 1] || arr[0];
+        return arr[arr.findIndex(x => x._id === content._id) + 1] || arr[0];
       }
 
       switch (content.type) {
