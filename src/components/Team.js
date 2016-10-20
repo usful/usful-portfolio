@@ -41,6 +41,7 @@ export default class Team extends Component {
         {id: 3,name: "name3", jobPosition: "dosth3", ig: "@asgd2223fgd"},
         {id: 4,name: "name4", jobPosition: "dosth4", ig: "@444fgd"},
       ]);
+
     return (
       <ScrollView
         decelerationRate={0}
@@ -54,7 +55,7 @@ export default class Team extends Component {
 
         {this.props.content.team.map((data, i) =>
           <ContactCards key={i}
-                        totalTabs={cards.length}
+                        totalTabs={this.props.content.team.length}
                         index={i}
                         uri={data.url}
                         page={this.state.page}/>
