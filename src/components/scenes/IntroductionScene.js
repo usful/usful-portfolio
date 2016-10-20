@@ -125,11 +125,9 @@ export default class IntroductionScene extends Component {
 
   componentDidMount() {
 
-    let animationArray = [];
-    for (let anim of this.introAnims) {
-      animationArray.push(Animated.timing(anim, {toValue: 1, duration: 10}));
-    }
+    let animationArray = this.introAnims.map(anim => Animated.timing(anim, {toValue: 1, duration: 10}));
     animationArray.push(Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}));
+
     Animated.sequence(animationArray).start();
     getSheetValues(console.log("getSheetValues"));
   }
