@@ -24,7 +24,8 @@ import TopNav from '../TopNav';
 let {width, height} = Dimensions.get('window');
 let offset = 0;
 
-const SCROLL_FPS = Math.round(1000 / 60);
+//Set the FPS to 30 in dev mode, no need to try to run high frame rates we can't do in iOS simulator
+const SCROLL_FPS = Math.round(1000 / __DEV__ ? 30 : 60);
 
 let styles = StyleSheet.create({
   container: {
