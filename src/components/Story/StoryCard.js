@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
-import localMedia from '../../data/localMedia';
 
 let {height, width} = Dimensions.get('window');
 
@@ -70,8 +69,7 @@ export default class StoryCard extends Component {
     content: {},
     onPress: (content) => {},
     /** A percentage to parallax scroll the background image by*/
-    offset: 0,
-    fps: 60
+    offset: 0
   };
 
   constructor(props) {
@@ -81,12 +79,10 @@ export default class StoryCard extends Component {
       offset: new Animated.Value(0)
     };
 
-    this.media = localMedia[Math.floor(Math.random() * localMedia.length)];
   }
 
   componentWillReceiveProps(nextProps) {
     this.state.offset.setValue(nextProps.offset * CARD_HEIGHT);
-    //Animated.timing(this.state.offset, {toValue: nextProps.offset * CARD_HEIGHT, duration: nextProps.fps}).start();
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -110,8 +106,8 @@ export default class StoryCard extends Component {
     return (
       <TouchableOpacity onPress={(e) => this.props.onPress(story)}>
         <View style={styles.container}>
-          <Animated.Image style={offsetStyle} source={this.media} resizeMode="cover"/>
-          <LinearGradient colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0.4)']} style={styles.linearGradient}/>
+          <Animated.Image style={offsetStyle} source={story.hero.uri} resizeMode="cover"/>
+          <LinearGradient colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0.5)']} style={styles.linearGradient}/>
           <View style={styles.textContainer}>
             <Text style={styles.name}>{story.name.toUpperCase()}</Text>
             <Text style={styles.title}>{story.title}</Text>

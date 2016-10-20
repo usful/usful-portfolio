@@ -24,7 +24,7 @@ import TopNav from '../TopNav';
 let {width, height} = Dimensions.get('window');
 let offset = 0;
 
-const SCROLL_FPS = Math.round(1000 / 30);
+const SCROLL_FPS = Math.round(1000 / 60);
 
 let styles = StyleSheet.create({
   container: {
@@ -111,12 +111,10 @@ export default class PortfolioScene extends Component {
       } else {
         //otherwise set a relative offset for each story card as it passes thru the viewport
         let relativeOffset = e.nativeEvent.contentOffset.y - (StoryCard.CARD_HEIGHT * i);
-        storyOffsets[i] = (relativeOffset / height);
+        storyOffsets[i] = (relativeOffset / height) * 0.33;
       }
     }
 
-    //CJR: Rather than set the state on each scroll event, we will check the state to see if it needs to be updated.
-    //Every time the state is set the component will try to update, so this prevents unnecessary updates.
     this.setState({
       storyOffsets: storyOffsets,
       hideNavBar: direction
