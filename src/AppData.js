@@ -83,7 +83,7 @@ const AppData = new AppDataModel(
         tags: ['EXPERIENTIAL', 'USFUL HOUSE', '#FFTO'],
         footer: randomMedia(),
         blocks: storyBlocks,
-        teamMembers: [
+        team: [
           team[0],
           team[1],
           team[2]
@@ -102,7 +102,7 @@ const AppData = new AppDataModel(
         tags: ['EXPERIENTIAL', 'USFUL HOUSE', '#FFTO'],
         footer: randomMedia(),
         blocks: storyBlocks,
-        teamMembers: [
+        team: [
           team[0],
           team[1],
           team[2]
@@ -121,7 +121,7 @@ const AppData = new AppDataModel(
         tags: ['EXPERIENTIAL', 'USFUL HOUSE', '#FFTO'],
         footer: randomMedia(),
         blocks: storyBlocks,
-        teamMembers: [
+        team: [
           team[0],
           team[1],
           team[2]
@@ -140,7 +140,7 @@ const AppData = new AppDataModel(
         tags: ['TEST', 'GMAIL', '#FTFY'],
         footer: randomMedia(),
         blocks: storyBlocks,
-        teamMembers: [
+        team: [
           team[2],
           team[3],
           team[4]
@@ -159,7 +159,7 @@ const AppData = new AppDataModel(
         tags: ['EXPERIENTIAL', 'USFUL HOUSE', '#FFTO'],
         footer: randomMedia(),
         blocks: storyBlocks,
-        teamMembers: [
+        team: [
           team[4],
           team[5],
           team[6]
@@ -175,7 +175,7 @@ const AppData = new AppDataModel(
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         footer: randomMedia(),
         blocks: storyBlocks,
-        teamMembers: [
+        team: [
           team[0],
           team[1],
           team[2]
@@ -197,7 +197,7 @@ const AppData = new AppDataModel(
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         footer: randomMedia(),
         blocks: storyBlocks,
-        teamMembers: [
+        team: [
           team[2],
           team[4],
           team[6]
@@ -219,7 +219,7 @@ const AppData = new AppDataModel(
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         footer: randomMedia(),
         blocks: initiativeBlocks,
-        teamMembers: [
+        team: [
           team[1],
           team[2],
           team[3]
@@ -235,7 +235,7 @@ const AppData = new AppDataModel(
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         footer: randomMedia(),
         blocks: initiativeBlocks,
-        teamMembers: [
+        team: [
           team[3],
           team[2],
           team[1]
@@ -251,7 +251,7 @@ const AppData = new AppDataModel(
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         footer: randomMedia(),
         blocks: initiativeBlocks,
-        teamMembers: [
+        team: [
           team[6],
           team[4],
           team[2]

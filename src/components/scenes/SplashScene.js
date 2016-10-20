@@ -4,17 +4,22 @@ import React, { Component } from 'react';
 import {
   Animated,
   Dimensions,
+  Image,
   StyleSheet,
   Text,
   ScrollView,
   View
 } from 'react-native';
 
+let { height, width } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    height: height,
+    width: width,
   },
   icon: {
     height: 200,
@@ -46,13 +51,13 @@ export default class SplashScene extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <Image style={styles.container} source={require('../../../assets/Background.png')}>
 
         <Animated.Image
           style={[styles.icon, {opacity: this.state.animated}]}
           source={require('../../../assets/Portfolioicon.png')}/>
 
-      </View>
+      </Image>
     );
   }
 

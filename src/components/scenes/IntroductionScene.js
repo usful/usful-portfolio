@@ -19,13 +19,11 @@ import KeyboardHandler from '../KeyboardHandler';
 import Navigation from '../../helpers/Navigation';
 
 let {width, height} = Dimensions.get('window');
-let words = `Welcoming Text goes here. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Are you ready to be Usful?`;
+let introMsg = `Welcoming Text goes here. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Are you ready to be Usful?`;
+let okMsg = `Perfect. You will be receiving a package from the Usful team momentarily.`;
 
 let styles = StyleSheet.create({
-  view:{
-    backgroundColor: 'black',
-    height: height,
-  },
+
   container: {
     alignItems: 'flex-start',
     backgroundColor: 'black',
@@ -43,15 +41,27 @@ let styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     height: 55,
+    opacity: 0.7
 
 
+  },
+  enterOurWorld: {
+    width: 300,
+    borderColor: 'white',
+    borderWidth: 1,
+    alignItems: 'center',
+    padding: 10,
+    height: 55,
   },
   errorEmail:{
     color:'white',
   },
 
   font: {
-    fontFamily: 'Courier New'
+    fontFamily: 'Courier New',
+    color: 'white',
+    fontSize: 18,
+    marginTop: 5,
   },
 
   skip:{
@@ -60,7 +70,7 @@ let styles = StyleSheet.create({
     color: 'white',
     paddingRight:20,
     marginTop: 40,
-    marginRight: 25,
+    marginLeft: 255,
   },
 
   welcomeText: {
@@ -72,7 +82,29 @@ let styles = StyleSheet.create({
     marginRight: 70,
     marginBottom: 120,
   },
-
+  view :{
+    backgroundColor: 'black',
+    height: height,
+    zIndex: 0
+  },
+  upperView:{
+    zIndex: 12,
+  },
+  underView:{
+    zIndex: 2,
+  },
+  viewTop:{
+    position:'absolute',
+    backgroundColor: 'transparent',
+    height: height,
+    zIndex:12,
+  },
+  viewBottom:{
+    position:'absolute',
+    backgroundColor: 'transparent',
+    height: height,
+    zIndex: 2
+  },
 });
 
 export default class IntroductionScene extends Component {
@@ -84,18 +116,18 @@ export default class IntroductionScene extends Component {
       email: "",
       valid: false,
       emailFadeIn: new Animated.Value(0),
+      enterOurWorldFadeIn : new Animated.Value(0),
       errorMsg: "Email is invalid, please try again!",
-      okMsg: "You are good!"
+      okMsg: "You are good!",
+      flip: false
     };
   }
 
   componentDidMount() {
 
-    let animationArray = [];
-    for (let anim of this.anims) {
-      animationArray.push(Animated.timing(anim, {toValue: 1, duration: 10}));
-    }
+    let animationArray = this.introAnims.map(anim => Animated.timing(anim, {toValue: 1, duration: 10}));
     animationArray.push(Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}));
+
     Animated.sequence(animationArray).start();
     getSheetValues(console.log("getSheetValues"));
   }
@@ -108,36 +140,44 @@ export default class IntroductionScene extends Component {
     return <Text>{this.state.okMsg}</Text>;
   }
 
+  showOkMsg(){
+    let animationArray = [];
+    for (let anim of this.introAnims) {
+      animationArray.push(Animated.timing(anim, {toValue: 0, duration: 10}));
+    }
+    animationArray.push(Animated.timing(this.state.emailFadeIn, {toValue: 0, duration: 1000}));
+    for (let anim of this.okAnims) {
+      animationArray.push(Animated.timing(anim, {toValue: 1, duration: 10}));
+    }
+    animationArray.push(Animated.timing(this.state.enterOurWorldFadeIn, {toValue: 1, duration: 1000}));
+    console.log(animationArray);
+    Animated.sequence(animationArray).start();
+    this.setState({flip:true});
+  }
+
 
   validateEmail(email) {
-    console.log("validating");
     let regex = new RegExp(/^\S+@((?=[^.])[\S]+\.)*(?=[^.])[\S]+\.(?=[^.])[\S]+$/);
-
     if (regex.test(email)) {
-      this.setState({valid: true}, () => updateCell(null, null, this.state.email, null, (error) => {
-        console.log("error")
-      }));
+      this.setState({valid: true}, () => updateCell(null, null, this.state.email, null, (error) => {}));
+      this.showOkMsg();
       return true;
     }
     return false;
   }
 
   render() {
-    this.anims = this.anims || words.split(' ').map(() => new Animated.Value(0));
+    this.introAnims = this.introAnims || introMsg.split(' ').map(() => new Animated.Value(0));
+    this.okAnims = this.okAnims || okMsg.split(' ').map(() => new Animated.Value(0));
 
     return (
       <View style={styles.view}>
+        <View style={styles.viewTop}>
         <KeyboardHandler ref='kh' offset={100}>
           <View style={styles.container}>
             <Text style={[styles.font, styles.welcomeText]}>
-              {words.split(' ').map((word, i) =>
-                <Animated.Text key={i}
-                               style={[{paddingVertical: 15},
-                                 {opacity: this.anims[i]}]}>
-                  {word + ` `}
-                </Animated.Text>)}
+              {introMsg.split(' ').map((word, i) =><Animated.Text key={i} style={[{paddingVertical: 15}, {opacity: this.introAnims[i]}]}>{word + ` `}</Animated.Text>)}
             </Text>
-
             <Animated.View style={{opacity: this.state.emailFadeIn}}>
               <TextInput
                 ref="email"
@@ -154,10 +194,25 @@ export default class IntroductionScene extends Component {
             </Animated.View>
 
             <TouchableHighlight onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
-              <Text style={[styles.font, styles.skip]}>SKIP</Text>
+              <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>SKIP</Animated.Text>
             </TouchableHighlight>
           </View>
+
         </KeyboardHandler>
+        </View>
+        <View style={[styles.container,styles.viewBottom, this.state.flip? styles.upperView: styles.underView]}>
+
+
+            <Animated.View>
+              <Text style={[styles.font, styles.welcomeText]}>
+                {okMsg.split(' ').map((word, i) => <Animated.Text key={i} style={[{paddingVertical: 15}, {opacity: this.okAnims[i]}]}>{word + ` `}</Animated.Text>)}
+              </Text>
+            </Animated.View>
+            <Animated.View style={[styles.enterOurWorld,{opacity: this.state.enterOurWorldFadeIn}]} onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
+              <TouchableHighlight><Text style={[styles.font]}>Enter Our World</Text></TouchableHighlight>
+            </Animated.View>
+          </View>
+
       </View>
     );
   }

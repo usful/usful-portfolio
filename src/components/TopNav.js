@@ -19,35 +19,39 @@ import {
 let {width, height} = Dimensions.get('window');
 
 const styles= StyleSheet.create({
-  activeText: {
-    opacity: 1,
-    color: '#ffffff'
-  },
-  container: {
-    position: 'absolute',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    top: 0,
-    left: 0,
-    paddingTop: 20,
-    width: width,
-    height: 45,
-    backgroundColor: '#44c7ff',
-    opacity: 0.5
 
-  },
-  menuItem: {
-    paddingHorizontal: 0,
+    activeText: {
+      fontSize: 20,
+      opacity: 1,
+      color: '#ffffff',
+      fontFamily: 'Courier New'
+    },
+    container: {
+        position: 'absolute',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        top: 0,
+        left: 0,
+        paddingVertical: 10,
+        width: width ,
+        height: 75,
+        backgroundColor: 'black',
+        opacity: 0.5
 
-  },
-  navBarTitle: {
-    paddingHorizontal: 40
-  },
-  text: {
-    opacity: 0.5,
-    color: '#ffffff',
-  },
+    },
+    menuItem: {
+      paddingHorizontal: 0,
+
+    },
+    navBarTitle: {
+      paddingHorizontal: 40
+    },
+    text: {
+        opacity: 0.5,
+        color: '#ffffff',
+    },
+
 });
 
 const inputRange = [ -1,  0 , 1, 2 ];
@@ -82,7 +86,7 @@ export default class TopNav extends Component {
     let transform1 = [{
       translateX: animationProgress.interpolate({
         inputRange: inputRange,
-        outputRange: [240, 135, 20, -90],
+        outputRange: [270, 190, 20, -130],
       })
     }];
 
@@ -94,27 +98,26 @@ export default class TopNav extends Component {
     let transform2 = [{
       translateX: animationProgress.interpolate({
         inputRange: inputRange,
-        outputRange: [195, 110, 0, -100],
+        outputRange: [195, 190, 15, -140],
       })
     }];
 
     let opacity2 = animationProgress.interpolate({
-      inputRange: inputRange,
-      outputRange: [0.5, 0.5, 1, 0.5],
+        inputRange: inputRange,
+        outputRange: [0.5, 0.5, 1, 0.5],
     });
 
     let transform3 = [{
       translateX: animationProgress.interpolate({
         inputRange: inputRange,
-        outputRange: [150, 110, -20, -130],
+        outputRange: [200, 170, 10, -170],
       })
     }];
 
     let opacity3 = animationProgress.interpolate({
-      inputRange: inputRange,
-      outputRange: [0.7, 0.7, 0.7, 1],
+        inputRange: inputRange,
+        outputRange: [0.7, 0.7, 0.7, 1],
     });
-
 
     return (
       <Animated.View style={[styles.container, {opacity: navBarFading}]}>

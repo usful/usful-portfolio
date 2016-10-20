@@ -6,7 +6,7 @@ import {
   View
 } from 'react-native';
 
-import ContactCards from './ContactCards';
+import ContactCard from './ContactCard';
 
 let styles = StyleSheet.create({
   scrollView: {
@@ -25,12 +25,10 @@ export default class Team extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      page: 0
-    };
   }
 
   render() {
+
     return (
       <ScrollView
         decelerationRate={0}
@@ -42,12 +40,11 @@ export default class Team extends Component {
         style={[styles.scrollView]}
         zoomScale={1}>
 
-        {this.props.content.team.map((data, i) =>
-          <ContactCards key={i}
-                        totalTabs={cards.length}
-                        index={i}
-                        uri={data.url}
-                        page={this.state.page}/>
+        {this.props.content.team.map((person, i) =>
+          <ContactCard key={person._id}
+                       person={person}
+                       totalCards={this.props.content.team.length}
+                       id={i}/>
         )}
       </ScrollView>
     );
