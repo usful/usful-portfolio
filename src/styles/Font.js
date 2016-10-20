@@ -1,3 +1,46 @@
 export default {
-  fontFamily: 'Courier New'
+
+
+  primaryFont: {
+    fontFamily: 'Courier New',
+  },
+  secondaryFont: {
+    fontFamily: 'Avenir-Book'
+  },
+  navigationBarText: {
+
+  },
+  introductionMessageText: {
+
+  },
+  titleText: {
+
+  },
+  quotesText: {
+
+  },
+  contactButtonText: {
+
+  },
+
+  contentText: {
+
+  },
+  projectText: {
+
+  },
+  initiativeText: {
+
+  },
+  descriptionText: {
+
+  },
+  teamMemberDescription: {
+
+  },
+  fieldInputText: {
+
+  }
+
+
 }
