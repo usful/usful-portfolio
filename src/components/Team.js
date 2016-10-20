@@ -6,7 +6,7 @@ import {
   View
 } from 'react-native';
 
-import ContactCards from './ContactCards';
+import ContactCard from './ContactCard';
 
 let styles = StyleSheet.create({
   scrollView: {
@@ -25,22 +25,9 @@ export default class Team extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      page: 0
-    };
   }
 
   render() {
-
-    //going to be replaced by [PersonModel]
-
-    let elements = [].concat(this.elements).concat(
-      [
-        {id:1, name: "name1", jobPosition: "dosth", ig: "@asgdfgd"},
-        {id: 2, name: "name2", jobPosition: "dosth2", ig: "@a2fgd"},
-        {id: 3,name: "name3", jobPosition: "dosth3", ig: "@asgd2223fgd"},
-        {id: 4,name: "name4", jobPosition: "dosth4", ig: "@444fgd"},
-      ]);
 
     return (
       <ScrollView
@@ -53,12 +40,11 @@ export default class Team extends Component {
         style={[styles.scrollView]}
         zoomScale={1}>
 
-        {this.props.content.team.map((data, i) =>
-          <ContactCards key={i}
-                        totalTabs={this.props.content.team.length}
-                        index={i}
-                        uri={data.url}
-                        page={this.state.page}/>
+        {this.props.content.team.map((person, i) =>
+          <ContactCard key={person._id}
+                       person={person}
+                       totalCards={this.props.content.team.length}
+                       id={i}/>
         )}
       </ScrollView>
     );

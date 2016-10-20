@@ -14,59 +14,53 @@ import {
 import Colours from '../styles/Colours';
 import Font from '../styles/Font';
 
-const TEXT_STYLE = {
-  fontStyle: 'italic',
-  color: Colours.textGrey,
-  fontSize: 18,
-};
-
 let styles = StyleSheet.create({
-    container: {
+  container: {
     alignItems: 'center',
     flex: 1,
-    marginHorizontal:-50,
-    backgroundColor : 'grey'
+    marginHorizontal: -50,
+    backgroundColor: 'grey'
 
   },
-    card: {
+  card: {
     width: 250,
     height: 420,
     paddingVertical: 30,
     backgroundColor: 'black',
     alignItems: 'center',
-    marginHorizontal:-0,
+    marginHorizontal: -0,
   },
-    cardImage: {
-    borderWidth:1,
+  cardImage: {
+    borderWidth: 1,
     borderColor: '#FFF',
     height: 120,
     marginTop: 30,
     width: 120,
-    backgroundColor:'white',
+    backgroundColor: 'white',
     opacity: 0.5
   },
-    page: {
+  page: {
     color: 'white',
     fontFamily: Font.fontFamily
 
   },
-    close: {
+  close: {
     paddingLeft: 120,
     color: 'white',
     fontFamily: Font.fontFamily
   },
-    contactInfo: {
+  contactInfo: {
     alignItems: 'center'
   },
-    pageAndClose: {
-    flexDirection : 'row',
+  pageAndClose: {
+    flexDirection: 'row',
     position: 'absolute',
-    top:20,
+    top: 20,
     left: 20,
   },
-    textDescription: {
-    color: '#A9A9A9',
-    fontSize : 12,
+  textDescription: {
+    color: Colours.textGrey,
+    fontSize: 12,
     lineHeight: 15,
     marginHorizontal: 25,
     paddingTop: 10,
@@ -74,42 +68,44 @@ let styles = StyleSheet.create({
     alignItems: 'stretch'
 
   },
-    textName: {
+  textName: {
     marginTop: 30,
     fontWeight: '600',
-    color: '#A9A9A9',
+    color: Colours.textGrey,
     fontSize: 18,
     fontFamily: Font.fontFamily
   },
 
-    textTags: {
+  textTags: {
     fontStyle: 'italic',
     paddingBottom: 18,
-    color: '#A9A9A9',
+    color: Colours.textGrey,
     fontSize: 12,
-    paddingTop:5,
+    paddingTop: 5,
     fontFamily: Font.fontFamily,
 
   },
-    socialMediaBox:{
+  socialMediaBox: {
     flexDirection: 'row',
     backgroundColor: 'transparent',
     width: 250,
-    paddingVertical:10,
+    paddingVertical: 10,
     justifyContent: 'center'
   },
-    mediaIcon: {
+  mediaIcon: {
     width: 30,
-    height:30,
+    height: 30,
     margin: 5,
 
   }
 });
 
-export default class ContactCards extends Component {
+export default class ContactCard extends Component {
 
   static defaultProps = {
-    index: 0
+    person: {},
+    id: 0,
+    totalCards: 0
   };
 
   constructor(props) {
@@ -117,20 +113,20 @@ export default class ContactCards extends Component {
   }
 
   render() {
+    let person = this.props.person;
+
     return (
       <View style={[styles.container]}>
         <View style={[styles.card]}>
           <View style={styles.pageAndClose}>
-            <Text style={styles.page}> {this.props.id}/{this.props.totalCards}</Text>
+            <Text style={styles.page}>{this.props.id}/{this.props.totalCards}</Text>
             <Text style={styles.close}>CLOSE</Text>
           </View>
-          <Image source={{uri: this.props.uri}} style={styles.cardImage}/>
+          <Image source={person.picture ? person.picture.uri : {}} style={styles.cardImage}/>
           <View style={styles.contactInfo}>
-            <Text style={styles.textName}>Clinton Robinson</Text>
-            <Text style={styles.textTags}>Tag1/ Tag2/ Tag3</Text>
-            <Text style={styles.textDescription}>Flexbox works the same way in React Native as it does in CSS on the
-              web, with a few exceptions. The defaults are different, the flex parameter only supports a single
-              number.</Text>
+            <Text style={styles.textName}>{person.name}</Text>
+            <Text style={styles.textTags}>{person.tags.join(' / ')}</Text>
+            <Text style={styles.textDescription}>{person.description}</Text>
           </View>
 
         </View>
