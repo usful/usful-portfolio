@@ -61,7 +61,7 @@ export default class DetailedContentItem extends Component {
           }
         })}
         <NextContentButton content={this.props.nextContent} image={this.props.content.footer.uri}/>
-        <CloseButton onPress={() => Navigation.pop()}/>
+        <CloseButton onPress={() => Navigation.popToRoute(Navigation.PORTFOLIO_SCENE)}/>
       </ScrollView>
     );
   }
