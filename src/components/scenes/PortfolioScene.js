@@ -49,13 +49,15 @@ export default class PortfolioScene extends Component {
       index: 0,
       pageTransition: 0,
       hideNavBar: false,
-      hideAnimation: new Animated.Value(1)
+      hideAnimation: new Animated.Value(1),
+      //Initialize an array of length stories.length and set all elements to 0
+      storyOffsets: new Array(AppData.stories.length).map(() => 0)
     };
   }
 
   componentDidMount() {
     //land Stories first
-    this.refs.scrollView.scrollTo({x: width, y: 0, animated: true});
+    this.refs.scrollView.scrollTo({x: width, y: 0, animated: false});
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -64,8 +66,9 @@ export default class PortfolioScene extends Component {
     if (nextState.previousIndex !== this.state.previousIndex) return true;
     if (nextState.hideNavBar !== this.state.hideNavBar) return true;
     if (nextState.hideAnimation !== this.state.hideAnimation) return true;
+    if (nextState.storyOffsets !== this.state.storyOffsets) return true;
 
-    return true;
+    return false;
   }
 
   onTopNavScroll(e) {
@@ -74,27 +77,50 @@ export default class PortfolioScene extends Component {
 
     if (nowIndex > 0) pageTransition += nowIndex;
 
-    this.setState({
-      pageTransition: pageTransition,
-      hideNavBar: false
-    });
+    //CJR: Rather than set the state on each scroll event, we will check the state to see if it needs to be updated.
+    //Every time the state is set the component will try to update, so this prevents unnecessary updates.
+    if (this.state.pageTransition !== pageTransition) {
+      this.setState({pageTransition: pageTransition});
+    }
+
+    if (this.state.hideNavBar !== false) {
+      this.setState({hideNavBar: false});
+    }
   }
 
   onStoriesScroll(e) {
-    let direction = true;
     let currentOffset = e.nativeEvent.contentOffset.y;
-
-    if ((currentOffset <= 0)) {
-      direction = false;
-    } else if (currentOffset > offset) {
-      direction = true;
-    } else {
-      direction = false;
-    }
+    let direction = currentOffset > offset;
 
     offset = currentOffset;
 
-    this.setState({hideNavBar: direction});
+    //based on the current y offset we can tell where each story card is in the viewport because we know the story card
+    //height.  we can use this to determine the offset for its parallax background scroll.
+
+    let cardsScrolled = Math.floor(e.nativeEvent.contentOffset.y / StoryCard.CARD_HEIGHT);
+    let cardsPerScreen = Math.ceil(height / StoryCard.CARD_HEIGHT);
+
+    let storyOffsets = [];
+    for (let i=0; i<AppData.stories.length; i++) {
+      if (i < cardsScrolled) {
+        //cards scrolled by are above the viewport, so set them to max negative offset.
+        storyOffsets[i] = -StoryCard.MAX_OFFSET;
+      } else if (i > cardsScrolled + cardsPerScreen) {
+        //cards past the current bottom of the viewport can be set to max offset.
+        storyOffsets[i] = StoryCard.MAX_OFFSET;
+      } else {
+        //otherwise set a relative offset for each story card as it passes thru the viewport
+        let relativeOffset = e.nativeEvent.contentOffset.y - (StoryCard.CARD_HEIGHT * i);
+        storyOffsets[i] = (relativeOffset / height);
+      }
+    }
+
+    //CJR: Rather than set the state on each scroll event, we will check the state to see if it needs to be updated.
+    //Every time the state is set the component will try to update, so this prevents unnecessary updates.
+    this.setState({
+      storyOffsets: storyOffsets,
+      hideNavBar: direction
+    });
   }
 
   swipeEnds(e) {
@@ -144,8 +170,12 @@ export default class PortfolioScene extends Component {
                       style={styles.storiesScroll}
                       onScroll={(e) => this.onStoriesScroll(e)}
                       onMomentumScrollEnd={(e) => this.swipeEnds(e)}>
-            {AppData.stories.map(story =>
-              <StoryCard key={story._id} content={story} onPress={() => this.onContentPressed(story)}/>
+            {AppData.stories.map((story, i) =>
+              <StoryCard key={story._id}
+                         content={story}
+                         fps={SCROLL_FPS}
+                         offset={this.state.storyOffsets[i]}
+                         onPress={() => this.onContentPressed(story)}/>
             )}
           </ScrollView>
 
