@@ -174,7 +174,6 @@ export default class IntroductionScene extends Component {
                   value={this.state.email}/>
                 <Text>{this.getEmailValidationText()}</Text>
               </Animated.View>
-
               <TouchableHighlight onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
                 <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>SKIP</Animated.Text>
               </TouchableHighlight>
@@ -183,8 +182,6 @@ export default class IntroductionScene extends Component {
           </KeyboardHandler>
         </View>
         <View style={[styles.container,styles.viewBottom, this.state.flip? styles.upperView: styles.underView]}>
-
-
             <Animated.View>
               <Typewriter ref="okMsg" style={styles.font, styles.welcomeText} msg={okMsg} colour={'white'} speed={300} space={15}/>
             </Animated.View>
