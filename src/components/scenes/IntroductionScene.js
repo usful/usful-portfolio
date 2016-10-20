@@ -12,7 +12,7 @@ import ReactNative, {
   TouchableHighlight,
 } from 'react-native';
 
-
+import Font from '../../styles/Font';
 import { getAccessToken, updateCell, getAuthCode } from  '../../../api/GoogleSheets';
 import KeyboardHandler from '../KeyboardHandler';
 import Typewriter from '../../Typewriter';
@@ -30,7 +30,7 @@ let styles = StyleSheet.create({
     justifyContent: 'center',
     marginLeft: 30,
     padding: 0,
-
+    backgroundColor: 'white',
   },
 
   emailInput: {
@@ -39,7 +39,8 @@ let styles = StyleSheet.create({
     borderColor: 'white',
     borderWidth: 1,
     alignItems: 'center',
-    padding: 10,
+    marginTop: 30,
+    paddingHorizontal: 20,
     height: 55,
     opacity: 0.7
 
@@ -51,6 +52,7 @@ let styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     padding: 10,
+    marginTop: 100,
     height: 55,
   },
   errorEmail:{
@@ -63,6 +65,12 @@ let styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 5,
   },
+  introMsgContainer: {
+    backgroundColor: 'black',
+    marginTop: 120,
+    marginHorizontal: 30,
+    marginBottom: 120,
+  },
 
   skip:{
     fontSize: 20,
@@ -70,17 +78,16 @@ let styles = StyleSheet.create({
     color: 'white',
     paddingRight:20,
     marginTop: 40,
-    marginLeft: 255,
+    marginLeft: 230,
   },
 
-  welcomeText: {
+  msg: {
+    fontFamily: Font.primaryFont.fontFamily,
     color: 'white',
     fontSize: 21,
     fontWeight: '400',
     lineHeight:28,
-    marginTop: 120,
-    marginRight: 70,
-    marginBottom: 120,
+
   },
   view :{
     backgroundColor: 'black',
@@ -137,7 +144,7 @@ export default class IntroductionScene extends Component {
   }
 
   showOkMsg(){
-    this.refs.introMsg.startAnim(false, Animated.timing(this.state.emailFadeIn, {toValue: 0, duration: 10}), 10);
+    this.refs.introMsg.startAnim(false, Animated.timing(this.state.emailFadeIn, {toValue: 0, duration: 20}), 20);
     this.refs.okMsg.startAnim(true, Animated.timing(this.state.enterOurWorldFadeIn, {toValue: 1, duration: 1000}));
     this.setState({flip:true});
   }
@@ -158,8 +165,8 @@ export default class IntroductionScene extends Component {
       <View style={styles.view}>
         <View style={styles.viewTop}>
           <KeyboardHandler ref='kh' offset={100}>
-            <View style={styles.container}>
-            <Typewriter ref="introMsg" style={styles.font, styles.welcomeText} msg={introMsg} colour={'white'} speed={300} space={15}/>
+            <View style={styles.introMsgContainer}>
+            <Typewriter ref="introMsg" customStyle={styles.msg} msg={introMsg} colour={'white'} speed={20} space={10}/>
               <Animated.View style={{opacity: this.state.emailFadeIn}}>
                 <TextInput
                   ref="email"
@@ -181,9 +188,9 @@ export default class IntroductionScene extends Component {
 
           </KeyboardHandler>
         </View>
-        <View style={[styles.container,styles.viewBottom, this.state.flip? styles.upperView: styles.underView]}>
+        <View style={[styles.introMsgContainer,styles.viewBottom, this.state.flip? styles.upperView: styles.underView]}>
             <Animated.View>
-              <Typewriter ref="okMsg" style={styles.font, styles.welcomeText} msg={okMsg} colour={'white'} speed={300} space={15}/>
+              <Typewriter ref="okMsg" customStyle={styles.msg} msg={okMsg} colour={'white'} speed={300} space={15}/>
             </Animated.View>
             <Animated.View style={[styles.enterOurWorld,{opacity: this.state.enterOurWorldFadeIn}]} onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
               <TouchableHighlight><Text style={[styles.font]}>Enter Our World</Text></TouchableHighlight>

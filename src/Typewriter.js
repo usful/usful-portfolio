@@ -38,7 +38,7 @@ export default class Typewriter extends Component {
     this.anims = this.anims || this.props.msg.split(' ').map(() => new Animated.Value(this.props.fadeIn? 0: 1));
     return (
       <Text>
-        {this.props.msg.split(' ').map((word, i) => <Animated.Text key={i} style={[{paddingVertical: this.props.space, color:this.props.colour}, {opacity: this.anims[i]}]}>{word + ` `}</Animated.Text>)}
+        {this.props.msg.split(' ').map((word, i) => <Animated.Text key={i} style={[this.props.customStyle, {paddingVertical: this.props.space, color:this.props.colour}, {opacity: this.anims[i]}]}>{word + ` `}</Animated.Text>)}
       </Text>
     );
   }
