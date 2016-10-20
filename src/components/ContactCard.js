@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import {
     Animated,
     StyleSheet,
-    Easing,
     Dimensions,
     Image,
     Text,
-    TouchableOpacity,
+    Linking,
     ScrollView,
+    TouchableHighlight,
+  TouchableOpacity,
     View,
 } from 'react-native';
 
+import SwipeSelector from 'react-native-swipe-selector';
+import LinearGradient from 'react-native-linear-gradient';
+import Navigation from '../helpers/Navigation';
 import Colours from '../styles/Colours';
 import Font from '../styles/Font';
 
@@ -19,35 +23,34 @@ let styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     marginHorizontal: -50,
-    backgroundColor: 'grey'
+    backgroundColor: 'transparent'
 
   },
   card: {
     width: 250,
     height: 420,
     paddingVertical: 30,
-    backgroundColor: 'black',
+    backgroundColor: Colours.white,
     alignItems: 'center',
     marginHorizontal: -0,
   },
   cardImage: {
     borderWidth: 1,
     borderColor: '#FFF',
-    height: 120,
+    height: 200,
     marginTop: 30,
-    width: 120,
-    backgroundColor: 'white',
+    width: 200,
     opacity: 0.5
   },
   page: {
-    color: 'white',
-    fontFamily: Font.fontFamily
+    color: Colours.darkGrey,
+    fontFamily: Font.primaryFont.fontFamily
 
   },
   close: {
     paddingLeft: 120,
-    color: 'white',
-    fontFamily: Font.fontFamily
+    color: Colours.darkGrey,
+    fontFamily: Font.primaryFont.fontFamily
   },
   contactInfo: {
     alignItems: 'center'
@@ -59,19 +62,19 @@ let styles = StyleSheet.create({
     left: 20,
   },
   textDescription: {
-    color: Colours.textGrey,
+    color: Colours.darkGrey,
     fontSize: 12,
     lineHeight: 15,
     marginHorizontal: 25,
     paddingTop: 10,
-    fontFamily: Font.fontFamily,
+    fontFamily: Font.primaryFont.fontFamily,
     alignItems: 'stretch'
 
   },
   textName: {
     marginTop: 30,
     fontWeight: '600',
-    color: Colours.textGrey,
+    color: Colours.darkGrey,
     fontSize: 18,
     fontFamily: Font.fontFamily
   },
@@ -79,15 +82,15 @@ let styles = StyleSheet.create({
   textTags: {
     fontStyle: 'italic',
     paddingBottom: 18,
-    color: Colours.textGrey,
-    fontSize: 12,
+    color: Colours.darkGrey,
+    fontSize: 8,
     paddingTop: 5,
-    fontFamily: Font.fontFamily,
+    fontFamily: Font.primaryFont.fontFamily,
 
   },
   socialMediaBox: {
     flexDirection: 'row',
-    backgroundColor: 'transparent',
+    backgroundColor: Colours.darkGrey,
     width: 250,
     paddingVertical: 10,
     justifyContent: 'center'
@@ -112,17 +115,31 @@ export default class ContactCard extends Component {
     super(props);
   }
 
+  openMedia(url) {
+    console.log("open");
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) {
+        console.log('Can\'t handle url: ' + url);
+      } else {
+        return Linking.openURL(url);
+      }
+    }).catch(err => console.error('An error occurred', err));
+  }
+
   render() {
     let person = this.props.person;
 
     return (
       <View style={[styles.container]}>
-        <View style={[styles.card]}>
+        <LinearGradient colors={['white', 'transparent']}
+                        start={[0,0.5]} end={[0,0]}
+                        location={[0.5,0.5,0.5]}>
+          <View style={[styles.card]}>
           <View style={styles.pageAndClose}>
-            <Text style={styles.page}>{this.props.id}/{this.props.totalCards}</Text>
-            <Text style={styles.close}>CLOSE</Text>
+            <Text style={styles.page}>{this.props.index}/{this.props.totalCards}</Text>
+            <TouchableOpacity><Text style={styles.close}>CLOSE</Text></TouchableOpacity>
           </View>
-          <Image source={person.picture ? person.picture.uri : {}} style={styles.cardImage}/>
+          <Image source={{uri: person.picture}} style={styles.cardImage}/>
           <View style={styles.contactInfo}>
             <Text style={styles.textName}>{person.name}</Text>
             <Text style={styles.textTags}>{person.tags.join(' / ')}</Text>
@@ -130,11 +147,13 @@ export default class ContactCard extends Component {
           </View>
 
         </View>
+        </LinearGradient>
         <View style={styles.socialMediaBox}>
 
-          <Image source={require('../../assets/Instagram.png')} style={styles.mediaIcon}/>
-          <Image source={require('../../assets/Github.png')} style={styles.mediaIcon}/>
-          <Image source={require('../../assets/twitter.png')} style={styles.mediaIcon}/>
+          <TouchableOpacity onPress={()=> this.openMedia(person.socialAccounts[0].uri)}><Image source={require('../../assets/Instagram.png')}  style={styles.mediaIcon}/></TouchableOpacity>
+          <TouchableOpacity onPress={()=>this.openMedia(person.socialAccounts[1].uri)}><Image source={require('../../assets/facebook.png')} style={styles.mediaIcon}/></TouchableOpacity>
+
+          <TouchableOpacity onPress={()=>this.openMedia(person.socialAccounts[2].uri)}><Image source={require('../../assets/linkedin.png')} style={styles.mediaIcon}/></TouchableOpacity>
 
         </View>
       </View>

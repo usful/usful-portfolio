@@ -4,13 +4,15 @@ import {
   TouchableOpacity,
   Text,
   View,
-  Image
+  Image,
+  Modal
 } from 'react-native';
 
 import ActionSheet from '../../helpers/actionSheet';
 import openLink from '../../helpers/navigation/openLink';
 import Navigation from '../../helpers/Navigation';
 import TagList from './StoryTagList';
+import Team from '../Team';
 
 import global from '../../styles';
 
@@ -20,12 +22,19 @@ export default class TitleItem extends Component {
     tags: []
   };
 
+
   constructor(props) {
     super(props);
+
+    this.state = {
+      modalVisible: false
+    }
   }
 
   openTeamModal() {
-    Navigation.push({id: Navigation.CONTACT_CARD_SCENE.id, content: this.props.content});
+    //Navigation.push({id: Navigation.CONTACT_CARD_SCENE.id});
+    let old = this.state.modalVisible;
+    this.setState({modalVisible: !old});
   }
 
   openActionSheet(){
@@ -36,12 +45,19 @@ export default class TitleItem extends Component {
     },
     )
   }
-
+  
   render() {
-    return (
+      return (
       <View style={[global.content, style.content]}>
         <View style={style.row1}>
-          <TouchableOpacity onPress={(e) => this.openTeamModal()}>
+          <TouchableOpacity onPress={(e) => this.openTeamModal(e)}>
+            <Modal animationType={'slide'}
+                   transparent={true}
+                   visible={this.state.modalVisible}
+                   onRequestClose={(e) => console.log("close")}>
+              <Team style={{backgroundColor: 'black'}}></Team>
+              <TouchableOpacity style={{height:100,backgroundColor:'black',alignItems:'center'}} onPress={(e) => this.openTeamModal(e)}><Text style={{color: 'white',fontSize: 18, justifyContent: 'center',alignSelf:'center'}}>CLOESE HERHEHR</Text></TouchableOpacity>
+            </Modal>
             <Image style={style.team} source={require('../../img/judge.png')}/>
           </TouchableOpacity>
           <TouchableOpacity onPress={(e) => this.openActionSheet()}>
