@@ -24,8 +24,8 @@ export default class BodyItem extends Component {
 
 const style = StyleSheet.create({
   text: {
-    fontFamily: 'Avenir',
-    fontSize: 12,
+    fontFamily: 'Avenir-Book',
+    fontSize: 15,
     marginHorizontal: 30,
     flexWrap: 'wrap'
   }

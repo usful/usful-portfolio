@@ -10,7 +10,7 @@ import {
 
 const style = StyleSheet.create({
   content: {
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   row1: {
     flex: 2,
@@ -22,13 +22,14 @@ const style = StyleSheet.create({
   row2: {
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'flex-end'
   },
   image: {
+    width: 125,
     height: 150
   },
   title: {
-    fontFamily: 'Avenir',
+    fontFamily: 'Courier New',
     fontWeight: 'bold',
     fontSize: 18,
     flexWrap: 'wrap'
@@ -36,7 +37,7 @@ const style = StyleSheet.create({
   next: {
     marginTop: 15,
     fontSize: 13,
-    fontFamily: 'Avenir',
+    fontFamily: 'Avenir-Book',
     alignSelf: 'flex-start',
 
   }

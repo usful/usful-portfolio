@@ -67,7 +67,7 @@ const styles= StyleSheet.create({
     marginTop: 40,
     color: '#B4B4B4',
     fontSize: 30,
-    fontFamily: 'Avenir',
+    fontFamily: 'Avenir-Book',
     fontWeight: 'bold'
   },
   icon: {
@@ -77,7 +77,7 @@ const styles= StyleSheet.create({
     marginTop: 20,
     textAlign: 'center',
     fontSize: 20,
-    fontFamily: 'Avenir',
+    fontFamily: 'Avenir-Book',
     paddingHorizontal: 40,
     color: '#B4B4B4'
   }

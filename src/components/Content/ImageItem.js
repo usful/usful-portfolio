@@ -24,7 +24,8 @@ export default class ImageItem extends Component {
 }
 
 const style = StyleSheet.create({
-  image: {
-    width: width
-  }
+    image: {
+      width: width,
+      height: 200
+    }
 });

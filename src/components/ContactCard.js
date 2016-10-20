@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
-  Image,
-  Text,
-  TouchableOpacity,
-  View,
+    Animated,
+    StyleSheet,
+    Easing,
+    Dimensions,
+    Image,
+    Text,
+    TouchableOpacity,
+    ScrollView,
+    View,
 } from 'react-native';
+
+import Colours from '../styles/Colours';
+import Font from '../styles/Font';
 
 let styles = StyleSheet.create({
   container: {
@@ -13,10 +20,9 @@ let styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: -50,
     backgroundColor: 'grey'
+
   },
   card: {
-    borderWidth: 1,
-    borderColor: '#00BFFF',
     width: 250,
     height: 420,
     paddingVertical: 30,
@@ -30,14 +36,18 @@ let styles = StyleSheet.create({
     height: 120,
     marginTop: 30,
     width: 120,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    opacity: 0.5
   },
   page: {
     color: 'white',
+    fontFamily: Font.fontFamily
+
   },
   close: {
-    paddingLeft: 90,
-    color: 'white'
+    paddingLeft: 120,
+    color: 'white',
+    fontFamily: Font.fontFamily
   },
   contactInfo: {
     alignItems: 'center'
@@ -49,25 +59,30 @@ let styles = StyleSheet.create({
     left: 20,
   },
   textDescription: {
-    color: '#A9A9A9',
+    color: Colours.textGrey,
     fontSize: 12,
     lineHeight: 15,
-    marginHorizontal: 45,
+    marginHorizontal: 25,
     paddingTop: 10,
-    justifyContent: 'space-between'
+    fontFamily: Font.fontFamily,
+    alignItems: 'stretch'
+
   },
   textName: {
     marginTop: 30,
     fontWeight: '600',
-    color: '#A9A9A9',
+    color: Colours.textGrey,
     fontSize: 18,
+    fontFamily: Font.fontFamily
   },
+
   textTags: {
     fontStyle: 'italic',
     paddingBottom: 18,
-    color: '#A9A9A9',
+    color: Colours.textGrey,
     fontSize: 12,
     paddingTop: 5,
+    fontFamily: Font.fontFamily,
 
   },
   socialMediaBox: {
@@ -85,10 +100,12 @@ let styles = StyleSheet.create({
   }
 });
 
-export default class ContactCards extends Component {
+export default class ContactCard extends Component {
 
   static defaultProps = {
-    index: 0
+    person: {},
+    id: 0,
+    totalCards: 0
   };
 
   constructor(props) {
@@ -96,20 +113,20 @@ export default class ContactCards extends Component {
   }
 
   render() {
+    let person = this.props.person;
+
     return (
       <View style={[styles.container]}>
         <View style={[styles.card]}>
           <View style={styles.pageAndClose}>
-            <Text style={styles.page}>page/total</Text>
+            <Text style={styles.page}>{this.props.id}/{this.props.totalCards}</Text>
             <Text style={styles.close}>CLOSE</Text>
           </View>
-          <Image source={{uri: this.props.uri}} style={styles.cardImage}/>
+          <Image source={person.picture ? person.picture.uri : {}} style={styles.cardImage}/>
           <View style={styles.contactInfo}>
-            <Text style={styles.textName}>Clinton Robinson</Text>
-            <Text style={styles.textTags}>Tag1/ Tag2/ Tag3</Text>
-            <Text style={styles.textDescription}>Flexbox works the same way in React Native as it does in CSS on the
-              web, with a few exceptions. The defaults are different, the flex parameter only supports a single
-              number.</Text>
+            <Text style={styles.textName}>{person.name}</Text>
+            <Text style={styles.textTags}>{person.tags.join(' / ')}</Text>
+            <Text style={styles.textDescription}>{person.description}</Text>
           </View>
 
         </View>

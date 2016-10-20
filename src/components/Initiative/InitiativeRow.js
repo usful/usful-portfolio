@@ -45,7 +45,7 @@ export default class InitiativeRow extends Component {
             <View style={styles.textContainer}>
             <Text style={styles.text}>{obj.description}</Text>
             </View>
-            <InitiativeCard id={obj._id} name={obj.name}/>
+            <InitiativeCard content={obj}/>
           </View>)}
       </ScrollView>
 
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10
   },
   text: {
-    fontFamily: 'Avenir',
+    fontFamily: 'Avenir-Book',
     fontSize: 18,
     color: '#A9A9A9',
     flexWrap: 'wrap',

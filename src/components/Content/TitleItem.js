@@ -71,7 +71,7 @@ const style = StyleSheet.create({
   },
   title: {
     fontSize: 27,
-    fontFamily: 'Avenir',
+    fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
     flexWrap: 'wrap'
   }

@@ -57,7 +57,7 @@ export default class ProductRow extends Component {
             <View style={styles.textContainer}>
               <Text style={styles.text}>{obj.description}</Text>
             </View>
-            <ProductCard id= {obj._id} name={obj.name}/>
+            <ProductCard content= {obj}/>
           </View>)}
       </ScrollView>
       <ContactFooter card = {this.state.card} contact = {this.props.products[this.state.card].contactInfo}/>
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10
   },
   text: {
-    fontFamily: 'Avenir',
+    fontFamily: 'Avenir-Book',
     fontSize: 18,
     color: '#A9A9A9',
     flexWrap: 'wrap',

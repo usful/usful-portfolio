@@ -16,8 +16,8 @@ import AppData from '../../AppData';
 import Navigation from '../../helpers/Navigation';
 
 import StoryCard from '../Story/StoryCard';
-import ProductCard from '../Product/ProductCard';
-import InitiativeCard from '../Initiative/InitiativeCard';
+import ProductView from '../Product/ProductView';
+import InitiativeView from '../Initiative/InitiativeView';
 
 import TopNav from '../TopNav';
 
@@ -123,7 +123,7 @@ export default class PortfolioScene extends Component {
   }
 
   swipeEnds(e) {
-    setTimeout(() => this.setState({hideNavBar: true}), 2000);
+    //setTimeout(() => {this.setState({ hideNavBar: true})}, 2000);
   }
 
   navSwipeEnds(e) {
@@ -138,13 +138,13 @@ export default class PortfolioScene extends Component {
         });
       }
     }
-
-    setTimeout(() => this.setState({hideNavBar: true}), 2000);
+    //setTimeout(() => {this.setState({ hideNavBar: true})}, 2000);
   }
 
-  onContentPressed(content) {
+
+  onContentPressed(content){
     Navigation.goContent(content);
-  };
+  }
 
   render() {
     return (
@@ -159,9 +159,7 @@ export default class PortfolioScene extends Component {
           <ScrollView scrollEventThrottle={SCROLL_FPS}
                       showsVerticalScollIndicator={false}
                       style={styles.storiesScroll}>
-            {AppData.products.map(product =>
-              <ProductCard key={product._id} content={product} onContentPressed={() => this.onContentPressed(product)}/>
-            )}
+            <ProductView products={AppData.products}/>
           </ScrollView>
 
           <ScrollView scrollEventThrottle={SCROLL_FPS}
@@ -181,9 +179,7 @@ export default class PortfolioScene extends Component {
           <ScrollView scrollEventThrottle={SCROLL_FPS}
                       showsVerticalScollIndicator={false}
                       style={styles.storiesScroll}>
-            {AppData.initiatives.map(initiative =>
-              <InitiativeCard key={initiative._id} content={initiative} onContentPressed={() => this.onContentPressed(initiative)}/>
-            )}
+              <InitiativeView initiatives={AppData.initiatives} />
           </ScrollView>
         </ScrollView>
 
