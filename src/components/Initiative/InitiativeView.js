@@ -48,6 +48,6 @@ const styles = StyleSheet.create({
     },
     shadowColor: '#000',
     shadowRadius: 2,
-    shadowOpacity: 0.2
+    shadowOpacity: 0.3
   }
 })
