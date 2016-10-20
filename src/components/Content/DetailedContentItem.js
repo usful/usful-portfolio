@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 import global from '../../styles';
+import Colors from '../../styles/Colours';
 
 import longDateFormatter from '../../helpers/formatters/longDate';
 import Navigation from '../../helpers/Navigation';
@@ -45,7 +46,7 @@ export default class DetailedContentItem extends Component {
             case 'CopyBlock':
               return <BodyItem key={index} text={block.text}/>;
             case 'LegalBlock':
-              return <BodyItem key={index} text={block.text}/>;
+              return <BodyItem style = {styles.legal} key={index} text={block.text}/>;
             case 'MediaBlock':
               return <ImageItem key={index} image={block.media.uri}/>;
             case 'MediaCarouselBlock':
@@ -66,3 +67,13 @@ export default class DetailedContentItem extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  legal: {
+    fontFamily: 'Avenir-BookOblique',
+    fontSize: 12,
+    marginHorizontal: 30,
+    flexWrap: 'wrap',
+    color: Colors.textGrey
+  }
+})

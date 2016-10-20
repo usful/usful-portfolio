@@ -16,7 +16,7 @@ export default class BodyItem extends Component {
   render() {
     return (
       <View style={global.content}>
-        <Text style={style.text}>{this.props.text}</Text>
+        <Text style={this.props.style || style.text}>{this.props.text}</Text>
       </View>
     );
   }
