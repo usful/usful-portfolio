@@ -61,7 +61,7 @@ export default class DetailedContentItem extends Component {
               return <View key={index}><Text>{block._type}</Text></View>;
           }
         })}
-        <NextContentButton style= {type === 'Story' ? styles.shadow : styles.noShadow} content={this.props.nextContent} image={this.props.content.footer.uri}/>
+        <NextContentButton style= {type === 'Story' ? styles.noShadow : styles.shadow} content={this.props.nextContent} image={this.props.content.footer.uri}/>
 
         {(() => {
           switch (type) {
@@ -89,5 +89,17 @@ const styles = StyleSheet.create({
     marginHorizontal: 30,
     flexWrap: 'wrap',
     color: Colors.textGrey
+  },
+  shadow: {
+    shadowOffset: {
+      height: 6,
+      width: 6
+    },
+    shadowColor: '#000',
+    shadowRadius: 3,
+    shadowOpacity: 0.5
+  },
+  noShadow: {
+
   }
 })

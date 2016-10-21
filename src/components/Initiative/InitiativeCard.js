@@ -74,13 +74,6 @@ const styles = StyleSheet.create({
     height: CARD_HEIGHT,
     borderRadius: 5,
     backgroundColor: '#EFEFEF',
-    marginHorizontal: 10,
-    shadowOffset: {
-      height: 6,
-      width: 6
-    },
-    shadowColor: '#000',
-    shadowRadius: 3,
-    shadowOpacity: 0.5
+    marginHorizontal: 10
   }
 });

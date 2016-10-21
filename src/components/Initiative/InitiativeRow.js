@@ -24,8 +24,6 @@ export default class InitiativeRow extends Component {
 
   };
 
-
-
   constructor(props) {
     super(props);
 
@@ -36,17 +34,26 @@ export default class InitiativeRow extends Component {
   }
 
   handleScroll(e) {
-    if(e.nativeEvent.contentOffset.x/250 % 1 <= 0.2 && this.state.card !== (Math.round(e.nativeEvent.contentOffset.x /292))) {
+    if(e.nativeEvent.contentOffset.x/375 % 1 == 0 && this.state.card !== (Math.round(e.nativeEvent.contentOffset.x/375))) {
+      console.log(e.nativeEvent.contentOffset.x/375)
       this.setState({
-        card: (Math.round(e.nativeEvent.contentOffset.x /292))
-
+        card: (Math.round(e.nativeEvent.contentOffset.x /375))
       })
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextState.card != this.state.card
+    )
+  }
+
   render() {
     return (
-
+      <View>
+        <View style={styles.textContainer}>
+            <Text style={styles.text}>{this.props.initiatives[this.state.card].description}</Text>
+        </View>
       <ScrollView
         horizontal={true}
         snapToInterval={width}
@@ -58,12 +65,10 @@ export default class InitiativeRow extends Component {
         style={styles.cardScroll}>
         {this.props.initiatives.map((obj,index) =>
           <View key = {index} style= {styles.view}>
-            <View style={styles.textContainer}>
-            <Text style={styles.text}>{obj.description}</Text>
-            </View>
             <InitiativeCard content={obj}/>
           </View>)}
       </ScrollView>
+      </View>
 
 
     );
