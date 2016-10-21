@@ -49,7 +49,7 @@ export default class InitiativeRow extends Component {
 
       <ScrollView
         horizontal={true}
-        snapToInterval={320}
+        snapToInterval={width}
         decelerationRate={0}
         snapToAlignment={'center'}
         onScroll={(e) => this.handleScroll(e)}
@@ -76,7 +76,8 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   textContainer: {
-    width: 300,
+    alignSelf: 'center',
+    width: width-40,
     marginHorizontal: 10
   },
   text: {

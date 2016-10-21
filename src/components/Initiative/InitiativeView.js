@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 
 import InitiativeRow from './InitiativeRow';
-import ContactFooter from '../ContactFooter';
 
 let {width, height} = Dimensions.get('window');
 
@@ -26,7 +25,6 @@ export default class InitiativeView extends Component {
         <View style={styles.container}>
           <InitiativeRow initiatives={this.props.initiatives}/>
         </View>
-        <ContactFooter />
       </ScrollView>
 
     );

@@ -11,7 +11,7 @@ import Colors from '../../styles/Colours';
 
 import longDateFormatter from '../../helpers/formatters/longDate';
 import Navigation from '../../helpers/Navigation';
-
+import ContactFooter from '../ContactFooter';
 import CloseButton from './CloseButton';
 import HeaderItem from './HeaderItem';
 import TitleItem from './TitleItem';
@@ -34,7 +34,7 @@ export default class DetailedContentItem extends Component {
 
   render() {
     let blocks = this.props.content.blocks;
-
+    let type = this.props.content.type;
     return (
       <ScrollView style={global.container}>
 
@@ -61,7 +61,21 @@ export default class DetailedContentItem extends Component {
               return <View key={index}><Text>{block._type}</Text></View>;
           }
         })}
-        <NextContentButton content={this.props.nextContent} image={this.props.content.footer.uri}/>
+        <NextContentButton style= {type === 'Story' ? styles.shadow : styles.noShadow} content={this.props.nextContent} image={this.props.content.footer.uri}/>
+
+        {(() => {
+          switch (type) {
+            case "Initiative":
+              return <ContactFooter />;
+            case "Story":
+              return;
+            case "Product":
+              return <ContactFooter contact = {this.props.content.contactInfo}/>;
+            default:
+              return <View><Text>{this.props.content.type}</Text></View>;
+          }
+        })()}
+
         <CloseButton onPress={() => Navigation.popToRoute(Navigation.PORTFOLIO_SCENE)}/>
       </ScrollView>
     );
