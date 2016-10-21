@@ -7,6 +7,8 @@ import {
   Image
 } from 'react-native';
 
+import ActionSheet from '../../helpers/actionSheet';
+import openLink from '../../helpers/navigation/openLink';
 import Navigation from '../../helpers/Navigation';
 import TagList from './StoryTagList';
 
@@ -26,6 +28,15 @@ export default class TitleItem extends Component {
     Navigation.push({id: Navigation.CONTACT_CARD_SCENE.id, content: this.props.content});
   }
 
+  openActionSheet(){
+    ActionSheet.open({
+      //TODO: replace with url to PDF of content passed through model
+      url: 'https://www.joinlane.com',
+      message: 'See what Usful is up to now!',
+    },
+    )
+  }
+
   render() {
     return (
       <View style={[global.content, style.content]}>
@@ -33,7 +44,7 @@ export default class TitleItem extends Component {
           <TouchableOpacity onPress={(e) => this.openTeamModal()}>
             <Image style={style.team} source={require('../../img/judge.png')}/>
           </TouchableOpacity>
-          <TouchableOpacity >
+          <TouchableOpacity onPress={(e) => this.openActionSheet()}>
             <Image style={style.share} source={require('../../img/share.png')}/>
           </TouchableOpacity>
         </View>
