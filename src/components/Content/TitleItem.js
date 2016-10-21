@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Dimensions,
   StyleSheet,
   TouchableOpacity,
   Text,
@@ -13,8 +14,25 @@ import openLink from '../../helpers/navigation/openLink';
 import Navigation from '../../helpers/Navigation';
 import TagList from './StoryTagList';
 import Team from '../Team';
-
+import Font from './../../styles/Font';
+import Colours from './../../styles/Colours';
 import global from '../../styles';
+let {height, width } = Dimensions.get('window');
+
+
+const styles = StyleSheet.create({
+  closeText: {
+    fontFamily: Font.primaryFont.fontFamily ,
+    fontSize: 18,
+    marginVertical: 40,
+    justifyContent: 'center',
+    alignSelf:'center',
+    color: Colours.white
+  },
+  modalBg: {
+    backgroundColor: 'rgba(0, 0, 0, 0.8)'
+  }
+});
 
 export default class TitleItem extends Component {
   static defaultProps = {
@@ -32,6 +50,7 @@ export default class TitleItem extends Component {
   }
 
   openTeamModal() {
+    console.log("Ere");
     //Navigation.push({id: Navigation.CONTACT_CARD_SCENE.id});
     let old = this.state.modalVisible;
     this.setState({modalVisible: !old});
@@ -55,8 +74,11 @@ export default class TitleItem extends Component {
                    transparent={true}
                    visible={this.state.modalVisible}
                    onRequestClose={(e) => console.log("close")}>
-              <Team style={{backgroundColor: 'black'}}></Team>
-              <TouchableOpacity style={{height:100,backgroundColor:'black',alignItems:'center'}} onPress={(e) => this.openTeamModal(e)}><Text style={{color: 'white',fontSize: 18, justifyContent: 'center',alignSelf:'center'}}>CLOESE HERHEHR</Text></TouchableOpacity>
+              <TouchableOpacity onPress={(e)=>this.openTeamModal()}><View style={[styles.modalBg, {height:height -100}]}>
+              <Team style={{backgroundColor: 'black'}}></Team></View></TouchableOpacity>
+              <TouchableOpacity style={{height:100,backgroundColor:'black',alignItems:'center'}}
+                                onPress={(e) => this.openTeamModal(e)}>
+                <Text style={styles.closeText}>CLOSE</Text></TouchableOpacity>
             </Modal>
             <Image style={style.team} source={require('../../img/judge.png')}/>
           </TouchableOpacity>
