@@ -9,7 +9,8 @@ import ReactNative, {
   TextInput,
   Text,
   View,
-  TouchableHighlight,
+  TouchableOpacity,
+TouchableHighlight
 } from 'react-native';
 
 import Font from '../../styles/Font';
@@ -153,7 +154,7 @@ export default class IntroductionScene extends Component {
   validateEmail(email) {
     let regex = new RegExp(/^\S+@((?=[^.])[\S]+\.)*(?=[^.])[\S]+\.(?=[^.])[\S]+$/);
     if (regex.test(email)) {
-      this.setState({valid: true}, () => (getAuthCode()));
+      //this.setState({valid: true}, () => (getAuthCode()));
       this.showOkMsg();
       return true;
     }
@@ -181,9 +182,9 @@ export default class IntroductionScene extends Component {
                   value={this.state.email}/>
                 <Text>{this.getEmailValidationText()}</Text>
               </Animated.View>
-              <TouchableHighlight onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
+              <TouchableOpacity onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
                 <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>SKIP</Animated.Text>
-              </TouchableHighlight>
+              </TouchableOpacity>
             </View>
 
           </KeyboardHandler>
@@ -192,8 +193,8 @@ export default class IntroductionScene extends Component {
             <Animated.View>
               <Typewriter ref="okMsg" customStyle={styles.msg} msg={okMsg} colour={'white'} speed={300} space={15}/>
             </Animated.View>
-            <Animated.View style={[styles.enterOurWorld,{opacity: this.state.enterOurWorldFadeIn}]} onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
-              <TouchableHighlight><Text style={[styles.font]}>Enter Our World</Text></TouchableHighlight>
+            <Animated.View style={[styles.enterOurWorld,{opacity: this.state.enterOurWorldFadeIn}]}  onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
+              <TouchableOpacity><Text style={[styles.font]}>Enter Our World</Text></TouchableOpacity>
             </Animated.View>
           </View>
 
