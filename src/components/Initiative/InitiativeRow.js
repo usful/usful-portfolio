@@ -69,8 +69,6 @@ export default class InitiativeRow extends Component {
           </View>)}
       </ScrollView>
       </View>
-
-
     );
 
   }
@@ -81,8 +79,11 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   textContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
     alignSelf: 'center',
     width: width-40,
+    height: 136,
     marginHorizontal: 10
   },
   text: {

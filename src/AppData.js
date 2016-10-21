@@ -240,7 +240,7 @@ const AppData = new AppDataModel(
         heroDescription: 'Lorem Ipsum',
         author: team[5],
         date: new Date(),
-        description: 'Tester psum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        description: 'Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester.',
         footer: randomMedia(),
         blocks: initiativeBlocks,
         team: [
