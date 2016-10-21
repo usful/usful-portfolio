@@ -45,7 +45,7 @@ export default class TitleItem extends Component {
     },
     )
   }
-  
+
   render() {
       return (
       <View style={[global.content, style.content]}>
