@@ -8,7 +8,7 @@ export default [
     name: 'Clinton Robinson',
     description: 'Something.',
     tags: ['Vision', 'Leadership', 'Technology'],
-    picture: 'https://www.wilsoncenter.org/sites/default/files/styles/450x550-scale-crop/public/18457363298_3ac27e78fb_o.jpg?itok=9nrUxEfI',
+    picture: require('../../assets/jose.png'),
     socialAccounts: [
       {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
       {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
@@ -18,7 +18,7 @@ export default [
     name: 'Kofi Gyekye',
     description: 'Something Else.',
     tags: ['Relationships', 'Stuff', 'More Stuff'],
-    picture: 'https://www.wilsoncenter.org/sites/default/files/styles/450x550-scale-crop/public/18457363298_3ac27e78fb_o.jpg?itok=9nrUxEfI',
+    picture: require('../../assets/jose.png'),
     socialAccounts: [
       {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
       {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
@@ -27,8 +27,8 @@ export default [
     _id: GUID(),
     name: 'Rhea Claus',
     description: 'Something Else.',
-    tags: ['Relationships', 'Stuff', 'More Stuff'],
-    picture: 'https://www.wilsoncenter.org/sites/default/files/styles/450x550-scale-crop/public/18457363298_3ac27e78fb_o.jpg?itok=9nrUxEfI',
+    tags: ['Education', 'Stuff', 'More Stuff'],
+    picture: require('../../assets/jose.png'),
     socialAccounts: [
       {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
       {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
@@ -38,37 +38,37 @@ export default [
     name: 'Mecha Clarke',
     description: 'Something Else.',
     tags: ['Relationships', 'Stuff', 'More Stuff'],
-    picture: 'https://www.wilsoncenter.org/sites/default/files/styles/450x550-scale-crop/public/18457363298_3ac27e78fb_o.jpg?itok=9nrUxEfI',
+    picture: require('../../assets/jose.png'),
     socialAccounts: [
       {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
       {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
-      {id: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
+      {id: GUID(), type: 'googleplus', uri: 'https://www.linkedin.com/in/mersaythis'}]
   }, {
     _id: GUID(),
     name: 'Juliana Ciccarelli',
     description: 'Something Else.',
     tags: ['Relationships', 'Stuff', 'More Stuff'],
-    picture: 'https://www.wilsoncenter.org/sites/default/files/styles/450x550-scale-crop/public/18457363298_3ac27e78fb_o.jpg?itok=9nrUxEfI',
+    picture: require('../../assets/jose.png'),
     socialAccounts: [
       {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
-      {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
+      {id: GUID(), type: 'github', uri: 'https://www.facebook.com/mersaythis'},
       {id: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
   }, {
     _id: GUID(),
     name: 'Casey Pierria',
     description: 'Something Else.',
     tags: ['Relationships', 'Stuff', 'More Stuff'],
-    picture: 'https://www.wilsoncenter.org/sites/default/files/styles/450x550-scale-crop/public/18457363298_3ac27e78fb_o.jpg?itok=9nrUxEfI',
+    picture: require('../../assets/jose.png'),
     socialAccounts: [
-      {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
+      {id: GUID(), type: 'github', uri: 'https://www.instagram.com/mersaythis'},
       {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
       {id: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
   }, {
     _id: GUID(),
     name: 'Alexandra Panagoulia',
     description: 'Something Else.',
-    tags: ['Relationships', 'Stuff', 'More Stuff'],
-    picture: 'https://www.wilsoncenter.org/sites/default/files/styles/450x550-scale-crop/public/18457363298_3ac27e78fb_o.jpg?itok=9nrUxEfI',
+    tags: ['People', 'Stuff', 'More Stuff'],
+    picture: require('../../assets/jose.png'),
     socialAccounts: [
       {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
       {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
@@ -78,17 +78,17 @@ export default [
     name: 'Jessica Graziani',
     description: 'Something Else.',
     tags: ['Relationships', 'Stuff', 'More Stuff'],
-    picture: 'https://www.wilsoncenter.org/sites/default/files/styles/450x550-scale-crop/public/18457363298_3ac27e78fb_o.jpg?itok=9nrUxEfI',
+    picture: require('../../assets/jose.png'),
     socialAccounts: [
       {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
-      {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
+      {id: GUID(), type: 'github', uri: 'https://www.facebook.com/mersaythis'},
       {id: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
   }, {
     _id: GUID(),
     name: 'Rishabh Nag',
     description: 'Something Else.',
     tags: ['Develop', 'Build', 'Conceptualize'],
-    picture: 'https://www.wilsoncenter.org/sites/default/files/styles/450x550-scale-crop/public/18457363298_3ac27e78fb_o.jpg?itok=9nrUxEfI',
+    picture: require('../../assets/jose.png'),
     socialAccounts: [
       {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
       {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
@@ -96,9 +96,9 @@ export default [
   }, {
     _id: GUID(),
     name: 'Mercedes Lo',
-    description: 'A Full Stack Dev at Usful. Loves astrology',
+    description: 'Developer',
     tags: ['Develop', 'Build', 'Conceptualize'],
-    picture: 'https://www.wilsoncenter.org/sites/default/files/styles/450x550-scale-crop/public/18457363298_3ac27e78fb_o.jpg?itok=9nrUxEfI',
+    picture: require('../../assets/jose.png'),
     socialAccounts: [
       {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
       {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},

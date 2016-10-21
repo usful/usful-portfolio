@@ -36,28 +36,38 @@ export default class SplashScene extends Component {
     super(props);
 
     this.state = {
-      animated: new Animated.Value(0)
+      animated: new Animated.Value(0),
+      bgAnim : new Animated.Value(0)
     };
   }
 
   componentDidMount() {
-    Animated.timing(
-      this.state.animated,
-      {toValue: 1, duration: 1000}
-    ).start();
 
-    setTimeout(() => Navigation.push(Navigation.INTRODUCTION_SCENE), 3000);
+      let animationArray = [];
+      animationArray.push(Animated.timing(this.state.animated, {toValue: 1, duration: 2000}));
+      animationArray.push(Animated.timing(this.state.animated, {toValue: 0, duration: 2000}));
+    Animated.sequence([            // spring to start and twirl after decay finishes
+      Animated.timing(this.state.animated, {toValue: 1, duration: 1000}),
+      Animated.timing(this.state.animated, {toValue: 0, duration: 1000}),
+      Animated.timing(this.state.animated, {toValue: 1, duration: 1000}),
+      Animated.timing(this.state.animated, {toValue: 0, duration: 1000}),
+      Animated.timing(this.state.animated, {toValue: 1, duration: 1000}),
+      Animated.timing(this.state.animated, {toValue: 0, duration: 1000}),
+    ]).start();                    // start the sequence group
+
+    Animated.timing(this.state.bgAnim, {toValue: 1, duration: 4000}).start();
+
+    setTimeout(() => Navigation.push(Navigation.INTRODUCTION_SCENE), 4000);
   }
 
   render() {
     return (
-      <Image style={styles.container} source={require('../../../assets/Background.png')}>
+      <Animated.Image style={[styles.container,{opacity: this.state.bgAnim}]} source={require('../../../assets/Background.png')}>
 
         <Animated.Image
           style={[styles.icon, {opacity: this.state.animated}]}
           source={require('../../../assets/Portfolioicon.png')}/>
-
-      </Image>
+      </Animated.Image>
     );
   }
 
