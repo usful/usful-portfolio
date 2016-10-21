@@ -9,7 +9,7 @@ TouchableOpacity
 } from 'react-native';
 
 import global from '../styles';
-
+import OutlineButton from './OutlineButton';
 import openLink from '../helpers/navigation/openLink';
 
 let {height, width} = Dimensions.get('window');
@@ -46,20 +46,12 @@ export default class ContactFooter extends Component {
         <Text style={styles.title}>Contact Us</Text>
         <Text style= {styles.body}>Interested in getting in contact with us? Hit us on the Usful line, or shoot an email. Stay up to date with all that's happening in the Usful world by following us on social media.</Text>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => openLink(this.props.contact.uri)} >
-            <Text style= {styles.buttonText}>INSTAGRAM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => openLink(this.props.contact.uri)}>
-            <Text style= {styles.buttonText}>TWITTER</Text>
-          </TouchableOpacity>
+          <OutlineButton text={"INSTAGRAM"} uri = {this.props.contact.uri}/>
+          <OutlineButton text={"TWITTER"} uri = {this.props.contact.uri}/>
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => openLink(this.props.contact.uri)} >
-            <Text style= {styles.buttonText}>EMAIL</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => openLink(this.props.contact.uri)}>
-            <Text style= {styles.buttonText}>PHONE</Text>
-          </TouchableOpacity>
+          <OutlineButton text={"EMAIL"} uri = {this.props.contact.uri}/>
+          <OutlineButton text={"PHONE"} uri = {this.props.contact.uri}/>
         </View>
         <Text style={styles.address}>{this.props.contact.address}</Text>
       </View>
