@@ -22,6 +22,7 @@ const ContentModel = Model.create(
     author: PersonModel,
     date: Date,
     hero: MediaModel,
+    heroDescription: String,
     tags: [String],
     blocks: [Object],
     team: [PersonModel],

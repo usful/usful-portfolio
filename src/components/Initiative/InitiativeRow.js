@@ -24,10 +24,24 @@ export default class InitiativeRow extends Component {
 
   };
 
+
+
   constructor(props) {
     super(props);
 
+    this.state = {
+      card: 0
+    }
 
+  }
+
+  handleScroll(e) {
+    if(e.nativeEvent.contentOffset.x/250 % 1 <= 0.2 && this.state.card !== (Math.round(e.nativeEvent.contentOffset.x /292))) {
+      this.setState({
+        card: (Math.round(e.nativeEvent.contentOffset.x /292))
+
+      })
+    }
   }
 
   render() {
@@ -38,6 +52,8 @@ export default class InitiativeRow extends Component {
         snapToInterval={320}
         decelerationRate={0}
         snapToAlignment={'center'}
+        onScroll={(e) => this.handleScroll(e)}
+        scrollEventThrottle={300}
         showsHorizontalScrollIndicator={false}
         style={styles.cardScroll}>
         {this.props.initiatives.map((obj,index) =>

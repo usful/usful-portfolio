@@ -4,12 +4,17 @@ import {
     Text,
     View,
 Image,
+Dimensions,
 TouchableOpacity
 } from 'react-native';
 
 import global from '../styles';
-
+import OutlineButton from './OutlineButton';
 import openLink from '../helpers/navigation/openLink';
+
+let {height, width} = Dimensions.get('window');
+
+const FOOTER_HEIGHT = 700;
 
 export default class ContactFooter extends Component {
   static defaultProps = {
@@ -37,20 +42,16 @@ export default class ContactFooter extends Component {
   render() {
     return (
       <View style={global.content}>
-        <Text style={styles.title}>Contact Information</Text>
-        <View style={styles.iconContainer}>
-          <TouchableOpacity onPress={() => openLink(this.props.contact.uri)} >
-            <Image style={styles.icon} source={require('../img/share.png')} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => openLink(this.props.contact.uri)}>
-            <Image style={styles.icon} source={require('../img/phone-call.png')} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => openLink(this.props.contact.uri)}>
-            <Image style={styles.icon} source={require('../img/mail.png')} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => openLink(this.props.contact.uri)}>
-            <Image style={styles.icon} source={require('../img/internet.png')} />
-          </TouchableOpacity>
+        <Image source={require('../img/CementBackground.jpg')} resizeMode='cover' style={styles.background}/>
+        <Text style={styles.title}>Contact Us</Text>
+        <Text style= {styles.body}>Interested in getting in contact with us? Hit us on the Usful line, or shoot an email. Stay up to date with all that's happening in the Usful world by following us on social media.</Text>
+        <View style={styles.buttonContainer}>
+          <OutlineButton text={"INSTAGRAM"} uri = {this.props.contact.uri}/>
+          <OutlineButton text={"TWITTER"} uri = {this.props.contact.uri}/>
+        </View>
+        <View style={styles.buttonContainer}>
+          <OutlineButton text={"EMAIL"} uri = {this.props.contact.uri}/>
+          <OutlineButton text={"PHONE"} uri = {this.props.contact.uri}/>
         </View>
         <Text style={styles.address}>{this.props.contact.address}</Text>
       </View>
@@ -59,26 +60,57 @@ export default class ContactFooter extends Component {
 }
 
 const styles= StyleSheet.create({
-  iconContainer: {
+  body: {
+    marginTop: 30,
+    fontFamily: 'Courier New',
+    fontSize: 15,
+    marginHorizontal: 20,
+    flexWrap: 'wrap',
+    backgroundColor: 'transparent',
+    textAlign: 'center',
+    marginBottom: 40
+  },
+  buttonText: {
+    fontFamily: 'Courier New',
+    fontSize: 15,
+    textAlign: 'center'
+  },
+  buttonContainer: {
     marginTop: 20,
-    flexDirection: 'row'
+    flexDirection: 'row',
+
   },
   title: {
-    marginTop: 40,
-    color: '#B4B4B4',
+    marginTop: 60,
+    color: '#000',
     fontSize: 30,
-    fontFamily: 'Avenir-Book',
-    fontWeight: 'bold'
+    fontFamily: 'Courier New',
+    fontWeight: 'bold',
+    backgroundColor: 'transparent'
   },
-  icon: {
-    marginHorizontal: 10
+  button: {
+    borderWidth: 0.5,
+    borderColor: '#000',
+    width: 125,
+    marginHorizontal: 20,
+    paddingVertical: 10
   },
   address: {
-    marginTop: 20,
+    marginTop: 40,
     textAlign: 'center',
-    fontSize: 20,
-    fontFamily: 'Avenir-Book',
+    fontSize: 12,
+    fontFamily: 'Courier New',
     paddingHorizontal: 40,
+    backgroundColor: 'transparent',
     color: '#B4B4B4'
+  },
+  background: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    marginTop: 5,
+    width: width,
+    height: FOOTER_HEIGHT,
+    backgroundColor: 'transparent'
   }
 });
