@@ -123,7 +123,6 @@ export default class PortfolioScene extends Component {
   }
 
   swipeEnds(e) {
-    //setTimeout(() => {this.setState({ hideNavBar: true})}, 2000);
   }
 
   navSwipeEnds(e) {
@@ -138,9 +137,7 @@ export default class PortfolioScene extends Component {
         });
       }
     }
-    //setTimeout(() => {this.setState({ hideNavBar: true})}, 2000);
   }
-
 
   onContentPressed(content){
     Navigation.goContent(content);
