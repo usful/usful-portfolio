@@ -22,12 +22,13 @@ let {height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   closeText: {
+    alignSelf:'center',
+    color: Colours.white
     fontFamily: Font.primaryFont.fontFamily ,
     fontSize: 18,
     marginVertical: 40,
     justifyContent: 'center',
-    alignSelf:'center',
-    color: Colours.white
+
   },
   modalBg: {
     backgroundColor: 'rgba(0, 0, 0, 0.8)'
@@ -74,8 +75,11 @@ export default class TitleItem extends Component {
                    transparent={true}
                    visible={this.state.modalVisible}
                    onRequestClose={(e) => console.log("close")}>
-              <TouchableOpacity onPress={(e)=>this.openTeamModal()}><View style={[styles.modalBg, {height:height -100}]}>
-              <Team style={{backgroundColor: 'black'}}></Team></View></TouchableOpacity>
+              <TouchableOpacity onPress={(e)=>this.openTeamModal()}>
+                <View style={[styles.modalBg, {height:height -100}]}>
+                  <Team style={{backgroundColor: 'black'}}></Team>
+                </View>
+              </TouchableOpacity>
               <TouchableOpacity style={{height:100,backgroundColor:'black',alignItems:'center'}}
                                 onPress={(e) => this.openTeamModal(e)}>
                 <Text style={styles.closeText}>CLOSE</Text></TouchableOpacity>
