@@ -9,9 +9,7 @@ import {
 Dimensions
 } from 'react-native';
 
-import SliderIndicator from './SliderIndicator';
-import global from '../../styles';
-import InitiativeCard from './InitiativeCard';
+import Carousel from '../Carousel';
 let {width, height} = Dimensions.get('window');
 
 
@@ -55,21 +53,7 @@ export default class InitiativeRow extends Component {
         <View style={styles.textContainer}>
             <Text style={styles.text}>{this.props.initiatives[this.state.card].description}</Text>
         </View>
-      <ScrollView
-        horizontal={true}
-        snapToInterval={width}
-        decelerationRate={0}
-        snapToAlignment={'center'}
-        onScroll={(e) => this.handleScroll(e)}
-        scrollEventThrottle={300}
-        showsHorizontalScrollIndicator={false}
-        style={styles.cardScroll}>
-        {this.props.initiatives.map((obj,index) =>
-          <View key = {index} style= {styles.view}>
-            <InitiativeCard content={obj}/>
-          </View>)}
-      </ScrollView>
-          <SliderIndicator position= {this.state.card} slides = {this.props.initiatives} />
+      <Carousel slides = {this.props.initiatives} />
       </View>
     );
 
@@ -77,9 +61,7 @@ export default class InitiativeRow extends Component {
 }
 
 const styles = StyleSheet.create({
-  cardScroll: {
-    marginBottom: 20
-  },
+
   textContainer: {
     justifyContent: 'center',
     alignItems: 'center',

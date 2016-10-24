@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Navigation from '../../helpers/Navigation';
-import longDateFormatter from '../../helpers/formatters/longDate';
+import Navigation from '../helpers/Navigation';
+import longDateFormatter from '../helpers/formatters/longDate';
 import {
   StyleSheet,
   Text,
@@ -10,7 +10,7 @@ Dimensions,
 Image
 } from 'react-native';
 let {width, height} = Dimensions.get('window');
-export default class InitiativeCard extends Component {
+export default class CarouselCard extends Component {
 
   static defaultProps = {
     content: {},
