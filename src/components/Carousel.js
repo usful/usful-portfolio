@@ -17,7 +17,8 @@ let {width, height} = Dimensions.get('window');
 export default class SliderIndicator extends Component {
 
   static defaultProps = {
-    position: 0
+    position: 0,
+    text: false
   }
 
   constructor(props) {
@@ -49,7 +50,19 @@ export default class SliderIndicator extends Component {
 
   render() {
     return (
+
     <View>
+
+      {(() => {
+        if(this.props.text) {
+          return <View style={styles.textContainer}>
+            <Text style={styles.text}>{this.props.slides[this.state.card].description}</Text>
+          </View>
+        } else {
+            return <View><Text>{this.props.text}</Text></View>;
+        }
+      })()}
+
     <ScrollView
       ref={ref => this._ScrollView = ref}
       horizontal={true}
@@ -91,15 +104,31 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   button: {
-    margin: 3,
+    marginHorizontal: 5,
     width: 8,
     height: 8,
     borderRadius: 8 / 2,
     backgroundColor: '#ccc',
-    opacity: 0.9
+    opacity: 0.9,
   },
   buttonSelected: {
     opacity: 1,
     backgroundColor: '#fff',
-  }
+  },
+  textContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    width: width-40,
+    height: 136,
+    marginHorizontal: 10
+  },
+  text: {
+    fontFamily: 'Avenir-Book',
+    fontSize: 18,
+    color: '#A9A9A9',
+    flexWrap: 'wrap',
+    marginBottom : 30,
+    textAlign: 'center'
+  },
 })
