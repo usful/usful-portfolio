@@ -176,7 +176,7 @@ export default class ContactCard extends Component {
   }
 
   openMedia(url,i) {
-    Animated.spring( this.state.animIcons[i], {toValue: 0.8, friction: 1}).start();
+    Animated.spring( this.state.animIcons[i], {toValue: 0.9, friction: 1}).start();
     AlertIOS.alert(
       'Leave Usful',
       'Clicking OK will take you to safari',
@@ -192,14 +192,12 @@ export default class ContactCard extends Component {
         }).catch(err => console.error('An error occurred', err))},
       ],
     );
+    //Animated.spring( this.state.animIcons[i], {toValue: 1, friction: 1}).start();
 
   }
 
   render() {
     let person = this.props.person;
-    let source;
-//modal to external site
-    //bg img
     return (
       <View>
         <View style={{backgroundColor:'white'}}>
