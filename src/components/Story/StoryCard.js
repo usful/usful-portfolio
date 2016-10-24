@@ -13,8 +13,6 @@ import {
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
-import * as Animatable from 'react-native-animatable';
-
 
 let {height, width} = Dimensions.get('window');
 
@@ -23,21 +21,21 @@ const MAX_OFFSET = 0.75;
 
 let styles = StyleSheet.create({
   container: {
+    alignItems: 'center',
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
     height: CARD_HEIGHT,
-    paddingHorizontal: 50,
+    justifyContent: 'center',
     marginBottom: 10,
     overflow: 'hidden'
+    paddingHorizontal: 50,
   },
   linearGradient: {
+    height: CARD_HEIGHT,
+    left: 0,
     position: 'absolute',
     top: 0,
-    left: 0,
     width: width,
-    height: CARD_HEIGHT
   },
   textContainer: {
     backgroundColor: 'transparent',
@@ -49,17 +47,17 @@ let styles = StyleSheet.create({
     fontFamily: 'Courier New',
     fontSize: 28,
     fontWeight: '500',
-    textAlign: 'center',
     marginBottom: 34,
+    textAlign: 'center',
   },
   title: {
     backgroundColor: 'transparent',
     color: '#ffffff',
     fontFamily: 'Courier New',
-    textAlign: 'center',
+    lineHeight: 22,
     fontSize: 16,
     fontWeight: '400',
-    lineHeight: 22
+    textAlign: 'center',
   }
 });
 
@@ -81,9 +79,8 @@ export default class StoryCard extends Component {
       offset: new Animated.Value(0),
       imageAnim : new Animated.Value(0),
       copyAnim : new Animated.Value(0),
-
-    };
-
+      bgOpac: new Animated.Value(0.3)
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -91,6 +88,7 @@ export default class StoryCard extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.opac !== this.props.opac) return true;
     if (nextProps.content !== this.props.content) return true;
 
     return false;
