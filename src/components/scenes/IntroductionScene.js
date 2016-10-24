@@ -53,7 +53,7 @@ let styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     padding: 10,
-    marginTop: 100,
+    marginTop: 150,
     height: 55,
   },
   errorEmail:{
@@ -61,7 +61,7 @@ let styles = StyleSheet.create({
   },
 
   font: {
-    fontFamily: 'Courier New',
+    fontFamily: Font.secondaryFont.fontFamily,
     color: 'white',
     fontSize: 18,
     marginTop: 5,
@@ -71,6 +71,11 @@ let styles = StyleSheet.create({
     marginTop: 120,
     marginHorizontal: 30,
     marginBottom: 120,
+  },
+  invalidText: {
+      color: 'white',
+      paddingTop: 10,
+      fontFamily: Font.primaryFont.fontFamily
   },
 
   skip:{
@@ -101,6 +106,9 @@ let styles = StyleSheet.create({
   underView:{
     zIndex: 2,
   },
+  validText: {
+    color: 'black',
+  },
   viewTop:{
     position:'absolute',
     backgroundColor: 'transparent',
@@ -122,7 +130,7 @@ export default class IntroductionScene extends Component {
 
     this.state = {
       email: "",
-      valid: false,
+      valid: true,
       emailFadeIn: new Animated.Value(0),
       enterOurWorldFadeIn : new Animated.Value(0),
       errorMsg: "Email is invalid, please try again!",
@@ -145,7 +153,7 @@ export default class IntroductionScene extends Component {
   }
 
   showOkMsg(){
-    this.refs.introMsg.startAnim(false, Animated.timing(this.state.emailFadeIn, {toValue: 0, duration: 20}), 20);
+    this.refs.introMsg.startAnim(false, Animated.timing(this.state.emailFadeIn, {toValue: 0, duration: 20}), 0);
     this.refs.okMsg.startAnim(true, Animated.timing(this.state.enterOurWorldFadeIn, {toValue: 1, duration: 1000}));
     this.setState({flip:true});
   }
@@ -158,6 +166,7 @@ export default class IntroductionScene extends Component {
       this.showOkMsg();
       return true;
     }
+    this.setState({valid: false}, () => (this.getEmailValidationText()));
     return false;
   }
 
@@ -167,7 +176,7 @@ export default class IntroductionScene extends Component {
         <View style={styles.viewTop}>
           <KeyboardHandler ref='kh' offset={100}>
             <View style={styles.introMsgContainer}>
-            <Typewriter ref="introMsg" customStyle={styles.msg} msg={introMsg} colour={'white'} speed={20} space={10}/>
+            <Typewriter ref="introMsg" customStyle={styles.msg} msg={introMsg} colour={'white'} speed={300} space={10}/>
               <Animated.View style={{opacity: this.state.emailFadeIn}}>
                 <TextInput
                   ref="email"
@@ -180,7 +189,7 @@ export default class IntroductionScene extends Component {
                   onChangeText={(text) => this.setState({email: text})}
                   onSubmitEditing={() => this.validateEmail(this.state.email)}
                   value={this.state.email}/>
-                <Text>{this.getEmailValidationText()}</Text>
+                <Text style={!this.state.valid? styles.invalidText : styles.valid}>{this.getEmailValidationText()}</Text>
               </Animated.View>
               <TouchableOpacity onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
                 <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>SKIP</Animated.Text>
@@ -193,8 +202,10 @@ export default class IntroductionScene extends Component {
             <Animated.View>
               <Typewriter ref="okMsg" customStyle={styles.msg} msg={okMsg} colour={'white'} speed={300} space={15}/>
             </Animated.View>
-            <Animated.View style={[styles.enterOurWorld,{opacity: this.state.enterOurWorldFadeIn}]}  onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
-              <TouchableOpacity><Text style={[styles.font]}>Enter Our World</Text></TouchableOpacity>
+            <Animated.View style={[{opacity: this.state.enterOurWorldFadeIn}]}>
+              <TouchableOpacity style={styles.enterOurWorld}
+                                onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
+                <Text style={[styles.font]}>ENTER OUR WORLD</Text></TouchableOpacity>
             </Animated.View>
           </View>
 
