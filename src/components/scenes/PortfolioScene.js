@@ -23,6 +23,8 @@ import TopNav from '../TopNav';
 
 let {width, height} = Dimensions.get('window');
 let offset = 0;
+let idleTime = 0;
+
 
 //Set the FPS to 30 in dev mode, no need to try to run high frame rates we can't do in iOS simulator
 const SCROLL_FPS = Math.round(1000 / __DEV__ ? 30 : 60);
@@ -52,13 +54,15 @@ export default class PortfolioScene extends Component {
       hideNavBar: false,
       hideAnimation: new Animated.Value(1),
       //Initialize an array of length stories.length and set all elements to 0
-      storyOffsets: new Array(AppData.stories.length).map(() => 0)
+      storyOffsets: new Array(AppData.stories.length).map(() => 0),
+
     };
   }
 
   componentDidMount() {
     //land Stories first
     this.refs.scrollView.scrollTo({x: width, y: 0, animated: false});
+    let idleInterval = setInterval(() => this.timerIncrement(), 1000);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -71,6 +75,22 @@ export default class PortfolioScene extends Component {
 
     return false;
   }
+
+  navSwipeEnds(e) {
+    if ((e.nativeEvent.contentOffset.x % width) === 0) {
+      let oldIndex = this.state.index;
+      let newPage = e.nativeEvent.contentOffset.x / width;
+
+      if (oldIndex !== newPage) {
+        this.setState({
+          previousIndex: oldIndex,
+          index: newPage
+        });
+      }
+    }
+    this.setIdleToZero();
+  }
+
 
   onTopNavScroll(e) {
     let pageTransition = (e.nativeEvent.contentOffset.x % width) / width;
@@ -122,26 +142,24 @@ export default class PortfolioScene extends Component {
     });
   }
 
-  swipeEnds(e) {
-  }
-
-  navSwipeEnds(e) {
-    if ((e.nativeEvent.contentOffset.x % width) === 0) {
-      let oldIndex = this.state.index;
-      let newPage = e.nativeEvent.contentOffset.x / width;
-
-      if (oldIndex !== newPage) {
-        this.setState({
-          previousIndex: oldIndex,
-          index: newPage
-        });
-      }
-    }
-  }
-
   onContentPressed(content){
     Navigation.goContent(content);
   }
+
+  setIdleToZero(e) {
+    //console.log("idleTime is (TO ZERO) ", idleTime);
+    idleTime = 0;
+  }
+
+  timerIncrement(){
+    //console.log("idleTime is (TIME++)", idleTime);
+    idleTime += 1;
+    if (idleTime > 4) {
+      this.setState({hideNavBar: true});
+      idleTime = 0;
+    }
+  }
+
 
   render() {
     return (
@@ -151,11 +169,13 @@ export default class PortfolioScene extends Component {
                     ref='scrollView'
                     onScroll={(e) => this.onTopNavScroll(e)}
                     scrollEventThrottle={SCROLL_FPS}
+
                     onMomentumScrollEnd={(e) => this.navSwipeEnds(e)}>
 
           <ScrollView scrollEventThrottle={SCROLL_FPS}
                       showsVerticalScollIndicator={false}
                       style={styles.storiesScroll}>
+
             <ProductView products={AppData.products}/>
           </ScrollView>
 
@@ -163,8 +183,7 @@ export default class PortfolioScene extends Component {
                       showsVerticalScollIndicator={false}
                       style={styles.storiesScroll}
                       onScroll={(e) => this.onStoriesScroll(e)}
-                      onMomentumScrollEnd={(e) => this.swipeEnds(e)}>
-
+                      onMomentumScrollStart={(e) => {this.setIdleToZero(e)}}>
             {AppData.stories.map((story, i) =>
               <StoryCard key={story._id}
                          content={story}
@@ -178,6 +197,7 @@ export default class PortfolioScene extends Component {
           <ScrollView scrollEventThrottle={SCROLL_FPS}
                       showsVerticalScollIndicator={false}
                       style={styles.storiesScroll}>
+
               <InitiativeView initiatives={AppData.initiatives} />
           </ScrollView>
         </ScrollView>
