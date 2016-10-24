@@ -27,6 +27,12 @@ let offset = 0;
 //Set the FPS to 30 in dev mode, no need to try to run high frame rates we can't do in iOS simulator
 const SCROLL_FPS = Math.round(1000 / __DEV__ ? 30 : 60);
 
+function pause(duration = 250) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(), duration);
+  });
+}
+
 let styles = StyleSheet.create({
   container: {
     backgroundColor: '#000',
@@ -59,6 +65,16 @@ export default class PortfolioScene extends Component {
   componentDidMount() {
     //land Stories first
     this.refs.scrollView.scrollTo({x: width, y: 0, animated: false});
+    this.animateStoryCards();
+  }
+
+  async animateStoryCards() {
+    const cardsPerScreen = Math.ceil(height / StoryCard.CARD_HEIGHT);
+
+    for (let x=0; x<cardsPerScreen; x++) {
+      this.refs[`storyCard${x}`].animateEntry();
+      await pause();
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -93,14 +109,14 @@ export default class PortfolioScene extends Component {
     let currentOffset = e.nativeEvent.contentOffset.y;
     let direction = currentOffset > offset;
 
-    offset = currentOffset;
-
-    //based on the current y offset we can tell where each story card is in the viewport because we know the story card
-    //height.  we can use this to determine the offset for its parallax background scroll.
-
     let cardsScrolled = Math.floor(e.nativeEvent.contentOffset.y / StoryCard.CARD_HEIGHT);
     let cardsPerScreen = Math.ceil(height / StoryCard.CARD_HEIGHT);
 
+    offset = currentOffset;
+
+    //PARALLAX CODE
+    //based on the current y offset we can tell where each story card is in the viewport because we know the story card
+    //height.  we can use this to determine the offset for its parallax background scroll.
     let storyOffsets = [];
     for (let i=0; i<AppData.stories.length; i++) {
       if (i < cardsScrolled) {
@@ -111,10 +127,12 @@ export default class PortfolioScene extends Component {
         storyOffsets[i] = StoryCard.MAX_OFFSET;
       } else {
         //otherwise set a relative offset for each story card as it passes thru the viewport
+        this.refs[`storyCard${i}`].animateEntry();
         let relativeOffset = e.nativeEvent.contentOffset.y - (StoryCard.CARD_HEIGHT * i);
         storyOffsets[i] = (relativeOffset / height) * 0.33;
       }
     }
+    //END PARALLAX CODE
 
     this.setState({
       storyOffsets: storyOffsets,
@@ -165,7 +183,8 @@ export default class PortfolioScene extends Component {
                       onScroll={(e) => this.onStoriesScroll(e)}
                       onMomentumScrollEnd={(e) => this.swipeEnds(e)}>
             {AppData.stories.map((story, i) =>
-              <StoryCard key={story._id}
+              <StoryCard ref={`storyCard${i}`}
+                         key={story._id}
                          content={story}
                          fps={SCROLL_FPS}
                          offset={this.state.storyOffsets[i]}
