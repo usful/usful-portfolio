@@ -19,9 +19,6 @@ import StoryCard from '../Story/StoryCard';
 import ProductView from '../Product/ProductView';
 import InitiativeView from '../Initiative/InitiativeView';
 
-import * as Animatable from 'react-native-animatable';
-
-
 import TopNav from '../TopNav';
 
 let {width, height} = Dimensions.get('window');
@@ -97,7 +94,6 @@ export default class PortfolioScene extends Component {
     let direction = currentOffset > offset;
 
     offset = currentOffset;
-
 
     //based on the current y offset we can tell where each story card is in the viewport because we know the story card
     //height.  we can use this to determine the offset for its parallax background scroll.
