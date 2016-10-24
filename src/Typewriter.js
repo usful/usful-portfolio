@@ -23,15 +23,19 @@ export default class Typewriter extends Component {
     }
   }
 
-
-  startAnim(fadeIn , followingAnim , speed = this.props.speed){
-    let toValue = (fadeIn? 1 : 0);
-    this.setState({animationArray : []});
-    for (let anim of this.anims) {
-      this.state.animationArray.push(Animated.timing(anim, {toValue: toValue, duration: speed }));
+  componentWillReceiveProps(nextProps, nextState) {
+    if (nextProps.msg !== this.props.msg) {
+      this.anims = this.anims || this.props.msg.split(' ').map(() => new Animated.Value(this.props.fadeIn? 0: 1));
     }
-    this.state.animationArray.push(followingAnim);
-    Animated.sequence(this.state.animationArray).start();
+  }
+
+  startAnim(fadeIn , followingAnim , speed = this.props.speed ){
+    let toValue = (fadeIn? 1 : 0);
+    let animationArray = [];
+    this.setState({animationArray : animationArray});
+    animationArray = this.anims.map(anim => Animated.timing(anim, {toValue: toValue, duration: speed}));
+    animationArray.push(followingAnim);
+    Animated.sequence(animationArray).start();
   }
 
   render() {
