@@ -21,12 +21,9 @@ export default class InitiativeView extends Component {
 
   render() {
     return (
-      <ScrollView >
         <View style={styles.container}>
           <InitiativeRow initiatives={this.props.initiatives}/>
         </View>
-      </ScrollView>
-
     );
   }
 }

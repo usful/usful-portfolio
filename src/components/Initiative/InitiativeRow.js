@@ -9,6 +9,7 @@ import {
 Dimensions
 } from 'react-native';
 
+import SliderIndicator from './SliderIndicator';
 import global from '../../styles';
 import InitiativeCard from './InitiativeCard';
 let {width, height} = Dimensions.get('window');
@@ -34,12 +35,9 @@ export default class InitiativeRow extends Component {
   }
 
   handleScroll(e) {
-    if(e.nativeEvent.contentOffset.x/375 % 1 == 0 && this.state.card !== (Math.round(e.nativeEvent.contentOffset.x/375))) {
-      console.log(e.nativeEvent.contentOffset.x/375)
       this.setState({
-        card: (Math.round(e.nativeEvent.contentOffset.x /375))
+        card: (Math.round(e.nativeEvent.contentOffset.x / 375))
       })
-    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -48,7 +46,10 @@ export default class InitiativeRow extends Component {
     )
   }
 
+
+
   render() {
+
     return (
       <View>
         <View style={styles.textContainer}>
@@ -68,6 +69,7 @@ export default class InitiativeRow extends Component {
             <InitiativeCard content={obj}/>
           </View>)}
       </ScrollView>
+          <SliderIndicator position= {this.state.card} slides = {this.props.initiatives} />
       </View>
     );
 
@@ -94,4 +96,5 @@ const styles = StyleSheet.create({
     marginBottom : 30,
     textAlign: 'center'
   },
+
 })

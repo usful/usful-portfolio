@@ -43,7 +43,7 @@ export default class InitiativeCard extends Component {
   }
 }
 
-const CARD_HEIGHT = height - 250;
+const CARD_HEIGHT = height - 300;
 const CARD_WIDTH = width-20;
 const styles = StyleSheet.create({
   textContainer: {
