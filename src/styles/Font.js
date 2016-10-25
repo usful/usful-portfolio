@@ -1,6 +1,4 @@
 export default {
-
-
   primaryFont: {
     fontFamily: 'Courier New',
   },
@@ -11,8 +9,7 @@ export default {
 
   },
   introductionMessageText: {
-    fontSize:
-
+    fontSize: 10
   },
   titleText: {
 
@@ -42,6 +39,4 @@ export default {
   fieldInputText: {
 
   }
-
-
 }

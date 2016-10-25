@@ -27,7 +27,7 @@ let styles = StyleSheet.create({
     height: CARD_HEIGHT,
     justifyContent: 'center',
     marginBottom: 10,
-    overflow: 'hidden'
+    overflow: 'hidden',
     paddingHorizontal: 50,
   },
   linearGradient: {
@@ -99,7 +99,6 @@ export default class StoryCard extends Component {
       Animated.timing(this.state.imageAnim, {toValue: 1, duration: 500}),
       Animated.timing(this.state.copyAnim, {toValue: 1, duration : 500})
     ]).start();
-
   }
 
   render() {

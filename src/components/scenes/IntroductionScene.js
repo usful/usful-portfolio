@@ -27,7 +27,6 @@ let styles = StyleSheet.create({
 
   container: {
     alignItems: 'flex-start',
-    backgroundColor: 'black',
     justifyContent: 'center',
     marginLeft: 30,
     padding: 0,
@@ -176,7 +175,7 @@ export default class IntroductionScene extends Component {
         <View style={styles.viewTop}>
           <KeyboardHandler ref='kh' offset={100}>
             <View style={styles.introMsgContainer}>
-            <Typewriter ref="introMsg" customStyle={styles.msg} msg={introMsg} colour={'white'} speed={300} space={10}/>
+            <Typewriter ref="introMsg" style={styles.msg} msg={introMsg} colour={'white'} speed={300} space={10}/>
               <Animated.View style={{opacity: this.state.emailFadeIn}}>
                 <TextInput
                   ref="email"
@@ -200,7 +199,7 @@ export default class IntroductionScene extends Component {
         </View>
         <View style={[styles.introMsgContainer,styles.viewBottom, this.state.flip? styles.upperView: styles.underView]}>
             <Animated.View>
-              <Typewriter ref="okMsg" customStyle={styles.msg} msg={okMsg} colour={'white'} speed={300} space={15}/>
+              <Typewriter ref="okMsg" style={styles.msg} msg={okMsg} colour={'white'} speed={300} space={15}/>
             </Animated.View>
             <Animated.View style={[{opacity: this.state.enterOurWorldFadeIn}]}>
               <TouchableOpacity style={styles.enterOurWorld}
