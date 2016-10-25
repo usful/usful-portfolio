@@ -23,15 +23,20 @@ export default class SocialMediaButton extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      bounceValue : new Animated.Value(1)
+    }
   }
 
   async openMedia() {
+    //slight bounce
+      try {
+        await Linking.openURL(this.props.account.uri);
+      } catch (err) {
+        console.log('error', err);
+      }
     //TODO: remove console logs once this is working.
-    try {
-      await Linking.openURL(this.props.account.uri);
-    } catch (err) {
-      console.log('error', err);
-    }
   }
 
   get iconName() {
@@ -70,9 +75,9 @@ export default class SocialMediaButton extends Component {
   render() {
     return (
       <TouchableOpacity onPress={() => this.openMedia()}>
-        <View style={this.containerStyle}>
+        <Animated.View style={[this.containerStyle,{transform: [{scale: this.state.bounceValue}]}]}>
           <Icon name={this.iconName} size={this.props.size} color={this.props.color}/>
-        </View>
+        </Animated.View>
       </TouchableOpacity>
     );
   }

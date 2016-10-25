@@ -40,7 +40,6 @@ export default class Team extends Component {
                        id={i + 1}/>
         )}
       </SwipeSelector>
-
     );
   }
 }

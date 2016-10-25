@@ -1,85 +1,69 @@
 import React, { Component } from 'react';
 import {
-    Animated,
-    StyleSheet,
-    Image,
-    Text,
-    TouchableOpacity,
-    View,
+  Animated,
+  Dimensions,
+  StyleSheet,
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-
-import LinearGradient from 'react-native-linear-gradient';
-
-import SocialMediaButton from './SocialMediaButton';
+let {height, width } = Dimensions.get('window');
 
 import Colours from '../styles/Colours';
 import Font from '../styles/Font';
+import LinearGradient from 'react-native-linear-gradient';
+import SocialMediaButton from './SocialMediaButton';
 
 let styles = StyleSheet.create({
+  card: {
+    backgroundColor: Colours.white
+  },
+  cardImage: {
+    height: height/3,
+    width: width/4
+  },
+  close: {
+    color: Colours.darkGrey,
+    fontFamily: Font.primaryFont.fontFamily,
+    fontWeight: Font.bold.fontWeight,
+    marginLeft: 130,
+  },
+  contactInfo: {
+    alignItems: 'center',
+    backgroundColor: Colours.white,
+    justifyContent: 'center',
+    marginHorizontal: 20,
+  },
   linearGradient: {
-    backgroundColor: "transparent",
-    position: "absolute",
+    backgroundColor: Colours.transparent,
+    position: 'absolute',
     top: 0,
     bottom: 0,
     left: 0,
     right: 0
   },
-  backgroundImage: {
-    marginHorizontal:0,
-    width: 250, height: 300,
-    alignItems: 'center',
-    resizeMode: 'contain',
-    justifyContent: 'center',
-
-  },
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    marginHorizontal: -50,
-    backgroundColor: 'white'
-
-  },
-  card: {
-    width: 350,
-    height: 480,
-    paddingVertical: 30,
-    backgroundColor: 'white',
-    alignItems: 'center',
-  },
-  cardImage: {
-    borderWidth: 1,
-    borderColor: '#FFF',
-    height: 200,
-    marginTop: 30,
-    width: 200,
-    opacity: 0.5
-  },
   page: {
     color: Colours.darkGrey,
     fontFamily: Font.primaryFont.fontFamily,
-    fontWeight: 'bold'
-  },
-  close: {
-    paddingLeft: 140,
-    color: Colours.darkGrey,
-    fontFamily: Font.primaryFont.fontFamily,
-    fontWeight: 'bold'
-  },
-  contactInfo: {
-    alignItems: 'center',
-    marginHorizontal: 20,
-    justifyContent: 'center',
-    backgroundColor: 'white'
+    fontWeight: Font.bold.fontWeight
   },
   pageAndClose: {
-    marginLeft: 20,
+    marginHorizontal: 30,
     marginTop: 20,
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: Colours.white,
+  },
+  socialMediaBox: {
+    flexDirection: 'row',
+    backgroundColor: Colours.transparent,
+    width: width-100,
+    paddingVertical: 10,
+    justifyContent: 'center'
   },
   textDescription: {
     color: Colours.darkGrey,
-    width: 100,
+    width: width-200,
     fontSize: 12,
     lineHeight: 15,
     paddingTop: 10,
@@ -97,22 +81,15 @@ let styles = StyleSheet.create({
   },
 
   textTags: {
-    fontStyle: 'italic',
-    paddingBottom: 18,
     color: Colours.darkGrey,
+    fontFamily: Font.primaryFont.fontFamily,
+    fontStyle: 'italic',
     fontSize: 8,
     paddingTop: 5,
-    fontFamily: Font.primaryFont.fontFamily,
+    paddingBottom: 18,
     textAlign: 'center'
-
   },
-  socialMediaBox: {
-    flexDirection: 'row',
-    backgroundColor: 'transparent',
-    width: 250,
-    paddingVertical: 10,
-    justifyContent: 'center'
-  }
+
 });
 
 export default class ContactCard extends Component {
@@ -133,7 +110,7 @@ export default class ContactCard extends Component {
 
     return (
       <View>
-        <View style={{backgroundColor:'white'}}>
+        <View style={styles.card}>
           <View style={styles.pageAndClose}>
             <Text style={styles.page}>{this.props.id}/{this.props.totalCards}</Text>
             <TouchableOpacity onPress={this.props.onClose}>
@@ -141,7 +118,7 @@ export default class ContactCard extends Component {
             </TouchableOpacity>
           </View>
 
-          <View style={{height:200,width:200}}>
+          <View style={styles.cardImage}>
           </View>
 
           <LinearGradient

@@ -5,6 +5,9 @@ export default {
   secondaryFont: {
     fontFamily: 'Avenir-Book'
   },
+  bold: {
+    fontWeight: 'bold'
+  },
   navigationBarText: {
 
   },

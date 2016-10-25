@@ -98,8 +98,8 @@ export default class StoryCard extends Component {
 
     Animated.parallel([
       Animated.timing(this.state.opacity, {toValue: 1, duration: CARD_ENTRY}),
-      Animated.timing(this.state.titleAnim, {toValue: 1, duration: CARD_ENTRY + 500}),
-      Animated.timing(this.state.copyAnim, {toValue: 1, duration: CARD_ENTRY + 1000}),
+      Animated.timing(this.state.titleAnim, {toValue: 1, duration: CARD_ENTRY + 1000}),
+      Animated.timing(this.state.copyAnim, {toValue: 1, duration: CARD_ENTRY + 2000}),
     ]).start();
 
 
@@ -132,7 +132,6 @@ export default class StoryCard extends Component {
     let viewStyle = {
       opacity: this.state.opacity,
     };
-
     let copyAnim = {
       opacity: this.state.copyAnim
     };
@@ -142,7 +141,6 @@ export default class StoryCard extends Component {
 
     return (
       <TouchableOpacity onPress={(e) => this.props.onPress(story)}>
-
         <Animated.View style={[styles.container, viewStyle]}>
           <Animated.Image style={offsetStyle} source={story.hero.uri} resizeMode="cover"/>
           <LinearGradient colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0.5)']} style={styles.linearGradient}/>
