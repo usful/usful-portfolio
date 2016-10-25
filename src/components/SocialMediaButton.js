@@ -22,13 +22,13 @@ export default class SocialMediaButton extends Component {
   };
 
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   async openMedia() {
     //TODO: remove console logs once this is working.
     try {
-      await Linking.openURL(this.props.account.url);
+      await Linking.openURL(this.props.account.uri);
     } catch (err) {
       console.log('error', err);
     }
