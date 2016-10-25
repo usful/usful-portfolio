@@ -155,7 +155,8 @@ export default class PortfolioScene extends Component {
 
     //TODO: show/hide navB
     let yOffset = e.nativeEvent.contentOffset.y;
-    if( (yOffset <= 0) || (e.nativeEvent.contentSize.height - 667 <= yOffset)) {
+    let reachedBottom = (e.nativeEvent.contentSize.height - 667 <= yOffset);
+    if( (yOffset <= 0) || reachedBottom < 0) {
       this.setState({
         storyOffsets: storyOffsets,
         hideNavBar: false,
