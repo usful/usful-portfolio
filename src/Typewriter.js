@@ -20,41 +20,34 @@ export default class Typewriter extends Component {
   constructor(props){
     super(props);
 
-    this.state = {
-      animationArray : [],
-    }
+    this.setupAnimations();
+  }
+
+  setupAnimations() {
+    this.anims = this.props.msg.split(' ').map(() => new Animated.Value(this.props.fadeIn ? 0: 1));
   }
 
   componentWillReceiveProps(nextProps, nextState) {
     if (nextProps.msg !== this.props.msg) {
-      this.anims = this.anims || this.props.msg.split(' ').map(() => new Animated.Value(this.props.fadeIn? 0: 1));
+      this.setupAnimations();
     }
   }
 
   startAnim(fadeIn, followingAnim, speed = this.props.speed) {
 
-    const animationArray = this.anims.map(anim => Animated.timing(anim, {toValue: fadeIn ? 1 : 0, duration: speed}));
-    animationArray.push(followingAnim);
+    const animations = this.anims.map(anim => Animated.timing(anim, {toValue: fadeIn ? 1 : 0, duration: speed}));
+    animations.push(followingAnim);
 
-    Animated.sequence(animationArray).start();
-
-    this.setState({animationArray: animationArray});
+    Animated.sequence(animations).start();
   }
 
   render() {
-    const animatedStyle = [
-      this.props.style,
-      {
-        paddingVertical: this.props.space,
-        color:this.props.colour,
-        opacity: this.anims[i]
-      }
-    ];
-
     return (
       <Text>
-        {this.props.msg.split(' ').map(word =>
-          <Animated.Text key={word} style={animatedStyle}>{`${word} `}</Animated.Text>
+        {this.props.msg.split(' ').map((word, i) =>
+          <Animated.Text key={word} style={[this.props.style, {paddingVertical: this.props.space, color:this.props.colour, opacity: this.anims[i]}]}>
+            {`${word} `}
+          </Animated.Text>
         )}
       </Text>
     );

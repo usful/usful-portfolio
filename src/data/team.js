@@ -10,9 +10,9 @@ export default [
     tags: ['Vision', 'Leadership', 'Technology'],
     picture: require('../../assets/jose.png'),
     socialAccounts: [
-      {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
-      {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
-      {id: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
+      {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
+      {_mg: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
+      {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
   }, {
     _id: GUID(),
     name: 'Kofi Gyekye',
@@ -20,9 +20,9 @@ export default [
     tags: ['Relationships', 'Stuff', 'More Stuff'],
     picture: require('../../assets/jose.png'),
     socialAccounts: [
-      {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
-      {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
-      {id: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
+      {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
+      {_mg: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
+      {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
   }, {
     _id: GUID(),
     name: 'Rhea Claus',
@@ -30,9 +30,9 @@ export default [
     tags: ['Education', 'Stuff', 'More Stuff'],
     picture: require('../../assets/jose.png'),
     socialAccounts: [
-      {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
-      {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
-      {id: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
+      {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
+      {_mg: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
+      {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
   }, {
     _id: GUID(),
     name: 'Mecha Clarke',
@@ -40,9 +40,9 @@ export default [
     tags: ['Relationships', 'Stuff', 'More Stuff'],
     picture: require('../../assets/jose.png'),
     socialAccounts: [
-      {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
-      {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
-      {id: GUID(), type: 'googleplus', uri: 'https://www.linkedin.com/in/mersaythis'}]
+      {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
+      {_mg: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
+      {_mg: GUID(), type: 'googleplus', uri: 'https://www.linkedin.com/in/mersaythis'}]
   }, {
     _id: GUID(),
     name: 'Juliana Ciccarelli',
@@ -50,9 +50,9 @@ export default [
     tags: ['Relationships', 'Stuff', 'More Stuff'],
     picture: require('../../assets/jose.png'),
     socialAccounts: [
-      {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
-      {id: GUID(), type: 'github', uri: 'https://www.facebook.com/mersaythis'},
-      {id: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
+      {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
+      {_mg: GUID(), type: 'github', uri: 'https://www.facebook.com/mersaythis'},
+      {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
   }, {
     _id: GUID(),
     name: 'Casey Pierria',
@@ -60,9 +60,9 @@ export default [
     tags: ['Relationships', 'Stuff', 'More Stuff'],
     picture: require('../../assets/jose.png'),
     socialAccounts: [
-      {id: GUID(), type: 'github', uri: 'https://www.instagram.com/mersaythis'},
-      {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
-      {id: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
+      {_mg: GUID(), type: 'github', uri: 'https://www.instagram.com/mersaythis'},
+      {_mg: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
+      {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
   }, {
     _id: GUID(),
     name: 'Alexandra Panagoulia',
@@ -70,9 +70,9 @@ export default [
     tags: ['People', 'Stuff', 'More Stuff'],
     picture: require('../../assets/jose.png'),
     socialAccounts: [
-      {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
-      {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
-      {id: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
+      {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
+      {_mg: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
+      {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
   }, {
     _id: GUID(),
     name: 'Jessica Graziani',
@@ -80,9 +80,9 @@ export default [
     tags: ['Relationships', 'Stuff', 'More Stuff'],
     picture: require('../../assets/jose.png'),
     socialAccounts: [
-      {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
-      {id: GUID(), type: 'github', uri: 'https://www.facebook.com/mersaythis'},
-      {id: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
+      {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
+      {_mg: GUID(), type: 'github', uri: 'https://www.facebook.com/mersaythis'},
+      {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
   }, {
     _id: GUID(),
     name: 'Rishabh Nag',
@@ -90,9 +90,9 @@ export default [
     tags: ['Develop', 'Build', 'Conceptualize'],
     picture: require('../../assets/jose.png'),
     socialAccounts: [
-      {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
-      {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
-      {id: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
+      {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
+      {_mg: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
+      {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
   }, {
     _id: GUID(),
     name: 'Mercedes Lo',
@@ -100,9 +100,9 @@ export default [
     tags: ['Develop', 'Build', 'Conceptualize'],
     picture: require('../../assets/jose.png'),
     socialAccounts: [
-      {id: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
-      {id: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
-      {id: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
+      {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
+      {_mg: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
+      {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
 
   }
 ];
