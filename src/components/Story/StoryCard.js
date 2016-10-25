@@ -18,6 +18,7 @@ let {height, width} = Dimensions.get('window');
 
 const CARD_HEIGHT = 350;
 const MAX_OFFSET = 0.75;
+const CARD_ENTRY = 1000;
 
 let styles = StyleSheet.create({
   container: {
@@ -64,20 +65,43 @@ let styles = StyleSheet.create({
 export default class StoryCard extends Component {
   static CARD_HEIGHT = CARD_HEIGHT;
   static MAX_OFFSET = MAX_OFFSET;
+  static CARD_ENTRY = CARD_ENTRY;
 
   static defaultProps = {
     content: {},
     onPress: (content) => {},
     /** A percentage to parallax scroll the background image by*/
-    offset: 0
+    offset: 0,
+    entrySpeed: CARD_ENTRY
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      offset: new Animated.Value(0)
+      offset: new Animated.Value(0),
+      opacity: new Animated.Value(0)
+    };
+
+    this.hasEntered = false;
+  }
+
+  /**
+   * This will trigger this component to animate its entry into a scene. IE. Fade in.
+   */
+  animateEntry() {
+    if (this.hasEntered) {
+      return;
     }
+
+    Animated
+      .timing(this.state.opacity, {toValue: 1, duration: CARD_ENTRY})
+      .start(() => {
+        console.log('Opacity animation is done');
+      })
+    ;
+
+    this.hasEntered = true;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -103,17 +127,22 @@ export default class StoryCard extends Component {
       transform: [{translateY: this.state.offset}]
     };
 
+    let viewStyle = {
+      opacity: this.state.opacity,
+    };
+
     return (
       <TouchableOpacity onPress={(e) => this.props.onPress(story)}>
-        <View style={styles.container}>
 
-          <Animated.Image style={[styles.image]} source={story.hero.uri} resizeMode="cover"/>
-          <LinearGradient colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0.4)']} style={styles.linearGradient}/>
-          <Animated.View style={[styles.textContainer]}>
+        <Animated.View style={[styles.container, viewStyle]}>
+          <Animated.Image style={offsetStyle} source={story.hero.uri} resizeMode="cover"/>
+          <LinearGradient colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0.5)']} style={styles.linearGradient}/>
+          <View style={styles.textContainer}>
             <Text style={styles.name}>{story.name.toUpperCase()}</Text>
             <Text style={styles.title}>{story.title}</Text>
-          </Animated.View>
-        </View>
+          </View>
+        </Animated.View>
+
       </TouchableOpacity>
     );
   }
