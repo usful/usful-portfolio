@@ -38,7 +38,10 @@ const styles = StyleSheet.create({
     color: '#000'
   },
   container: {
-    marginTop: 100,
+
+    backgroundColor: '#18232c',
+    paddingTop: 100,
+    height: height
 
   }
 })

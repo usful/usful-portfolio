@@ -11,9 +11,11 @@ Image
 } from 'react-native';
 let {width, height} = Dimensions.get('window');
 export default class CarouselCard extends Component {
-
+  static defaultHero = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=400';
   static defaultProps = {
-    content: {},
+    content: {
+
+    },
   };
 
   constructor(props) {
@@ -31,7 +33,7 @@ export default class CarouselCard extends Component {
 
           <Text style={styles.text}>{this.props.content.name}</Text>
 
-          <Image source ={this.props.content.hero.uri} resizeMode='cover' style={styles.image} />
+          <Image source ={this.props.content.hero.uri || defaultHero} resizeMode='cover' style={styles.image} />
           <View style={styles.textContainer}>
             <Text style={styles.text}>{this.props.content.name}</Text>
             <Text style={styles.text}>{this.props.content.heroDescription}</Text>

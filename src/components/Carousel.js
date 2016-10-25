@@ -41,6 +41,7 @@ export default class SliderIndicator extends Component {
   _move(index) {
     if (this.state.card !== index) {
       this._ScrollView.scrollTo({x: index * width, y: 0, animated: true})
+
     }
   }
 
@@ -97,9 +98,9 @@ const styles = StyleSheet.create({
   },
   button: {
     marginHorizontal: 5,
-    width: 8,
-    height: 8,
-    borderRadius: 8 / 2,
+    width: 10,
+    height: 10,
+    borderRadius: 5,
     backgroundColor: '#ccc',
     opacity: 0.9,
   },
