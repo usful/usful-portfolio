@@ -76,10 +76,7 @@ export default class StoryCard extends Component {
     super(props);
 
     this.state = {
-      offset: new Animated.Value(0),
-      imageAnim : new Animated.Value(0),
-      copyAnim : new Animated.Value(0),
-      bgOpac: new Animated.Value(0.3)
+      offset: new Animated.Value(0)
     }
   }
 
@@ -88,18 +85,11 @@ export default class StoryCard extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.opac !== this.props.opac) return true;
     if (nextProps.content !== this.props.content) return true;
 
     return false;
   }
 
-  componentDidMount(){
-    Animated.sequence([
-      Animated.timing(this.state.imageAnim, {toValue: 1, duration: 500}),
-      Animated.timing(this.state.copyAnim, {toValue: 1, duration : 500})
-    ]).start();
-  }
 
   render() {
     let story = this.props.content;
@@ -117,10 +107,9 @@ export default class StoryCard extends Component {
       <TouchableOpacity onPress={(e) => this.props.onPress(story)}>
         <View style={styles.container}>
 
-          <Animated.Image style={[styles.image, {opacity: this.state.imageAnim}]} source={story.hero.uri} resizeMode="cover"/>
+          <Animated.Image style={[styles.image]} source={story.hero.uri} resizeMode="cover"/>
           <LinearGradient colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0.4)']} style={styles.linearGradient}/>
-          <Animated.View style={[styles.textContainer, {opacity: this.state.copyAnim}]}>
-
+          <Animated.View style={[styles.textContainer]}>
             <Text style={styles.name}>{story.name.toUpperCase()}</Text>
             <Text style={styles.title}>{story.title}</Text>
           </Animated.View>
