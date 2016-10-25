@@ -186,9 +186,8 @@ export default class PortfolioScene extends Component {
                     pagingEnabled={true}
                     ref='scrollView'
                     onScroll={(e) => this.onTopNavScroll(e)}
-                    scrollEventThrottle={SCROLL_FPS}
-
-                    onMomentumScrollEnd={(e) => this.navSwipeEnds(e)}>
+                    onMomentumScrollEnd={(e) => this.navSwipeEnds(e)}
+                    scrollEventThrottle={SCROLL_FPS}>
 
           <ScrollView scrollEventThrottle={SCROLL_FPS}
                       showsVerticalScollIndicator={false}
