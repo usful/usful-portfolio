@@ -57,7 +57,6 @@ let styles = StyleSheet.create({
   socialMediaBox: {
     flexDirection: 'row',
     backgroundColor: Colours.transparent,
-    width: width-100,
     paddingVertical: 10,
     justifyContent: 'center'
   },

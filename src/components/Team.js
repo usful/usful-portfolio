@@ -29,8 +29,8 @@ export default class Team extends Component {
 
     return (
       <SwipeSelector
-        leftPoint={{x: -1400, y: -20}}
-        rightPoint={{x: 1400, y: -20}}
+        leftPoint={{x: -1350, y: -20}}
+        rightPoint={{x: 1350, y: -20}}
         scalingOptions={{padRightItems: 0, padLeftItems: 0}}>
         {this.props.content.team.map((person, i) =>
           <ContactCard key={person._id}

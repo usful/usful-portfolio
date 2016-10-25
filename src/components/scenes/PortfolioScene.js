@@ -125,7 +125,6 @@ export default class PortfolioScene extends Component {
   }
 
   onStoriesScroll(e) {
-    console.log("height", height);
     let currentOffset = e.nativeEvent.contentOffset.y;
     let direction = currentOffset > offset;
 
@@ -156,7 +155,7 @@ export default class PortfolioScene extends Component {
 
     //TODO: show/hide navB
     let yOffset = e.nativeEvent.contentOffset.y;
-    if( yOffset <= 0 ) {
+    if( (yOffset <= 0) || (e.nativeEvent.contentSize.height - 667 <= yOffset)) {
       this.setState({
         storyOffsets: storyOffsets,
         hideNavBar: false,
@@ -209,7 +208,7 @@ export default class PortfolioScene extends Component {
                       showsVerticalScollIndicator={false}
                       style={styles.storiesScroll}
                       onScroll={(e) => this.onStoriesScroll(e)}
-                      onMomentumScrollStart={(e) => {this.setIdleToZero(e)}}>
+                      onMomentumScrollEnd={(e) => {this.setIdleToZero(e)}}>
             {AppData.stories.map((story, i) =>
               <StoryCard ref={`storyCard${i}`}
                          key={story._id}
