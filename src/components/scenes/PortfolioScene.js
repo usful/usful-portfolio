@@ -61,7 +61,6 @@ export default class PortfolioScene extends Component {
       hideAnimation: new Animated.Value(1),
       //Initialize an array of length stories.length and set all elements to 0
       storyOffsets: new Array(AppData.stories.length).map(() => 0),
-
     };
   }
 
@@ -126,6 +125,7 @@ export default class PortfolioScene extends Component {
   }
 
   onStoriesScroll(e) {
+    console.log("height", height);
     let currentOffset = e.nativeEvent.contentOffset.y;
     let direction = currentOffset > offset;
 
@@ -154,10 +154,19 @@ export default class PortfolioScene extends Component {
     }
     //END PARALLAX CODE
 
-    this.setState({
-      storyOffsets: storyOffsets,
-      hideNavBar: direction
-    });
+    //TODO: show/hide navB
+    let yOffset = e.nativeEvent.contentOffset.y;
+    if( yOffset <= 0 ) {
+      this.setState({
+        storyOffsets: storyOffsets,
+        hideNavBar: false,
+      });
+    } else {
+      this.setState({
+        storyOffsets: storyOffsets,
+        hideNavBar: direction
+      });
+    }
   }
 
   onContentPressed(content){
