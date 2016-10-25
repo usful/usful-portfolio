@@ -31,7 +31,11 @@ const styles = StyleSheet.create({
 
   },
   modalBg: {
-    backgroundColor: 'rgba(0, 0, 0, 0.8)'
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    height: height -100
+  },
+  team :{
+    backgroundColor: 'black',
   }
 });
 
@@ -51,7 +55,7 @@ export default class TitleItem extends Component {
   }
 
   openTeamModal() {
-    console.log("Ere");
+    //console.log("Ere");
     //Navigation.push({id: Navigation.CONTACT_CARD_SCENE.id});
     let old = this.state.modalVisible;
     this.setState({modalVisible: !old});
@@ -74,12 +78,11 @@ export default class TitleItem extends Component {
             <Modal animationType={'slide'}
                    transparent={true}
                    visible={this.state.modalVisible}
-                   onRequestClose={(e) => console.log("close")}>
-              <TouchableOpacity onPress={(e)=>this.openTeamModal()}>
-                <View style={[styles.modalBg, {height:height -100}]}>
-                  <Team style={{backgroundColor: 'black'}}></Team>
+                   onRequestClose={(e) => this.closeTeamModal()}>
+                <View style={styles.modalBg}>
+                  <Team team={this.props.content.team} style={styles.team} onClose={()=> this.closeTeamModal()}></Team>
                 </View>
-              </TouchableOpacity>
+
               <TouchableOpacity style={{height:100,backgroundColor:'black',alignItems:'center'}}
                                 onPress={(e) => this.openTeamModal(e)}>
                 <Text style={styles.closeText}>CLOSE</Text></TouchableOpacity>

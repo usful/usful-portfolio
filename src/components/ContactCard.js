@@ -230,8 +230,6 @@ export default class ContactCard extends Component {
                                                                             onPress={()=> this.openMedia(acct.uri,i)}>
                                                   <Image source={this.getMediaIcon(acct.type)} style={styles.mediaIcon}/>
                                                 </TouchableOpacity>)}
-
-
           </View>
         </View>
     );
