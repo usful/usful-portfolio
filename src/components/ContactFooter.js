@@ -70,11 +70,6 @@ const styles= StyleSheet.create({
     textAlign: 'center',
     marginBottom: 40
   },
-  buttonText: {
-    fontFamily: 'Courier New',
-    fontSize: 15,
-    textAlign: 'center'
-  },
   buttonContainer: {
     marginTop: 20,
     flexDirection: 'row',

@@ -60,7 +60,6 @@ export default class ProductRow extends Component {
             <ProductCard content= {obj}/>
           </View>)}
       </ScrollView>
-      <ContactFooter card = {this.state.card} contact = {this.props.products[this.state.card].contactInfo}/>
       </ScrollView>
 
 
