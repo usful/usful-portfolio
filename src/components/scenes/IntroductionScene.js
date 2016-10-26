@@ -134,7 +134,7 @@ export default class IntroductionScene extends Component {
   }
 
   componentDidMount() {
-    this.refs.introMsg.startAnim(true, Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}), 10);
+    this.refs.introMsg.startAnim(true, Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}), 20);
   }
 
   getEmailValidationText() {
@@ -146,7 +146,7 @@ export default class IntroductionScene extends Component {
 
   showOkMsg(){
     this.refs.introMsg.startAnim(false, Animated.timing(this.state.emailFadeIn, {toValue: 0, duration: 20}), 0);
-    this.refs.okMsg.startAnim(true, Animated.timing(this.state.enterOurWorldFadeIn, {toValue: 1, duration: 1000}),10);
+    this.refs.okMsg.startAnim(true, Animated.timing(this.state.enterOurWorldFadeIn, {toValue: 1, duration: 1000}),20);
     this.setState({flip:true});
   }
 
@@ -174,11 +174,13 @@ export default class IntroductionScene extends Component {
                 <TextInput
                   ref="email"
                   placeholder="ee@ee.com"
+                  keyboardType={'email-address'}
                   placeholderTextColor='white'
                   clearButtonMode='while-editing'
                   keyboardAppearance='dark'
                   style={styles.emailInput}
-
+                  returnKeyType='done'
+                  underlineColorAndroid={'transparent'}
                   onChangeText={(text) => this.setState({email: text})}
                   onSubmitEditing={() => this.validateEmail(this.state.email)}
                   value={this.state.email}/>
