@@ -22,21 +22,21 @@ const CARD_ENTRY = 1000;
 
 let styles = StyleSheet.create({
   container: {
+    alignItems: 'center',
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
     height: CARD_HEIGHT,
-    paddingHorizontal: 50,
+    justifyContent: 'center',
     marginBottom: 10,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    paddingHorizontal: 50,
   },
   linearGradient: {
+    height: CARD_HEIGHT,
+    left: 0,
     position: 'absolute',
     top: 0,
-    left: 0,
     width: width,
-    height: CARD_HEIGHT
   },
   textContainer: {
     backgroundColor: 'transparent',
@@ -48,17 +48,17 @@ let styles = StyleSheet.create({
     fontFamily: 'Courier New',
     fontSize: 28,
     fontWeight: '500',
-    textAlign: 'center',
     marginBottom: 34,
+    textAlign: 'center',
   },
   title: {
     backgroundColor: 'transparent',
     color: '#ffffff',
     fontFamily: 'Courier New',
-    textAlign: 'center',
+    lineHeight: 22,
     fontSize: 16,
     fontWeight: '400',
-    lineHeight: 22
+    textAlign: 'center',
   }
 });
 
@@ -80,7 +80,9 @@ export default class StoryCard extends Component {
 
     this.state = {
       offset: new Animated.Value(0),
-      opacity: new Animated.Value(0)
+      opacity: new Animated.Value(0),
+      titleAnim: new Animated.Value(0),
+      copyAnim: new Animated.Value(0)
     };
 
     this.hasEntered = false;
@@ -94,12 +96,12 @@ export default class StoryCard extends Component {
       return;
     }
 
-    Animated
-      .timing(this.state.opacity, {toValue: 1, duration: CARD_ENTRY})
-      .start(() => {
-        console.log('Opacity animation is done');
-      })
-    ;
+    Animated.parallel([
+      Animated.timing(this.state.opacity, {toValue: 1, duration: CARD_ENTRY}),
+      Animated.timing(this.state.titleAnim, {toValue: 1, duration: CARD_ENTRY + 1000}),
+      Animated.timing(this.state.copyAnim, {toValue: 1, duration: CARD_ENTRY + 2000}),
+    ]).start();
+
 
     this.hasEntered = true;
   }
@@ -113,6 +115,7 @@ export default class StoryCard extends Component {
 
     return false;
   }
+
 
   render() {
     let story = this.props.content;
@@ -129,6 +132,12 @@ export default class StoryCard extends Component {
     let viewStyle = {
       opacity: this.state.opacity,
     };
+    let copyAnim = {
+      opacity: this.state.copyAnim
+    };
+    let titleAnim = {
+      opacity: this.state.titleAnim
+    };
 
     return (
       <TouchableOpacity onPress={(e) => this.props.onPress(story)}>
@@ -136,10 +145,11 @@ export default class StoryCard extends Component {
           <Animated.Image style={offsetStyle} source={story.hero.uri} resizeMode="cover"/>
           <LinearGradient colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0.5)']} style={styles.linearGradient}/>
           <View style={styles.textContainer}>
-            <Text style={styles.name}>{story.name.toUpperCase()}</Text>
-            <Text style={styles.title}>{story.title}</Text>
+            <Animated.Text style={[styles.name, titleAnim]}>{story.name.toUpperCase()}</Animated.Text>
+            <Animated.Text style={[styles.title, copyAnim]}>{story.title}</Animated.Text>
           </View>
         </Animated.View>
+
       </TouchableOpacity>
     );
   }
