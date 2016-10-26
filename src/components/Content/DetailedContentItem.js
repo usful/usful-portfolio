@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
-    StyleSheet,
-    Text,
-    ScrollView,
-    View
+  StyleSheet,
+  Text,
+  ScrollView,
+  View
 } from 'react-native';
 
 import global from '../../styles';
@@ -32,9 +32,23 @@ export default class DetailedContentItem extends Component {
     super(props);
   }
 
+  renderFooter() {
+    switch (this.props.content.type) {
+      case "Initiative":
+        return <ContactFooter />;
+      case "Story":
+        return;
+      case "Product":
+        return <ContactFooter contact={this.props.content.contactInfo}/>;
+      default:
+        return <View><Text>{this.props.content.type}</Text></View>;
+    }
+  }
+
   render() {
     let blocks = this.props.content.blocks;
     let type = this.props.content.type;
+
     return (
       <ScrollView style={global.container}>
 
@@ -46,7 +60,7 @@ export default class DetailedContentItem extends Component {
             case 'CopyBlock':
               return <BodyItem key={index} text={block.text}/>;
             case 'LegalBlock':
-              return <BodyItem style = {styles.legal} key={index} text={block.text}/>;
+              return <BodyItem style={styles.legal} key={index} text={block.text}/>;
             case 'MediaBlock':
               return <ImageItem key={index} image={block.media.uri}/>;
             case 'MediaCarouselBlock':
@@ -61,20 +75,11 @@ export default class DetailedContentItem extends Component {
               return <View key={index}><Text>{block._type}</Text></View>;
           }
         })}
-        <NextContentButton style= {type === 'Story' ? styles.noShadow : styles.shadow} content={this.props.nextContent} image={this.props.content.footer.uri}/>
 
-        {(() => {
-          switch (type) {
-            case "Initiative":
-              return <ContactFooter />;
-            case "Story":
-              return;
-            case "Product":
-              return <ContactFooter contact = {this.props.content.contactInfo}/>;
-            default:
-              return <View><Text>{this.props.content.type}</Text></View>;
-          }
-        })()}
+        <NextContentButton style={type === 'Story' ? styles.noShadow : styles.shadow} content={this.props.nextContent}
+                           image={this.props.content.footer.uri}/>
+
+        {this.renderFooter()}
 
         <CloseButton onPress={() => Navigation.popToRoute(Navigation.PORTFOLIO_SCENE)}/>
       </ScrollView>
@@ -99,7 +104,5 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     shadowOpacity: 0.5
   },
-  noShadow: {
-
-  }
+  noShadow: {}
 })
