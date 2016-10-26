@@ -1,52 +1,45 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
-  StyleSheet,
   Text,
-  ScrollView,
-  View
+  StyleSheet,
+  View,
 } from 'react-native';
 
+import team from '../data/team';
+import SwipeSelector from 'react-native-swipe-selector';
 import ContactCard from './ContactCard';
-
-let styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: '#FFFFFF',
-    height: 300,
-  },
-});
 
 export default class Team extends Component {
 
   static defaultProps = {
     content: {
-      team: []
-    }
+      team: team
+    },
+    onClose: (e) => {}
   };
 
   constructor(props) {
     super(props);
+    this.state = {
+      modalVisible: true,
+    }
   }
 
   render() {
 
     return (
-      <ScrollView
-        decelerationRate={0}
-        directionalLockEnabled={true}
-        horizontal={true}
-        scrollEventThrottle={32}
-        snapToInterval={320}
-        snapToAlignment='center'
-        style={[styles.scrollView]}
-        zoomScale={1}>
-
+      <SwipeSelector
+        leftPoint={{x: -1350, y: -20}}
+        rightPoint={{x: 1350, y: -20}}
+        scalingOptions={{padRightItems: 0, padLeftItems: 0}}>
         {this.props.content.team.map((person, i) =>
           <ContactCard key={person._id}
                        person={person}
                        totalCards={this.props.content.team.length}
-                       id={i}/>
+                       onClose={this.props.onClose}
+                       id={i + 1}/>
         )}
-      </ScrollView>
+      </SwipeSelector>
     );
   }
 }

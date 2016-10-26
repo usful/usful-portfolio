@@ -17,41 +17,30 @@ import {
 } from 'react-native';
 
 let {width, height} = Dimensions.get('window');
+import Colours from '../styles/Colours';
+import Font from '../styles/Font';
 
 const styles= StyleSheet.create({
-
     activeText: {
+      color: Colours.white,
+      fontFamily: Font.primaryFont.fontFamily,
       fontSize: 20,
       opacity: 1,
-      color: '#ffffff',
-      fontFamily: 'Courier New'
-    },
-    container: {
-        position: 'absolute',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        top: 0,
-        left: 0,
-        paddingVertical: 10,
-        width: width ,
-        height: 75,
-        backgroundColor: 'black',
-        opacity: 0.5
-
-    },
-    menuItem: {
-      paddingHorizontal: 0,
-
-    },
-    navBarTitle: {
       paddingHorizontal: 40
     },
-    text: {
-        opacity: 0.5,
-        color: '#ffffff',
+    container: {
+      alignItems: 'center',
+      backgroundColor: Colours.navBarBlack,
+      flexDirection: 'row',
+      height: 75,
+      left: 0,
+      justifyContent: 'center',
+      opacity: 0.5,
+      paddingVertical: 10,
+      position: 'absolute',
+      top: 0,
+      width: width,
     },
-
 });
 
 const inputRange = [ -1,  0 , 1, 2 ];
@@ -63,10 +52,6 @@ export default class TopNav extends Component {
 
   constructor(props) {
     super(props);
-  }
-
-  getTextStyle(page) {
-    return styles.activeText;
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -122,13 +107,13 @@ export default class TopNav extends Component {
     return (
       <Animated.View style={[styles.container, {opacity: navBarFading}]}>
         <Animated.View style={{transform: transform1, opacity: opacity1}}>
-          <Text style={[this.getTextStyle(1),styles.navBarTitle]}>Products</Text>
+          <Text style={styles.activeText}>Products</Text>
         </Animated.View>
         <Animated.View style={{transform: transform2, opacity: opacity2}}>
-          <Text style={[this.getTextStyle(1),styles.navBarTitle]}>Stories</Text>
+          <Text style={styles.activeText}>Stories</Text>
         </Animated.View>
         <Animated.View style={{transform: transform3, opacity: opacity3}}>
-          <Text style={[this.getTextStyle(1),styles.navBarTitle]}>Initiatives</Text>
+          <Text style={styles.activeText}>Initiatives</Text>
         </Animated.View>
       </Animated.View>
     );

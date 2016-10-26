@@ -9,13 +9,15 @@ import ReactNative, {
   TextInput,
   Text,
   View,
-  TouchableHighlight,
+  TouchableOpacity,
+TouchableHighlight
 } from 'react-native';
 
-
-import {updateCell, getSheetValues} from  '../../../api/GoogleSheets';
+import Font from '../../styles/Font';
+import Colours from '../../styles/Colours';
+import { getAccessToken, getAuthCode } from  '../../../api/GoogleSheets';
 import KeyboardHandler from '../KeyboardHandler';
-
+import Typewriter from '../../Typewriter';
 import Navigation from '../../helpers/Navigation';
 
 let {width, height} = Dimensions.get('window');
@@ -26,66 +28,66 @@ let styles = StyleSheet.create({
 
   container: {
     alignItems: 'flex-start',
-    backgroundColor: 'black',
     justifyContent: 'center',
     marginLeft: 30,
     padding: 0,
-
+    backgroundColor:  Colours.white,
   },
-
   emailInput: {
-    width: 300,
-    color: 'white',
-    borderColor: 'white',
+    width: width-70,
+    color: Colours.white,
+    borderColor:  Colours.white,
     borderWidth: 1,
     alignItems: 'center',
-    padding: 10,
+    marginTop: height/6,
+    marginRight: 20,
+    paddingHorizontal: 20,
     height: 55,
     opacity: 0.7
-
-
   },
   enterOurWorld: {
-    width: 300,
+    alignItems: 'center',
     borderColor: 'white',
     borderWidth: 1,
-    alignItems: 'center',
-    padding: 10,
     height: 55,
+    padding: 10,
+    marginTop: 150,
+    width: width-60,
   },
   errorEmail:{
-    color:'white',
+    color: Colours.white,
   },
 
   font: {
-    fontFamily: 'Courier New',
-    color: 'white',
+    color:  Colours.white,
+    fontFamily: Font.secondaryFont.fontFamily,
     fontSize: 18,
     marginTop: 5,
   },
-
-  skip:{
-    fontSize: 20,
-    alignSelf:'flex-end',
-    color: 'white',
-    paddingRight:20,
-    marginTop: 40,
-    marginLeft: 255,
+  introMsgContainer: {
+    backgroundColor:  Colours.navBarBlack,
+    marginTop: 120,
+    marginHorizontal: 30,
+    marginBottom: 120,
   },
-
-  welcomeText: {
-    color: 'white',
+  invalidText: {
+    color:  Colours.white,
+    fontFamily: Font.primaryFont.fontFamily,
+    paddingTop: 10,
+  },
+  msg: {
+    color:  Colours.white,
+    fontFamily: Font.primaryFont.fontFamily,
     fontSize: 21,
     fontWeight: '400',
     lineHeight:28,
-    marginTop: 120,
-    marginRight: 70,
-    marginBottom: 120,
   },
-  view :{
-    backgroundColor: 'black',
-    height: height,
-    zIndex: 0
+  skip:{
+    alignSelf:'flex-end',
+    color:  Colours.white,
+    fontSize: 20,
+    marginTop: 40,
+    paddingRight:20,
   },
   upperView:{
     zIndex: 12,
@@ -93,16 +95,24 @@ let styles = StyleSheet.create({
   underView:{
     zIndex: 2,
   },
-  viewTop:{
-    position:'absolute',
-    backgroundColor: 'transparent',
+  validText: {
+    color:  Colours.navBarBlack,
+  },
+  view :{
+    backgroundColor:  Colours.navBarBlack,
     height: height,
+    zIndex: 0
+  },
+  viewTop:{
+    backgroundColor: Colours.transparent,
+    height: height,
+    position:'absolute',
     zIndex:12,
   },
   viewBottom:{
-    position:'absolute',
-    backgroundColor: 'transparent',
+    backgroundColor: Colours.transparent,
     height: height,
+    position:'absolute',
     zIndex: 2
   },
 });
@@ -113,25 +123,21 @@ export default class IntroductionScene extends Component {
     super(props);
 
     this.state = {
-      email: "",
-      valid: false,
+      email: "abc@abc.com",
+      valid: true,
       emailFadeIn: new Animated.Value(0),
       enterOurWorldFadeIn : new Animated.Value(0),
       errorMsg: "Email is invalid, please try again!",
-      okMsg: "You are good!",
-      flip: false
+      okMsg: "",
+      flip: false,
+      introMsgFadeIn: false,
+      okMsgFadeIn: false,
     };
   }
 
   componentDidMount() {
-
-    let animationArray = this.introAnims.map(anim => Animated.timing(anim, {toValue: 1, duration: 10}));
-    animationArray.push(Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}));
-
-    Animated.sequence(animationArray).start();
-    getSheetValues(console.log("getSheetValues"));
+    this.refs.introMsg.startAnim(true, Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}), 10);
   }
-
 
   getEmailValidationText() {
     if (!this.state.valid) {
@@ -141,17 +147,8 @@ export default class IntroductionScene extends Component {
   }
 
   showOkMsg(){
-    let animationArray = [];
-    for (let anim of this.introAnims) {
-      animationArray.push(Animated.timing(anim, {toValue: 0, duration: 10}));
-    }
-    animationArray.push(Animated.timing(this.state.emailFadeIn, {toValue: 0, duration: 1000}));
-    for (let anim of this.okAnims) {
-      animationArray.push(Animated.timing(anim, {toValue: 1, duration: 10}));
-    }
-    animationArray.push(Animated.timing(this.state.enterOurWorldFadeIn, {toValue: 1, duration: 1000}));
-    console.log(animationArray);
-    Animated.sequence(animationArray).start();
+    this.refs.introMsg.startAnim(false, Animated.timing(this.state.emailFadeIn, {toValue: 0, duration: 20}), 0);
+    this.refs.okMsg.startAnim(true, Animated.timing(this.state.enterOurWorldFadeIn, {toValue: 1, duration: 1000}),10);
     this.setState({flip:true});
   }
 
@@ -159,57 +156,51 @@ export default class IntroductionScene extends Component {
   validateEmail(email) {
     let regex = new RegExp(/^\S+@((?=[^.])[\S]+\.)*(?=[^.])[\S]+\.(?=[^.])[\S]+$/);
     if (regex.test(email)) {
-      this.setState({valid: true}, () => updateCell(null, null, this.state.email, null, (error) => {}));
+      //TODO: email post to google doc
+      //this.setState({valid: true}, () => (getAuthCode()));
       this.showOkMsg();
       return true;
     }
+    this.setState({valid: false}, () => (this.getEmailValidationText()));
     return false;
   }
 
   render() {
-    this.introAnims = this.introAnims || introMsg.split(' ').map(() => new Animated.Value(0));
-    this.okAnims = this.okAnims || okMsg.split(' ').map(() => new Animated.Value(0));
-
     return (
       <View style={styles.view}>
         <View style={styles.viewTop}>
-        <KeyboardHandler ref='kh' offset={100}>
-          <View style={styles.container}>
-            <Text style={[styles.font, styles.welcomeText]}>
-              {introMsg.split(' ').map((word, i) =><Animated.Text key={i} style={[{paddingVertical: 15}, {opacity: this.introAnims[i]}]}>{word + ` `}</Animated.Text>)}
-            </Text>
-            <Animated.View style={{opacity: this.state.emailFadeIn}}>
-              <TextInput
-                ref="email"
-                placeholder="Email Input"
-                placeholderTextColor='white'
-                clearButtonMode='while-editing'
-                keyboardAppearance='dark'
-                style={styles.emailInput}
-                onFocus={()=>this.refs.kh.inputFocused(this, 'email')}
-                onChangeText={(text) => this.setState({email: text})}
-                onSubmitEditing={() => this.validateEmail(this.state.email)}
-                value={this.state.email}/>
-              <Text>{this.getEmailValidationText()}</Text>
-            </Animated.View>
+          <KeyboardHandler ref='kh' offset={100}>
+            <View style={styles.introMsgContainer}>
+            <Typewriter ref="introMsg" style={[styles.msg]} msg={introMsg} colour={'white'} speed={300} space={10}/>
+              <Animated.View style={[{opacity: this.state.emailFadeIn}]}>
+                <TextInput
+                  ref="email"
+                  placeholder="ee@ee.com"
+                  placeholderTextColor='white'
+                  clearButtonMode='while-editing'
+                  keyboardAppearance='dark'
+                  style={styles.emailInput}
+                  onFocus={()=>this.refs.kh.inputFocused(this, 'email')}
+                  onChangeText={(text) => this.setState({email: text})}
+                  onSubmitEditing={() => this.validateEmail(this.state.email)}
+                  value={this.state.email}/>
+                <Text style={!this.state.valid? styles.invalidText : styles.valid}>{this.getEmailValidationText()}</Text>
+              </Animated.View>
+              <TouchableOpacity onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
+                <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>SKIP</Animated.Text>
+              </TouchableOpacity>
+            </View>
 
-            <TouchableHighlight onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
-              <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>SKIP</Animated.Text>
-            </TouchableHighlight>
-          </View>
-
-        </KeyboardHandler>
+          </KeyboardHandler>
         </View>
-        <View style={[styles.container,styles.viewBottom, this.state.flip? styles.upperView: styles.underView]}>
-
-
+        <View style={[styles.introMsgContainer,styles.viewBottom, this.state.flip? styles.upperView: styles.underView]}>
             <Animated.View>
-              <Text style={[styles.font, styles.welcomeText]}>
-                {okMsg.split(' ').map((word, i) => <Animated.Text key={i} style={[{paddingVertical: 15}, {opacity: this.okAnims[i]}]}>{word + ` `}</Animated.Text>)}
-              </Text>
+              <Typewriter ref="okMsg" style={styles.msg} msg={okMsg} colour={'white'} speed={300} space={15}/>
             </Animated.View>
-            <Animated.View style={[styles.enterOurWorld,{opacity: this.state.enterOurWorldFadeIn}]} onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
-              <TouchableHighlight><Text style={[styles.font]}>Enter Our World</Text></TouchableHighlight>
+            <Animated.View style={[{opacity: this.state.enterOurWorldFadeIn}]}>
+              <TouchableOpacity style={styles.enterOurWorld}
+                                onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
+                <Text style={[styles.font]}>ENTER OUR WORLD</Text></TouchableOpacity>
             </Animated.View>
           </View>
 

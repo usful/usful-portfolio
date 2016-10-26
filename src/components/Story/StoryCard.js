@@ -18,24 +18,25 @@ let {height, width} = Dimensions.get('window');
 
 const CARD_HEIGHT = 350;
 const MAX_OFFSET = 0.75;
+const CARD_ENTRY = 1000;
 
 let styles = StyleSheet.create({
   container: {
+    alignItems: 'center',
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
     height: CARD_HEIGHT,
-    paddingHorizontal: 50,
+    justifyContent: 'center',
     marginBottom: 10,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    paddingHorizontal: 50,
   },
   linearGradient: {
+    height: CARD_HEIGHT,
+    left: 0,
     position: 'absolute',
     top: 0,
-    left: 0,
     width: width,
-    height: CARD_HEIGHT
   },
   textContainer: {
     backgroundColor: 'transparent',
@@ -47,38 +48,62 @@ let styles = StyleSheet.create({
     fontFamily: 'Courier New',
     fontSize: 28,
     fontWeight: '500',
-    textAlign: 'center',
     marginBottom: 34,
+    textAlign: 'center',
   },
   title: {
     backgroundColor: 'transparent',
     color: '#ffffff',
     fontFamily: 'Courier New',
-    textAlign: 'center',
+    lineHeight: 22,
     fontSize: 16,
     fontWeight: '400',
-    lineHeight: 22
+    textAlign: 'center',
   }
 });
 
 export default class StoryCard extends Component {
   static CARD_HEIGHT = CARD_HEIGHT;
   static MAX_OFFSET = MAX_OFFSET;
+  static CARD_ENTRY = CARD_ENTRY;
 
   static defaultProps = {
     content: {},
     onPress: (content) => {},
     /** A percentage to parallax scroll the background image by*/
-    offset: 0
+    offset: 0,
+    entrySpeed: CARD_ENTRY
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      offset: new Animated.Value(0)
+      offset: new Animated.Value(0),
+      opacity: new Animated.Value(0),
+      titleAnim: new Animated.Value(0),
+      copyAnim: new Animated.Value(0)
     };
 
+    this.hasEntered = false;
+  }
+
+  /**
+   * This will trigger this component to animate its entry into a scene. IE. Fade in.
+   */
+  animateEntry() {
+    if (this.hasEntered) {
+      return;
+    }
+
+    Animated.parallel([
+      Animated.timing(this.state.opacity, {toValue: 1, duration: CARD_ENTRY}),
+      Animated.timing(this.state.titleAnim, {toValue: 1, duration: CARD_ENTRY + 1000}),
+      Animated.timing(this.state.copyAnim, {toValue: 1, duration: CARD_ENTRY + 2000}),
+    ]).start();
+
+
+    this.hasEntered = true;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -90,6 +115,7 @@ export default class StoryCard extends Component {
 
     return false;
   }
+
 
   render() {
     let story = this.props.content;
@@ -103,16 +129,27 @@ export default class StoryCard extends Component {
       transform: [{translateY: this.state.offset}]
     };
 
+    let viewStyle = {
+      opacity: this.state.opacity,
+    };
+    let copyAnim = {
+      opacity: this.state.copyAnim
+    };
+    let titleAnim = {
+      opacity: this.state.titleAnim
+    };
+
     return (
       <TouchableOpacity onPress={(e) => this.props.onPress(story)}>
-        <View style={styles.container}>
+        <Animated.View style={[styles.container, viewStyle]}>
           <Animated.Image style={offsetStyle} source={story.hero.uri} resizeMode="cover"/>
           <LinearGradient colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0.5)']} style={styles.linearGradient}/>
           <View style={styles.textContainer}>
-            <Text style={styles.name}>{story.name.toUpperCase()}</Text>
-            <Text style={styles.title}>{story.title}</Text>
+            <Animated.Text style={[styles.name, titleAnim]}>{story.name.toUpperCase()}</Animated.Text>
+            <Animated.Text style={[styles.title, copyAnim]}>{story.title}</Animated.Text>
           </View>
-        </View>
+        </Animated.View>
+
       </TouchableOpacity>
     );
   }
