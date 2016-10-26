@@ -3,12 +3,11 @@
 import React, {Component} from 'react';
 
 import {
-  Alert,
-  StyleSheet,
-  Dimensions,
   Animated,
-  Text,
+  Dimensions,
   ScrollView,
+  StyleSheet,
+  Text,
   View
 } from 'react-native';
 
@@ -179,12 +178,11 @@ export default class PortfolioScene extends Component {
   }
 
   setIdleToZero(e) {
-    //console.log("idleTime is (TO ZERO) ", idleTime);
+
     idleTime = 0;
   }
 
   timerIncrement(){
-    //console.log("idleTime is (TIME++)", idleTime);
     idleTime += 1;
     if (idleTime > 4) {
       this.setState({hideNavBar: true});
