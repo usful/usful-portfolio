@@ -1,17 +1,15 @@
 'use strict';
 
 import React, { Component } from 'react';
-import ReactNative, {
+import {
   Animated,
   StyleSheet,
   Dimensions,
   KeyboardAvoidingView,
-  ScrollView,
   TextInput,
   Text,
   View,
   TouchableOpacity,
-  TouchableHighlight
 } from 'react-native';
 
 import Font from '../../styles/Font';
@@ -169,7 +167,7 @@ export default class IntroductionScene extends Component {
     return (
       <View style={styles.view}>
         <View style={styles.viewTop}>
-          <KeyboardAvoidingView behavior={'position'} keyboardVerticalOffset={500}>
+          <KeyboardAvoidingView behavior={'position'} keyboardVerticalOffset={0}>
             <View style={styles.introMsgContainer}>
             <Typewriter ref="introMsg" style={[styles.msg]} msg={introMsg} colour={'white'} speed={300} space={10}/>
               <Animated.View style={[{opacity: this.state.emailFadeIn}]}>
