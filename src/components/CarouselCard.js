@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Navigation from '../../helpers/Navigation';
-import longDateFormatter from '../../helpers/formatters/longDate';
+import Navigation from '../helpers/Navigation';
+import longDateFormatter from '../helpers/formatters/longDate';
 import {
   StyleSheet,
   Text,
@@ -10,7 +10,7 @@ Dimensions,
 Image
 } from 'react-native';
 let {width, height} = Dimensions.get('window');
-export default class InitiativeCard extends Component {
+export default class CarouselCard extends Component {
 
   static defaultProps = {
     content: {},
@@ -43,8 +43,8 @@ export default class InitiativeCard extends Component {
   }
 }
 
-const CARD_HEIGHT = height - 250;
-const CARD_WIDTH = 300;
+const CARD_HEIGHT = height - 300;
+const CARD_WIDTH = width-20;
 const styles = StyleSheet.create({
   textContainer: {
     marginBottom: 20,
@@ -74,13 +74,6 @@ const styles = StyleSheet.create({
     height: CARD_HEIGHT,
     borderRadius: 5,
     backgroundColor: '#EFEFEF',
-    marginHorizontal: 10,
-    shadowOffset: {
-      height: 6,
-      width: 6
-    },
-    shadowColor: '#000',
-    shadowRadius: 3,
-    shadowOpacity: 0.5
+    marginHorizontal: 10
   }
 });

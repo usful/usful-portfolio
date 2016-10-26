@@ -54,7 +54,7 @@ export default class NextStoryButton extends Component {
 
   render() {
     return (
-      <TouchableOpacity onPress={() => this.nextContent()}>
+      <TouchableOpacity style ={this.props.style} onPress={() => this.nextContent()}>
         <View style={style.content}>
           <View style={style.row1}>
             <Text style={style.title}>{this.props.content.name}</Text>
