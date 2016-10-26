@@ -4,7 +4,8 @@ import {
     Text,
     ScrollView,
     Dimensions,
-    View
+    View,
+    TouchableOpacity
 } from 'react-native';
 
 import global from '../../styles';
@@ -42,7 +43,7 @@ export default class DetailedContentItem extends Component {
     let scrollHeight = el.nativeEvent.contentOffset.y + height;
     if (scrollHeight === blockHeight) {
       this.setState({
-        footerToggle: !this.state.footerToggle
+        footerToggle: true
       });
     }
   }
@@ -69,7 +70,7 @@ export default class DetailedContentItem extends Component {
       <ScrollView
         alwaysBounceVertical = {true}
         ref={ref => this._ScrollView = ref}
-        scrollEventThrottle={16}
+        scrollEventThrottle={1000/30}
         onScroll= {(el) => this._handleScroll(el, blockHeight)} style={[global.container]}>
         <View style = {this.state.footerToggle ? styles.contactShow : styles.contactHide}>
           {this.renderFooter()}
@@ -81,7 +82,7 @@ export default class DetailedContentItem extends Component {
           style = {type !== 'Story' && this.state.footerToggle ? styles.contentShow : styles.contentHide}>
           <HeaderItem image={this.props.content.header.uri} date={longDateFormatter(this.props.content.date)}/>
           <TitleItem content={this.props.content} title={this.props.content.name} tags={this.props.content.tags}/>
-  
+
           {blocks.map((block, index) => {
             switch (block._type) {
               case 'CopyBlock':
@@ -111,7 +112,6 @@ export default class DetailedContentItem extends Component {
         <CloseButton onPress={() => Navigation.popToRoute(Navigation.PORTFOLIO_SCENE)}/>
 
       </ScrollView>
-
     );
   }
 }

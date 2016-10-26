@@ -83,8 +83,8 @@ export default class TitleItem extends Component {
         </View>
 
         <View style={style.row2}>
-          <Text style={style.title}>{this.props.content.title}</Text>
-          <TagList tags={this.props.content.tags}/>
+          <Text style={style.title}>{this.props.title}</Text>
+          <TagList tags={this.props.tags}/>
         </View>
 
         <Modal animationType={'slide'}

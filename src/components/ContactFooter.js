@@ -113,7 +113,7 @@ const styles= StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
-    marginTop: 5,
+    paddingBottom: UNDERLAY_HEIGHT,
     width: width,
     height: FOOTER_HEIGHT,
     backgroundColor: 'transparent'

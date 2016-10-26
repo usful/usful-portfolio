@@ -46,6 +46,7 @@ export default class SliderIndicator extends Component {
   }
 
   render() {
+    let slideLength = this.props.slides.length-1;
     return (
       <View>
         {this.props.text
@@ -54,23 +55,26 @@ export default class SliderIndicator extends Component {
             </View>
           : <View><Text>{this.props.text}</Text></View>
         }
-
+        <View style= {styles.cardContainer}>
         <ScrollView
           ref={ref => this._ScrollView = ref}
           horizontal={true}
-          snapToInterval={width}
+          snapToInterval={width - 50}
           decelerationRate={0}
           snapToAlignment={'center'}
           onScroll={(e) => this.handleScroll(e)}
           scrollEventThrottle={300}
           showsHorizontalScrollIndicator={false}
           style={styles.cardScroll}>
+
           {this.props.slides.map((obj, index) =>
-            <View key={index} style={styles.view}>
-              <CarouselCard content={obj}/>
+            <View key={index} style={[styles.cardFaded, this.state.card === index && styles.cardCurrent]}>
+              <CarouselCard lastSlide = {slideLength === index} slide={index} content={obj}/>
             </View>
           )}
+
         </ScrollView>
+        </View>
         <View style={styles.buttons}>
           {this.props.slides.map((slides, index) =>
             <TouchableOpacity
@@ -88,6 +92,12 @@ export default class SliderIndicator extends Component {
 }
 
 const styles = StyleSheet.create({
+  cardCurrent: {
+    opacity: 1
+  },
+  cardFaded: {
+    opacity: 0.3
+  },
   cardScroll: {
     marginBottom: 20
   },

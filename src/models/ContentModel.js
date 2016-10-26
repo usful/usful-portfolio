@@ -27,7 +27,8 @@ const ContentModel = Model.create(
     blocks: [Object],
     team: [PersonModel],
     footer: MediaModel,
-    contactInfo: ContactModel
+    contactInfo: ContactModel,
+    story: String
   }
 );
 

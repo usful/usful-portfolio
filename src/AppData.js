@@ -191,7 +191,8 @@ const AppData = new AppDataModel(
           phone: '123-456-7890',
           uri: 'http://www.hypebeast.com',
           address: '123 Stewart Cres, Toronto, ON, Canada, A1B 2D4 '
-        }
+        },
+        story: 'Better Bulbs'
       },
       {
         _id: GUID(),
@@ -215,7 +216,8 @@ const AppData = new AppDataModel(
           phone: '123-456-7890',
           uri: 'http://www.lane.com',
           address: '123 Stewart Rd, Toronto, ON, Canada, A1B 2D4 '
-        }
+        },
+        story: 'Nanoleaf Does something else'
       },
       {
         _id: GUID(),
@@ -233,7 +235,8 @@ const AppData = new AppDataModel(
           team[1],
           team[2],
           team[3]
-        ]
+        ],
+        story: 'Even more LEDS'
       },
       {
         _id: GUID(),
@@ -244,14 +247,15 @@ const AppData = new AppDataModel(
         heroDescription: 'Lorem Ipsum',
         author: team[5],
         date: new Date(),
-        description: 'Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester.',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         footer: randomMedia(),
         blocks: initiativeBlocks,
         team: [
           team[3],
           team[2],
           team[1]
-        ]
+        ],
+        story: 'Usful goes to Mars'
       },
       {
         _id: GUID(),
@@ -269,7 +273,8 @@ const AppData = new AppDataModel(
           team[6],
           team[4],
           team[2]
-        ]
+        ],
+        story: 'Launching the Anthropocene'
       },
     ]
   }

@@ -10,7 +10,10 @@ import {
 
 const style = StyleSheet.create({
   content: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderStyle: 'solid',
+    borderTopWidth: 1,
+    borderTopColor: '#ccc',
   },
   row1: {
     flex: 2,
@@ -58,7 +61,7 @@ export default class NextStoryButton extends Component {
         <View style={style.content}>
           <View style={style.row1}>
             <Text style={style.title}>{this.props.content.name}</Text>
-            <Text style={style.next}>NEXT {this.props.content.type.toUpperCase()}</Text>
+            <Text style={style.next}>NEXT Story</Text>
           </View>
           <View style={style.row2}>
             <Image style={style.image} source={this.props.image}/>
