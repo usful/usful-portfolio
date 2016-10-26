@@ -5,18 +5,18 @@ import ReactNative, {
   Animated,
   StyleSheet,
   Dimensions,
+  KeyboardAvoidingView,
   ScrollView,
   TextInput,
   Text,
   View,
   TouchableOpacity,
-TouchableHighlight
+  TouchableHighlight
 } from 'react-native';
 
 import Font from '../../styles/Font';
 import Colours from '../../styles/Colours';
 import { getAccessToken, getAuthCode } from  '../../../api/GoogleSheets';
-import KeyboardHandler from '../KeyboardHandler';
 import Typewriter from '../../Typewriter';
 import Navigation from '../../helpers/Navigation';
 
@@ -169,7 +169,7 @@ export default class IntroductionScene extends Component {
     return (
       <View style={styles.view}>
         <View style={styles.viewTop}>
-          <KeyboardHandler ref='kh' offset={100}>
+          <KeyboardAvoidingView behavior={'position'} keyboardVerticalOffset={500}>
             <View style={styles.introMsgContainer}>
             <Typewriter ref="introMsg" style={[styles.msg]} msg={introMsg} colour={'white'} speed={300} space={10}/>
               <Animated.View style={[{opacity: this.state.emailFadeIn}]}>
@@ -180,7 +180,7 @@ export default class IntroductionScene extends Component {
                   clearButtonMode='while-editing'
                   keyboardAppearance='dark'
                   style={styles.emailInput}
-                  onFocus={()=>this.refs.kh.inputFocused(this, 'email')}
+
                   onChangeText={(text) => this.setState({email: text})}
                   onSubmitEditing={() => this.validateEmail(this.state.email)}
                   value={this.state.email}/>
@@ -190,8 +190,7 @@ export default class IntroductionScene extends Component {
                 <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>SKIP</Animated.Text>
               </TouchableOpacity>
             </View>
-
-          </KeyboardHandler>
+          </KeyboardAvoidingView>
         </View>
         <View style={[styles.introMsgContainer,styles.viewBottom, this.state.flip? styles.upperView: styles.underView]}>
             <Animated.View>
