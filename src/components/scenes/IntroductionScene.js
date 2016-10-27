@@ -5,7 +5,9 @@ import {
   Animated,
   StyleSheet,
   Dimensions,
+  InteractionManager,
   KeyboardAvoidingView,
+  Platform,
   TextInput,
   Text,
   View,
@@ -130,11 +132,26 @@ export default class IntroductionScene extends Component {
       flip: false,
       introMsgFadeIn: false,
       okMsgFadeIn: false,
+      introAnims : [],
     };
   }
 
   componentDidMount() {
-    this.refs.introMsg.startAnim(true, Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}), 20);
+    /*console.log("didmount");
+    let speed = Platform.OS === 'ios'? 250: 500;
+    var handle = InteractionManager.createInteractionHandle();
+    // run animation... (`runAfterInteractions` tasks are queued)
+    // later, on animation completion:
+    let animationArray = [];
+    for (let anim of this.state.introAnims) {
+      animationArray.push(Animated.timing(anim, {toValue: 1, duration: 1000}));
+    }
+    animationArray.push(Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}));
+    Animated.sequence(animationArray).start();
+    InteractionManager.clearInteractionHandle(handle);
+//  queued tasks run if all handles were cleared */
+    this.refs.introMsg.startAnim(true, Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}), 200 );
+
   }
 
   getEmailValidationText() {
@@ -150,44 +167,47 @@ export default class IntroductionScene extends Component {
     this.setState({flip:true});
   }
 
+  getFinal(word,i) {
+    console.log("tet");
+    if (i%7===0) {
+      console.log("nextrow");
+      return <Animated.Text key={i} style={[{color: 'white', fontSize: 16, fontFamily: Font.primaryFont.fontFamily, paddingVertical: 10},{opacity: this.state.introAnims[i]}]}>
+        {`${word} `}
+      </Animated.Text>;
+    } else {
+      console.log("row");
+      return <View><Animated.Text key={i} style={[{color: 'white', fontSize: 16, fontFamily: Font.primaryFont.fontFamily, paddingVertical: 10},{opacity: this.state.introAnims[i]}]}>
+        {`${word} `}
+      </Animated.Text></View>
+    }
+  }
+
 
   validateEmail(email) {
     let regex = new RegExp(/^\S+@((?=[^.])[\S]+\.)*(?=[^.])[\S]+\.(?=[^.])[\S]+$/);
     if (regex.test(email)) {
       //TODO: email post to google doc
       //this.setState({valid: true}, () => (getAuthCode()));
-      this.showOkMsg();
+      //this.showOkMsg();
       return true;
     }
-    this.setState({valid: false}, () => (this.getEmailValidationText()));
+    //this.setState({valid: false}, () => (this.getEmailValidationText()));
     return false;
   }
 
   render() {
     return (
       <View style={styles.view}>
-        <View style={styles.viewTop}>
+        <View style={[styles.viewTop,]}>
           <KeyboardAvoidingView behavior={'position'} keyboardVerticalOffset={0}>
-            <View style={styles.introMsgContainer}>
-            <Typewriter ref="introMsg" style={[styles.msg]} msg={introMsg} colour={'white'} speed={300} space={10}/>
-              <Animated.View style={[{opacity: this.state.emailFadeIn}]}>
-                <TextInput
-                  ref="email"
-                  placeholder="ee@ee.com"
-                  keyboardType={'email-address'}
-                  placeholderTextColor='white'
-                  clearButtonMode='while-editing'
-                  keyboardAppearance='dark'
-                  style={styles.emailInput}
-                  returnKeyType='done'
-                  underlineColorAndroid={'transparent'}
-                  onChangeText={(text) => this.setState({email: text})}
-                  onSubmitEditing={() => this.validateEmail(this.state.email)}
-                  value={this.state.email}/>
+            <View style={[styles.introMsgContainer]}>
+              <Typewriter ref="introMsg" style={styles.msg} msg={introMsg} colour={'white'} speed={300} space={15}/>
+              <Animated.View style={[{opacity: 0}]}>
+                
                 <Text style={!this.state.valid? styles.invalidText : styles.valid}>{this.getEmailValidationText()}</Text>
               </Animated.View>
               <TouchableOpacity onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
-                <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>SKIP</Animated.Text>
+                <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>ENTER</Animated.Text>
               </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>

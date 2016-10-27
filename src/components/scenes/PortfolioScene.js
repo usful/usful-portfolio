@@ -5,6 +5,8 @@ import React, {Component} from 'react';
 import {
   Animated,
   Dimensions,
+  InteractionManager,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -65,9 +67,21 @@ export default class PortfolioScene extends Component {
 
   componentDidMount() {
     //land Stories first
-    this.refs.scrollView.scrollTo({x: width, y: 0, animated: false});
-    let idleInterval = setInterval(() => this.timerIncrement(), 1000);
+    //http://stackoverflow.com/questions/33208477/react-native-android-scrollview-scrollto-not-working
+
+    if (Platform.OS === 'android') {
+      InteractionManager.runAfterInteractions(() => {
+        this.refs.scrollView.scrollTo({x: width, y: 0, animated: false});
+      });
+    } else {
+      this.refs.scrollView.scrollTo({x: width, y: 0, animated: false});
+    }
+
+    let idleInterval = setInterval(()=> this.timerIncrement(), 1000);
     this.animateStoryCards();
+
+
+
   }
 
   async animateStoryCards() {

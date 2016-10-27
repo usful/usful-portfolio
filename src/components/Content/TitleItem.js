@@ -87,7 +87,7 @@ export default class TitleItem extends Component {
           <TagList tags={this.props.content.tags}/>
         </View>
 
-        <Modal animationType={'slide'}
+        <Modal animationType={'none'}
                transparent={true}
                visible={this.state.modalVisible}
                onRequestClose={(e) => this.closeTeamModal()}>
