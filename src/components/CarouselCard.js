@@ -6,8 +6,8 @@ import {
   Text,
   View,
   TouchableOpacity,
-Dimensions,
-Image
+  Dimensions,
+  Image
 } from 'react-native';
 let {width, height} = Dimensions.get('window');
 export default class CarouselCard extends Component {
@@ -48,9 +48,8 @@ export default class CarouselCard extends Component {
   }
 }
 
-
-const CARD_HEIGHT = height - 300;
-const CARD_WIDTH = width - 50;
+const CARD_HEIGHT = height * 0.55;
+const CARD_WIDTH = width * .75;
 const styles = StyleSheet.create({
   textContainer: {
     marginBottom: 20,
@@ -81,12 +80,12 @@ const styles = StyleSheet.create({
     height: CARD_HEIGHT,
     borderRadius: 2,
     backgroundColor: '#EFEFEF',
-    marginHorizontal: 5
+    marginHorizontal: width * .025
   },
   endLeftCard: {
-    marginLeft: 25
+    marginLeft: width * .10
   },
   endRightCard: {
-    marginRight: 25
+    marginRight: width * .10
   }
 });

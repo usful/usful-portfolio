@@ -30,7 +30,7 @@ export default class SliderIndicator extends Component {
 
   handleScroll(e) {
     this.setState({
-      card: (Math.round(e.nativeEvent.contentOffset.x / width))
+      card: (Math.round(e.nativeEvent.contentOffset.x / (width*.75)))
     });
   }
 
@@ -40,7 +40,7 @@ export default class SliderIndicator extends Component {
 
   _move(index) {
     if (this.state.card !== index) {
-      this._ScrollView.scrollTo({x: index * width, y: 0, animated: true})
+      this._ScrollView.scrollTo({x: index * width*.775, y: 0, animated: true})
 
     }
   }
@@ -59,7 +59,7 @@ export default class SliderIndicator extends Component {
         <ScrollView
           ref={ref => this._ScrollView = ref}
           horizontal={true}
-          snapToInterval={width - 50}
+          snapToInterval={width*.85}
           decelerationRate={0}
           snapToAlignment={'center'}
           onScroll={(e) => this.handleScroll(e)}

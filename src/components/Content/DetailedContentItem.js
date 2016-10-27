@@ -105,7 +105,7 @@ export default class DetailedContentItem extends Component {
           })}
 
 
-          <NextContentButton style={type === 'Story' ? styles.noShadow : styles.shadow} content={this.props.nextContent}
+          <NextContentButton style={type === 'Story' ? styles.noShadow : styles.shadow} current = {type} content={this.props.nextContent}
                              image={this.props.content.footer.uri}/>
         </View>
 

@@ -106,6 +106,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		B0E985C71DC19EDE0009EA6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = UsfulPortfolio;
+		};
 		D52090CC1DB691E300DF26A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1F6730DC2B324EC5B3C6F39B /* BVLinearGradient.xcodeproj */;
@@ -386,6 +393,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B0E985C81DC19EDE0009EA6A /* PBXTargetDependency */,
 			);
 			name = UsfulPortfolioTests;
 			productName = UsfulPortfolioTests;
@@ -651,6 +659,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		B0E985C81DC19EDE0009EA6A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* UsfulPortfolio */;
+			targetProxy = B0E985C71DC19EDE0009EA6A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
@@ -694,7 +710,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4UWCY24JUV;
 				INFOPLIST_FILE = UsfulPortfolioTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

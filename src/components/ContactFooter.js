@@ -94,7 +94,7 @@ const styles= StyleSheet.create({
     backgroundColor: 'transparent'
   },
   button: {
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: '#000',
     width: 125,
     marginHorizontal: 20,

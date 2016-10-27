@@ -51,6 +51,18 @@ export default class NextStoryButton extends Component {
     super(props);
   }
 
+  renderCopy() {
+    switch(this.props.current){
+      case 'Story' :
+        return <Text style={style.next}>NEXT STORY</Text>
+
+      case 'Initiative' || 'Product' :
+        return <Text style={style.next}>CHECK OUT A RELATED STORY</Text>
+
+    }
+
+  }
+
   nextContent() {
     Navigation.goContent(this.props.content);
   }
@@ -61,7 +73,7 @@ export default class NextStoryButton extends Component {
         <View style={style.content}>
           <View style={style.row1}>
             <Text style={style.title}>{this.props.content.name}</Text>
-            <Text style={style.next}>NEXT Story</Text>
+            {this.renderCopy()}
           </View>
           <View style={style.row2}>
             <Image style={style.image} source={this.props.image}/>

@@ -22,11 +22,10 @@ export default class ProductView extends Component {
 
   render() {
     return (
-      <ScrollView >
+
         <View style={styles.container}>
           <ProductRow products = {this.props.products}/>
         </View>
-      </ScrollView>
 
     );
 
