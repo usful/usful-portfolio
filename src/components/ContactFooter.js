@@ -56,7 +56,7 @@ export default class ContactFooter extends Component {
           </View>
           <View style={styles.buttonContainer}>
             <OutlineButton text={"EMAIL"} uri = {this.props.contact.uri}/>
-            <OutlineButton text={"PHONE"} uri = {this.props.contact.uri}/>
+            <OutlineButton text={"PHONE"} uri = {this.props.contact.phone}/>
           </View>
           <Text style={styles.address}>{this.props.contact.address}</Text>
         </View>

@@ -32,7 +32,7 @@ export default class ProductRow extends Component {
   render() {
     return (
       <View>
-      <Carousel text = {true} slides = {this.props.products} />
+      <Carousel text = {'Usful products are inspired by our guiding initiatives. They are developed by our team to have purpose and impact.'} slides = {this.props.products} />
       </View>
     );
 

@@ -40,7 +40,6 @@ export default class CarouselCard extends Component {
           <View style={styles.textContainer}>
             <Text style={styles.text}>{this.props.content.name}</Text>
             <Text style={styles.text}>{this.props.content.heroDescription}</Text>
-            <Text style={styles.text}>Launched: {longDateFormatter(this.props.content.date)}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -53,7 +52,8 @@ const CARD_WIDTH = width * .75;
 const styles = StyleSheet.create({
   textContainer: {
     marginBottom: 20,
-    marginLeft: 15
+    marginLeft: 15,
+    marginRight: 10
   },
   text: {
     fontFamily: 'Courier New',
@@ -61,7 +61,8 @@ const styles = StyleSheet.create({
     fontSize: 13,
     backgroundColor: 'transparent',
     fontWeight: '500',
-    marginBottom: 4
+    marginBottom: 4,
+
   },
   image: {
     position: 'absolute',

@@ -54,10 +54,24 @@ export default class NextStoryButton extends Component {
   renderCopy() {
     switch(this.props.current){
       case 'Story' :
-        return <Text style={style.next}>NEXT STORY</Text>
+        return(
+        <View style={style.row1}>
+          <Text style={style.title}>{this.props.content.name}</Text>
+          <Text style={style.next}>NEXT STORY</Text>
+        </View>)
 
-      case 'Initiative' || 'Product' :
-        return <Text style={style.next}>CHECK OUT A RELATED STORY</Text>
+      case 'Initiative' :
+        return(
+        <View style={style.row1}>
+          <Text style={style.title}>Read more about our Usful Initiatives in action</Text>
+        </View>)
+
+      case 'Product' :
+        return(
+        <View style={style.row1}>
+          <Text style={style.title}>Read more about our Usful Products in action</Text>
+        </View>
+        )
 
     }
 
@@ -71,10 +85,7 @@ export default class NextStoryButton extends Component {
     return (
       <TouchableOpacity style ={this.props.style} onPress={() => this.nextContent()}>
         <View style={style.content}>
-          <View style={style.row1}>
-            <Text style={style.title}>{this.props.content.name}</Text>
-            {this.renderCopy()}
-          </View>
+          {this.renderCopy()}
           <View style={style.row2}>
             <Image style={style.image} source={this.props.image}/>
           </View>

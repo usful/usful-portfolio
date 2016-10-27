@@ -27,7 +27,7 @@ export default class InitiativeRow extends Component {
   render() {
     return (
       <View>
-      <Carousel text = {true} slides = {this.props.initiatives} />
+      <Carousel text = {'Usful Initiatives guide our company mission and cultural values. They are the motive behind our authenticity.'} slides = {this.props.initiatives} />
       </View>
     );
   }

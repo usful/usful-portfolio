@@ -11,6 +11,7 @@ import {
 import global from '../../styles';
 import Colors from '../../styles/Colours';
 
+import OutlineButton from '../OutlineButton';
 import longDateFormatter from '../../helpers/formatters/longDate';
 import Navigation from '../../helpers/Navigation';
 import ContactFooter from '../ContactFooter';
@@ -81,7 +82,7 @@ export default class DetailedContentItem extends Component {
           }}
           style = {type !== 'Story' && this.state.footerToggle ? styles.contentShow : styles.contentHide}>
           <HeaderItem image={this.props.content.header.uri} date={longDateFormatter(this.props.content.date)}/>
-          <TitleItem content={this.props.content} title={this.props.content.name} tags={this.props.content.tags}/>
+          <TitleItem content={this.props.content} title={this.props.content.title} tags={this.props.content.tags}/>
 
           {blocks.map((block, index) => {
             switch (block._type) {
@@ -91,6 +92,14 @@ export default class DetailedContentItem extends Component {
                 return <BodyItem style={styles.legal} key={index} text={block.text}/>;
               case 'MediaBlock':
                 return <ImageItem key={index} image={block.media.uri}/>;
+              case 'ButtonBlock':
+                return <View  key={index} style = {[global.content,styles.buttonContainer]}><OutlineButton text={block.text} uri={block.uri}/></View>;
+              case 'ButtonRowBlock':
+                return (<View key={index} style = {[global.content,styles.buttonsContainer]}>
+                    {block.buttons.map((button,i) => <View key={i} style = {styles.buttonContainer}>
+                      <OutlineButton text={button.text} uri={button.uri}/>
+                    </View>)}
+                </View>)
               case 'MediaCarouselBlock':
                 return <SliderItem key={index}
                                    images={block.media.map((img) => img.uri)}/>;
@@ -105,7 +114,7 @@ export default class DetailedContentItem extends Component {
           })}
 
 
-          <NextContentButton style={type === 'Story' ? styles.noShadow : styles.shadow} current = {type} content={this.props.nextContent}
+          <NextContentButton style={ [styles.footer, type === 'Story' ? styles.noShadow : styles.shadow]} current = {type} content={this.props.nextContent}
                              image={this.props.content.footer.uri}/>
         </View>
 
@@ -150,6 +159,19 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowRadius: 3,
     shadowOpacity: 0.5
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+    flexWrap: 'wrap',
+    marginBottom: 30
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
+  footer: {
+    marginTop: 30
   },
   noShadow: {}
 })

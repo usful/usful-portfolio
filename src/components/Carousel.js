@@ -16,7 +16,7 @@ export default class SliderIndicator extends Component {
 
   static defaultProps = {
     position: 0,
-    text: false,
+    text: '',
     slides: []
   };
 
@@ -49,12 +49,12 @@ export default class SliderIndicator extends Component {
     let slideLength = this.props.slides.length-1;
     return (
       <View>
-        {this.props.text
-          ? <View style={styles.textContainer}>
-              <Text style={styles.text}>{this.props.slides[this.state.card].description}</Text>
-            </View>
-          : <View><Text>{this.props.text}</Text></View>
-        }
+
+          <View style={styles.textContainer}>
+              <Text style={styles.text}>{this.props.text}</Text>
+          </View>
+
+
         <View style= {styles.cardContainer}>
         <ScrollView
           ref={ref => this._ScrollView = ref}
