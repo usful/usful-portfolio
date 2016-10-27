@@ -33,7 +33,7 @@ export default class Typewriter extends Component {
   }
 
   startAnim(fadeIn, followingAnim, speed = this.props.speed) {
-    const animations = this.anims.map(anim => Animated.timing(anim, {toValue: fadeIn ? 1 : 0, duration: speed}));
+    let animations = this.anims.map(anim => Animated.timing(anim, {toValue: fadeIn ? 1 : 0, duration: speed}));
     animations.push(followingAnim);
     Animated.sequence(animations).start();
   }

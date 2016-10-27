@@ -3,12 +3,13 @@
 import React, {Component} from 'react';
 
 import {
-  Alert,
-  StyleSheet,
-  Dimensions,
   Animated,
-  Text,
+  Dimensions,
+  InteractionManager,
+  Platform,
   ScrollView,
+  StyleSheet,
+  Text,
   View
 } from 'react-native';
 
@@ -66,9 +67,21 @@ export default class PortfolioScene extends Component {
 
   componentDidMount() {
     //land Stories first
-    this.refs.scrollView.scrollTo({x: width, y: 0, animated: false});
-    let idleInterval = setInterval(() => this.timerIncrement(), 1000);
+    //http://stackoverflow.com/questions/33208477/react-native-android-scrollview-scrollto-not-working
+
+    if (Platform.OS === 'android') {
+      InteractionManager.runAfterInteractions(() => {
+        this.refs.scrollView.scrollTo({x: width, y: 0, animated: false});
+      });
+    } else {
+      this.refs.scrollView.scrollTo({x: width, y: 0, animated: false});
+    }
+
+    let idleInterval = setInterval(()=> this.timerIncrement(), 1000);
     this.animateStoryCards();
+
+
+
   }
 
   async animateStoryCards() {
@@ -179,12 +192,11 @@ export default class PortfolioScene extends Component {
   }
 
   setIdleToZero(e) {
-    //console.log("idleTime is (TO ZERO) ", idleTime);
+
     idleTime = 0;
   }
 
   timerIncrement(){
-    //console.log("idleTime is (TIME++)", idleTime);
     idleTime += 1;
     if (idleTime > 4) {
       this.setState({hideNavBar: true});
