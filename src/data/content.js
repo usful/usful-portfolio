@@ -121,7 +121,7 @@ storyBlocks = [
     ]
   },
   {
-    title: 'The Anthropocene: How Humans are the Largest Force Shaping Planet Earth',
+    title: 'The Anthropocene',
     blocks: [
       {
         _type: 'CopyBlock',
@@ -175,7 +175,7 @@ storyBlocks = [
     ]
   },
   {
-    title: 'Manufactured Landscapes: An Educational and Interactive Pop-up Experience Driven by Art and Technology',
+    title: 'Manufactured Landscapes',
     blocks: [
       {
         _type: 'CopyBlock',

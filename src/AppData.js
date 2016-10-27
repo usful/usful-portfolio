@@ -17,6 +17,9 @@ function randomMedia() {
   return media[Math.floor(Math.random() * media.length)];
 }
 
+//TODO: Add correct team members for each content piece
+//TODO: Better way to retrieve blocks from content data, hardcoded right now to exact position in array, need less terrible solution
+
 const AppData = new AppDataModel(
   {
     team: team,
@@ -150,7 +153,7 @@ const AppData = new AppDataModel(
           uri: 'https://joinlane.com/',
           address: '123 Stewart Cres, Toronto, ON, Canada, A1B 2D4 '
         },
-        story: 'Manufactured Landscapes: An Educational and Interactive Pop-up Experience Driven by Art and Technology'
+        story: 'Manufactured Landscapes'
       },
       {
         _id: GUID(),
