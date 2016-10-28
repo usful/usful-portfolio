@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Text,
+  Platform,
   View,
   Image,
   Modal
@@ -34,7 +35,14 @@ const styles = StyleSheet.create({
     left: 0,
     height: height,
     backgroundColor: 'rgba(0, 0, 0, 0.8)'
-  }
+  },
+  teamAndroid: {
+    height: 100,
+    width: 100,
+    borderColor: 'black',
+    borderWidth: 2,
+
+  },
 });
 
 export default class TitleItem extends Component {
@@ -75,7 +83,7 @@ export default class TitleItem extends Component {
       <View style={[global.content, style.content]}>
         <View style={style.row1}>
           <TouchableOpacity onPress={(e) => this.openTeamModal(e)}>
-            <Image style={style.team} source={require('../../../assets/team.png')}/>
+            <Image style={style.teamiOS} source={require('../../../assets/team.png')}/>
           </TouchableOpacity>
           <TouchableOpacity onPress={(e) => this.openActionSheet()}>
             <Image style={style.share} source={require('../../img/share.png')}/>
@@ -109,7 +117,7 @@ const style = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center'
   },
-  team: {
+  teamiOS: {
     borderRadius: 22,
     height: 50,
     width: 80,

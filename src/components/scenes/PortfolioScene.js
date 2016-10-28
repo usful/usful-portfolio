@@ -71,10 +71,9 @@ export default class PortfolioScene extends Component {
     if (Platform.OS === 'ios') {
       this.refs.scrollView.scrollTo({x: width, y: 0, animated: false});
     } else {
-      InteractionManager.runAfterInteractions(() => {
-        this.refs.scrollView.scrollTo({x: width, y: 0, animated: false});
-        console.log("called DidMount");
-      });
+      setTimeout(() => {
+        this.refs.scrollView.scrollTo({x: width, y:0, animated:false});
+      }, 0);
     }
 
     let idleInterval = setInterval(() => this.timerIncrement(), 1000);

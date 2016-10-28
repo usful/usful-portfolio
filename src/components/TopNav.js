@@ -10,7 +10,7 @@ import {
     Animated,
     Text,
     ListView,
-    Easing,
+    Platform,
     TouchableOpacity,
     TouchableHighlight,
     View
@@ -68,7 +68,15 @@ export default class TopNav extends Component {
   }
 
   render() {
-    let transform1 = [{
+
+    let transform1Android = [{
+      translateX: animationProgress.interpolate({
+        inputRange: inputRange,
+        outputRange: [200, 150, 0, -130],
+      })
+    }];
+
+    let transform1iOS = [{
       translateX: animationProgress.interpolate({
         inputRange: inputRange,
         outputRange: [270, 190, 20, -130],
@@ -80,7 +88,14 @@ export default class TopNav extends Component {
       outputRange: [1, 1, 0.7, 0.7],
     });
 
-    let transform2 = [{
+    let transform2Android = [{
+      translateX: animationProgress.interpolate({
+        inputRange: inputRange,
+        outputRange: [195, 190, 5, -160],
+      })
+    }];
+
+    let transform2iOS = [{
       translateX: animationProgress.interpolate({
         inputRange: inputRange,
         outputRange: [195, 190, 15, -140],
@@ -106,10 +121,10 @@ export default class TopNav extends Component {
 
     return (
       <Animated.View style={[styles.container, {opacity: navBarFading}]}>
-        <Animated.View style={{transform: transform1, opacity: opacity1}}>
+        <Animated.View style={{transform: transform1iOS, opacity: opacity1}}>
           <Text style={styles.activeText}>Products</Text>
         </Animated.View>
-        <Animated.View style={{transform: transform2, opacity: opacity2}}>
+        <Animated.View style={{transform: transform2iOS, opacity: opacity2}}>
           <Text style={styles.activeText}>Stories</Text>
         </Animated.View>
         <Animated.View style={{transform: transform3, opacity: opacity3}}>

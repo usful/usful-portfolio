@@ -174,7 +174,7 @@ export default class IntroductionScene extends Component {
             <View style={styles.introMsgContainer}>
             <Typewriter ref="introMsg" style={[styles.msg]} msg={introMsg} colour={'white'} speed={300} space={10}/>
 
-              <TouchableOpacity style={{marginTop: Platform.OS === 'ios'? 440: 330, marginRight: -10}} onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
+              <TouchableOpacity style={{marginTop: Platform.OS === 'ios'? 440: 400, marginRight: -10}} onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
                 <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>ENTER</Animated.Text>
               </TouchableOpacity>
             </View>
