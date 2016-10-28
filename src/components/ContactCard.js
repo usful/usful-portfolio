@@ -20,8 +20,8 @@ let styles = StyleSheet.create({
     backgroundColor: Colours.white
   },
   cardImage: {
-    height: height/3,
-    width: width/4
+    height: height/2,
+    width: width/2 + 150
   },
   close: {
     color: Colours.darkGrey,
@@ -49,8 +49,8 @@ let styles = StyleSheet.create({
     fontWeight: Font.bold.fontWeight
   },
   pageAndClose: {
-    marginHorizontal: 30,
-    marginTop: 20,
+    marginHorizontal: 60,
+    marginTop: 30,
     flexDirection: 'row',
     backgroundColor: Colours.white,
   },

@@ -8,6 +8,7 @@ import ReactNative, {
   ScrollView,
   TextInput,
   Text,
+  Platform,
   View,
   TouchableOpacity,
 TouchableHighlight
@@ -21,7 +22,7 @@ import Typewriter from '../../Typewriter';
 import Navigation from '../../helpers/Navigation';
 
 let {width, height} = Dimensions.get('window');
-let introMsg = `Welcoming Text goes here. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Are you ready to be Usful?`;
+let introMsg = `Planetary change is inevitable. Through technology, design, and education Usful is preparing communities for this reality. We are a conscious team of technologists, designers, developers, engineers, and architects who create Usful products with purpose.`;
 let okMsg = `Perfect. You will be receiving a package from the Usful team momentarily.`;
 
 let styles = StyleSheet.create({
@@ -136,7 +137,7 @@ export default class IntroductionScene extends Component {
   }
 
   componentDidMount() {
-    this.refs.introMsg.startAnim(true, Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}), 10);
+    this.refs.introMsg.startAnim(true, Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}), 50);
   }
 
   getEmailValidationText() {
@@ -172,22 +173,9 @@ export default class IntroductionScene extends Component {
           <KeyboardHandler ref='kh' offset={100}>
             <View style={styles.introMsgContainer}>
             <Typewriter ref="introMsg" style={[styles.msg]} msg={introMsg} colour={'white'} speed={300} space={10}/>
-              <Animated.View style={[{opacity: this.state.emailFadeIn}]}>
-                <TextInput
-                  ref="email"
-                  placeholder="ee@ee.com"
-                  placeholderTextColor='white'
-                  clearButtonMode='while-editing'
-                  keyboardAppearance='dark'
-                  style={styles.emailInput}
-                  onFocus={()=>this.refs.kh.inputFocused(this, 'email')}
-                  onChangeText={(text) => this.setState({email: text})}
-                  onSubmitEditing={() => this.validateEmail(this.state.email)}
-                  value={this.state.email}/>
-                <Text style={!this.state.valid? styles.invalidText : styles.valid}>{this.getEmailValidationText()}</Text>
-              </Animated.View>
-              <TouchableOpacity onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
-                <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>SKIP</Animated.Text>
+
+              <TouchableOpacity style={{marginTop: Platform.OS === 'ios'? 380: 330, marginRight: -20}} onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
+                <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>ENTER</Animated.Text>
               </TouchableOpacity>
             </View>
 

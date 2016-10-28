@@ -75,7 +75,7 @@ export default class TitleItem extends Component {
       <View style={[global.content, style.content]}>
         <View style={style.row1}>
           <TouchableOpacity onPress={(e) => this.openTeamModal(e)}>
-            <Image style={style.team} source={require('../../img/judge.png')}/>
+            <Image style={style.team} source={require('../../../assets/team.png')}/>
           </TouchableOpacity>
           <TouchableOpacity onPress={(e) => this.openActionSheet()}>
             <Image style={style.share} source={require('../../img/share.png')}/>
@@ -87,7 +87,7 @@ export default class TitleItem extends Component {
           <TagList tags={this.props.tags}/>
         </View>
 
-        <Modal animationType={'slide'}
+        <Modal animationType={'none'}
                transparent={true}
                visible={this.state.modalVisible}
                onRequestClose={(e) => this.closeTeamModal()}>
@@ -111,8 +111,8 @@ const style = StyleSheet.create({
   },
   team: {
     borderRadius: 22,
-    height: 45,
-    width: 45,
+    height: 50,
+    width: 80,
     borderColor: 'transparent',
     borderWidth: 0.4,
     marginBottom: 20
@@ -128,5 +128,8 @@ const style = StyleSheet.create({
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
     flexWrap: 'wrap'
+  },
+  share:{
+    marginTop: -10,
   }
 });

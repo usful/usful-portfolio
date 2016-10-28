@@ -2,10 +2,20 @@ import React, {Component} from 'react';
 
 import {
   Animated,
+  Platform,
+  StyleSheet,
   Text,
   View
 } from 'react-native';
 
+
+const styles = StyleSheet.create({
+  wrapper: {
+    height: Platform.OS === 'ios'? 30 : 35,
+    flexDirection:'row',
+    flexWrap : 'wrap'
+  }
+})
 export default class Typewriter extends Component {
 
   static defaultProps = {
@@ -40,13 +50,13 @@ export default class Typewriter extends Component {
 
   render() {
     return (
-      <Text>
+      <View style={styles.wrapper}>
         {this.props.msg.split(' ').map((word, i) =>
-          <Animated.Text key={word} style={[this.props.style, {paddingVertical: this.props.space, color:this.props.colour, opacity: this.anims[i]}]}>
+          <Animated.Text key={i} style={[this.props.style, { color:this.props.colour, opacity: this.anims[i]}]}>
             {`${word} `}
           </Animated.Text>
         )}
-      </Text>
+      </View>
     );
   }
 

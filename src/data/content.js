@@ -19,7 +19,7 @@ storyBlocks = [
       },
       {
         _type: 'QuoteBlock',
-        media: randomMedia(),
+        media: media[8],
         text: 'There are huge environmental and health benefits of urban farming - yet, they remain unknown to the majority of the population.',
         author: ''
       },
@@ -33,7 +33,7 @@ storyBlocks = [
       },
       {
         _type: 'MediaCarouselBlock',
-        media: [randomMedia(), randomMedia(), randomMedia(), randomMedia()],
+        media: [media[5], media[6], media[7]],
         height: 300,
         scaleMode: 'contain'
       },
@@ -43,7 +43,7 @@ storyBlocks = [
       },
       {
         _type: 'MediaBlock',
-        media: randomMedia()
+        media: media[7]
       },
       {
         _type: 'CopyBlock',
@@ -68,7 +68,7 @@ storyBlocks = [
       },
       {
         _type: 'QuoteBlock',
-        media: randomMedia(),
+        media: media[13],
         text: 'FarmFreshTO is a farmer’s market with a determined objective to educate people on sustainable food consumption.',
         author: ''
       },
@@ -86,7 +86,7 @@ storyBlocks = [
       },
       {
         _type: 'MediaCarouselBlock',
-        media: [randomMedia(), randomMedia(), randomMedia(), randomMedia()],
+        media: [media[10], media[11], media[12]],
         height: 300,
         scaleMode: 'contain'
       },
@@ -96,7 +96,7 @@ storyBlocks = [
       },
       {
         _type: 'MediaBlock',
-        media: randomMedia()
+        media: media[11]
       },
       {
         _type: 'CopyBlock',
@@ -137,7 +137,7 @@ storyBlocks = [
       },
       {
         _type: 'QuoteBlock',
-        media: randomMedia(),
+        media: media[3],
         text: 'The objective was to create an engaging experience for users that parallels the impact humans have on the Planet’s future.',
         author: ''
       },
@@ -182,8 +182,10 @@ storyBlocks = [
         text: 'Manufactured Landscapes is a feature length documentary on the world and work of renowned artist Edward Burtynsky. To share the incredible works and findings of the film, Usful created a self-guided interactive audio tour exploring the photographs of Burtynsky’s 25 year exploration of how industrial activity has created and shaped the landscapes of our world.'
       },
       {
-        _type: 'MediaBlock',
-        media: randomMedia()
+        _type: 'QuoteBlock',
+        media: media[37],
+        text: '',
+        author: ''
       },
       {
         _type: 'CopyBlock',
@@ -195,7 +197,7 @@ storyBlocks = [
       },
       {
         _type: 'MediaBlock',
-        media: randomMedia()
+        media: media[30]
       },
       {
         _type: 'CopyBlock',
@@ -216,7 +218,7 @@ initiativeBlocks = [
       },
       {
         _type: 'MediaBlock',
-        media: randomMedia()
+        media: media[18]
       },
       {
       _type: 'CopyBlock',
@@ -224,7 +226,7 @@ initiativeBlocks = [
       },
       {
         _type: 'MediaBlock',
-        media: randomMedia()
+        media: media[19]
       },
 
     ]
@@ -238,7 +240,7 @@ initiativeBlocks = [
       },
       {
         _type: 'MediaBlock',
-        media: randomMedia()
+        media: media[16]
       },
       {
         _type: 'CopyBlock',
@@ -246,7 +248,7 @@ initiativeBlocks = [
       },
       {
         _type: 'MediaBlock',
-        media: randomMedia()
+        media: media[16]
       },
 
     ]
@@ -267,7 +269,7 @@ initiativeBlocks = [
         },
         {
           _type: 'MediaBlock',
-          media: randomMedia()
+          media: media[26]
         },
         {
           _type: 'CopyBlock',
@@ -275,7 +277,7 @@ initiativeBlocks = [
         },
         {
           _type: 'QuoteBlock',
-          media: randomMedia(),
+          media: media[27],
           text: 'Lane brings modern SaaS mobile technology into an untapped and outdated niche market.',
           author: ''
         },
@@ -285,7 +287,7 @@ initiativeBlocks = [
         },
         {
           _type: 'MediaCarouselBlock',
-          media: [randomMedia(), randomMedia(), randomMedia(), randomMedia()],
+          media: [media[22], media[23], media[24], media[25]],
           height: 300,
           scaleMode: 'contain'
         },
@@ -342,7 +344,7 @@ initiativeBlocks = [
         },
         {
           _type: 'QuoteBlock',
-          media: randomMedia(),
+          media: media[37],
           text: 'By fundamentally understanding our audience, Usful XM curates experiences of deep interaction that connect people to a greater cause.',
           author: ''
         },
@@ -352,7 +354,7 @@ initiativeBlocks = [
         },
         {
           _type: 'MediaCarouselBlock',
-          media: [randomMedia(), randomMedia(), randomMedia(), randomMedia()],
+          media: [media[34], media[35], media[36]],
           height: 300,
           scaleMode: 'contain'
         },
@@ -366,7 +368,7 @@ initiativeBlocks = [
         },
         {
           _type: 'QuoteBlock',
-          media: randomMedia(),
+          media: media[36],
           text: '',
           author: ''
         },
