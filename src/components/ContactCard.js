@@ -17,11 +17,12 @@ import SocialMediaButton from './SocialMediaButton';
 
 let styles = StyleSheet.create({
   card: {
-    backgroundColor: Colours.white
+    backgroundColor: Colours.white,
+
   },
   cardImage: {
     height: height/2,
-    width: width/2 + 150
+    width: width/2 + 130
   },
   close: {
     color: Colours.darkGrey,
@@ -49,7 +50,7 @@ let styles = StyleSheet.create({
     fontWeight: Font.bold.fontWeight
   },
   pageAndClose: {
-    marginHorizontal: 60,
+    alignSelf: 'center',
     marginTop: 30,
     flexDirection: 'row',
     backgroundColor: Colours.white,
