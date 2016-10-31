@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Text,
+  Platform,
   View,
   Image,
   Modal
@@ -34,7 +35,14 @@ const styles = StyleSheet.create({
     left: 0,
     height: height,
     backgroundColor: 'rgba(0, 0, 0, 0.8)'
-  }
+  },
+  teamAndroid: {
+    height: 100,
+    width: 100,
+    borderColor: 'black',
+    borderWidth: 2,
+
+  },
 });
 
 export default class TitleItem extends Component {
@@ -75,7 +83,7 @@ export default class TitleItem extends Component {
       <View style={[global.content, style.content]}>
         <View style={style.row1}>
           <TouchableOpacity onPress={(e) => this.openTeamModal(e)}>
-            <Image style={style.team} source={require('../../img/judge.png')}/>
+            <Image style={style.teamiOS} source={require('../../../assets/team.png')}/>
           </TouchableOpacity>
           <TouchableOpacity onPress={(e) => this.openActionSheet()}>
             <Image style={style.share} source={require('../../img/share.png')}/>
@@ -83,11 +91,11 @@ export default class TitleItem extends Component {
         </View>
 
         <View style={style.row2}>
-          <Text style={style.title}>{this.props.content.title}</Text>
-          <TagList tags={this.props.content.tags}/>
+          <Text style={style.title}>{this.props.title}</Text>
+          <TagList tags={this.props.tags}/>
         </View>
 
-        <Modal animationType={'slide'}
+        <Modal animationType={'none'}
                transparent={true}
                visible={this.state.modalVisible}
                onRequestClose={(e) => this.closeTeamModal()}>
@@ -109,10 +117,10 @@ const style = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center'
   },
-  team: {
+  teamiOS: {
     borderRadius: 22,
-    height: 45,
-    width: 45,
+    height: 50,
+    width: 80,
     borderColor: 'transparent',
     borderWidth: 0.4,
     marginBottom: 20
@@ -128,5 +136,8 @@ const style = StyleSheet.create({
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
     flexWrap: 'wrap'
+  },
+  share:{
+    marginTop: -10,
   }
 });

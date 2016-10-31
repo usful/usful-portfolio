@@ -25,14 +25,17 @@ const AppDataModel = new Model(
       function _getNext(arr) {
         return arr[arr.findIndex(x => x._id === content._id) + 1] || arr[0];
       }
+      function _getLinkedStory(arr) {
+        return arr.find(x => x.name === content.story);
+      }
 
       switch (content.type) {
         case 'Story':
           return _getNext(this.stories);
         case 'Initiative':
-          return _getNext(this.initiatives);
+          return _getLinkedStory(this.stories);
         case 'Product':
-          return _getNext(this.products);
+          return _getLinkedStory(this.stories);
       }
     }
   }

@@ -10,7 +10,10 @@ import {
 
 const style = StyleSheet.create({
   content: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderStyle: 'solid',
+    borderTopWidth: 1,
+    borderTopColor: '#ccc',
   },
   row1: {
     flex: 2,
@@ -48,6 +51,32 @@ export default class NextStoryButton extends Component {
     super(props);
   }
 
+  renderCopy() {
+    switch(this.props.current){
+      case 'Story' :
+        return(
+        <View style={style.row1}>
+          <Text style={style.title}>{this.props.content.name}</Text>
+          <Text style={style.next}>NEXT STORY</Text>
+        </View>)
+
+      case 'Initiative' :
+        return(
+        <View style={style.row1}>
+          <Text style={style.title}>Read more about our Usful Initiatives in action</Text>
+        </View>)
+
+      case 'Product' :
+        return(
+        <View style={style.row1}>
+          <Text style={style.title}>Read more about our Usful Products in action</Text>
+        </View>
+        )
+
+    }
+
+  }
+
   nextContent() {
     Navigation.goContent(this.props.content);
   }
@@ -56,10 +85,7 @@ export default class NextStoryButton extends Component {
     return (
       <TouchableOpacity style ={this.props.style} onPress={() => this.nextContent()}>
         <View style={style.content}>
-          <View style={style.row1}>
-            <Text style={style.title}>{this.props.content.name}</Text>
-            <Text style={style.next}>NEXT {this.props.content.type.toUpperCase()}</Text>
-          </View>
+          {this.renderCopy()}
           <View style={style.row2}>
             <Image style={style.image} source={this.props.image}/>
           </View>

@@ -7,6 +7,8 @@ import {
   StyleSheet,
   Dimensions,
   Animated,
+  InteractionManager,
+  Platform,
   Text,
   ScrollView,
   View
@@ -66,7 +68,14 @@ export default class PortfolioScene extends Component {
 
   componentDidMount() {
     //land Stories first
-    this.refs.scrollView.scrollTo({x: width, y: 0, animated: false});
+    if (Platform.OS === 'ios') {
+      this.refs.scrollView.scrollTo({x: width, y: 0, animated: false});
+    } else {
+      setTimeout(() => {
+        this.refs.scrollView.scrollTo({x: width, y:0, animated:false});
+      }, 0);
+    }
+
     let idleInterval = setInterval(() => this.timerIncrement(), 1000);
     this.animateStoryCards();
   }
@@ -179,12 +188,10 @@ export default class PortfolioScene extends Component {
   }
 
   setIdleToZero(e) {
-    //console.log("idleTime is (TO ZERO) ", idleTime);
     idleTime = 0;
   }
 
   timerIncrement(){
-    //console.log("idleTime is (TIME++)", idleTime);
     idleTime += 1;
     if (idleTime > 4) {
       this.setState({hideNavBar: true});

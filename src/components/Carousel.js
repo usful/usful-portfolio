@@ -16,7 +16,7 @@ export default class SliderIndicator extends Component {
 
   static defaultProps = {
     position: 0,
-    text: false,
+    text: '',
     slides: []
   };
 
@@ -30,7 +30,7 @@ export default class SliderIndicator extends Component {
 
   handleScroll(e) {
     this.setState({
-      card: (Math.round(e.nativeEvent.contentOffset.x / width))
+      card: (Math.round(e.nativeEvent.contentOffset.x / (width*.75)))
     });
   }
 
@@ -40,36 +40,41 @@ export default class SliderIndicator extends Component {
 
   _move(index) {
     if (this.state.card !== index) {
-      this._ScrollView.scrollTo({x: index * width, y: 0, animated: true})
+      this._ScrollView.scrollTo({x: index * width*.775, y: 0, animated: true})
+
     }
   }
 
   render() {
+    let slideLength = this.props.slides.length-1;
     return (
       <View>
-        {this.props.text
-          ? <View style={styles.textContainer}>
-              <Text style={styles.text}>{this.props.slides[this.state.card].description}</Text>
-            </View>
-          : <View><Text>{this.props.text}</Text></View>
-        }
 
+          <View style={styles.textContainer}>
+              <Text style={styles.text}>{this.props.text}</Text>
+          </View>
+
+
+        <View style= {styles.cardContainer}>
         <ScrollView
           ref={ref => this._ScrollView = ref}
           horizontal={true}
-          snapToInterval={width}
+          snapToInterval={width*.85}
           decelerationRate={0}
           snapToAlignment={'center'}
           onScroll={(e) => this.handleScroll(e)}
           scrollEventThrottle={300}
           showsHorizontalScrollIndicator={false}
           style={styles.cardScroll}>
+
           {this.props.slides.map((obj, index) =>
-            <View key={index} style={styles.view}>
-              <CarouselCard content={obj}/>
+            <View key={index} style={[styles.cardFaded, this.state.card === index && styles.cardCurrent]}>
+              <CarouselCard lastSlide = {slideLength === index} slide={index} content={obj}/>
             </View>
           )}
+
         </ScrollView>
+        </View>
         <View style={styles.buttons}>
           {this.props.slides.map((slides, index) =>
             <TouchableOpacity
@@ -87,6 +92,12 @@ export default class SliderIndicator extends Component {
 }
 
 const styles = StyleSheet.create({
+  cardCurrent: {
+    opacity: 1
+  },
+  cardFaded: {
+    opacity: 0.3
+  },
   cardScroll: {
     marginBottom: 20
   },
@@ -97,9 +108,9 @@ const styles = StyleSheet.create({
   },
   button: {
     marginHorizontal: 5,
-    width: 8,
-    height: 8,
-    borderRadius: 8 / 2,
+    width: 10,
+    height: 10,
+    borderRadius: 5,
     backgroundColor: '#ccc',
     opacity: 0.9,
   },

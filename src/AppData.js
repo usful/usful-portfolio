@@ -6,69 +6,19 @@ import GUID from './helpers/guid';
 //Moving test data out into its own files for reusability and to stop this file from growing forever.
 import team from './data/team';
 import media from './data/media';
+import content from './data/content';
 
 /**
  * Quick helper function for test data to grab a random media.
  * @returns {*}
  */
+
 function randomMedia() {
   return media[Math.floor(Math.random() * media.length)];
 }
 
-let storyBlocks = [
-  {
-    _type: 'CopyBlock',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
-  },
-
-  {
-    _type: 'QuoteBlock',
-    media: randomMedia(),
-    text: 'Nanoleaf and the Usful Team Partner to Brighten Space',
-    author: 'Clint'
-  },
-  {
-    _type: 'CopyBlock',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
-  },
-  {
-    _type: 'MediaCarouselBlock',
-    media: [randomMedia(),randomMedia(),randomMedia(),randomMedia()],
-    height: 300,
-    scaleMode: 'contain'
-  },
-  {
-    _type: 'CopyBlock',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
-  },
-  {
-    _type: 'MediaBlock',
-    media: randomMedia()
-  },
-  {
-    _type: 'CopyBlock',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
-  },
-  {
-    _type: 'LegalBlock',
-    text: 'Photograph sources listed here. Photograph sources listed here. Photograph sources listed here.'
-  }
-];
-
-let initiativeBlocks = [
-  {
-    _type: 'CopyBlock',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
-  },
-  {
-    _type: 'MediaBlock',
-    media: randomMedia()
-  },
-  {
-    _type: 'CopyBlock',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
-  },
-];
+//TODO: Add correct team members for each content piece
+//TODO: Better way to retrieve blocks from content data, hardcoded right now to exact position in array, need less terrible solution
 
 const AppData = new AppDataModel(
   {
@@ -76,17 +26,15 @@ const AppData = new AppDataModel(
     content: [
       {
         _id: GUID(),
-        hero: randomMedia(),
+        hero: media[9],
         type: 'Story',
-        name: 'Better Bulbs',
-        header: randomMedia(),
-        title: 'Nanoleaf and the Usful Team Partner to Brighten Space',
+        name: 'Urban Farming',
+        header: media[5],
+        title: 'Making a Local Impact on Global Sustainability',
         author: team[0],
         date: new Date(),
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-        tags: ['EXPERIENTIAL', 'USFUL HOUSE', '#FFTO'],
-        footer: randomMedia(),
-        blocks: storyBlocks,
+        footer: media[14],
+        blocks: content[0][0].blocks,
         team: [
           team[0],
           team[1],
@@ -96,16 +44,14 @@ const AppData = new AppDataModel(
       {
         _id: GUID(),
         type: 'Story',
-        hero: randomMedia(),
-        name: 'Usful goes to Mars',
-        header: randomMedia(),
-        title: 'It is now time to start colonizing other planets because it will be fun',
+        hero: media[14],
+        name: 'FarmFreshTO',
+        header: media[10],
+        title: 'Usful XM’s Food for Thought Experience',
         author: team[0],
         date: new Date(),
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-        tags: ['EXPERIENTIAL', 'USFUL HOUSE', '#FFTO'],
-        footer: randomMedia(),
-        blocks: storyBlocks,
+        footer: media[4],
+        blocks: content[0][1].blocks,
         team: [
           team[0],
           team[1],
@@ -115,16 +61,14 @@ const AppData = new AppDataModel(
       {
         _id: GUID(),
         type: 'Story',
-        hero: randomMedia(),
-        name: 'Launching the Anthropocene',
-        header: randomMedia(),
-        title: 'Earth is running out of stuff and we need to do something about it.',
+        hero: media[4],
+        name: 'The Anthropocene',
+        header: media[1],
+        title: 'Usful as the Digital Partner for the Anthropocene Film Project',
         author: team[0],
         date: new Date(),
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-        tags: ['EXPERIENTIAL', 'USFUL HOUSE', '#FFTO'],
-        footer: randomMedia(),
-        blocks: storyBlocks,
+        footer: media[33],
+        blocks: content[0][2].blocks,
         team: [
           team[0],
           team[1],
@@ -134,16 +78,14 @@ const AppData = new AppDataModel(
       {
         _id: GUID(),
         type: 'Story',
-        hero: randomMedia(),
-        name: 'Nanoleaf Does something else',
-        header: randomMedia(),
-        title: 'Some other stuff was done by NanoLeaf, and its really great.',
+        hero: media[33],
+        name: 'Manufactured Landscapes',
+        header: media[31],
+        title: 'Using Usful Technology to Create an Interactive Art Gallery',
         author: team[0],
         date: new Date(),
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-        tags: ['TEST', 'GMAIL', '#FTFY'],
-        footer: randomMedia(),
-        blocks: storyBlocks,
+        footer: media[9],
+        blocks: content[0][3].blocks,
         team: [
           team[2],
           team[3],
@@ -152,121 +94,92 @@ const AppData = new AppDataModel(
       },
       {
         _id: GUID(),
-        type: 'Story',
-        name: 'Even more LEDS',
-        header: randomMedia(),
-        title: 'Nanoleaf and the Usful Team Partner to Brighten Space.',
-        hero: randomMedia(),
-        author: team[1],
+        type: 'Initiative',
+        name: 'Evolving the Human Condition',
+        header: media[18],
+        hero: media[17],
+        heroDescription: 'Using technology and experience as a means to impact behaviour.',
+        title: 'Using technology and experience as a means to impact behaviour.',
+        author: team[5],
         date: new Date(),
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-        tags: ['EXPERIENTIAL', 'USFUL HOUSE', '#FFTO'],
-        footer: randomMedia(),
-        blocks: storyBlocks,
+        footer: media[14],
+        blocks: content[1][0].blocks,
         team: [
-          team[4],
-          team[5],
-          team[6]
-        ]
+          team[3],
+          team[2],
+          team[1]
+        ],
+        story: 'FarmFreshTO'
+      },
+      {
+        _id: GUID(),
+        type: 'Initiative',
+        name: 'Developing Efficiencies',
+        header: media[16],
+        hero: media[15],
+        heroDescription: 'Using technology and experience as a means to solving the resource crisis.',
+        title: 'Using technology and experience as a means to solving the resource crisis.',
+        author: team[4],
+        date: new Date(),
+        footer: media[9],
+        blocks: content[1][1].blocks,
+        team: [
+          team[1],
+          team[2],
+          team[3]
+        ],
+        story: 'Urban Farming'
       },
       {
         _id: GUID(),
         type: 'Product',
         name: 'Lane',
-        header: randomMedia(),
+        hero: media[28],
+        heroDescription: 'Creating Smart Workplaces',
+        title: 'Bringing modern SaaS mobile technology to an untapped and outdated niche market.',
+        header: media[22],
         author: team[2],
         date: new Date(),
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        footer: randomMedia(),
-        blocks: storyBlocks,
+        footer: media[33],
+        blocks: content[2][0].blocks,
         team: [
           team[0],
           team[1],
           team[2]
         ],
         contactInfo: {
-          email: 'rishabh@monanetworks.com',
-          phone: '123-456-7890',
-          uri: 'http://www.hypebeast.com',
+          email: 'info@monanetworks.com',
+          phone: 'tel:123-456-7890',
+          uri: 'https://joinlane.com/',
           address: '123 Stewart Cres, Toronto, ON, Canada, A1B 2D4 '
-        }
+        },
+        story: 'Manufactured Landscapes'
       },
       {
         _id: GUID(),
         type: 'Product',
-        name: 'XM',
-        header: randomMedia(),
+        name: 'Usful XM',
+        header: media[36],
         author: team[3],
+        hero: media[37],
+        heroDescription: 'Experiences Designed to Educate, Inform, and Improve the Human Condition',
+        title: 'Rethinking experiences to transform believers into doers',
         date: new Date(),
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        footer: randomMedia(),
-        blocks: storyBlocks,
+        footer: media[14],
+        blocks: content[2][1].blocks,
         team: [
           team[2],
           team[4],
           team[6]
         ],
         contactInfo: {
-          email: 'rishabh@monanetworks.com',
-          phone: '123-456-7890',
-          uri: 'http://www.lane.com',
+          email: 'info@monanetworks.com',
+          phone: 'tel:123-456-7890',
+          uri: 'https://joinlane.com/',
           address: '123 Stewart Rd, Toronto, ON, Canada, A1B 2D4 '
-        }
-      },
-      {
-        _id: GUID(),
-        type: 'Initiative',
-        name: 'Resource Crisis',
-        header: randomMedia(),
-        hero: randomMedia(),
-        heroDescription: 'Lorem Ipsum',
-        author: team[4],
-        date: new Date(),
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        footer: randomMedia(),
-        blocks: initiativeBlocks,
-        team: [
-          team[1],
-          team[2],
-          team[3]
-        ]
-      },
-      {
-        _id: GUID(),
-        type: 'Initiative',
-        name: 'Human Condition',
-        header: randomMedia(),
-        hero: randomMedia(),
-        heroDescription: 'Lorem Ipsum',
-        author: team[5],
-        date: new Date(),
-        description: 'Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester Tester.',
-        footer: randomMedia(),
-        blocks: initiativeBlocks,
-        team: [
-          team[3],
-          team[2],
-          team[1]
-        ]
-      },
-      {
-        _id: GUID(),
-        type: 'Initiative',
-        name: 'Artificial Intelligence',
-        header: randomMedia(),
-        hero: randomMedia(),
-        heroDescription: 'Lorem Ipsum',
-        author: team[6],
-        date: new Date(),
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        footer: randomMedia(),
-        blocks: initiativeBlocks,
-        team: [
-          team[6],
-          team[4],
-          team[2]
-        ]
-      },
+        },
+        story: 'FarmFreshTO'
+      }
     ]
   }
 );

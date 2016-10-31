@@ -13,7 +13,8 @@ const MediaModel = Model.create(
     width: Number,
     height: Number,
     length: Number,
-    bytes: Number
+    bytes: Number,
+    folder: String
   },
   {
     get uri() {

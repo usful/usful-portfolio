@@ -22,11 +22,10 @@ export default class ProductView extends Component {
 
   render() {
     return (
-      <ScrollView >
+
         <View style={styles.container}>
           <ProductRow products = {this.props.products}/>
         </View>
-      </ScrollView>
 
     );
 
@@ -38,7 +37,10 @@ const styles = StyleSheet.create({
     color: '#000'
   },
   container: {
-    marginTop: 100,
+
+    backgroundColor: '#18232c',
+    paddingTop: 100,
+    height: height
 
   }
 })
