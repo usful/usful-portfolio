@@ -11,7 +11,6 @@ import {
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: Platform.OS === 'ios'? 30 : 35,
     flexDirection:'row',
     flexWrap : 'wrap'
   }
@@ -52,7 +51,7 @@ export default class Typewriter extends Component {
     return (
       <View style={styles.wrapper}>
         {this.props.msg.split(' ').map((word, i) =>
-          <Animated.Text key={i} style={[this.props.style, { color:this.props.colour, opacity: this.anims[i]}]}>
+          <Animated.Text key={i} style={[this.props.style, {height: 30, color:this.props.colour, opacity: this.anims[i]}]}>
             {`${word} `}
           </Animated.Text>
         )}
