@@ -242,6 +242,7 @@ export default class PortfolioScene extends Component {
         </ScrollView>
 
         <TopNav
+          bar={this.refs.scrollView}
           hideNavBar={this.state.hideNavBar}
           previousIndex={this.state.previousIndex}
           index={this.state.index}
