@@ -79,7 +79,7 @@ export default class TopNav extends Component {
   slide(up){
     let val = (up === 'up') ? 0: -75;
     Animated.timing(this.state.slidingAnim, {
-      duration: 1000,
+      //duration: add speed here
       toValue: {
         x: 0,
         y: val,
