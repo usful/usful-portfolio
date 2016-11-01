@@ -3,14 +3,14 @@
 import React, {Component} from 'react';
 
 import {
-  Alert,
-  StyleSheet,
-  Dimensions,
   Animated,
-  InteractionManager,
+  AppState,
+  Dimensions,
   Platform,
-  Text,
   ScrollView,
+  StyleSheet,
+  Text,
+
   View
 } from 'react-native';
 
@@ -67,6 +67,7 @@ export default class PortfolioScene extends Component {
   }
 
   componentDidMount() {
+    AppState.addEventListener('change', () => {this.handleAppStateChange});
     //land Stories first
     if (Platform.OS === 'ios') {
       this.refs.scrollView.scrollTo({x: width, y: 0, animated: false});
@@ -87,6 +88,16 @@ export default class PortfolioScene extends Component {
       this.refs[`storyCard${x}`].animateEntry();
       await pause();
     }
+  }
+
+  componentWillUnmount(){
+    AppState.removeEventListener('change', () => {this.handleAppStateChange});
+  }
+
+  handleAppStateChange(){
+    console.log(this);
+    this.setState({hideNavBar: false});
+
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -155,14 +166,13 @@ export default class PortfolioScene extends Component {
         storyOffsets[i] = StoryCard.MAX_OFFSET;
       } else {
         //otherwise set a relative offset for each story card as it passes thru the viewport
-        this.refs[`storyCard${i}`].animateEntry();
+        this.refs[`storyCard${i}`].animateEntry(i);
         let relativeOffset = e.nativeEvent.contentOffset.y - (StoryCard.CARD_HEIGHT * i);
         storyOffsets[i] = (relativeOffset / height) * 0.33;
       }
     }
     //END PARALLAX CODE
 
-    //TODO: show/hide navB
     let yOffset = e.nativeEvent.contentOffset.y;
     let reachedBottom = (e.nativeEvent.contentSize.height - 700 <= yOffset);
     if(yOffset <= 0) {
