@@ -67,7 +67,7 @@ export default class PortfolioScene extends Component {
   }
 
   componentDidMount() {
-    AppState.addEventListener('change', () => {this.handleAppStateChange});
+    AppState.addEventListener('change', () => {this.handleAppStateChange()});
     //land Stories first
     if (Platform.OS === 'ios') {
       this.refs.scrollView.scrollTo({x: width, y: 0, animated: false});
@@ -91,7 +91,7 @@ export default class PortfolioScene extends Component {
   }
 
   componentWillUnmount(){
-    AppState.removeEventListener('change', () => {this.handleAppStateChange});
+    AppState.removeEventListener('change', () => {this.handleAppStateChange()});
   }
 
   handleAppStateChange(){
