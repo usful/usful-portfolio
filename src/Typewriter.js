@@ -7,7 +7,8 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableWithoutFeedback
 } from 'react-native';
 
 const SPLIT_ON = '';
@@ -26,22 +27,24 @@ export default class Typewriter extends Component {
   static defaultProps = {
     msg: '',
     split: SPLIT_ON,
-    speed: 25,
+    speed: 20,
     colour: 'black',
     fadeIn: true,
-    style: {}
+    style: {},
+    onFinished: () => {}
   };
   
   constructor(props) {
     super(props);
     
+    this._isSkipped = false;
     this.setupAnimations();
   }
   
   setupAnimations() {
     this.anims = this.props.msg.split(this.props.split).map((val) => {
       //Add some randomness into the speed.
-      const speed = Math.round(this.props.speed + (Math.random() * this.props.speed * 0.3));
+      const speed = Math.round(this.props.speed + (Math.random() * this.props.speed));
       
       return {
         value: val,
@@ -57,12 +60,11 @@ export default class Typewriter extends Component {
     }
   }
   
-  startAnim(fadeIn, followingAnim) {
+  start(fadeIn) {
     const animations = this.anims.map(obj => Animated.timing(obj.anim, {toValue: fadeIn ? 1 : 0, duration: obj.speed}));
     
-    animations.push(followingAnim);
-    
-    Animated.sequence(animations).start();
+    this._sequence = Animated.sequence(animations);
+    this._sequence.start(() => this.props.onFinished());
   }
   
   render() {

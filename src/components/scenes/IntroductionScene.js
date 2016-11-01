@@ -124,46 +124,16 @@ export default class IntroductionScene extends Component {
     super(props);
     
     this.state = {
-      email: "abc@abc.com",
-      valid: true,
-      emailFadeIn: new Animated.Value(0),
-      enterOurWorldFadeIn: new Animated.Value(0),
-      errorMsg: "Email is invalid, please try again!",
-      okMsg: "",
-      flip: false,
-      introMsgFadeIn: false,
-      okMsgFadeIn: false,
+      emailFadeIn: new Animated.Value(0)
     };
   }
   
   componentDidMount() {
-    this.refs.introMsg.startAnim(true, Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}), 50);
+    this.refs.introMsg.start(true);
   }
   
-  getEmailValidationText() {
-    if (!this.state.valid) {
-      return <Text>{this.state.errorMsg}</Text>;
-    }
-    return <Text>{this.state.okMsg}</Text>;
-  }
-  
-  showOkMsg() {
-    this.refs.introMsg.startAnim(false, Animated.timing(this.state.emailFadeIn, {toValue: 0, duration: 20}), 0);
-    this.refs.okMsg.startAnim(true, Animated.timing(this.state.enterOurWorldFadeIn, {toValue: 1, duration: 1000}), 10);
-    this.setState({flip: true});
-  }
-  
-  
-  validateEmail(email) {
-    let regex = new RegExp(/^\S+@((?=[^.])[\S]+\.)*(?=[^.])[\S]+\.(?=[^.])[\S]+$/);
-    if (regex.test(email)) {
-      //TODO: email post to google doc
-      //this.setState({valid: true}, () => (getAuthCode()));
-      this.showOkMsg();
-      return true;
-    }
-    this.setState({valid: false}, () => (this.getEmailValidationText()));
-    return false;
+  onFinished() {
+    Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}).start();
   }
   
   render() {
@@ -172,7 +142,11 @@ export default class IntroductionScene extends Component {
         <View style={styles.viewTop}>
           <KeyboardHandler ref='kh' offset={100}>
             <View style={styles.introMsgContainer}>
-              <Typewriter ref="introMsg" style={styles.msg} msg={introMsg} colour="white"/>
+              <Typewriter ref="introMsg"
+                          onFinished={() => this.onFinished()}
+                          style={styles.msg}
+                          msg={introMsg}
+                          colour="white"/>
               <TouchableOpacity style={{marginTop: Platform.OS === 'ios'? 440: 400, marginRight: -10}}
                                 onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
                 <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>ENTER</Animated.Text>
