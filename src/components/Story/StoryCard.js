@@ -18,7 +18,7 @@ let {height, width} = Dimensions.get('window');
 
 const CARD_HEIGHT = 350;
 const MAX_OFFSET = 0.75;
-const CARD_ENTRY = 4000;
+const CARD_ENTRY = 3000;
 
 let styles = StyleSheet.create({
   container: {
@@ -96,7 +96,7 @@ export default class StoryCard extends Component {
       return;
     }
     Animated.sequence([
-      Animated.delay(200),
+      Animated.delay(100),
       Animated.parallel([
         Animated.timing(this.state.opacity, {toValue: 1, duration: CARD_ENTRY}),
         Animated.timing(this.state.titleAnim, {toValue: 1, duration: CARD_ENTRY }),
