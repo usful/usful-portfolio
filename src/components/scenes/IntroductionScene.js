@@ -65,10 +65,10 @@ let styles = StyleSheet.create({
 });
 
 export default class IntroductionScene extends Component {
-
+  
   constructor(props) {
     super(props);
-
+    
     this.state = {
       valid: true,
       emailFadeIn: new Animated.Value(0),
@@ -78,41 +78,32 @@ export default class IntroductionScene extends Component {
       okMsgFadeIn: false,
     };
   }
-
+  
   componentDidMount() {
-    this.refs.introMsg.startAnim(true, Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}));
+    this.refs.introMsg.start(true);
   }
-
-  showOkMsg(){
-    this.refs.introMsg.startAnim(false, Animated.timing(this.state.emailFadeIn, {toValue: 0, duration: 20}), 0);
-    this.refs.okMsg.startAnim(true, Animated.timing(this.state.enterOurWorldFadeIn, {toValue: 1, duration: 1000}),10);
-    //this.setState({flip:true});
+  
+  onFinished() {
+    Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}).start();
   }
-
-  validateEmail(email) {
-    let regex = new RegExp(/^\S+@((?=[^.])[\S]+\.)*(?=[^.])[\S]+\.(?=[^.])[\S]+$/);
-    if (regex.test(email)) {
-      //TODO: email post to google doc
-      //this.setState({valid: true}, () => (getAuthCode()));
-      this.showOkMsg();
-      return true;
-    }
-    this.setState({valid: false}, () => (this.getEmailValidationText()));
-    return false;
-  }
-
+  
   render() {
     return (
         <ScrollView style={styles.view}>
               <View style={styles.container}>
-                <Typewriter ref="introMsg" style={[styles.msg]} msg={introMsg} colour={'white'} speed={100} space={10} height={30}/>
+                <Typewriter ref="introMsg"
+                            style={[styles.msg]}
+                            msg={introMsg}
+                            colour={'white'}
+                            speed={100}
+                            space={10}
+                            height={30}
+                            onFinished={() => this.onFinished()}/>
                 <TouchableOpacity style={styles.enter} onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
                   <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>ENTER</Animated.Text>
                 </TouchableOpacity>
               </View>
         </ScrollView>
-
-
     );
   }
 }
