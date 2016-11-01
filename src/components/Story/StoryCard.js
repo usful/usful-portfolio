@@ -18,7 +18,7 @@ let {height, width} = Dimensions.get('window');
 
 const CARD_HEIGHT = 350;
 const MAX_OFFSET = 0.75;
-const CARD_ENTRY = 1000;
+const CARD_ENTRY = 4000;
 
 let styles = StyleSheet.create({
   container: {
@@ -91,17 +91,18 @@ export default class StoryCard extends Component {
   /**
    * This will trigger this component to animate its entry into a scene. IE. Fade in.
    */
-  animateEntry() {
+  animateEntry(i) {
     if (this.hasEntered) {
       return;
     }
-
-    Animated.parallel([
-      Animated.timing(this.state.opacity, {toValue: 1, duration: CARD_ENTRY}),
-      Animated.timing(this.state.titleAnim, {toValue: 1, duration: CARD_ENTRY + 1000}),
-      Animated.timing(this.state.copyAnim, {toValue: 1, duration: CARD_ENTRY + 2000}),
+    Animated.sequence([
+      Animated.delay(200),
+      Animated.parallel([
+        Animated.timing(this.state.opacity, {toValue: 1, duration: CARD_ENTRY}),
+        Animated.timing(this.state.titleAnim, {toValue: 1, duration: CARD_ENTRY }),
+        Animated.timing(this.state.copyAnim, {toValue: 1, duration: CARD_ENTRY }),
+      ])
     ]).start();
-
 
     this.hasEntered = true;
   }
