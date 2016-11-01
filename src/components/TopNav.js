@@ -53,7 +53,8 @@ export default class TopNav extends Component {
     super(props);
 
     this.state = {
-      bar : this.props.bar
+      bar : this.props.bar,
+      slidingAnim : new Animated.ValueXY({x: 0, y: 0})
     };
   }
 
@@ -67,11 +68,23 @@ export default class TopNav extends Component {
 
   componentWillReceiveProps(nextProps) {
     animationProgress.setValue(nextProps.pageTransition);
-    navBarFading.setValue(nextProps.hideNavBar ? 0 : 1);
+    //navBarFading.setValue(nextProps.hideNavBar ? 0 : 1);
+    this.slide(nextProps.hideNavBar? 'down' : 'up');
   }
 
   goToPage(page) {
     this.props.bar.scrollTo({x: page * width, y:0, animated:true});
+  }
+
+  slide(up){
+    let val = (up === 'up') ? 0: -75;
+    Animated.timing(this.state.slidingAnim, {
+      duration: 1000,
+      toValue: {
+        x: 0,
+        y: val,
+      },
+    }).start();
   }
 
   render() {
@@ -127,7 +140,7 @@ export default class TopNav extends Component {
     });
 
     return (
-      <Animated.View style={[styles.container, {opacity: navBarFading}]}>
+      <Animated.View style={[styles.container, {opacity: navBarFading}, {transform: this.state.slidingAnim.getTranslateTransform()}]}>
         <Animated.View style={{transform: transform1iOS, opacity: opacity1}}>
           <TouchableOpacity onPress={() => this.goToPage(0)}><Text style={styles.activeText}>Products</Text></TouchableOpacity>
         </Animated.View>
