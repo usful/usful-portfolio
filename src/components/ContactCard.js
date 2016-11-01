@@ -21,7 +21,7 @@ let styles = StyleSheet.create({
 
   },
   cardImage: {
-    height: height/2,
+    height: height/2 - 50,
     width: width/2 + 130
   },
   close: {
@@ -120,10 +120,6 @@ export default class ContactCard extends Component {
 
           <View style={styles.cardImage}>
           </View>
-
-          <LinearGradient
-            colors={['green', 'red']}
-            start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} />
 
           <View style={styles.contactInfo}>
             <Text style={styles.textName}>{person.name}</Text>
