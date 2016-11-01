@@ -119,15 +119,15 @@ let styles = StyleSheet.create({
 });
 
 export default class IntroductionScene extends Component {
-
+  
   constructor(props) {
     super(props);
-
+    
     this.state = {
       email: "abc@abc.com",
       valid: true,
       emailFadeIn: new Animated.Value(0),
-      enterOurWorldFadeIn : new Animated.Value(0),
+      enterOurWorldFadeIn: new Animated.Value(0),
       errorMsg: "Email is invalid, please try again!",
       okMsg: "",
       flip: false,
@@ -135,25 +135,25 @@ export default class IntroductionScene extends Component {
       okMsgFadeIn: false,
     };
   }
-
+  
   componentDidMount() {
     this.refs.introMsg.startAnim(true, Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}), 50);
   }
-
+  
   getEmailValidationText() {
     if (!this.state.valid) {
       return <Text>{this.state.errorMsg}</Text>;
     }
     return <Text>{this.state.okMsg}</Text>;
   }
-
-  showOkMsg(){
+  
+  showOkMsg() {
     this.refs.introMsg.startAnim(false, Animated.timing(this.state.emailFadeIn, {toValue: 0, duration: 20}), 0);
-    this.refs.okMsg.startAnim(true, Animated.timing(this.state.enterOurWorldFadeIn, {toValue: 1, duration: 1000}),10);
-    this.setState({flip:true});
+    this.refs.okMsg.startAnim(true, Animated.timing(this.state.enterOurWorldFadeIn, {toValue: 1, duration: 1000}), 10);
+    this.setState({flip: true});
   }
-
-
+  
+  
   validateEmail(email) {
     let regex = new RegExp(/^\S+@((?=[^.])[\S]+\.)*(?=[^.])[\S]+\.(?=[^.])[\S]+$/);
     if (regex.test(email)) {
@@ -165,20 +165,20 @@ export default class IntroductionScene extends Component {
     this.setState({valid: false}, () => (this.getEmailValidationText()));
     return false;
   }
-
+  
   render() {
     return (
       <View style={styles.view}>
         <View style={styles.viewTop}>
           <KeyboardHandler ref='kh' offset={100}>
             <View style={styles.introMsgContainer}>
-            <Typewriter ref="introMsg" style={[styles.msg]} msg={introMsg} colour={'white'} speed={300} space={10}/>
-
-              <TouchableOpacity style={{marginTop: Platform.OS === 'ios'? 440: 400, marginRight: -10}} onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
+              <Typewriter ref="introMsg" style={styles.msg} msg={introMsg} colour="white"/>
+              <TouchableOpacity style={{marginTop: Platform.OS === 'ios'? 440: 400, marginRight: -10}}
+                                onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
                 <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>ENTER</Animated.Text>
               </TouchableOpacity>
             </View>
-
+          
           </KeyboardHandler>
         </View>
       </View>
