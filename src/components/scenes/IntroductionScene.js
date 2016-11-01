@@ -30,22 +30,13 @@ let styles = StyleSheet.create({
   container: {
     justifyContent: 'flex-end',
     backgroundColor: 'transparent',
-    marginTop: 100,
-    marginLeft: 30
+    marginTop: height * 0.15,
+    marginHorizontal: 30
   },
-   enter: {
-     marginTop: 30,
+  enter: {
+     marginTop: height * 0.1,
      alignSelf: 'flex-end' ,
-     marginRight: 40
-  },
-  enterOurWorld: {
-    alignItems: 'center',
-    borderColor: 'white',
-    borderWidth: 1,
-    height: 55,
-    padding: 10,
-    marginTop: 150,
-    width: width-60,
+     marginRight: width * 0.1
   },
   font: {
     color:  Colours.white,
@@ -55,12 +46,6 @@ let styles = StyleSheet.create({
   },
   introMsgContainer: {
     backgroundColor:  Colours.navBarBlack,
-
-  },
-  invalidText: {
-    color:  Colours.white,
-    fontFamily: Font.primaryFont.fontFamily,
-    paddingTop: 10,
   },
   msg: {
     color:  Colours.white,
@@ -73,7 +58,6 @@ let styles = StyleSheet.create({
     alignSelf:'flex-end',
     color:  Colours.white,
     fontSize: 20,
-
   },
   view :{
     backgroundColor:  Colours.navBarBlack,
@@ -86,35 +70,24 @@ export default class IntroductionScene extends Component {
     super(props);
 
     this.state = {
-      email: "abc@abc.com",
       valid: true,
       emailFadeIn: new Animated.Value(0),
       enterOurWorldFadeIn : new Animated.Value(0),
-      errorMsg: "Email is invalid, please try again!",
       okMsg: "",
-      flip: false,
       introMsgFadeIn: false,
       okMsgFadeIn: false,
     };
   }
 
   componentDidMount() {
-    this.refs.introMsg.startAnim(true, Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}), 50);
-  }
-
-  getEmailValidationText() {
-    if (!this.state.valid) {
-      return <Text>{this.state.errorMsg}</Text>;
-    }
-    return <Text>{this.state.okMsg}</Text>;
+    this.refs.introMsg.startAnim(true, Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}));
   }
 
   showOkMsg(){
     this.refs.introMsg.startAnim(false, Animated.timing(this.state.emailFadeIn, {toValue: 0, duration: 20}), 0);
     this.refs.okMsg.startAnim(true, Animated.timing(this.state.enterOurWorldFadeIn, {toValue: 1, duration: 1000}),10);
-    this.setState({flip:true});
+    //this.setState({flip:true});
   }
-
 
   validateEmail(email) {
     let regex = new RegExp(/^\S+@((?=[^.])[\S]+\.)*(?=[^.])[\S]+\.(?=[^.])[\S]+$/);
@@ -132,7 +105,7 @@ export default class IntroductionScene extends Component {
     return (
         <ScrollView style={styles.view}>
               <View style={styles.container}>
-                <Typewriter ref="introMsg" style={[styles.msg]} msg={introMsg} colour={'white'} speed={300} space={10}/>
+                <Typewriter ref="introMsg" style={[styles.msg]} msg={introMsg} colour={'white'} speed={100} space={10} height={30}/>
                 <TouchableOpacity style={styles.enter} onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
                   <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>ENTER</Animated.Text>
                 </TouchableOpacity>

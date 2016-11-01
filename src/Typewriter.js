@@ -15,11 +15,13 @@ const styles = StyleSheet.create({
     flexWrap : 'wrap'
   }
 })
+
 export default class Typewriter extends Component {
 
   static defaultProps = {
+    space: 12,
+    height: 30,
     msg: '',
-    space: 15,
     speed: 1000,
     colour: 'black',
     fadeIn: true,
@@ -32,7 +34,7 @@ export default class Typewriter extends Component {
   }
 
   setupAnimations() {
-    this.anims = this.props.msg.split(' ').map(() => new Animated.Value(this.props.fadeIn ? 0: 1));
+    this.anims = this.props.msg.split('').map(() => new Animated.Value(this.props.fadeIn ? 0: 1));
   }
 
   componentWillReceiveProps(nextProps, nextState) {
@@ -50,8 +52,8 @@ export default class Typewriter extends Component {
   render() {
     return (
       <View style={styles.wrapper}>
-        {this.props.msg.split(' ').map((word, i) =>
-          <Animated.Text key={i} style={[this.props.style, {height: 30, color:this.props.colour, opacity: this.anims[i]}]}>
+        {this.props.msg.split('').map((word, i) =>
+          <Animated.Text key={i} style={[this.props.style, {height: this.props.height , width: this.props.space , color:this.props.colour, opacity: this.anims[i]}]}>
             {`${word} `}
           </Animated.Text>
         )}
