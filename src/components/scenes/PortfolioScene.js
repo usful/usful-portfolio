@@ -11,15 +11,14 @@ import {
   Platform,
   Text,
   ScrollView,
-  View
+  View,
 } from 'react-native';
 
 import AppData from '../../AppData';
 import Navigation from '../../helpers/Navigation';
 
 import StoryCard from '../Story/StoryCard';
-import ProductView from '../Product/ProductView';
-import InitiativeView from '../Initiative/InitiativeView';
+import Carousel from '../Carousel';
 
 import TopNav from '../TopNav';
 
@@ -38,6 +37,7 @@ function pause(duration = 250) {
 }
 
 let styles = StyleSheet.create({
+
   container: {
     backgroundColor: '#000',
     flex: 1,
@@ -59,6 +59,8 @@ export default class PortfolioScene extends Component {
       previousIndex: 0,
       index: 0,
       pageTransition: 0,
+      parentScroll: true,
+      productCount: 0,
       hideNavBar: false,
       hideAnimation: new Animated.Value(1),
       //Initialize an array of length stories.length and set all elements to 0
@@ -113,14 +115,21 @@ export default class PortfolioScene extends Component {
       }
     }
     this.setIdleToZero();
+
+    //Toggling scrollenabled value of parent scrollview on product/initiative carousels to work on android
+    if(Platform.OS !== 'ios' && (e.nativeEvent.contentOffset.x / width === 0 || e.nativeEvent.contentOffset.x / width === 2)){
+      this.setState({parentScroll: false})
+    }
   }
 
 
   onTopNavScroll(e) {
     let pageTransition = (e.nativeEvent.contentOffset.x % width) / width;
     let nowIndex = Math.floor(e.nativeEvent.contentOffset.x / width);
-
     if (nowIndex > 0) pageTransition += nowIndex;
+
+
+
 
     //CJR: Rather than set the state on each scroll event, we will check the state to see if it needs to be updated.
     //Every time the state is set the component will try to update, so this prevents unnecessary updates.
@@ -132,6 +141,10 @@ export default class PortfolioScene extends Component {
       this.setState({hideNavBar: false});
     }
   }
+
+   setScrollEnabled(e){
+     this.setState({parentScroll: true})
+   }
 
   onStoriesScroll(e) {
     let currentOffset = e.nativeEvent.contentOffset.y;
@@ -206,16 +219,14 @@ export default class PortfolioScene extends Component {
         <ScrollView horizontal={true}
                     pagingEnabled={true}
                     ref='scrollView'
+                    scrollEnabled={this.state.parentScroll}
                     onScroll={(e) => this.onTopNavScroll(e)}
                     onMomentumScrollEnd={(e) => this.navSwipeEnds(e)}
                     scrollEventThrottle={SCROLL_FPS}>
-
-          <ScrollView scrollEventThrottle={SCROLL_FPS}
-                      showsVerticalScollIndicator={false}
-                      style={styles.storiesScroll}>
-
-            <ProductView products={AppData.products}/>
-          </ScrollView>
+            <Carousel
+                      text = {'Usful products are inspired by our guiding initiatives. They are developed by our team to have purpose and impact.'}
+                      slides = {AppData.products}
+                      onTouchEnd={(e) => {this.setScrollEnabled(e)}}/>
 
           <ScrollView scrollEventThrottle={SCROLL_FPS}
                       showsVerticalScollIndicator={false}
@@ -233,12 +244,11 @@ export default class PortfolioScene extends Component {
             )}
           </ScrollView>
 
-          <ScrollView scrollEventThrottle={SCROLL_FPS}
-                      showsVerticalScollIndicator={false}
-                      style={styles.storiesScroll}>
+            <Carousel
+                      text = {'Usful Initiatives guide our company mission and cultural values. They are the motive behind our authenticity.'}
+                      slides = {AppData.initiatives}
+                      onTouchEnd={(e) => {this.setScrollEnabled(e)}}/>
 
-              <InitiativeView initiatives={AppData.initiatives} />
-          </ScrollView>
         </ScrollView>
 
         <TopNav

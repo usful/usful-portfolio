@@ -28,6 +28,10 @@ export default class SliderIndicator extends Component {
     };
   }
 
+  scrollEnd(e){
+    this.props.onTouchEnd(e);
+  }
+
   handleScroll(e) {
     this.setState({
       card: (Math.round(e.nativeEvent.contentOffset.x / (width*.75)))
@@ -48,7 +52,7 @@ export default class SliderIndicator extends Component {
   render() {
     let slideLength = this.props.slides.length-1;
     return (
-      <View>
+      <View style= {styles.container}>
 
           <View style={styles.textContainer}>
               <Text style={styles.text}>{this.props.text}</Text>
@@ -59,10 +63,13 @@ export default class SliderIndicator extends Component {
         <ScrollView
           ref={ref => this._ScrollView = ref}
           horizontal={true}
+          scrollEnabled={this.props.scrollEnabled}
           snapToInterval={width*.85}
           decelerationRate={0}
           snapToAlignment={'center'}
-          onScroll={(e) => this.handleScroll(e)}
+          onScroll={(e)=>this.handleScroll(e)}
+          onTouchEnd={(e) => this.scrollEnd(e)}
+          onTouchStart={(e) => this.scrollEnd(e)}
           scrollEventThrottle={300}
           showsHorizontalScrollIndicator={false}
           style={styles.cardScroll}>
@@ -92,6 +99,12 @@ export default class SliderIndicator extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#18232c',
+    paddingTop: 100,
+    height: height,
+    width: width
+  },
   cardCurrent: {
     opacity: 1
   },
