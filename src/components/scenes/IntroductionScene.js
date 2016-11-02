@@ -88,11 +88,9 @@ export default class IntroductionScene extends Component {
         <ScrollView style={styles.view}>
               <View style={styles.container}>
                 <Typewriter ref="introMsg"
-                            style={[styles.msg]}
+                            style={styles.msg}
                             msg={introMsg}
-                            colour={'white'}
-                            speed={100}
-                            space={10}
+                            colour="white"
                             height={30}
                             onFinished={() => this.onFinished()}/>
                 <TouchableOpacity style={styles.enter} onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
