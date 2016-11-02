@@ -82,7 +82,7 @@ let styles = StyleSheet.create({
 
   textTags: {
     color: Colours.darkGrey,
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Font.tags.fontFamily,
     fontStyle: 'italic',
     fontSize: 10,
     paddingTop: 5,

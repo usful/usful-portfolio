@@ -1,6 +1,13 @@
+import React, { Component } from 'react';
+
+import {
+  Platform
+} from 'react-native';
+
 export default {
   primaryFont: {
-    fontFamily: 'Courier New',
+    fontFamily: (Platform.OS === 'ios') ? 'Courier New' : 'Courier-New',
+
   },
   secondaryFont: {
     fontFamily: 'Avenir-Book'
@@ -8,38 +15,7 @@ export default {
   bold: {
     fontWeight: 'bold'
   },
-  navigationBarText: {
-
-  },
-  introductionMessageText: {
-    fontSize: 10
-  },
-  titleText: {
-
-  },
-  quotesText: {
-
-  },
-  contactButtonText: {
-
-  },
-
-  contentText: {
-
-  },
-  projectText: {
-
-  },
-  initiativeText: {
-
-  },
-  descriptionText: {
-
-  },
-  teamMemberDescription: {
-
-  },
-  fieldInputText: {
-
+  tags: {
+    fontFamily: 'Courier-New-PS-Italic'
   }
 }
