@@ -3,27 +3,23 @@
 import React, { Component } from 'react';
 import ReactNative, {
   Animated,
-  StyleSheet,
   Dimensions,
   ScrollView,
+  StyleSheet,
   TextInput,
   Text,
-  Platform,
-  View,
   TouchableOpacity,
-TouchableHighlight
+  Platform,
+  View
 } from 'react-native';
 
 import Font from '../../styles/Font';
 import Colours from '../../styles/Colours';
-import { getAccessToken, getAuthCode } from  '../../../api/GoogleSheets';
-import KeyboardHandler from '../KeyboardHandler';
 import Typewriter from '../../Typewriter';
 import Navigation from '../../helpers/Navigation';
 
 let {width, height} = Dimensions.get('window');
 let introMsg = `Planetary change is inevitable. Through technology, design, and education. Usful is preparing communities for this reality. We are a conscious team of technologists, designers, developers, engineers, and architects who create Usful products with purpose.`;
-let okMsg = `Perfect. You will be receiving a package from the Usful team momentarily.`;
 
 let styles = StyleSheet.create({
 
