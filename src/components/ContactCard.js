@@ -17,11 +17,12 @@ import SocialMediaButton from './SocialMediaButton';
 
 let styles = StyleSheet.create({
   card: {
-    backgroundColor: Colours.white
+    backgroundColor: Colours.white,
+
   },
   cardImage: {
-    height: height/2,
-    width: width/2 + 150
+    height: height/2 - 50,
+    width: width/2 + 130
   },
   close: {
     color: Colours.darkGrey,
@@ -49,7 +50,7 @@ let styles = StyleSheet.create({
     fontWeight: Font.bold.fontWeight
   },
   pageAndClose: {
-    marginHorizontal: 60,
+    alignSelf: 'center',
     marginTop: 30,
     flexDirection: 'row',
     backgroundColor: Colours.white,
@@ -83,7 +84,7 @@ let styles = StyleSheet.create({
     color: Colours.darkGrey,
     fontFamily: Font.primaryFont.fontFamily,
     fontStyle: 'italic',
-    fontSize: 8,
+    fontSize: 10,
     paddingTop: 5,
     paddingBottom: 18,
     textAlign: 'center'
@@ -119,10 +120,6 @@ export default class ContactCard extends Component {
 
           <View style={styles.cardImage}>
           </View>
-
-          <LinearGradient
-            colors={['green', 'red']}
-            start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} />
 
           <View style={styles.contactInfo}>
             <Text style={styles.textName}>{person.name}</Text>

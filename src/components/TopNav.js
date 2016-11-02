@@ -12,7 +12,6 @@ import {
     ListView,
     Platform,
     TouchableOpacity,
-    TouchableHighlight,
     View
 } from 'react-native';
 
@@ -52,6 +51,11 @@ export default class TopNav extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      bar : this.props.bar,
+      slidingAnim : new Animated.ValueXY({x: 0, y: 0})
+    };
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -64,7 +68,23 @@ export default class TopNav extends Component {
 
   componentWillReceiveProps(nextProps) {
     animationProgress.setValue(nextProps.pageTransition);
-    navBarFading.setValue(nextProps.hideNavBar ? 0 : 1);
+    //navBarFading.setValue(nextProps.hideNavBar ? 0 : 1);
+    this.slide(nextProps.hideNavBar? 'down' : 'up');
+  }
+
+  goToPage(page) {
+    this.props.bar.scrollTo({x: page * width, y:0, animated:true});
+  }
+
+  slide(up){
+    let val = (up === 'up') ? 0: -75;
+    Animated.timing(this.state.slidingAnim, {
+      //duration: add speed here
+      toValue: {
+        x: 0,
+        y: val,
+      },
+    }).start();
   }
 
   render() {
@@ -120,15 +140,15 @@ export default class TopNav extends Component {
     });
 
     return (
-      <Animated.View style={[styles.container, {opacity: navBarFading}]}>
+      <Animated.View style={[styles.container, {opacity: navBarFading}, {transform: this.state.slidingAnim.getTranslateTransform()}]}>
         <Animated.View style={{transform: transform1iOS, opacity: opacity1}}>
-          <Text style={styles.activeText}>Products</Text>
+          <TouchableOpacity onPress={() => this.goToPage(0)}><Text style={styles.activeText}>Products</Text></TouchableOpacity>
         </Animated.View>
         <Animated.View style={{transform: transform2iOS, opacity: opacity2}}>
-          <Text style={styles.activeText}>Stories</Text>
+          <TouchableOpacity onPress={() => this.goToPage(1)}><Text style={styles.activeText}>Stories</Text></TouchableOpacity>
         </Animated.View>
         <Animated.View style={{transform: transform3, opacity: opacity3}}>
-          <Text style={styles.activeText}>Initiatives</Text>
+          <TouchableOpacity onPress={() => this.goToPage(2)}><Text style={styles.activeText}>Initiative</Text></TouchableOpacity>
         </Animated.View>
       </Animated.View>
     );

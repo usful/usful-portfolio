@@ -16,15 +16,17 @@ const PAUSE_ON = [',', '.'];
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: (Platform.OS === 'ios') ? 30 : 35,
-    flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexDirection:'row',
+    flexWrap : 'wrap'
   }
-});
+})
 
 export default class Typewriter extends Component {
+
   
   static defaultProps = {
+    space: 12,
+    height: 30,
     msg: '',
     split: SPLIT_ON,
     speed: 20,
@@ -62,7 +64,6 @@ export default class Typewriter extends Component {
   
   start(fadeIn) {
     const animations = this.anims.map(obj => Animated.timing(obj.anim, {toValue: fadeIn ? 1 : 0, duration: obj.speed}));
-    
     this._sequence = Animated.sequence(animations);
     this._sequence.start(() => this.props.onFinished());
   }
@@ -71,7 +72,8 @@ export default class Typewriter extends Component {
     return (
       <View style={styles.wrapper}>
         {this.anims.map((obj, i) =>
-          <Animated.Text key={obj.value + i} style={[this.props.style, {color:this.props.colour, opacity: this.anims[i].anim}]}>
+          <Animated.Text key={obj.value + i}
+                         style={[this.props.style, { height: this.props.height, width: this.props.space ,color:this.props.colour, opacity: this.anims[i].anim}]}>
             {obj.value}
           </Animated.Text>
         )}

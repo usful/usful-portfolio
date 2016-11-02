@@ -20,7 +20,10 @@ export default class UsfulPortfolio extends Component {
   }
 
   configureScene() {
-    return Navigator.SceneConfigs.PushFromRight;
+    return {
+      ...Navigator.SceneConfigs.PushFromRight,
+      gestures: {}
+    };
   }
 
   renderScene(route, navigator) {
