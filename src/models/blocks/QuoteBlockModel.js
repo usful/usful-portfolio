@@ -7,7 +7,6 @@ const QuoteBlockModel = Model.create(
   'QuoteBlock',
   {
     ... BlockProperties,
-    author: String,
   }
 );
 

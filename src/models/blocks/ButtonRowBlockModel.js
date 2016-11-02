@@ -8,7 +8,8 @@ const ButtonRowBlockModel = Model.create(
   'ButtonRowBlock',
   {
     ... BlockProperties,
-    buttons: [ButtonBlock]
+    buttons: [ButtonBlock],
+    title: String
   }
 );
 

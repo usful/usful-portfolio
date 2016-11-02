@@ -18,10 +18,13 @@ storyBlocks = [
         text: 'There are many practices that can contribute to improving our global ecosystem. Urban agriculture is one that is feasible and impactful on a local scale.'
       },
       {
-        _type: 'QuoteBlock',
+        _type: 'MediaBlock',
         media: media[8],
+        style: 'round'
+      },
+      {
+        _type: 'QuoteBlock',
         text: 'There are huge environmental and health benefits of urban farming - yet, they remain unknown to the majority of the population.',
-        author: ''
       },
       {
         _type: 'CopyBlock',
@@ -39,7 +42,7 @@ storyBlocks = [
       },
       {
         _type: 'CopyBlock',
-        text: 'Attendees were able to  interact with the Usful XM installation through a self-guided tour accessible on the exclusive Usful app. The tour explained each installation, its environmental benefit, and how urban farming can positively impact personal health and wellness.'
+        text: 'Attendees were able to interact with the Usful XM installation through a self-guided tour accessible on the exclusive Usful app. The tour explained each installation, its environmental benefit, and how urban farming can positively impact personal health and wellness.'
       },
       {
         _type: 'MediaBlock',
@@ -67,10 +70,13 @@ storyBlocks = [
         text: 'The reality remains, however, that people are not as deeply connected to food as they may believe. The missing piece to the food revolution puzzle is educating people on the resources that go into food production and distribution. For this reason, Usful supports the Sustainable Food Revolution.'
       },
       {
-        _type: 'QuoteBlock',
+        _type: 'MediaBlock',
         media: media[13],
+        style: 'round'
+      },
+      {
+        _type: 'QuoteBlock',
         text: 'FarmFreshTO is a farmer’s market with a determined objective to educate people on sustainable food consumption.',
-        author: ''
       },
       {
         _type: 'CopyBlock',
@@ -100,10 +106,11 @@ storyBlocks = [
       },
       {
         _type: 'CopyBlock',
-        text: 'FarmFreshTO is a market attraction that is impacting local communities citywide. During its operating season, FarmFreshTO connects people to local food and leaves a lasting impact on their thoughts of living a modern and sustainable lifestyle.'
+        text: 'Results:\n\nFarmFreshTO is a market attraction that is impacting local communities citywide. During its operating season, FarmFreshTO connects people to local food and leaves a lasting impact on their thoughts of living a modern and sustainable lifestyle.'
       },
       {
         _type: 'ButtonRowBlock',
+        title: 'In The News',
         buttons: [
           {
             _type: 'ButtonBlock',
@@ -136,11 +143,14 @@ storyBlocks = [
         text: 'As the digital partner of choice, Usful developed an interactive web platform for The Anthropocene Film Project.'
       },
       {
-        _type: 'QuoteBlock',
+        _type: 'MediaBlock',
         media: media[3],
-        text: 'The objective was to create an engaging experience for users that parallels the impact humans have on the Planet’s future.',
-        author: ''
+        style: 'round'
       },
+      {
+        _type: 'QuoteBlock',
+        text: 'The objective was to create an engaging experience for users that parallels the impact humans have on the Planet’s future.',
+       },
 
       {
         _type: 'CopyBlock',
@@ -148,7 +158,7 @@ storyBlocks = [
       },
       {
         _type: 'CopyBlock',
-        text: 'Usful built the site on React Native to reuse 80% of the same code for future mobile app development. '
+        text: 'Usful built the site on React Native to reuse 80% of the same code for future mobile app development. The Anthropocene site by Usful was nominated for an Awwward in 2016 for its creativity and innovative approach to design.'
       },
       {
         _type: 'CopyBlock',
@@ -159,7 +169,7 @@ storyBlocks = [
         buttons: [
           {
         _type: 'ButtonBlock',
-        text: 'Website',
+        text: 'theanthropocene.org',
         uri: 'https://theanthropocene.org/#chapter-0'
       },
       {
@@ -167,11 +177,7 @@ storyBlocks = [
         text: 'Open Source Code',
         uri: 'https://github.com/usful/anthropocene'
       }]
-      },
-      {
-        _type: 'CopyBlock',
-        text: '\u2022 Awwwards Nominee - 2016 Honourable Mention\n\n\u2022 A shareable source used to raise awareness of the Anthropocene Film Project and associated research'
-      },
+      }
     ]
   },
   {
@@ -182,10 +188,9 @@ storyBlocks = [
         text: 'Manufactured Landscapes is a feature length documentary on the world and work of renowned artist Edward Burtynsky. To share the incredible works and findings of the film, Usful created a self-guided interactive audio tour exploring the photographs of Burtynsky’s 25 year exploration of how industrial activity has created and shaped the landscapes of our world.'
       },
       {
-        _type: 'QuoteBlock',
+        _type: 'MediaBlock',
         media: media[37],
-        text: '',
-        author: ''
+        style: 'round'
       },
       {
         _type: 'CopyBlock',
@@ -201,8 +206,14 @@ storyBlocks = [
       },
       {
         _type: 'CopyBlock',
-        text: '\u2022 Connected over 5,000 people daily to Burtynsky’s cause to intersect with a contemporary view of the great ages of man\n\n\u2022 Challenged the thought process of listeners by integrating modern perspectives of art and existence; resulting in an educated and diverse audience'
+        text: 'The gallery connected over 5,000 people daily to Burtynsky’s cause to intersect with a contemporary view of the great ages of man and challenged the thought process of listeners by integrating modern perspectives of art and existence; resulting in an educated and diverse audience. Usful XM successfully transformed unused space into an educational and artistic social setting; promoting creative use of space within Toronto.'
       },
+      {
+        _type: 'ButtonBlock',
+        text: 'Manufactured Landscapes',
+        uri: 'https://www.edwardburtynsky.com/site_contents/Films/Manufactured_Landscapes_Film.html'
+      },
+
     ]
   },
 
@@ -214,7 +225,7 @@ initiativeBlocks = [
     blocks: [
       {
         _type: 'CopyBlock',
-        text: 'The universal human condition encompases key characteristics, events, and situations that define human existence.'
+        text: 'The universal human condition encompasses key characteristics, events, and situations that define human existence.'
       },
       {
         _type: 'MediaBlock',
@@ -222,7 +233,7 @@ initiativeBlocks = [
       },
       {
       _type: 'CopyBlock',
-      text: 'With the rise of technological advancements, we believe it is necessary that humans are  educated on how technology can be applied to     limit human suffering, impact positive behaviour changes, and help people live fulfilled lives.'
+      text: 'With the rise of technological advancements, we believe it is necessary that humans are educated on how technology can be applied to     limit human suffering, impact positive behaviour changes, and help people live fulfilled lives.'
       },
       {
         _type: 'MediaBlock',
@@ -276,10 +287,13 @@ initiativeBlocks = [
           text: 'For years CRE has lagged behind in acquiring modern technology to improve workplace deficiencies. Lane is disrupting this once legacy driven industry by introducing a personal and mobile type of engagement.'
         },
         {
-          _type: 'QuoteBlock',
+          _type: 'MediaBlock',
           media: media[27],
+          style: 'round'
+        },
+        {
+          _type: 'QuoteBlock',
           text: 'Lane brings modern SaaS mobile technology into an untapped and outdated niche market.',
-          author: ''
         },
         {
           _type: 'CopyBlock',
@@ -297,19 +311,20 @@ initiativeBlocks = [
         },
         {
           _type: 'CopyBlock',
-          text: 'The effects of Lane are real. Since launching the platform, clients have experienced:\n\n\u2022 A 20x increase in tenant engagement\n\u2022 An increase in awareness of building programs from 5% to 40%\n\u2022 An increase in event and program participation from 2% to 20%\n\u2022 A positive environmental impact such as a reduction in print material distributed throughout workplaces\n\u2022 Stronger energy efficiencies due to awareness of energy usage programs through Lane\n\n*2015 GRESB Report ($0.22c per SF)\n**2013 Gallup "State of the American Workplace'
+          text: 'Results:\n\nThe effects of Lane are real. Since launching the platform, clients have experienced:\n\n\u2022 A 20x increase in tenant engagement\n\u2022 An increase in awareness of building programs from 5% to 40%\n\u2022 An increase in event and program participation from 2% to 20%\n\u2022 A positive environmental impact such as a reduction in print material distributed throughout workplaces\n\u2022 Stronger energy efficiencies due to awareness of energy usage programs through Lane'
+        },
+        {
+          _type: 'LegalBlock',
+          text: '*2015 GRESB Report ($0.22c per SF)\n**2013 Gallup "State of the American Workplace'
         },
         {
           _type: 'ButtonBlock',
-          text: 'Website',
+          text: 'Join Lane',
           uri: 'https://joinlane.com/'
         },
         {
-          _type: 'CopyBlock',
-          text: 'In The News:'
-        },
-        {
           _type: 'ButtonRowBlock',
+          title: 'In The News',
           buttons: [
               {
             _type: 'ButtonBlock',
@@ -343,10 +358,13 @@ initiativeBlocks = [
           text: 'Traditional outreach has lost its impact.  With the increased demand and shifting interests of the modern consumer, captivating the attention of an audience can be a challenge. The truth is, today’s audience wants to be communicated with differently - through experiences.'
         },
         {
-          _type: 'QuoteBlock',
+          _type: 'MediaBlock',
           media: media[37],
-          text: 'By fundamentally understanding our audience, Usful XM curates experiences of deep interaction that connect people to a greater cause.',
-          author: ''
+          style: 'round'
+        },
+        {
+          _type: 'QuoteBlock',
+          text: 'By fundamentally understanding our audience, Usful XM curates experiences of deep interaction that connect people to a greater cause.'
         },
         {
           _type: 'CopyBlock',
@@ -367,14 +385,24 @@ initiativeBlocks = [
           text: 'Usful XM has converted thousands of people into believers and transformed them into doers. Our interactive and educational experiences are measurable and impactful. By relating to our audience through food, art and culture, health and wellness, and sustainability, we are able to leave a lasting impression on every Usful XM attendee.'
         },
         {
-          _type: 'QuoteBlock',
+          _type: 'MediaBlock',
           media: media[36],
-          text: '',
-          author: ''
+          style: 'round'
         },
         {
           _type: 'CopyBlock',
           text: 'Successes:\n\n\u2022 Introduced over 35,500 professionals in the downtown Toronto core to local farmers\n\u2022 Generated $41,566 in community revenue for local farmers and vendors\n\u2022 Educated thousands city-wide on Hydroponic Farming using Usful’s retrofitted Shipping Container that features high-tech vertical growing systems and LED lighting'
+        },
+        {
+          _type: 'ButtonRowBlock',
+          title: 'In The News',
+          buttons: [
+            {
+              _type: 'ButtonBlock',
+              text: 'Toronto Life',
+              uri: 'http://torontolife.com/food/farmers-market-lunch-financial-district-downtown-forno-culture-healthy-butcher/'
+            },
+          ]
         },
 
       ]

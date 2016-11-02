@@ -102,7 +102,6 @@ const AppData = new AppDataModel(
         heroDescription: 'Using technology and experience as a means to impact behaviour.',
         title: 'Using technology and experience as a means to impact behaviour.',
         author: team[5],
-        date: new Date(),
         footer: media[14],
         blocks: content[1][0].blocks,
         team: [
@@ -121,7 +120,6 @@ const AppData = new AppDataModel(
         heroDescription: 'Using technology and experience as a means to solving the resource crisis.',
         title: 'Using technology and experience as a means to solving the resource crisis.',
         author: team[4],
-        date: new Date(),
         footer: media[9],
         blocks: content[1][1].blocks,
         team: [
@@ -140,7 +138,6 @@ const AppData = new AppDataModel(
         title: 'Bringing modern SaaS mobile technology to an untapped and outdated niche market.',
         header: media[22],
         author: team[2],
-        date: new Date(),
         footer: media[33],
         blocks: content[2][0].blocks,
         team: [
@@ -149,10 +146,10 @@ const AppData = new AppDataModel(
           team[2]
         ],
         contactInfo: {
-          email: 'info@monanetworks.com',
-          phone: 'tel:123-456-7890',
+          email: 'info@joinlane.com',
+          phone: 'tel:1-877-364-6662',
           uri: 'https://joinlane.com/',
-          address: '123 Stewart Cres, Toronto, ON, Canada, A1B 2D4 '
+          twitter: 'https://twitter.com/joinlane'
         },
         story: 'Manufactured Landscapes'
       },
@@ -165,7 +162,6 @@ const AppData = new AppDataModel(
         hero: media[37],
         heroDescription: 'Experiences Designed to Educate, Inform, and Improve the Human Condition',
         title: 'Rethinking experiences to transform believers into doers',
-        date: new Date(),
         footer: media[14],
         blocks: content[2][1].blocks,
         team: [
@@ -173,12 +169,6 @@ const AppData = new AppDataModel(
           team[4],
           team[6]
         ],
-        contactInfo: {
-          email: 'info@monanetworks.com',
-          phone: 'tel:123-456-7890',
-          uri: 'https://joinlane.com/',
-          address: '123 Stewart Rd, Toronto, ON, Canada, A1B 2D4 '
-        },
         story: 'FarmFreshTO'
       }
     ]

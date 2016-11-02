@@ -26,9 +26,10 @@ export default class ContactFooter extends Component {
     contact:
     {
       email: 'rishabh@monanetworks.com',
-      phone: '123-456-7890',
-      uri: 'http://www.lane.com',
-      address: '123 Stewart Rd, Toronto, ON, Canada, A1B 2D4 '
+      phone: 'tel:1-877-364-6662',
+      instagram: 'https://www.instagram.com/usful.co/',
+      twitter: 'https://twitter.com/Usful_',
+      address: '46 Stewart St, Toronto, ON, Canada, M5V 1H6'
     }
   };
 
@@ -42,6 +43,25 @@ export default class ContactFooter extends Component {
       nextProps.contact != this.props.contact
 )
   }
+  renderButtons() {
+
+    if(this.props.contact.uri){
+    return(
+      <View style={styles.buttonContainer}>
+        <OutlineButton text={"WEBSITE"} uri = {this.props.contact.uri}/>
+        <OutlineButton text={"TWITTER"} uri = {this.props.contact.twitter}/>
+      </View>
+    )
+  }else
+    {
+      return(
+        <View style={styles.buttonContainer}>
+          <OutlineButton text={"INSTAGRAM"} uri = {this.props.contact.instagram}/>
+          <OutlineButton text={"TWITTER"} uri = {this.props.contact.twitter}/>
+        </View>
+      )
+  }
+  }
 
   render() {
     return (
@@ -50,12 +70,9 @@ export default class ContactFooter extends Component {
         <View style={styles.contact}>
           <Text style={styles.title}>Contact Us</Text>
           <Text style= {styles.body}>Interested in getting in contact with us? Hit us on the Usful line, or shoot an email. Stay up to date with all that's happening in the Usful world by following us on social media.</Text>
+            {this.renderButtons()}
           <View style={styles.buttonContainer}>
-            <OutlineButton text={"INSTAGRAM"} uri = {this.props.contact.uri}/>
-            <OutlineButton text={"TWITTER"} uri = {this.props.contact.uri}/>
-          </View>
-          <View style={styles.buttonContainer}>
-            <OutlineButton text={"EMAIL"} uri = {this.props.contact.uri}/>
+            <OutlineButton text={"EMAIL"} uri = {this.props.contact.email}/>
             <OutlineButton text={"PHONE"} uri = {this.props.contact.phone}/>
           </View>
           <Text style={styles.address}>{this.props.contact.address}</Text>
@@ -80,6 +97,7 @@ const styles= StyleSheet.create({
     marginBottom: 40
   },
   buttonContainer: {
+    backgroundColor: 'transparent',
     marginTop: 20,
     flexDirection: 'row',
     alignSelf: 'center',

@@ -20,7 +20,7 @@ export default class HeaderItem extends Component {
     return (
       <View style={global.content}>
         <Image style={style.image} source={this.props.image}/>
-        <Text style={style.date}>{this.props.date}</Text>
+        {this.props.type === 'Story' ? <Text style={style.date}>{this.props.date}</Text> : undefined}
       </View>
     );
   }
