@@ -45,7 +45,7 @@ const AppData = new AppDataModel(
         _id: GUID(),
         type: 'Story',
         hero: media[14],
-        name: 'FarmFreshTO',
+        name: '#FarmFreshTO',
         header: media[10],
         title: 'Usful XM’s Food for Thought Experience',
         author: team[0],
@@ -109,7 +109,7 @@ const AppData = new AppDataModel(
           team[2],
           team[1]
         ],
-        story: 'FarmFreshTO'
+        story: '#FarmFreshTO'
       },
       {
         _id: GUID(),
@@ -169,7 +169,7 @@ const AppData = new AppDataModel(
           team[4],
           team[6]
         ],
-        story: 'FarmFreshTO'
+        story: '#FarmFreshTO'
       }
     ]
   }
