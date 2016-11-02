@@ -84,7 +84,7 @@ let styles = StyleSheet.create({
     color: Colours.darkGrey,
     fontFamily: Font.primaryFont.fontFamily,
     fontStyle: 'italic',
-    fontSize: 8,
+    fontSize: 10,
     paddingTop: 5,
     paddingBottom: 18,
     textAlign: 'center'
