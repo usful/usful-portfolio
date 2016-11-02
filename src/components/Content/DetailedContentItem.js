@@ -52,11 +52,11 @@ export default class DetailedContentItem extends Component {
   renderFooter() {
     switch (this.props.content.type) {
       case "Initiative":
-        return <ContactFooter />;
+        return <ContactFooter toggle={this.state.footerToggle}/>;
       case "Story":
         return;
       case "Product":
-        return <ContactFooter contact={this.props.content.contactInfo}/>;
+        return <ContactFooter toggle={this.state.footerToggle} contact={this.props.content.contactInfo}/>;
       default:
         return <View><Text>{this.props.content.type}</Text></View>;
     }
@@ -73,9 +73,9 @@ export default class DetailedContentItem extends Component {
         ref={ref => this._ScrollView = ref}
         scrollEventThrottle={1000/30}
         onScroll= {(el) => this._handleScroll(el, blockHeight)} style={[global.container]}>
-        <View style = {this.state.footerToggle ? styles.contactShow : styles.contactHide}>
+
           {this.renderFooter()}
-        </View>
+
         <View
           onLayout={(event) => {
             blockHeight = event.nativeEvent.layout.height;
@@ -127,17 +127,6 @@ export default class DetailedContentItem extends Component {
 }
 
 const styles = StyleSheet.create({
-  contactShow: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    height: ContactFooter.FOOTER_HEIGHT,
-    opacity: 1
-  },
-  contactHide: {
-    height: 0,
-    opacity: 0
-  },
   contentShow: {
     marginBottom: ContactFooter.FOOTER_HEIGHT - ContactFooter.UNDERLAY_HEIGHT
   },
@@ -170,7 +159,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   shadow: {
-    elevation: 3,
+    elevation: 2,
     shadowOffset: {
       height: 6,
       width: 6
