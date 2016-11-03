@@ -32,7 +32,7 @@ storyBlocks = [
       },
       {
         _type: 'CopyBlock',
-        text: 'The installation included:\n\n\u2022 Bright Agrotech’s  ZipGrow Towers\n\u2022 Urban Cultivator Microgreen Growing Units\n\u2022 Landscape Culture’s “Language of Plants'
+        text: 'The installation included:\n\n\u2022 Bright Agrotech’s  ZipGrow Towers\n\u2022 Urban Cultivator Microgreen Growing Units\n\u2022 Landscape Culture’s “Language of Plants\"'
       },
       {
         _type: 'MediaCarouselBlock',
@@ -42,7 +42,7 @@ storyBlocks = [
       },
       {
         _type: 'CopyBlock',
-        text: 'Attendees were able to interact with the Usful XM installation through a self-guided tour accessible on the exclusive Usful app. The tour explained each installation, its environmental benefit, and how urban farming can positively impact personal health and wellness.'
+        text: 'Attendees were able to interact with the Usful XM installation through a self-guided tour available exclusively on Lane, Usful\'s mobile engagement platform. The tour explained each installation, its environmental benefit, and how urban farming can positively impact personal health and wellness.'
       },
       {
         _type: 'MediaBlock',
@@ -76,19 +76,19 @@ storyBlocks = [
       },
       {
         _type: 'QuoteBlock',
-        text: 'FarmFreshTO is a farmer’s market with a determined objective to educate people on sustainable food consumption.',
+        text: '#FarmFreshTO is a farmer’s market by Usful XM with a determined objective to educate people on sustainable food consumption.',
       },
       {
         _type: 'CopyBlock',
-        text: 'The market inspires people to think about food on a global scale by living and consuming locally.'
+        text: 'The market inspired people to think about food on a global scale by living and consuming locally.'
       },
       {
         _type: 'CopyBlock',
-        text: 'The seasonal pop-up features local Ontario vendors selling fresh produce, artisan merchandise, and prepared foods.'
+        text: 'The seasonal pop-up featured local Ontario vendors selling fresh produce, artisan merchandise, and prepared foods. '
       },
       {
         _type: 'CopyBlock',
-        text: 'Ticketed weekly lunch sessions held during the FarmFreshTO market are curated by Usful XM to reconnect people with food. Each lunch, featuring a guest speaker, leaves attendees informed on how they can start to make a difference by participating in the sustainable food revolution.'
+        text: 'Ticketed weekly lunch sessions held during the market were curated by Usful XM to reconnect people with food. Each lunch, featuring a guest speaker, left attendees informed on how they can start to make a difference by participating in the sustainable food revolution.'
       },
       {
         _type: 'MediaCarouselBlock',
@@ -98,7 +98,7 @@ storyBlocks = [
       },
       {
         _type: 'CopyBlock',
-        text: 'Partnering with industry leaders in sustainable food production, the FarmFreshTO market displays hydroponic vertical farms in the Usful XM shipping container. As the main attraction, the farm container is open to the public to educate on sustainable food sourcing and the positive impact it has in our community.'
+        text: 'Partnering with industry leaders in sustainable food production, market displayed hydroponic vertical farms in the Usful XM shipping container. A main attraction at the market, the farm container was open to the public to educate on sustainable food sourcing and the positive impact it has in our community.'
       },
       {
         _type: 'MediaBlock',
@@ -106,7 +106,7 @@ storyBlocks = [
       },
       {
         _type: 'CopyBlock',
-        text: 'Results:\n\nFarmFreshTO is a market attraction that is impacting local communities citywide. During its operating season, FarmFreshTO connects people to local food and leaves a lasting impact on their thoughts of living a modern and sustainable lifestyle.'
+        text: 'The #FarmFreshTO market impacted local communities, citywide. During its operating season, the market connected people to local food, leaving a lasting impact on their thoughts of living a modern and sustainable lifestyle.'
       },
       {
         _type: 'ButtonRowBlock',
@@ -233,7 +233,7 @@ initiativeBlocks = [
       },
       {
       _type: 'CopyBlock',
-      text: 'With the rise of technological advancements, we believe it is necessary that humans are educated on how technology can be applied to     limit human suffering, impact positive behaviour changes, and help people live fulfilled lives.'
+      text: 'With the rise of technological advancements, we believe it is necessary that humans are educated on how technology can be applied to limit human suffering, impact positive behaviour changes, and help people live fulfilled lives.'
       },
       {
         _type: 'MediaBlock',

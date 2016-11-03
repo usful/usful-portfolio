@@ -71,7 +71,7 @@ export default class ContactFooter extends Component {
         <Image source={require('../img/CementBackground.jpg')} resizeMode='cover' style={styles.background}/>
         <View style={styles.contact}>
           <Text style={styles.title}>Contact Us</Text>
-          <Text style= {styles.body}>Interested in getting in contact with us? Hit us on the Usful line, or shoot an email. Stay up to date with all that's happening in the Usful world by following us on social media.</Text>
+          <Text style= {styles.body}>Interested in learning more about Usful? Contact us! We’d love to hear from you.</Text>
             {this.renderButtons()}
           <View style={styles.buttonContainer}>
             <OutlineButton text={"EMAIL"} uri = {this.props.contact.email}/>

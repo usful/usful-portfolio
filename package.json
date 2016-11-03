@@ -6,7 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "models": "git://github.com/usful/models.git",
+    "models": "git://github.com/usful/models.git#6ca11fed7f656845e641c9cf7404d97e851b1233",
     "moment": "^2.15.1",
     "react": "15.3.2",
     "react-native": "^0.36.0",
