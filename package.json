@@ -6,13 +6,14 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "models": "git://github.com/usful/models.git#6ca11fed7f656845e641c9cf7404d97e851b1233",
+    "models": "git://github.com/usful/models.git",
     "moment": "^2.15.1",
     "react": "15.3.2",
     "react-native": "^0.36.0",
     "react-native-image-slider": "^1.1.5",
     "react-native-keyboard-aware-scroll-view": "^0.2.1",
     "react-native-linear-gradient": "^1.5.13",
+    "react-native-share": "^1.0.17",
     "react-native-swipe-selector": "git+https://github.com/usful/react-native-swipe-selector.git",
     "react-native-vector-icons": "^2.1.0"
   }

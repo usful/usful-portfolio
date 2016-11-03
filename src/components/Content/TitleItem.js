@@ -109,10 +109,10 @@ export default class TitleItem extends Component {
 
   openActionSheet() {
     ActionSheet.open({
-        //TODO: replace with url to PDF of content passed through model
-        url: 'https://www.joinlane.com',
-        message: 'See what Usful is up to now!',
-      },
+        url: 'https://www.usful.co',
+        message: 'I think you might like this app by Usful. Check out their stories!',
+        subject: ''
+      }
     )
   }
   showTeam(team) {
