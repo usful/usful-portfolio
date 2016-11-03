@@ -18,7 +18,7 @@ import Navigation from '../../helpers/Navigation';
 
 import StoryCard from '../Story/StoryCard';
 import Carousel from '../Carousel';
-
+import Colours from '../../styles/Colours';
 import TopNav from '../TopNav';
 
 let {width, height} = Dimensions.get('window');
@@ -38,12 +38,12 @@ function pause(duration = 250) {
 let styles = StyleSheet.create({
 
   container: {
-    backgroundColor: '#000',
+    backgroundColor: Colours.navBarBlack,
     flex: 1,
     width: width
   },
   storiesScroll: {
-    backgroundColor: '#000',
+    backgroundColor: Colours.navBarBlack,
     height: height,
     width: width,
   }

@@ -26,7 +26,7 @@ let styles = StyleSheet.create({
   },
   close: {
     color: Colours.darkGrey,
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Font.tags.fontFamily,
     fontWeight: Font.bold.fontWeight,
     marginLeft: 130,
   },
@@ -46,7 +46,7 @@ let styles = StyleSheet.create({
   },
   page: {
     color: Colours.darkGrey,
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Font.tags.fontFamily,
     fontWeight: Font.bold.fontWeight
   },
   pageAndClose: {
@@ -76,14 +76,14 @@ let styles = StyleSheet.create({
     fontWeight: '600',
     color: Colours.darkGrey,
     fontSize: 18,
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Font.tags.fontFamily,
     textAlign: 'center'
   },
 
   textTags: {
     color: Colours.darkGrey,
     fontFamily: Font.tags.fontFamily,
-    fontStyle: 'italic',
+    fontStyle: Font.italics.fontStyle,
     fontSize: 10,
     paddingTop: 5,
     paddingBottom: 18,

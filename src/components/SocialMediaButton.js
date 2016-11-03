@@ -44,7 +44,7 @@ export default class SocialMediaButton extends Component {
       case 'instagram':
         return 'logo-instagram';
       case 'github':
-        return 'logo-instagram';
+        return 'logo-github';
       case 'twitter':
         return 'logo-twitter';
       case 'linkedin':

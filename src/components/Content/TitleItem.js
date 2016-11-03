@@ -38,11 +38,39 @@ const styles = StyleSheet.create({
   },
   teamAndroid: {
     height: 100,
-    width: 100,
-    borderColor: 'black',
-    borderWidth: 2,
+    width: 100
+  },
+  content: {
+    flexDirection: 'row',
+  },
+  row1: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  teamiOS: {
+    borderRadius: 22,
+    height: 43,
+    width: 80,
+    borderColor: Colours.transparent,
+    borderWidth: 0.4,
+    marginBottom: 10
 
   },
+  row2: {
+    flex: 3,
+    flexDirection: 'column',
+    marginRight: 15
+  },
+  title: {
+    fontSize: 27,
+    fontFamily: Font.secondaryFont.fontFamily,
+    fontWeight: Font.bold.fontWeight,
+    flexWrap: 'wrap'
+  },
+  share:{
+    marginTop: -10,
+  }
 });
 
 export default class TitleItem extends Component {
@@ -80,18 +108,18 @@ export default class TitleItem extends Component {
 
   render() {
     return (
-      <View style={[global.content, style.content]}>
-        <View style={style.row1}>
+      <View style={[global.content, styles.content]}>
+        <View style={styles.row1}>
           <TouchableOpacity onPress={(e) => this.openTeamModal(e)}>
-            <Image style={style.teamiOS} source={require('../../../assets/team.png')}/>
+            <Image style={styles.teamiOS} source={require('../../../assets/team.png')}/>
           </TouchableOpacity>
           <TouchableOpacity onPress={(e) => this.openActionSheet()}>
-            <Image style={style.share} source={require('../../img/share.png')}/>
+            <Image style={styles.share} source={require('../../img/share.png')}/>
           </TouchableOpacity>
         </View>
 
-        <View style={style.row2}>
-          <Text style={style.title}>{this.props.title}</Text>
+        <View style={styles.row2}>
+          <Text style={styles.title}>{this.props.title}</Text>
           <TagList tags={this.props.tags}/>
         </View>
 
@@ -107,37 +135,3 @@ export default class TitleItem extends Component {
     );
   }
 }
-
-const style = StyleSheet.create({
-  content: {
-    flexDirection: 'row',
-  },
-  row1: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center'
-  },
-  teamiOS: {
-    borderRadius: 22,
-    height: 50,
-    width: 80,
-    borderColor: 'transparent',
-    borderWidth: 0.4,
-    marginBottom: 20
-
-  },
-  row2: {
-    flex: 3,
-    flexDirection: 'column',
-    marginRight: 15
-  },
-  title: {
-    fontSize: 27,
-    fontFamily: 'Avenir-Book',
-    fontWeight: 'bold',
-    flexWrap: 'wrap'
-  },
-  share:{
-    marginTop: -10,
-  }
-});

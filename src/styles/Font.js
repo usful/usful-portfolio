@@ -7,7 +7,6 @@ import {
 export default {
   primaryFont: {
     fontFamily: (Platform.OS === 'ios') ? 'Courier New' : 'Courier-New',
-
   },
   secondaryFont: {
     fontFamily: 'Avenir-Book'
@@ -15,7 +14,10 @@ export default {
   bold: {
     fontWeight: 'bold'
   },
+  italics: {
+    fontStyle: 'italic'
+  },
   tags: {
-    fontFamily: 'Courier-New-PS-Italic'
+    fontFamily: (Platform.OS === 'ios') ? 'Courier New' : 'Courier-New'
   }
 }
