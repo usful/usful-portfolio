@@ -15,7 +15,7 @@ export default class OutlineButton extends Component {
 
   render() {
     return (
-          <TouchableOpacity style={styles.button} onPress={() => openLink(this.props.uri)} >
+          <TouchableOpacity style={[{height: this.props.height || undefined}, styles.button]} onPress={() => openLink(this.props.uri)} >
             <Text style= {styles.buttonText}>{this.props.text}</Text>
           </TouchableOpacity>
     );
@@ -30,6 +30,8 @@ const styles= StyleSheet.create({
     textAlign: 'center'
   },
   button: {
+    alignItems: 'center',
+    justifyContent: 'center',
     borderWidth: 0.5,
     borderColor: '#000',
     width: 125,
