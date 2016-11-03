@@ -21,7 +21,7 @@ let styles = StyleSheet.create({
 
   },
   cardImage: {
-    height: height/2 - 50,
+    height: height/3 ,
     width: width/2 + 130
   },
   close: {
@@ -34,7 +34,8 @@ let styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colours.white,
     justifyContent: 'center',
-    marginHorizontal: 20,
+    height: 200,
+
   },
   linearGradient: {
     backgroundColor: Colours.transparent,
@@ -63,9 +64,9 @@ let styles = StyleSheet.create({
   },
   textDescription: {
     color: Colours.darkGrey,
-    width: width-200,
+    width: width- 200,
     fontSize: 12,
-    lineHeight: 15,
+    lineHeight: 12,
     paddingTop: 10,
     paddingBottom:20,
     fontFamily: Font.primaryFont.fontFamily,
@@ -130,7 +131,7 @@ export default class ContactCard extends Component {
 
         <View style={styles.socialMediaBox}>
           {person.socialAccounts.map((account, i) =>
-            <SocialMediaButton key={account._mg} account={account} size={30} color='#fff'/>)}
+            <SocialMediaButton key={account._mg} account={account} size={30} color={Colours.white}/>)}
         </View>
       </View>
     );
