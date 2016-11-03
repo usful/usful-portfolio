@@ -25,17 +25,25 @@ export default class Team extends Component {
     }
   }
 
+  getFactor(len){
+    if (len <= 2) {
+     return 350;
+    } else {
+      return len * (80 + (len * 10));
+    }
+  }
+
   render() {
 
     return (
       <SwipeSelector
-        leftPoint={{x: -1350, y: -20}}
-        rightPoint={{x: 1350, y: -20}}
+        leftPoint={{x: -this.getFactor(this.props.team.length), y: -20}}
+        rightPoint={{x: this.getFactor(this.props.team.length) -80, y: -20}}
         scalingOptions={{padRightItems: 0, padLeftItems: 0}}>
-        {this.props.content.team.map((person, i) =>
+        {this.props.team.map((person, i) =>
           <ContactCard key={person._id}
                        person={person}
-                       totalCards={this.props.content.team.length}
+                       totalCards={this.props.team.length}
                        onClose={this.props.onClose}
                        id={i + 1}/>
         )}

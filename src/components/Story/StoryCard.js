@@ -13,7 +13,8 @@ import {
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
-
+import Font from '../../styles/Font';
+import Colours from '../../styles/Colours';
 let {height, width} = Dimensions.get('window');
 
 const CARD_HEIGHT = 350;
@@ -39,22 +40,22 @@ let styles = StyleSheet.create({
     width: width,
   },
   textContainer: {
-    backgroundColor: 'transparent',
+    backgroundColor: Colours.transparent,
     flex: 1,
   },
   name: {
-    backgroundColor: 'transparent',
-    color: '#ffffff',
-    fontFamily: 'Courier New',
+    backgroundColor: Colours.transparent,
+    color: Colours.white,
+    fontFamily: Font.primaryFont.fontFamily,
     fontSize: 28,
     fontWeight: '500',
     marginBottom: 34,
     textAlign: 'center',
   },
   title: {
-    backgroundColor: 'transparent',
-    color: '#ffffff',
-    fontFamily: 'Courier New',
+    backgroundColor: Colours.transparent,
+    color: Colours.white,
+    fontFamily: Font.tags.fontFamily,
     lineHeight: 22,
     fontSize: 16,
     fontWeight: '400',

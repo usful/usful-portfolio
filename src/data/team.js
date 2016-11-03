@@ -6,23 +6,24 @@ export default [
   {
     _id: GUID(),
     name: 'Clinton Robinson',
-    description: 'Something.',
+    description: 'Be useful. Change the world.',
     tags: ['Lead', 'Innovate', 'Develop'],
     picture: require('../../assets/jose.png'),
     socialAccounts: [
       {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/clintonjrobinson'},
-      {_mg: GUID(), type: 'github', uri: 'https://www.github.com/clintonjrobinson'},
-      {_mg: GUID(), type: 'email', uri: 'clint@usful.co'}]
+      {_mg: GUID(), type: 'email', uri: 'mailto:clint@usful.co'},
+      {_mg: GUID(), type: 'github', uri: 'https://www.github.com/clintonjrobinson'}
+      ]
   }, {
     _id: GUID(),
     name: 'Kofi Gyekye',
     description: 'Something Else.',
-    tags: ['Relationships', 'Stuff', 'More Stuff'],
+    tags: ['Lead', 'Innovate', 'Produce'],
     picture: require('../../assets/jose.png'),
     socialAccounts: [
-      {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
-      {_mg: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
-      {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
+      {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/kofi.g'},
+      {_mg: GUID(), type: 'email', uri: 'mailto:kofi@usful.co'},
+      {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/kofi-gyekye-3812044a'}]
   }, {
     _id: GUID(),
     name: 'Rhea Claus',
@@ -31,18 +32,17 @@ export default [
     picture: require('../../assets/jose.png'),
     socialAccounts: [
       {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/rheaclaus'},
-      {_mg: GUID(), type: 'email', uri: 'rhea@usful.co'},
-      {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
+      {_mg: GUID(), type: 'email', uri: 'mailto:rhea@usful.co'}]
   }, {
     _id: GUID(),
     name: 'Mecha Clarke',
-    description: 'Something Else.',
+    description: 'Usful means using the art design, and the emotion of experience to evoke deeper thinking and influence positive change throughout the World.',
     tags: ['Experience', 'Design', 'Brand'],
     picture: require('../../assets/jose.png'),
     socialAccounts: [
-      {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
-      {_mg: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
-      {_mg: GUID(), type: 'googleplus', uri: 'https://www.linkedin.com/in/mersaythis'}]
+      {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/so0o_fetch'},
+      {_mg: GUID(), type: 'email', uri: 'mailto:mecha@usful.co'},
+      {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mecha-clarke-1ab9697b'}]
   }, {
     _id: GUID(),
     name: 'Juliana Ciccarelli',
@@ -61,7 +61,7 @@ export default [
     picture: require('../../assets/jose.png'),
     socialAccounts: [
       {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/caseymarquespereira'},
-      {_mg: GUID(), type: 'email', uri: 'casey@usful.co'},
+      {_mg: GUID(), type: 'email', uri: 'mailto:casey@usful.co'},
       {_mg: GUID(), type: 'linkedin', uri: 'https://ca.linkedin.com/in/casey-marques-pereira-86492842'}]
   }, {
     _id: GUID(),
@@ -71,7 +71,7 @@ export default [
     picture: require('../../assets/jose.png'),
     socialAccounts: [
       {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/al.panagoulia'},
-      {_mg: GUID(), type: 'email', uri: 'alexandra@usful.co'},
+      {_mg: GUID(), type: 'email', uri: 'mailto:alexandra@usful.co'},
       {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/alexandra-panagoulia'}]
   }, {
     _id: GUID(),
@@ -81,7 +81,7 @@ export default [
     picture: require('../../assets/jose.png'),
     socialAccounts: [
       {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/jessgraziani'},
-      {_mg: GUID(), type: 'email', uri: 'jessica@usful.co'},
+      {_mg: GUID(), type: 'email', uri: 'mailto:jessica@usful.co'},
       {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/jessicagraziani'}]
   }, {
     _id: GUID(),
@@ -91,7 +91,7 @@ export default [
     picture: require('../../assets/jose.png'),
     socialAccounts: [
       {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/rishbuh'},
-      {_mg: GUID(), type: 'email', uri: 'rishabh@usful.co'},
+      {_mg: GUID(), type: 'email', uri: 'mailto:rishabh@usful.co'},
       {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/rishabhnag'}]
   }, {
     _id: GUID(),
@@ -101,7 +101,7 @@ export default [
     picture: require('../../assets/jose.png'),
     socialAccounts: [
       {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/mersaythis'},
-      {_mg: GUID(), type: 'facebook', uri: 'https://www.facebook.com/mersaythis'},
+      {_mg: GUID(), type: 'email', uri: 'mailto:mercedes@usful.co'},
       {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/mersaythis'}]
 
   }

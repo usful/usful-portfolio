@@ -21,12 +21,12 @@ let styles = StyleSheet.create({
 
   },
   cardImage: {
-    height: height/2 - 50,
+    height: height/3 ,
     width: width/2 + 130
   },
   close: {
     color: Colours.darkGrey,
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Font.tags.fontFamily,
     fontWeight: Font.bold.fontWeight,
     marginLeft: 130,
   },
@@ -34,7 +34,8 @@ let styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colours.white,
     justifyContent: 'center',
-    marginHorizontal: 20,
+    height: 200,
+
   },
   linearGradient: {
     backgroundColor: Colours.transparent,
@@ -46,7 +47,7 @@ let styles = StyleSheet.create({
   },
   page: {
     color: Colours.darkGrey,
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Font.tags.fontFamily,
     fontWeight: Font.bold.fontWeight
   },
   pageAndClose: {
@@ -63,9 +64,9 @@ let styles = StyleSheet.create({
   },
   textDescription: {
     color: Colours.darkGrey,
-    width: width-200,
+    width: width- 200,
     fontSize: 12,
-    lineHeight: 15,
+    lineHeight: 12,
     paddingTop: 10,
     paddingBottom:20,
     fontFamily: Font.primaryFont.fontFamily,
@@ -76,14 +77,14 @@ let styles = StyleSheet.create({
     fontWeight: '600',
     color: Colours.darkGrey,
     fontSize: 18,
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Font.tags.fontFamily,
     textAlign: 'center'
   },
 
   textTags: {
     color: Colours.darkGrey,
-    fontFamily: Font.primaryFont.fontFamily,
-    fontStyle: 'italic',
+    fontFamily: Font.tags.fontFamily,
+    fontStyle: Font.italics.fontStyle,
     fontSize: 10,
     paddingTop: 5,
     paddingBottom: 18,
@@ -130,7 +131,7 @@ export default class ContactCard extends Component {
 
         <View style={styles.socialMediaBox}>
           {person.socialAccounts.map((account, i) =>
-            <SocialMediaButton key={account._mg} account={account} size={30} color='#fff'/>)}
+            <SocialMediaButton key={account._mg} account={account} size={30} color={Colours.white}/>)}
         </View>
       </View>
     );
