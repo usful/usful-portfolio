@@ -37,8 +37,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.8)'
   },
   teamAndroid: {
-    height: 100,
-    width: 100
+    borderRadius: 22,
+    height: 40,
+    width: 70,
   },
   content: {
     flexDirection: 'row',
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   share:{
-    marginTop: -10,
+
   }
 });
 
@@ -94,7 +95,16 @@ export default class TitleItem extends Component {
   }
 
   closeTeamModal() {
+    console.log("closing");
     this.setState({modalVisible: false});
+  }
+
+  getTeamImage(){
+    if (Platform.OS === 'ios') {
+      return require('../../../assets/team.png');
+    } else {
+      return require('image!team');
+    }
   }
 
   openActionSheet() {
@@ -105,14 +115,20 @@ export default class TitleItem extends Component {
       },
     )
   }
-
+  showTeam(team) {
+    if (team._array.length > 0) {
+      return <TouchableOpacity onPress={(e) => this.openTeamModal(e)}>
+        <Image style={Platform.OS === 'ios'? styles.teamiOS : styles.teamAndroid} source={this.getTeamImage()}/>
+      </TouchableOpacity>
+    } else {
+      return <View></View>
+    }
+  }
   render() {
     return (
       <View style={[global.content, styles.content]}>
         <View style={styles.row1}>
-          <TouchableOpacity onPress={(e) => this.openTeamModal(e)}>
-            <Image style={styles.teamiOS} source={require('../../../assets/team.png')}/>
-          </TouchableOpacity>
+          {this.showTeam(this.props.content.team)}
           <TouchableOpacity onPress={(e) => this.openActionSheet()}>
             <Image style={styles.share} source={require('../../img/share.png')}/>
           </TouchableOpacity>

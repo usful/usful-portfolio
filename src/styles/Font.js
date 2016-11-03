@@ -9,7 +9,7 @@ export default {
     fontFamily: (Platform.OS === 'ios') ? 'Courier New' : 'Courier-New',
   },
   secondaryFont: {
-    fontFamily: 'Avenir-Book'
+    fontFamily: (Platform.OS === 'ios') ? 'Avenir-Book' : 'AvenirBook',
   },
   bold: {
     fontWeight: 'bold'

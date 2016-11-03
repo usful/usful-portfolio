@@ -55,7 +55,7 @@ export default [
       {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/julianaciccarelli'}]
   }, {
     _id: GUID(),
-    name: 'Casey Pierria',
+    name: 'Casey Pereira',
     description: 'Usful means to improve the human condition through experiences, and memorable environments.',
     tags: ['Experience', 'Design', 'Plan'],
     picture: require('../../assets/jose.png'),

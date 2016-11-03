@@ -106,9 +106,7 @@ const AppData = new AppDataModel(
         footer: media[14],
         blocks: content[1][0].blocks,
         team: [
-          team[3],
-          team[2],
-          team[1]
+
         ],
         story: 'FarmFreshTO'
       },
@@ -125,9 +123,7 @@ const AppData = new AppDataModel(
         footer: media[9],
         blocks: content[1][1].blocks,
         team: [
-          team[1],
-          team[2],
-          team[3]
+
         ],
         story: 'Urban Farming'
       },
@@ -144,9 +140,6 @@ const AppData = new AppDataModel(
         footer: media[33],
         blocks: content[2][0].blocks,
         team: [
-          team[0],
-          team[1],
-          team[2]
         ],
         contactInfo: {
           email: 'info@monanetworks.com',
@@ -169,9 +162,6 @@ const AppData = new AppDataModel(
         footer: media[14],
         blocks: content[2][1].blocks,
         team: [
-          team[2],
-          team[4],
-          team[6]
         ],
         contactInfo: {
           email: 'info@monanetworks.com',
