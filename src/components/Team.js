@@ -26,16 +26,16 @@ export default class Team extends Component {
   }
 
   render() {
-
+    let factor = this.props.team.length * 50;
     return (
       <SwipeSelector
-        leftPoint={{x: -1350, y: -20}}
-        rightPoint={{x: 1350, y: -20}}
+        leftPoint={{x: -factor, y: 20}}
+        rightPoint={{x: factor, y: 20}}
         scalingOptions={{padRightItems: 0, padLeftItems: 0}}>
-        {this.props.content.team.map((person, i) =>
+        {this.props.team.map((person, i) =>
           <ContactCard key={person._id}
                        person={person}
-                       totalCards={this.props.content.team.length}
+                       totalCards={this.props.team.length}
                        onClose={this.props.onClose}
                        id={i + 1}/>
         )}

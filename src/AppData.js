@@ -36,9 +36,9 @@ const AppData = new AppDataModel(
         footer: media[14],
         blocks: content[0][0].blocks,
         team: [
-          team[0],
-          team[1],
-          team[2]
+          team[6],
+          team[3],
+          team[1]
         ]
       },
       {
@@ -53,9 +53,11 @@ const AppData = new AppDataModel(
         footer: media[4],
         blocks: content[0][1].blocks,
         team: [
-          team[0],
           team[1],
-          team[2]
+          team[5],
+          team[4],
+          team[6],
+          team[3]
         ]
       },
       {
@@ -71,8 +73,7 @@ const AppData = new AppDataModel(
         blocks: content[0][2].blocks,
         team: [
           team[0],
-          team[1],
-          team[2]
+          team[1]
         ]
       },
       {
@@ -87,9 +88,9 @@ const AppData = new AppDataModel(
         footer: media[9],
         blocks: content[0][3].blocks,
         team: [
-          team[2],
+          team[4],
           team[3],
-          team[4]
+          team[1]
         ]
       },
       {
