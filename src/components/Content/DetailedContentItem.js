@@ -19,7 +19,7 @@ import CloseButton from './CloseButton';
 import HeaderItem from './HeaderItem';
 import TitleItem from './TitleItem';
 import BodyItem from './BodyItem';
-import FeatureImageItem from './FeatureImageItem';
+import QuoteItem from './QuoteItem';
 import SliderItem from './SliderItem';
 import ImageItem from './ImageItem';
 import NextContentButton from './NextContentButton';
@@ -52,11 +52,11 @@ export default class DetailedContentItem extends Component {
   renderFooter() {
     switch (this.props.content.type) {
       case "Initiative":
-        return <ContactFooter />;
+        return <ContactFooter toggle={this.state.footerToggle}/>;
       case "Story":
         return;
       case "Product":
-        return <ContactFooter contact={this.props.content.contactInfo}/>;
+        return <ContactFooter toggle={this.state.footerToggle} contact={this.props.content.contactInfo}/>;
       default:
         return <View><Text>{this.props.content.type}</Text></View>;
     }
@@ -73,15 +73,15 @@ export default class DetailedContentItem extends Component {
         ref={ref => this._ScrollView = ref}
         scrollEventThrottle={1000/30}
         onScroll= {(el) => this._handleScroll(el, blockHeight)} style={[global.container]}>
-        <View style = {this.state.footerToggle ? styles.contactShow : styles.contactHide}>
+
           {this.renderFooter()}
-        </View>
+
         <View
           onLayout={(event) => {
             blockHeight = event.nativeEvent.layout.height;
           }}
           style = {type !== 'Story' && this.state.footerToggle ? styles.contentShow : styles.contentHide}>
-          <HeaderItem image={this.props.content.header.uri} date={longDateFormatter(this.props.content.date)}/>
+          <HeaderItem type={this.props.content.type} image={this.props.content.header.uri} date={longDateFormatter(this.props.content.date)}/>
           <TitleItem content={this.props.content} title={this.props.content.title} tags={this.props.content.tags}/>
 
           {blocks.map((block, index) => {
@@ -91,30 +91,31 @@ export default class DetailedContentItem extends Component {
               case 'LegalBlock':
                 return <BodyItem style={styles.legal} key={index} text={block.text}/>;
               case 'MediaBlock':
-                return <ImageItem key={index} image={block.media.uri}/>;
+                return <ImageItem key={index} style= {block.style} image={block.media.uri}/>;
               case 'ButtonBlock':
                 return <View  key={index} style = {[global.content,styles.buttonContainer]}><OutlineButton text={block.text} uri={block.uri}/></View>;
               case 'ButtonRowBlock':
-                return (<View key={index} style = {[global.content,styles.buttonsContainer]}>
-                    {block.buttons.map((button,i) => <View key={i} style = {styles.buttonContainer}>
-                      <OutlineButton text={button.text} uri={button.uri}/>
+                return (<View key={index} style = {[global.content]}>
+                  {block.title ? <View style= {block.buttons.length > 2 ? styles.buttonRowTitleContainer : styles.buttonTitleContainer}><Text style= {styles.buttonTitle}>{block.title}</Text></View> : undefined}
+                  <View style = {[styles.buttonsContainer]}>
+                  {block.buttons.map((button,i) => <View key={i} style = {block.buttons.length > 2 ? styles.buttonRow : styles.buttonContainer}>
+                      <OutlineButton height={75} text={button.text} uri={button.uri}/>
                     </View>)}
-                </View>)
+                </View>
+                  </View>)
               case 'MediaCarouselBlock':
                 return <SliderItem key={index}
                                    images={block.media.map((img) => img.uri)}/>;
               case 'QuoteBlock':
-                return <FeatureImageItem image={block.media.uri}
-                                         key={index}
-                                         author={block.author}
-                                         byline={block.text}/>;
+                return <QuoteItem key={index}
+                                  byline={block.text}/>;
               default:
                 return <View key={index}><Text>{block._type}</Text></View>;
             }
           })}
 
 
-          <NextContentButton style={ [styles.footer, type === 'Story' ? styles.noShadow : styles.shadow]} current = {type} content={this.props.nextContent}
+          <NextContentButton style={ [styles.footer, type === 'Story' ? styles.noShadow : styles.shadow]} current = {this.props.content} content={this.props.nextContent}
                              image={this.props.content.footer.uri}/>
         </View>
 
@@ -126,17 +127,6 @@ export default class DetailedContentItem extends Component {
 }
 
 const styles = StyleSheet.create({
-  contactShow: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    height: ContactFooter.FOOTER_HEIGHT,
-    opacity: 1
-  },
-  contactHide: {
-    height: 0,
-    opacity: 0
-  },
   contentShow: {
     marginBottom: ContactFooter.FOOTER_HEIGHT - ContactFooter.UNDERLAY_HEIGHT
   },
@@ -150,8 +140,26 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     color: Colors.textGrey
   },
+  buttonTitle: {
+    fontFamily: 'Avenir-Book',
+    fontSize: 15,
+    paddingHorizontal: 30,
+    flexWrap: 'wrap'
+  },
+
+  buttonTitleContainer: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+  buttonRowTitleContainer: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   shadow: {
-    elevation: 3,
+    elevation: 2,
     shadowOffset: {
       height: 6,
       width: 6
@@ -164,11 +172,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'center',
     flexWrap: 'wrap',
-    marginBottom: 30
   },
   buttonContainer: {
     flexDirection: 'row',
     alignSelf: 'center',
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+    marginBottom: 20
   },
   footer: {
     marginTop: 30

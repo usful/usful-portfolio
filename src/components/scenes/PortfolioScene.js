@@ -15,7 +15,7 @@ import {
 
 import AppData from '../../AppData';
 import Navigation from '../../helpers/Navigation';
-
+import ContactFooter from '../ContactFooter';
 import StoryCard from '../Story/StoryCard';
 import Carousel from '../Carousel';
 import Colours from '../../styles/Colours';
@@ -46,7 +46,23 @@ let styles = StyleSheet.create({
     backgroundColor: Colours.navBarBlack,
     height: height,
     width: width,
-  }
+  },
+  shadow: {
+    elevation: 2,
+    shadowOffset: {
+      height: 6,
+      width: 6
+    },
+    shadowColor: '#000',
+    shadowRadius: 3,
+    shadowOpacity: 0.5
+  },
+  contactShow: {
+    marginBottom: ContactFooter.FOOTER_HEIGHT - ContactFooter.UNDERLAY_HEIGHT
+  },
+  contactHide: {
+    marginBottom: 0
+  },
 });
 
 export default class PortfolioScene extends Component {
@@ -60,6 +76,7 @@ export default class PortfolioScene extends Component {
       pageTransition: 0,
       parentScroll: true,
       productCount: 0,
+      footerToggle: false,
       hideNavBar: false,
       hideAnimation: new Animated.Value(1),
       //Initialize an array of length stories.length and set all elements to 0
@@ -103,6 +120,7 @@ export default class PortfolioScene extends Component {
     if (nextState.hideNavBar !== this.state.hideNavBar) return true;
     if (nextState.hideAnimation !== this.state.hideAnimation) return true;
     if (nextState.storyOffsets !== this.state.storyOffsets) return true;
+    if (nextState.footerToggle !== this.state.footerToggle) return true;
 
     return false;
   }
@@ -181,7 +199,7 @@ export default class PortfolioScene extends Component {
     //END PARALLAX CODE
 
     let yOffset = e.nativeEvent.contentOffset.y;
-    let reachedBottom = (e.nativeEvent.contentSize.height - 700 <= yOffset);
+    let reachedBottom = (e.nativeEvent.contentSize.height - height <= yOffset);
     if (yOffset <= 0) {
       this.setState({
         storyOffsets: storyOffsets,
@@ -191,6 +209,7 @@ export default class PortfolioScene extends Component {
       this.setState({
         storyOffsets: storyOffsets,
         hideNavBar: true,
+        footerToggle: true
       });
     } else {
       this.setState({
@@ -240,6 +259,10 @@ export default class PortfolioScene extends Component {
                       style={styles.storiesScroll}
                       onScroll={(e) => this.onStoriesScroll(e)}
                       onMomentumScrollEnd={(e) => this.setIdleToZero(e)}>
+
+              <ContactFooter toggle={this.state.footerToggle} />
+
+            <View style = {[this.state.footerToggle ? styles.contactShow : styles.contactHide, styles.shadow]}>
             {AppData.stories.map((story, i) =>
               <StoryCard ref={`storyCard${i}`}
                          key={story._id}
@@ -248,6 +271,7 @@ export default class PortfolioScene extends Component {
                          offset={this.state.storyOffsets[i]}
                          onPress={() => this.onContentPressed(story)}/>
             )}
+            </View>
           </ScrollView>
 
           <Carousel

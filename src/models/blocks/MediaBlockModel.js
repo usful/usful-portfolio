@@ -8,7 +8,8 @@ const MediaBlockModel = Model.create(
   'MediaBlock',
   {
     ... BlockProperties,
-    media: MediaModel
+    media: MediaModel,
+    style: String
   }
 );
 

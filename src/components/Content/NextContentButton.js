@@ -52,7 +52,7 @@ export default class NextStoryButton extends Component {
   }
 
   renderCopy() {
-    switch(this.props.current){
+    switch(this.props.current.type){
       case 'Story' :
         return(
         <View style={style.row1}>
@@ -61,15 +61,22 @@ export default class NextStoryButton extends Component {
         </View>)
 
       case 'Initiative' :
-        return(
-        <View style={style.row1}>
-          <Text style={style.title}>Read more about our Usful Initiatives in action</Text>
-        </View>)
+        if(this.props.current.name === 'Evolving the Human Condition') {
+          return (
+            <View style={style.row1}>
+              <Text style={style.title}>Read more about how we’re impacting the Human Condition</Text>
+            </View>)
+        } else if(this.props.current.name === 'Developing Efficiencies') {
+          return (
+            <View style={style.row1}>
+              <Text style={style.title}>Read more about how we're solving the Resource & Energy Crisis</Text>
+            </View>)
+        }
 
       case 'Product' :
         return(
         <View style={style.row1}>
-          <Text style={style.title}>Read more about our Usful Products in action</Text>
+          <Text style={style.title}>{this.props.current.name} in Action</Text>
         </View>
         )
 

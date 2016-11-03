@@ -3,10 +3,13 @@ import {
     AppRegistry,
     StyleSheet,
     Text,
+    Dimensions,
     View
 } from 'react-native';
 
 import global from '../../styles';
+
+let {width,height} = Dimensions.get('window');
 
 export default class BodyItem extends Component {
   constructor(props) {
@@ -24,9 +27,10 @@ export default class BodyItem extends Component {
 
 const style = StyleSheet.create({
   text: {
+    width: width,
     fontFamily: 'Avenir-Book',
     fontSize: 15,
-    marginHorizontal: 30,
+    paddingHorizontal: 30,
     flexWrap: 'wrap'
   }
 });
