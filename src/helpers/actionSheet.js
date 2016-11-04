@@ -1,7 +1,5 @@
 import {Alert, ActionSheetIOS, Platform} from 'react-native';
 
-import AndroidShare from 'react-native-android-share';
-
 const DEFAULT_OPTS = {
   buttons: [{
     text: 'Example Button',
@@ -20,9 +18,7 @@ export default class ActionSheet {
       function(){
         return
       })
-    } else {
-
-     AndroidShare.openChooserWithOptions(actions, 'Usful Portfolio')
     }
+    return
   }
 }

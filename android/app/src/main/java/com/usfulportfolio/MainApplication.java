@@ -1,7 +1,6 @@
 package com.usful.portfolio;
 
 import com.BV.LinearGradient.LinearGradientPackage;
-import com.blueprintalpha.rnandroidshare.RNAndroidSharePackage;
 import android.app.Application;
 import android.util.Log;
 
@@ -27,7 +26,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
           new LinearGradientPackage(),
-          new RNAndroidSharePackage()
+
       );
     }
   };

@@ -135,7 +135,6 @@ signingConfig signingConfigs.release
 }
 
 dependencies {
-    compile project(':RNAndroidShare')
     compile project(':react-native-linear-gradient')
     compile project(':react-native-vector-icons')
     compile fileTree(dir: "libs", include: ["*.jar"])
