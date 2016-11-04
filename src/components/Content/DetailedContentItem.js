@@ -64,7 +64,7 @@ export default class DetailedContentItem extends Component {
   }
 
   render() {
-
+    let contentShow = Platform.OS === 'ios' ? styles.contentShow : styles.contentShowAndroid;
     let blocks = this.props.content.blocks;
     let type = this.props.content.type;
     let blockHeight = 0;
@@ -82,7 +82,7 @@ export default class DetailedContentItem extends Component {
           onLayout={(event) => {
             blockHeight = event.nativeEvent.layout.height;
           }}
-          style = {type !== 'Story' && this.state.footerToggle ? styles.contentShow : styles.contentHide}>
+          style = {type !== 'Story' && this.state.footerToggle ? contentShow : styles.contentHide}>
           <HeaderItem type={this.props.content.type} image={this.props.content.header.uri} date={longDateFormatter(this.props.content.date)}/>
           <TitleItem content={this.props.content} title={this.props.content.title} tags={this.props.content.tags}/>
 
@@ -132,6 +132,9 @@ export default class DetailedContentItem extends Component {
 const styles = StyleSheet.create({
   contentShow: {
     marginBottom: ContactFooter.FOOTER_HEIGHT - ContactFooter.UNDERLAY_HEIGHT
+  },
+  contentShowAndroid: {
+    marginBottom: ContactFooter.FOOTER_HEIGHT
   },
   contentHide: {
     marginBottom: 0
