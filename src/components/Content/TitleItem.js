@@ -141,13 +141,13 @@ export default class TitleItem extends Component {
     return (
       <View style={[global.content, styles.content]}>
         <View style={styles.row1}>
-<<<<<<< HEAD
+
           {this.showTeam(this.props.content.team)}
-=======
+
           <TouchableOpacity onPress={(e) => this.openTeamModal(e)}>
             <Image style={styles.teamiOS} source={{uri : mediaFormatter(media[48])}}/>
           </TouchableOpacity>
->>>>>>> Fixed sharing on android
+
           <TouchableOpacity onPress={(e) => this.openActionSheet()}>
             <Image style={styles.share} source={{uri: mediaFormatter(media[47])}}/>
           </TouchableOpacity>
