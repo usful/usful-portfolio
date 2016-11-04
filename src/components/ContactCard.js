@@ -20,6 +20,7 @@ let styles = StyleSheet.create({
     backgroundColor: Colours.white,
   },
   cardImage: {
+    
     height: height/3 ,
     width: width/2 + 130,
     backgroundColor: Colours.white,
