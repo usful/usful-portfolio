@@ -108,11 +108,7 @@ export default class TitleItem extends Component {
   }
 
   getTeamImage(){
-    if (Platform.OS === 'ios') {
-      return require('../../../assets/team.png');
-    } else {
-      return require('image!team');
-    }
+      return {uri: mediaFormatter(media[48])};
   }
 
   openActionSheet() {
@@ -143,10 +139,6 @@ export default class TitleItem extends Component {
         <View style={styles.row1}>
 
           {this.showTeam(this.props.content.team)}
-
-          <TouchableOpacity onPress={(e) => this.openTeamModal(e)}>
-            <Image style={styles.teamiOS} source={{uri : mediaFormatter(media[48])}}/>
-          </TouchableOpacity>
 
           <TouchableOpacity onPress={(e) => this.openActionSheet()}>
             <Image style={styles.share} source={{uri: mediaFormatter(media[47])}}/>
