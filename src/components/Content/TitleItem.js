@@ -12,6 +12,7 @@ import {
   Modal
 } from 'react-native';
 
+import longDateFormatter from '../../helpers/formatters/longDate';
 import ActionSheet from '../../helpers/actionSheet';
 import TagList from './StoryTagList';
 import Team from '../Team';
@@ -109,9 +110,10 @@ export default class TitleItem extends Component {
 
   openActionSheet() {
     ActionSheet.open({
+        title: 'Usful Portfolio',
         url: 'https://www.usful.co',
         message: 'I think you might like this app by Usful. Check out their stories!',
-        subject: ''
+        subject: `Usful Portfolio - ${longDateFormatter(this.props.content.date || new Date())}`
       }
     )
   }

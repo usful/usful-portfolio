@@ -12,6 +12,17 @@ const DEFAULT_OPTS = {
 export default class ActionSheet {
   static open(actions) {
 
-    Share.open(actions);
+    if(Platform.OS == 'ios'){
+      ActionSheetIOS.showShareActionSheetWithOptions(actions,
+        function(err){
+        Alert(err)
+      },
+      function(){
+        return
+      })
+    } else {
+
+      Share.open(actions);
+    }
   }
 }
