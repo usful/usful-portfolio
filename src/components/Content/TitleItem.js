@@ -12,6 +12,8 @@ import {
   Modal
 } from 'react-native';
 
+import media from '../../data/media';
+import mediaFormatter from '../../helpers/formatters/mediaUri';
 import longDateFormatter from '../../helpers/formatters/longDate';
 import ActionSheet from '../../helpers/actionSheet';
 import TagList from './StoryTagList';
@@ -71,7 +73,12 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   share:{
-
+    borderRadius: 22,
+    height: 43,
+    width: 80,
+    borderColor: Colours.transparent,
+    borderWidth: 0.4,
+    marginBottom: 10
   }
 });
 
@@ -109,10 +116,14 @@ export default class TitleItem extends Component {
   }
 
   openActionSheet() {
-    ActionSheet.open({
+    ActionSheet.open(Platform.OS === 'ios' ? {
         title: 'Usful Portfolio',
-        url: 'https://www.usful.co',
+        url: 'http://www.usful.co',
         message: 'I think you might like this app by Usful. Check out their stories!',
+        subject: `Usful Portfolio - ${longDateFormatter(this.props.content.date || new Date())}`
+      } :
+      {
+        text: 'I think you might like this app by Usful. Check out their stories!\n\nhttp://www.usful.co',
         subject: `Usful Portfolio - ${longDateFormatter(this.props.content.date || new Date())}`
       }
     )
@@ -130,9 +141,15 @@ export default class TitleItem extends Component {
     return (
       <View style={[global.content, styles.content]}>
         <View style={styles.row1}>
+<<<<<<< HEAD
           {this.showTeam(this.props.content.team)}
+=======
+          <TouchableOpacity onPress={(e) => this.openTeamModal(e)}>
+            <Image style={styles.teamiOS} source={{uri : mediaFormatter(media[48])}}/>
+          </TouchableOpacity>
+>>>>>>> Fixed sharing on android
           <TouchableOpacity onPress={(e) => this.openActionSheet()}>
-            <Image style={styles.share} source={require('../../img/share.png')}/>
+            <Image style={styles.share} source={{uri: mediaFormatter(media[47])}}/>
           </TouchableOpacity>
         </View>
 

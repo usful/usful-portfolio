@@ -90,6 +90,7 @@ export default class NextStoryButton extends Component {
 
   render() {
     return (
+      <View elevation = {this.props.elevation}>
       <TouchableOpacity style ={this.props.style} onPress={() => this.nextContent()}>
         <View style={style.content}>
           {this.renderCopy()}
@@ -98,6 +99,7 @@ export default class NextStoryButton extends Component {
           </View>
         </View>
       </TouchableOpacity>
+      </View>
     );
   }
 }

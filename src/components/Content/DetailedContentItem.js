@@ -5,7 +5,8 @@ import {
     ScrollView,
     Dimensions,
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    Platform
 } from 'react-native';
 
 import global from '../../styles';
@@ -63,6 +64,7 @@ export default class DetailedContentItem extends Component {
   }
 
   render() {
+
     let blocks = this.props.content.blocks;
     let type = this.props.content.type;
     let blockHeight = 0;
@@ -115,7 +117,8 @@ export default class DetailedContentItem extends Component {
           })}
 
 
-          <NextContentButton style={ [styles.footer, type === 'Story' ? styles.noShadow : styles.shadow]} current = {this.props.content} content={this.props.nextContent}
+          <NextContentButton
+            elevation= {5} style={ [styles.footer, type === 'Story' ? styles.noShadow : styles.shadow]} current = {this.props.content} content={this.props.nextContent}
                              image={this.props.content.footer.uri}/>
         </View>
 
@@ -159,7 +162,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   shadow: {
-    elevation: 2,
     shadowOffset: {
       height: 6,
       width: 6
