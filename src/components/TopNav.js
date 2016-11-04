@@ -63,28 +63,30 @@ export default class TopNav extends Component {
     if (this.props.previousIndex !== nextProps.previousIndex) return true;
     if (this.props.index !== nextProps.index) return true;
     if (this.props.hideNavBar !== nextProps.hideNavBar) return true;
-    return true;
+    return false;
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillUpdate(nextProps,nextState) {
     animationProgress.setValue(nextProps.pageTransition);
     //navBarFading.setValue(nextProps.hideNavBar ? 0 : 1);
-    this.slide(nextProps.hideNavBar? 'down' : 'up');
+    this.slide(nextProps.hideNavBar? 'up' : 'down');
   }
 
   goToPage(page) {
-    this.props.bar.scrollTo({x: page * width, y:0, animated:true});
+    this.props.bar.scrollTo({x: page * width, y: 0, animated: true});
   }
 
-  slide(up){
-    let val = (up === 'up') ? 0: -75;
-    Animated.timing(this.state.slidingAnim, {
-      //duration: add speed here
-      toValue: {
-        x: 0,
-        y: val,
-      },
-    }).start();
+  slide(direction){
+    console.log("change");
+    let val = (direction === 'down') ? 0: -75;
+    let duration = (direction === 'down')? 100: 100;
+      Animated.timing(this.state.slidingAnim, {
+        duration: duration,
+        toValue: {
+          x: 0,
+          y: val,
+        },
+      }).start();
   }
 
   render() {

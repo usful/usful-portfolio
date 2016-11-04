@@ -51,14 +51,6 @@ let styles = StyleSheet.create({
     fontWeight: '400',
     lineHeight:21,
   },
-  msgSmall:{
-    color:  Colours.white,
-    fontFamily: Font.primaryFont.fontFamily,
-    fontSize: 14,
-    fontWeight: '400',
-    lineHeight:21,
-    letterSpacing: 1
-  },
   skip:{
     alignSelf:'flex-end',
     color:  Colours.white,
