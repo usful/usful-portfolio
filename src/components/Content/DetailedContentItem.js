@@ -9,7 +9,13 @@ import {
     Platform
 } from 'react-native';
 
+
 import Style from '../../styles';
+
+import global from '../../styles';
+import Colors from '../../styles/Colours';
+import Font from '../../styles/Font';
+
 
 import OutlineButton from '../OutlineButton';
 import longDateFormatter from '../../helpers/formatters/longDate';
@@ -149,14 +155,15 @@ const styles = StyleSheet.create({
     marginBottom: 0
   },
   legal: {
-    fontFamily: 'Avenir-BookOblique',
+    fontFamily: Font.secondaryFont.fontFamily,
+    fontStyle: Font.italics.fontStyle,
     fontSize: 12,
     marginHorizontal: 30,
     flexWrap: 'wrap',
     color: Style.colours.textGrey
   },
   buttonTitle: {
-    fontFamily: 'Avenir-Book',
+    fontFamily: Font.secondaryFont.fontFamily,
     fontSize: 15,
     paddingHorizontal: 30,
     flexWrap: 'wrap'
