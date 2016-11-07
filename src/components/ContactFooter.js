@@ -27,7 +27,7 @@ export default class ContactFooter extends Component {
     card: 0,
     contact:
     {
-      email: 'rishabh@monanetworks.com',
+      email: 'mailto:info@usful.co',
       phone: 'tel:1-877-364-6662',
       instagram: 'https://www.instagram.com/usful.co/',
       twitter: 'https://twitter.com/Usful_',

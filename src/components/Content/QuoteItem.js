@@ -6,6 +6,7 @@ import {
     Image
 } from 'react-native';
 
+import Font from '../../styles/Font';
 import global from '../../styles';
 
 export default class QuoteItem extends Component {
@@ -26,7 +27,7 @@ const style = StyleSheet.create({
   byline: {
     textAlign: 'center',
     fontSize: 24,
-    fontFamily: 'Courier New',
+    fontFamily: Font.primaryFont.fontFamily,
     fontWeight: 'bold',
     flexWrap: 'wrap',
     marginHorizontal: 40
