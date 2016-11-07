@@ -7,6 +7,9 @@ import {
 } from 'react-native';
 
 import global from '../../styles';
+import Font from '../../styles/Font';
+import Colours from '../../styles/Colours';
+
 
 export default class CloseButton extends Component {
   static defaultProps = {
@@ -31,15 +34,15 @@ const style = StyleSheet.create({
     position: 'absolute',
     top: 0,
     right: 0,
-    backgroundColor: 'transparent',
+    backgroundColor: Colours.transparent,
     padding: 20
   },
   text: {
     textAlign: 'center',
     fontSize: 15,
-    fontFamily: 'Courier New',
+    fontFamily: Font.primaryFont.fontFamily,
     fontWeight: '500',
-    color: '#000',
+    color: Colours.navBarBlack,
     flexWrap: 'wrap',
   }
 });

@@ -26,14 +26,14 @@ const AppData = new AppDataModel(
     content: [
       {
         _id: GUID(),
-        hero: media[9],
+        hero: media[10],
         type: 'Story',
         name: 'Urban Farming',
-        header: media[5],
+        header: media[11],
         title: 'Making a Local Impact on Global Sustainability',
         author: team[0],
         date: new Date(),
-        footer: media[14],
+        footer: media[17],
         blocks: content[0][0].blocks,
         team: [
           team[6],
@@ -44,13 +44,13 @@ const AppData = new AppDataModel(
       {
         _id: GUID(),
         type: 'Story',
-        hero: media[14],
+        hero: media[17],
         name: '#FarmFreshTO',
-        header: media[10],
+        header: media[18],
         title: 'Usful XM’s Food for Thought Experience',
         author: team[0],
         date: new Date(),
-        footer: media[4],
+        footer: media[5],
         blocks: content[0][1].blocks,
         team: [
           team[1],
@@ -63,13 +63,13 @@ const AppData = new AppDataModel(
       {
         _id: GUID(),
         type: 'Story',
-        hero: media[4],
+        hero: media[5],
         name: 'The Anthropocene',
-        header: media[1],
+        header: media[6],
         title: 'Usful as the Digital Partner for the Anthropocene Film Project',
         author: team[0],
         date: new Date(),
-        footer: media[33],
+        footer: media[36],
         blocks: content[0][2].blocks,
         team: [
           team[0],
@@ -79,13 +79,13 @@ const AppData = new AppDataModel(
       {
         _id: GUID(),
         type: 'Story',
-        hero: media[33],
+        hero: media[36],
         name: 'Manufactured Landscapes',
-        header: media[31],
+        header: media[37],
         title: 'Using Usful Technology to Create an Interactive Art Gallery',
         author: team[0],
         date: new Date(),
-        footer: media[9],
+        footer: media[10],
         blocks: content[0][3].blocks,
         team: [
           team[4],
@@ -97,17 +97,15 @@ const AppData = new AppDataModel(
         _id: GUID(),
         type: 'Initiative',
         name: 'Evolving the Human Condition',
-        header: media[18],
-        hero: media[17],
+        header: media[22],
+        hero: media[22],
         heroDescription: 'Using technology and experience as a means to impact behaviour.',
         title: 'Using technology and experience as a means to impact behaviour.',
         author: team[5],
-        footer: media[14],
+        footer: media[17],
         blocks: content[1][0].blocks,
         team: [
-          team[3],
-          team[2],
-          team[1]
+
         ],
         story: '#FarmFreshTO'
       },
@@ -115,17 +113,15 @@ const AppData = new AppDataModel(
         _id: GUID(),
         type: 'Initiative',
         name: 'Developing Efficiencies',
-        header: media[16],
-        hero: media[15],
+        header: media[21],
+        hero: media[19],
         heroDescription: 'Using technology and experience as a means to solving the resource crisis.',
         title: 'Using technology and experience as a means to solving the resource crisis.',
         author: team[4],
-        footer: media[9],
+        footer: media[10],
         blocks: content[1][1].blocks,
         team: [
-          team[1],
-          team[2],
-          team[3]
+
         ],
         story: 'Urban Farming'
       },
@@ -133,17 +129,14 @@ const AppData = new AppDataModel(
         _id: GUID(),
         type: 'Product',
         name: 'Lane',
-        hero: media[28],
+        hero: media[31],
         heroDescription: 'Creating Smart Workplaces',
         title: 'Bringing modern SaaS mobile technology to an untapped and outdated niche market.',
-        header: media[22],
+        header: media[32],
         author: team[2],
-        footer: media[33],
+        footer: media[36],
         blocks: content[2][0].blocks,
         team: [
-          team[0],
-          team[1],
-          team[2]
         ],
         contactInfo: {
           email: 'info@joinlane.com',
@@ -157,17 +150,14 @@ const AppData = new AppDataModel(
         _id: GUID(),
         type: 'Product',
         name: 'Usful XM',
-        header: media[36],
+        header: media[42],
         author: team[3],
-        hero: media[37],
+        hero: media[41],
         heroDescription: 'Experiences Designed to Educate, Inform, and Improve the Human Condition',
         title: 'Rethinking experiences to transform believers into doers',
-        footer: media[14],
+        footer: media[17],
         blocks: content[2][1].blocks,
         team: [
-          team[2],
-          team[4],
-          team[6]
         ],
         story: '#FarmFreshTO'
       }

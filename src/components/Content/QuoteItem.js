@@ -25,7 +25,7 @@ export default class QuoteItem extends Component {
 const style = StyleSheet.create({
   byline: {
     textAlign: 'center',
-    fontSize: 27,
+    fontSize: 24,
     fontFamily: 'Courier New',
     fontWeight: 'bold',
     flexWrap: 'wrap',

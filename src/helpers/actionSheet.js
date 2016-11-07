@@ -10,17 +10,15 @@ const DEFAULT_OPTS = {
 export default class ActionSheet {
   static open(actions) {
 
-    ActionSheetIOS.showShareActionSheetWithOptions(actions, (error)=>
-    alert(error),
-      (success, method) => {
-        var text;
-        if (success) {
-          text = `Shared via ${method}`;
-        } else {
-          text = 'You didn\'t share';
-        }
-
-  }
-    );
+    if(Platform.OS == 'ios'){
+      ActionSheetIOS.showShareActionSheetWithOptions(actions,
+        function(err){
+        Alert(err)
+      },
+      function(){
+        return
+      })
+    }
+    return
   }
 }

@@ -18,23 +18,29 @@ import SocialMediaButton from './SocialMediaButton';
 let styles = StyleSheet.create({
   card: {
     backgroundColor: Colours.white,
-
   },
   cardImage: {
     height: height/3 ,
-    width: width/2 + 130
+    width: width/2 + 130,
+    backgroundColor: Colours.white,
   },
-  close: {
+
+  closeButton: {
+    marginTop : 30,
+    height: 70,
+  },
+  closeText: {
     color: Colours.darkGrey,
     fontFamily: Font.tags.fontFamily,
     fontWeight: Font.bold.fontWeight,
-    marginLeft: 130,
+    marginLeft: 100,
+    paddingLeft: 30,
+
   },
   contactInfo: {
     alignItems: 'center',
-    backgroundColor: Colours.white,
     justifyContent: 'center',
-    height: 200,
+    height: 190,
 
   },
   linearGradient: {
@@ -46,13 +52,16 @@ let styles = StyleSheet.create({
     right: 0
   },
   page: {
+    marginTop: 30,
     color: Colours.darkGrey,
     fontFamily: Font.tags.fontFamily,
-    fontWeight: Font.bold.fontWeight
+    fontWeight: Font.bold.fontWeight,
+    backgroundColor: Colours.white,
+
   },
   pageAndClose: {
     alignSelf: 'center',
-    marginTop: 30,
+    marginTop: 0,
     flexDirection: 'row',
     backgroundColor: Colours.white,
   },
@@ -63,16 +72,17 @@ let styles = StyleSheet.create({
     justifyContent: 'center'
   },
   textDescription: {
+    backgroundColor: Colours.white,
     color: Colours.darkGrey,
     width: width- 200,
     fontSize: 12,
     lineHeight: 12,
-    paddingTop: 10,
-    paddingBottom:20,
+    marginBottom: 10,
     fontFamily: Font.primaryFont.fontFamily,
     textAlign: 'center'
   },
   textName: {
+    backgroundColor: Colours.white,
     marginTop: 20,
     fontWeight: '600',
     color: Colours.darkGrey,
@@ -82,6 +92,7 @@ let styles = StyleSheet.create({
   },
 
   textTags: {
+    backgroundColor: Colours.white,
     color: Colours.darkGrey,
     fontFamily: Font.tags.fontFamily,
     fontStyle: Font.italics.fontStyle,
@@ -112,22 +123,24 @@ export default class ContactCard extends Component {
     return (
       <View>
         <View style={styles.card}>
-          <View style={styles.pageAndClose}>
-            <Text style={styles.page}>{this.props.id}/{this.props.totalCards}</Text>
-            <TouchableOpacity onPress={this.props.onClose}>
-              <Text style={styles.close}>CLOSE</Text>
-            </TouchableOpacity>
-          </View>
+        <View style={styles.card}>
+            <View style={styles.pageAndClose}>
+              <Text style={styles.page}>{this.props.id}/{this.props.totalCards}</Text>
+              <TouchableOpacity style={styles.closeButton} onPress={this.props.onClose}>
+                <Text style={styles.closeText}>CLOSE</Text>
+              </TouchableOpacity>
+            </View>
 
-          <View style={styles.cardImage}>
-          </View>
+            <View style={styles.cardImage}>
+            </View>
 
-          <View style={styles.contactInfo}>
-            <Text style={styles.textName}>{person.name}</Text>
-            <Text style={styles.textTags}>{person.tags.join(' / ')}</Text>
-            <Text style={styles.textDescription}>{person.description}</Text>
-          </View>
+            <View style={styles.contactInfo}>
+              <Text style={styles.textName}>{person.name}</Text>
+              <Text style={styles.textTags}>{person.tags.join(' / ')}</Text>
+              <Text style={styles.textDescription}>{person.description}</Text>
+            </View>
         </View>
+          </View>
 
         <View style={styles.socialMediaBox}>
           {person.socialAccounts.map((account, i) =>

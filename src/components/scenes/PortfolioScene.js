@@ -29,7 +29,7 @@ let idleInterval;
 //Set the FPS to 30 in dev mode, no need to try to run high frame rates we can't do in iOS simulator
 const SCROLL_FPS = Math.round(1000 / __DEV__ ? 30 : 60);
 
-function pause(duration = 250) {
+function pause(duration = 900) {
   return new Promise((resolve, reject) => {
     setTimeout(() => resolve(), duration);
   });
@@ -166,17 +166,16 @@ export default class PortfolioScene extends Component {
   }
 
   setScrollEnabled(e) {
+
     this.setState({parentScroll: true})
   }
 
   onStoriesScroll(e) {
+    console.log("gogogo");
     let currentOffset = e.nativeEvent.contentOffset.y;
     let direction = currentOffset > offset;
-
     let cardsScrolled = Math.floor(e.nativeEvent.contentOffset.y / StoryCard.CARD_HEIGHT);
     let cardsPerScreen = Math.ceil(height / StoryCard.CARD_HEIGHT);
-
-    offset = currentOffset;
 
     //PARALLAX CODE
     //based on the current y offset we can tell where each story card is in the viewport because we know the story card
@@ -199,31 +198,57 @@ export default class PortfolioScene extends Component {
     //END PARALLAX CODE
 
     let yOffset = e.nativeEvent.contentOffset.y;
+    let reachedTop = (yOffset <= 30);
     let reachedBottom = (e.nativeEvent.contentSize.height - height <= yOffset);
-    if (yOffset <= 0) {
+    if (reachedTop) {
       this.setState({
         storyOffsets: storyOffsets,
-        hideNavBar: false,
-      });
+        hideNavBar: false
+      })
     } else if (reachedBottom) {
       this.setState({
         storyOffsets: storyOffsets,
         hideNavBar: true,
         footerToggle: true
-      });
+      })
     } else {
       this.setState({
         storyOffsets: storyOffsets,
         hideNavBar: direction
       });
     }
+    offset = currentOffset;
+
   }
+
+  hideNavBar(e) {
+    let currentOffset = e.nativeEvent.pageY;
+    let direction = currentOffset > offset;
+    offset = currentOffset
+    //let yOffset = e.nativeEvent.contentOffset.y;
+    //let reachedTop = (yOffset < 5);
+    //let reachedBottom = (e.nativeEvent.contentSize.height - height <= yOffset);
+    /* if (reachedBottom) {
+      this.setState({
+        //storyOffsets: storyOffsets,
+        hideNavBar: true,
+        footerToggle: true
+      });
+    } else { */
+      this.setState({
+        //storyOffsets: storyOffsets,
+        hideNavBar: direction
+      });
+    //}
+  }
+
 
   onContentPressed(content) {
     Navigation.goContent(content);
   }
 
   setIdleToZero(e) {
+    console.log("end");
     idleTime = 0;
   }
 
@@ -254,10 +279,12 @@ export default class PortfolioScene extends Component {
               this.setScrollEnabled(e)
             }}/>
 
-          <ScrollView scrollEventThrottle={SCROLL_FPS}
+          <ScrollView scrollEventThrottle={16}
                       showsVerticalScollIndicator={false}
                       style={styles.storiesScroll}
+                      bounces={false}
                       onScroll={(e) => this.onStoriesScroll(e)}
+                      onMomentumScrollBegin={(e) => console.log("begin")}
                       onMomentumScrollEnd={(e) => this.setIdleToZero(e)}>
 
               <ContactFooter toggle={this.state.footerToggle} />

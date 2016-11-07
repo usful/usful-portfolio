@@ -4,12 +4,13 @@ import React, { Component } from 'react';
 
 import {
   Animated,
-  StyleSheet,
   Dimensions,
+  Image,
+  StyleSheet,
   Text,
   View,
-  Image,
-  TouchableOpacity
+  TouchableOpacity,
+  NativeMethodsMixin
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -97,7 +98,7 @@ export default class StoryCard extends Component {
       return;
     }
     Animated.sequence([
-      Animated.delay(100),
+      Animated.delay(400),
       Animated.parallel([
         Animated.timing(this.state.opacity, {toValue: 1, duration: CARD_ENTRY}),
         Animated.timing(this.state.titleAnim, {toValue: 1, duration: CARD_ENTRY }),
@@ -107,6 +108,7 @@ export default class StoryCard extends Component {
 
     this.hasEntered = true;
   }
+
 
   componentWillReceiveProps(nextProps) {
     this.state.offset.setValue(nextProps.offset * CARD_HEIGHT);
@@ -142,7 +144,7 @@ export default class StoryCard extends Component {
     };
 
     return (
-      <TouchableOpacity onPress={(e) => this.props.onPress(story)}>
+      <TouchableOpacity ref="sc" onPress={(e) => this.props.onPress(story)}>
         <Animated.View style={[styles.container, viewStyle]}>
           <Animated.Image style={offsetStyle} source={story.hero.uri} resizeMode="cover"/>
           <LinearGradient colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0.5)']} style={styles.linearGradient}/>

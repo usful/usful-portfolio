@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 
 import {
   Animated,
+  Dimensions,
   Platform,
   StyleSheet,
   Text,
@@ -12,7 +13,7 @@ import {
 } from 'react-native';
 
 const SPLIT_ON = '';
-const PAUSE_ON = [',', '.'];
+const PAUSE_ON = ['.'];
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -20,6 +21,8 @@ const styles = StyleSheet.create({
     flexWrap : 'wrap'
   }
 })
+
+let {height, width } = Dimensions.get('window');
 
 export default class Typewriter extends Component {
 
@@ -38,7 +41,6 @@ export default class Typewriter extends Component {
   
   constructor(props) {
     super(props);
-    
     this._isSkipped = false;
     this.setupAnimations();
   }
@@ -47,10 +49,11 @@ export default class Typewriter extends Component {
     this.anims = this.props.msg.split(this.props.split).map((val) => {
       //Add some randomness into the speed.
       const speed = Math.round(this.props.speed + (Math.random() * this.props.speed));
+      console.log("speed", speed)
       
       return {
         value: val,
-        speed: PAUSE_ON.includes(val) ? speed * 5 : speed,
+        speed: PAUSE_ON.includes(val) ? 500 : speed,
         anim: new Animated.Value(this.props.fadeIn ? 0 : 1)
       };
     });
@@ -61,6 +64,8 @@ export default class Typewriter extends Component {
       this.setupAnimations();
     }
   }
+
+
   
   start(fadeIn) {
     const animations = this.anims.map(obj => Animated.timing(obj.anim, {toValue: fadeIn ? 1 : 0, duration: obj.speed}));

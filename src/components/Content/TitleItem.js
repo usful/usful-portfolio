@@ -12,6 +12,9 @@ import {
   Modal
 } from 'react-native';
 
+import media from '../../data/media';
+import mediaFormatter from '../../helpers/formatters/mediaUri';
+import longDateFormatter from '../../helpers/formatters/longDate';
 import ActionSheet from '../../helpers/actionSheet';
 import TagList from './StoryTagList';
 import Team from '../Team';
@@ -37,8 +40,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.8)'
   },
   teamAndroid: {
-    height: 100,
-    width: 100
+    borderRadius: 22,
+    height: 40,
+    width: 70,
   },
   content: {
     flexDirection: 'row',
@@ -69,7 +73,12 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   share:{
-    marginTop: -10,
+    borderRadius: 22,
+    height: 43,
+    width: 80,
+    borderColor: Colours.transparent,
+    borderWidth: 0.4,
+    marginBottom: 10
   }
 });
 
@@ -94,27 +103,45 @@ export default class TitleItem extends Component {
   }
 
   closeTeamModal() {
+    console.log("closing");
     this.setState({modalVisible: false});
   }
 
-  openActionSheet() {
-    ActionSheet.open({
-        //TODO: replace with url to PDF of content passed through model
-        url: 'https://www.joinlane.com',
-        message: 'See what Usful is up to now!',
-      },
-    )
+  getTeamImage(){
+      return {uri: mediaFormatter(media[48])};
   }
 
+  openActionSheet() {
+    ActionSheet.open(Platform.OS === 'ios' ? {
+        title: 'Usful Portfolio',
+        url: 'http://www.usful.co',
+        message: 'I think you might like this app by Usful. Check out their stories!',
+        subject: `Usful Portfolio - ${longDateFormatter(this.props.content.date || new Date())}`
+      } :
+      {
+        text: 'I think you might like this app by Usful. Check out their stories!\n\nhttp://www.usful.co',
+        subject: `Usful Portfolio - ${longDateFormatter(this.props.content.date || new Date())}`
+      }
+    )
+  }
+  showTeam(team) {
+    if (team._array.length > 0) {
+      return <TouchableOpacity onPress={(e) => this.openTeamModal(e)}>
+        <Image style={Platform.OS === 'ios'? styles.teamiOS : styles.teamAndroid} source={this.getTeamImage()}/>
+      </TouchableOpacity>
+    } else {
+      return <View></View>
+    }
+  }
   render() {
     return (
       <View style={[global.content, styles.content]}>
         <View style={styles.row1}>
-          <TouchableOpacity onPress={(e) => this.openTeamModal(e)}>
-            <Image style={styles.teamiOS} source={require('../../../assets/team.png')}/>
-          </TouchableOpacity>
+
+          {this.showTeam(this.props.content.team)}
+
           <TouchableOpacity onPress={(e) => this.openActionSheet()}>
-            <Image style={styles.share} source={require('../../img/share.png')}/>
+            <Image style={styles.share} source={{uri: mediaFormatter(media[47])}}/>
           </TouchableOpacity>
         </View>
 

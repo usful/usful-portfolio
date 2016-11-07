@@ -18,11 +18,6 @@ storyBlocks = [
         text: 'There are many practices that can contribute to improving our global ecosystem. Urban agriculture is one that is feasible and impactful on a local scale.'
       },
       {
-        _type: 'MediaBlock',
-        media: media[8],
-        style: 'round'
-      },
-      {
         _type: 'QuoteBlock',
         text: 'There are huge environmental and health benefits of urban farming - yet, they remain unknown to the majority of the population.',
       },
@@ -32,21 +27,17 @@ storyBlocks = [
       },
       {
         _type: 'CopyBlock',
-        text: 'The installation included:\n\n\u2022 Bright Agrotech’s  ZipGrow Towers\n\u2022 Urban Cultivator Microgreen Growing Units\n\u2022 Landscape Culture’s “Language of Plants'
+        text: 'The installation included:\n\n\u2022 Bright Agrotech’s  ZipGrow Towers\n\u2022 Urban Cultivator Microgreen Growing Units\n\u2022 Landscape Culture’s “Language of Plants\"'
       },
       {
         _type: 'MediaCarouselBlock',
-        media: [media[5], media[6], media[7]],
+        media: [media[7], media[8], media[9]],
         height: 300,
         scaleMode: 'contain'
       },
       {
         _type: 'CopyBlock',
-        text: 'Attendees were able to interact with the Usful XM installation through a self-guided tour accessible on the exclusive Usful app. The tour explained each installation, its environmental benefit, and how urban farming can positively impact personal health and wellness.'
-      },
-      {
-        _type: 'MediaBlock',
-        media: media[7]
+        text: 'Attendees were able to interact with the Usful XM installation through a self-guided tour available exclusively on Lane, Usful\'s mobile engagement platform. The tour explained each installation, its environmental benefit, and how urban farming can positively impact personal health and wellness.'
       },
       {
         _type: 'CopyBlock',
@@ -71,34 +62,34 @@ storyBlocks = [
       },
       {
         _type: 'MediaBlock',
-        media: media[13],
+        media: media[16],
         style: 'round'
       },
       {
         _type: 'QuoteBlock',
-        text: 'FarmFreshTO is a farmer’s market with a determined objective to educate people on sustainable food consumption.',
+        text: '#FarmFreshTO is a farmer’s market by Usful XM with a determined objective to educate people on sustainable food consumption.',
       },
       {
         _type: 'CopyBlock',
-        text: 'The market inspires people to think about food on a global scale by living and consuming locally.'
+        text: 'The market inspired people to think about food on a global scale by living and consuming locally.'
       },
       {
         _type: 'CopyBlock',
-        text: 'The seasonal pop-up features local Ontario vendors selling fresh produce, artisan merchandise, and prepared foods.'
+        text: 'The seasonal pop-up featured local Ontario vendors selling fresh produce, artisan merchandise, and prepared foods. '
       },
       {
         _type: 'CopyBlock',
-        text: 'Ticketed weekly lunch sessions held during the FarmFreshTO market are curated by Usful XM to reconnect people with food. Each lunch, featuring a guest speaker, leaves attendees informed on how they can start to make a difference by participating in the sustainable food revolution.'
+        text: 'Ticketed weekly lunch sessions held during the market were curated by Usful XM to reconnect people with food. Each lunch, featuring a guest speaker, left attendees informed on how they can start to make a difference by participating in the sustainable food revolution.'
       },
       {
         _type: 'MediaCarouselBlock',
-        media: [media[10], media[11], media[12]],
+        media: [media[12], media[13], media[14], media[15]],
         height: 300,
         scaleMode: 'contain'
       },
       {
         _type: 'CopyBlock',
-        text: 'Partnering with industry leaders in sustainable food production, the FarmFreshTO market displays hydroponic vertical farms in the Usful XM shipping container. As the main attraction, the farm container is open to the public to educate on sustainable food sourcing and the positive impact it has in our community.'
+        text: 'Partnering with industry leaders in sustainable food production, market displayed hydroponic vertical farms in the Usful XM shipping container. A main attraction at the market, the farm container was open to the public to educate on sustainable food sourcing and the positive impact it has in our community.'
       },
       {
         _type: 'MediaBlock',
@@ -106,7 +97,7 @@ storyBlocks = [
       },
       {
         _type: 'CopyBlock',
-        text: 'Results:\n\nFarmFreshTO is a market attraction that is impacting local communities citywide. During its operating season, FarmFreshTO connects people to local food and leaves a lasting impact on their thoughts of living a modern and sustainable lifestyle.'
+        text: 'The #FarmFreshTO market impacted local communities, citywide. During its operating season, the market connected people to local food, leaving a lasting impact on their thoughts of living a modern and sustainable lifestyle.'
       },
       {
         _type: 'ButtonRowBlock',
@@ -144,7 +135,7 @@ storyBlocks = [
       },
       {
         _type: 'MediaBlock',
-        media: media[3],
+        media: media[4],
         style: 'round'
       },
       {
@@ -155,6 +146,12 @@ storyBlocks = [
       {
         _type: 'CopyBlock',
         text: 'As platform engagement and interaction lessens, the experience slowly dies; mirroring the effect humans have on the world if no progression on sustainable resourcing is made . The more a user interacts with the site, the longer it will stay alive. The unique display of information, large background images, and dramatic animations encourage site visitors to continue exploring and raise awareness by sharing the cause with others.'
+      },
+      {
+        _type: 'MediaCarouselBlock',
+        media: [media[0], media[1], media[2], media[3]],
+        height: 300,
+        scaleMode: 'contain'
       },
       {
         _type: 'CopyBlock',
@@ -201,8 +198,10 @@ storyBlocks = [
         text: 'Usful’s interactive and curated self guided audio tour shared the stories of Burtynsky’s inspiration for each photograph. Lane, Usful’s engagement SaaS platform, made it possible for listeners to engage with the art in an intimate setting. Lane’s advanced analytics tracking system collected data on how many listeners engaged with the audio tour and gathered the feedback given by pop-up visitors. This information was used to evaluate the success of the gallery as well as the social interest in the exhibit.'
       },
       {
-        _type: 'MediaBlock',
-        media: media[30]
+        _type: 'MediaCarouselBlock',
+        media: [media[33], media[34], media[35]],
+        height: 300,
+        scaleMode: 'contain'
       },
       {
         _type: 'CopyBlock',
@@ -228,17 +227,15 @@ initiativeBlocks = [
         text: 'The universal human condition encompasses key characteristics, events, and situations that define human existence.'
       },
       {
-        _type: 'MediaBlock',
-        media: media[18]
+        _type: 'MediaCarouselBlock',
+        media: [media[23], media[24]],
+        height: 300,
+        scaleMode: 'contain'
       },
       {
       _type: 'CopyBlock',
-      text: 'With the rise of technological advancements, we believe it is necessary that humans are educated on how technology can be applied to     limit human suffering, impact positive behaviour changes, and help people live fulfilled lives.'
-      },
-      {
-        _type: 'MediaBlock',
-        media: media[19]
-      },
+      text: 'With the rise of technological advancements, we believe it is necessary that humans are educated on how technology can be applied to limit human suffering, impact positive behaviour changes, and help people live fulfilled lives.'
+      }
 
     ]
   },
@@ -250,16 +247,12 @@ initiativeBlocks = [
         text: 'Planetary resources are limited. Mass production, resource extraction, and increased energy generation are causing irreversible            effects to our planet.'
       },
       {
-        _type: 'MediaBlock',
-        media: media[16]
-      },
-      {
         _type: 'CopyBlock',
         text: 'We believe that developing technology and educating through experiences to increase efficiency, reduce consumption, and increase           re-use within communities are the means to solving this problem.'
       },
       {
         _type: 'MediaBlock',
-        media: media[16]
+        media: media[20]
       },
 
     ]
@@ -288,7 +281,7 @@ initiativeBlocks = [
         },
         {
           _type: 'MediaBlock',
-          media: media[27],
+          media: media[30],
           style: 'round'
         },
         {
@@ -301,7 +294,7 @@ initiativeBlocks = [
         },
         {
           _type: 'MediaCarouselBlock',
-          media: [media[22], media[23], media[24], media[25]],
+          media: [media[25], media[26], media[27], media[28], media[29]],
           height: 300,
           scaleMode: 'contain'
         },
@@ -372,7 +365,7 @@ initiativeBlocks = [
         },
         {
           _type: 'MediaCarouselBlock',
-          media: [media[34], media[35], media[36]],
+          media: [media[38], media[39], media[40]],
           height: 300,
           scaleMode: 'contain'
         },

@@ -16,9 +16,16 @@ export default class SliderItem extends Component {
 
   render() {
     return (
-      <View style={global.content}>
+        <View style = {styles.container}>
         <ImageSlider images={this.props.images} />
-      </View>
+        </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 30
+  }
+
+});
