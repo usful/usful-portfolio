@@ -244,11 +244,11 @@ initiativeBlocks = [
     blocks: [
       {
         _type: 'CopyBlock',
-        text: 'Planetary resources are limited. Mass production, resource extraction, and increased energy generation are causing irreversible            effects to our planet.'
+        text: 'Planetary resources are limited. Mass production, resource extraction, and increased energy generation are causing irreversible effects to our planet.'
       },
       {
         _type: 'CopyBlock',
-        text: 'We believe that developing technology and educating through experiences to increase efficiency, reduce consumption, and increase           re-use within communities are the means to solving this problem.'
+        text: 'We believe that developing technology and educating through experiences to increase efficiency, reduce consumption, and increase re-use within communities are the means to solving this problem.'
       },
       {
         _type: 'MediaBlock',
