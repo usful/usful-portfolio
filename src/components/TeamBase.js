@@ -78,6 +78,19 @@ export default class TeamBase extends Component {
   };
   
   render() {
-    return null;
+    return (
+
+      <View style={{ transform: [{ scale: 0.8 }]}}>
+        <ScrollView
+          horizontal={true}
+          style={{ overflow: 'visible'}}
+          pagingEnabled={true}
+          scrollEventThrottle={Math.floor(1000/60)}
+          showsHorizontalScrollIndicator={false}
+          onScroll={(e) => this.onScroll(e)} >
+          {this.props.team.map((person, i) => this.renderStoryCard(person, i))}
+        </ScrollView>
+     </View>
+    );
   }
 }
