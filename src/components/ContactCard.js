@@ -6,6 +6,7 @@ import {
   Image,
   Text,
   TouchableOpacity,
+  Platform,
   View,
 } from 'react-native';
 let {height, width } = Dimensions.get('window');
@@ -62,7 +63,7 @@ let styles = StyleSheet.create({
   },
   pageAndClose: {
     alignSelf: 'center',
-    marginTop: 0,
+    marginTop: (Platform.OS === 'ios'? 0 : 20),
     flexDirection: 'row',
     backgroundColor: Colours.white,
   },
