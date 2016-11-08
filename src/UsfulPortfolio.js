@@ -51,7 +51,7 @@ export default class UsfulPortfolio extends Component {
         <StatusBar translucent={true} backgroundColor="rgb(0,0,0)"/>
         <Navigator
           ref={(el) => Navigation.navigator = el}
-          initialRoute={Navigation.PORTFOLIO_SCENE}
+          initialRoute={Navigation.SPLASH_SCENE}
           configureScene={() => this.configureScene()}
           renderScene={(route, navigator) => this.renderScene(route, navigator)}
         />
