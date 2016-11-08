@@ -280,7 +280,7 @@ export default class PortfolioScene extends Component {
 
 
 
-            <View style = {[this.state.footerToggle ? styles.contactShow : styles.contactHide, styles.shadow]}>
+            <View elevation = {10} style = {[{backgroundColor: Style.colours.navBarBlack}, this.state.footerToggle ? styles.contactShow : styles.contactHide, styles.shadow]}>
             {AppData.stories.map((story, i) =>
               <StoryCard ref={`storyCard${i}`}
                          key={story._id}
