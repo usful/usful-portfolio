@@ -31,7 +31,8 @@ export default class DetailedContentItem extends Component {
 
   static defaultProps = {
     content: {},
-    nextContent: {}
+    nextContent: {},
+    onOpenTeam: (team) => {}
   };
 
   constructor(props) {
@@ -84,7 +85,7 @@ export default class DetailedContentItem extends Component {
           }}
           style = {type !== 'Story' && this.state.footerToggle ? contentShow : styles.contentHide}>
           <HeaderItem type={this.props.content.type} image={this.props.content.header.uri} date={longDateFormatter(this.props.content.date)}/>
-          <TitleItem content={this.props.content} title={this.props.content.title} tags={this.props.content.tags}/>
+          <TitleItem content={this.props.content} title={this.props.content.title} onOpenTeam={(team) => this.props.onOpenTeam(team)} tags={this.props.content.tags}/>
 
           {blocks.map((block, index) => {
             switch (block._type) {
