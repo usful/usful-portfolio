@@ -18,10 +18,8 @@ import SocialMediaButton from './SocialMediaButton';
 let styles = StyleSheet.create({
   card: {
     backgroundColor: Colours.white,
-    height: height * 0.5,
   },
   cardImage: {
-    
     height: height * 0.3 ,
     width: width/2 + 130,
     backgroundColor: Colours.white,
@@ -122,27 +120,25 @@ export default class ContactCard extends Component {
 
   render() {
     let person = this.props.person;
-
+  
     return (
       <View style={styles.card}>
-
-
-            <View style={styles.pageAndClose}>
-              <Text style={styles.page}>{this.props.id}/{this.props.totalCards}</Text>
-              <TouchableOpacity style={styles.closeButton} onPress={this.props.onClose}>
-                <Text style={styles.closeText}>CLOSE</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={styles.cardImage}></View>
-
-            <View style={styles.contactInfo}>
-              <Text style={styles.textName}>{person.name}</Text>
-              <Text style={styles.textTags}>{person.tags.join(' / ')}</Text>
-              <Text style={styles.textDescription}>{person.description}</Text>
-            </View>
-
-
+        <View style={styles.pageAndClose}>
+          <Text style={styles.page}>{this.props.id}/{this.props.totalCards}</Text>
+          <TouchableOpacity style={styles.closeButton} onPress={this.props.onClose}>
+            <Text style={styles.closeText}>CLOSE</Text>
+          </TouchableOpacity>
+        </View>
+      
+        <View style={styles.cardImage}></View>
+      
+        <View style={styles.contactInfo}>
+          <Text style={styles.textName}>{person.name}</Text>
+          <Text style={styles.textTags}>{person.tags.join(' / ')}</Text>
+          <Text style={styles.textDescription}>{person.description}</Text>
+        </View>
+      
+      
         <View style={styles.socialMediaBox}>
           {person.socialAccounts.map((account, i) =>
             <SocialMediaButton key={i} account={account} size={30} color={Colours.white}/>)}

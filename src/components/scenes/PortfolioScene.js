@@ -171,7 +171,6 @@ export default class PortfolioScene extends Component {
   }
 
   onStoriesScroll(e) {
-    console.log("gogogo");
     let currentOffset = e.nativeEvent.contentOffset.y;
     let direction = currentOffset > offset;
     let cardsScrolled = Math.floor(e.nativeEvent.contentOffset.y / StoryCard.CARD_HEIGHT);
