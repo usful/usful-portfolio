@@ -195,7 +195,9 @@ export default class PortfolioScene extends Component {
 
     let yOffset = e.nativeEvent.contentOffset.y;
     let reachedTop = (yOffset <= 30);
-    let reachedBottom = (e.nativeEvent.contentSize.height - Style.height <= yOffset);
+
+    let bottom = e.nativeEvent.contentSize.height - Style.height;
+    let reachedBottom = (bottom == yOffset);
     if (reachedTop) {
       this.setState({
         storyOffsets: storyOffsets,
@@ -207,7 +209,8 @@ export default class PortfolioScene extends Component {
         hideNavBar: true,
         footerToggle: true
       })
-    } else {
+    }
+    else {
       this.setState({
         storyOffsets: storyOffsets,
         hideNavBar: direction
@@ -262,13 +265,21 @@ export default class PortfolioScene extends Component {
           />
 
           <ScrollView scrollEventThrottle={Style.SCROLL_FPS}
-                      showsVerticalScollIndicator={false}
-                      style={styles.storiesScroll}
+
+            onTouchEnd={(e) => {
+              this.setScrollEnabled(e)
+            }}/>
+          <View style={styles.storiesScroll}>
+          <ContactFooter />
+          <ScrollView scrollEventThrottle={16}
+
+                      showsVerticalScrollIndicator={false}
+
                       bounces={false}
                       onScroll={(e) => this.onStoriesScroll(e)}
                       onMomentumScrollEnd={(e) => this.setIdleToZero(e)}>
 
-              <ContactFooter toggle={this.state.footerToggle} />
+
 
             <View style = {[this.state.footerToggle ? styles.contactShow : styles.contactHide, styles.shadow]}>
             {AppData.stories.map((story, i) =>
@@ -280,6 +291,7 @@ export default class PortfolioScene extends Component {
             )}
             </View>
           </ScrollView>
+            </View>
 
           <Carousel
             text="Usful Initiatives guide our company mission and cultural values. They are the motive behind our authenticity."
