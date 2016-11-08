@@ -9,6 +9,7 @@ import {
   Dimensions
 } from 'react-native';
 
+import Font from '../styles/Font';
 import CarouselCard from './CarouselCard';
 let {width, height} = Dimensions.get('window');
 
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10
   },
   text: {
-    fontFamily: 'Avenir-Book',
+    fontFamily: Font.secondaryFont.fontFamily,
     fontSize: 18,
     color: '#A9A9A9',
     flexWrap: 'wrap',

@@ -215,7 +215,7 @@ export default class PortfolioScene extends Component {
     else {
       this.setState({
         storyOffsets: storyOffsets,
-        hideNavBar: direction
+        hideNavBar: direction,
       });
     }
     offset = currentOffset;
@@ -283,7 +283,6 @@ export default class PortfolioScene extends Component {
           <ContactFooter />
           <ScrollView scrollEventThrottle={16}
                       showsVerticalScollIndicator={false}
-
                       bounces={false}
                       onScroll={(e) => this.onStoriesScroll(e)}
                       onMomentumScrollBegin={(e) => console.log("begin")}

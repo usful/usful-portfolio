@@ -13,10 +13,11 @@ import mediaFormatter from '../helpers/formatters/mediaUri';
 import global from '../styles';
 import OutlineButton from './OutlineButton';
 import openLink from '../helpers/navigation/openLink';
-
+import Font from '../styles/Font';
 let {height, width} = Dimensions.get('window');
 
 const FOOTER_HEIGHT = 600;
+
 const UNDERLAY_HEIGHT = 100;
 export default class ContactFooter extends Component {
 
@@ -98,7 +99,7 @@ const styles= StyleSheet.create({
   },
   body: {
     marginTop: 30,
-    fontFamily: 'Courier New',
+    fontFamily: Font.primaryFont.fontFamily,
     fontSize: 15,
     marginHorizontal: 20,
     flexWrap: 'wrap',
@@ -117,7 +118,7 @@ const styles= StyleSheet.create({
     marginTop: 60,
     color: '#000',
     fontSize: 30,
-    fontFamily: 'Courier New',
+    fontFamily: Font.primaryFont.fontFamily,
     fontWeight: 'bold',
     backgroundColor: 'transparent'
   },
@@ -132,10 +133,10 @@ const styles= StyleSheet.create({
     marginTop: 40,
     textAlign: 'center',
     fontSize: 12,
-    fontFamily: 'Courier New',
+    fontFamily: Font.primaryFont.fontFamily,
     paddingHorizontal: 40,
     backgroundColor: 'transparent',
-    color: '#B4B4B4'
+    color: '#000',
   },
   background: {
     position: 'absolute',
@@ -144,6 +145,5 @@ const styles= StyleSheet.create({
     paddingBottom: UNDERLAY_HEIGHT,
     width: width,
     height: FOOTER_HEIGHT,
-    backgroundColor: 'transparent'
   }
 });
