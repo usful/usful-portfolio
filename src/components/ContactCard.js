@@ -18,10 +18,10 @@ import SocialMediaButton from './SocialMediaButton';
 let styles = StyleSheet.create({
   card: {
     backgroundColor: Colours.white,
+    width: width * 0.85
   },
   cardImage: {
     height: height * 0.3 ,
-    width: width/2 + 130,
     backgroundColor: Colours.white,
   },
 
@@ -122,6 +122,7 @@ export default class ContactCard extends Component {
     let person = this.props.person;
   
     return (
+      <View style={{flex:1}}>
       <View style={styles.card}>
         <View style={styles.pageAndClose}>
           <Text style={styles.page}>{this.props.id}/{this.props.totalCards}</Text>
@@ -137,13 +138,15 @@ export default class ContactCard extends Component {
           <Text style={styles.textTags}>{person.tags.join(' / ')}</Text>
           <Text style={styles.textDescription}>{person.description}</Text>
         </View>
+      </View>
       
       
         <View style={styles.socialMediaBox}>
           {person.socialAccounts.map((account, i) =>
             <SocialMediaButton key={i} account={account} size={30} color={Colours.white}/>)}
         </View>
-      </View>
+        </View>
+
     );
   }
 }

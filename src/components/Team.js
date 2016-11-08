@@ -45,12 +45,12 @@ export default class Team extends Component {
   }
 
   componentWillMount() {
-    this.setupScales(this.props.content.team);
+    this.setupScales(this.props.team);
   }
   
   componentWillReceiveProps(nextProps) {
-    if (nextProps.content.team !== this.props.content.team) {
-      this.setupScales(nextProps.content.team);
+    if (nextProps.content.team !== this.props.team) {
+      this.setupScales(nextProps.team);
     }
   }
   
@@ -68,7 +68,7 @@ export default class Team extends Component {
     
     this.state.scales[page].setValue(MAX_SCALE - (MAX_SCALE - REGULAR_SCALE) * offset);
 
-    if (page + 1 >= this.props.content.team.length) {
+    if (page + 1 >= this.props.team.length) {
       return;
     }
     
@@ -85,7 +85,7 @@ export default class Team extends Component {
         <Animated.View style={wrapperStyle}>
           <ContactCard personId={person._id}
                        person={person}
-                       totalCards={this.props.content.team.length}
+                       totalCards={this.props.team.length}
                        onClose={this.props.onClose}
                        id={i + 1}/>
         </Animated.View>
@@ -95,15 +95,15 @@ export default class Team extends Component {
   
   render() {
     return (
-      <View style={{transform: [{scale: 0.8}]}}>
+      <View style={{ transform: [{ scale: 0.8 }]}}>
         <ScrollView
           horizontal={true}
-          style={{overflow: 'visible'}}
+          style={{ overflow: 'visible'}}
           pagingEnabled={true}
           scrollEventThrottle={Math.floor(1000/60)}
           showsHorizontalScrollIndicator={false}
           onScroll={(e) => this.onScroll(e)} >
-          {this.props.content.team.map((person, i) => this.renderStoryCard(person, i))}
+          {this.props.team.map((person, i) => this.renderStoryCard(person, i))}
         </ScrollView>
       </View>
     );
