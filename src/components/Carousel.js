@@ -9,7 +9,11 @@ import {
   Dimensions
 } from 'react-native';
 
+
 import Style from '../styles';
+
+import Font from '../styles/Font';
+
 import CarouselCard from './CarouselCard';
 
 export default class SliderIndicator extends Component {
@@ -140,7 +144,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10
   },
   text: {
-    fontFamily: 'Avenir-Book',
+    fontFamily: Font.secondaryFont.fontFamily,
     fontSize: 18,
     color: '#A9A9A9',
     flexWrap: 'wrap',
