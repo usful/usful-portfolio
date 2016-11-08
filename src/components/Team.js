@@ -95,6 +95,7 @@ export default class Team extends Component {
   
   render() {
     return (
+
       <View style={{ transform: [{ scale: 0.8 }]}}>
         <ScrollView
           horizontal={true}
@@ -105,7 +106,7 @@ export default class Team extends Component {
           onScroll={(e) => this.onScroll(e)} >
           {this.props.team.map((person, i) => this.renderStoryCard(person, i))}
         </ScrollView>
-      </View>
+     </View>
     );
   }
 }
