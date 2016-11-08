@@ -42,8 +42,7 @@ export default class ContactFooter extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return (
       nextProps.card != this.props.card ||
-      nextProps.contact != this.props.contact ||
-    nextProps.toggle != this.props.toggle
+      nextProps.contact != this.props.contact
 
 )
   }
@@ -69,7 +68,7 @@ export default class ContactFooter extends Component {
 
   render() {
     return (
-      <View style={this.props.toggle ? styles.contactShow : styles.contactHide}>
+      <View style={styles.contactShow}>
         <Image source={{uri: mediaFormatter(media[45])}} resizeMode='cover' style={styles.background}/>
         <View style={styles.contact}>
           <Text style={styles.title}>Contact Us</Text>
@@ -93,10 +92,6 @@ const styles= StyleSheet.create({
     left: 0,
     height: ContactFooter.FOOTER_HEIGHT,
     opacity: 1
-  },
-  contactHide: {
-    height: 0,
-    opacity: 0
   },
   contact: {
     marginTop: UNDERLAY_HEIGHT

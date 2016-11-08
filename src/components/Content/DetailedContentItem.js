@@ -44,7 +44,7 @@ export default class DetailedContentItem extends Component {
 
   _handleScroll(el, blockHeight) {
     let scrollHeight = el.nativeEvent.contentOffset.y + height;
-    if (scrollHeight === blockHeight) {
+    if (scrollHeight >= blockHeight) {
       this.setState({
         footerToggle: true
       });
@@ -54,11 +54,11 @@ export default class DetailedContentItem extends Component {
   renderFooter() {
     switch (this.props.content.type) {
       case "Initiative":
-        return <ContactFooter toggle={this.state.footerToggle}/>;
+        return <ContactFooter />;
       case "Story":
         return;
       case "Product":
-        return <ContactFooter toggle={this.state.footerToggle} contact={this.props.content.contactInfo}/>;
+        return <ContactFooter contact={this.props.content.contactInfo}/>;
       default:
         return <View><Text>{this.props.content.type}</Text></View>;
     }
@@ -70,14 +70,15 @@ export default class DetailedContentItem extends Component {
     let type = this.props.content.type;
     let blockHeight = 0;
     return (
+      <View style={styles.contentScroll}>
+        {this.renderFooter()}
 
       <ScrollView
-        alwaysBounceVertical = {true}
+        bounces={false}
         ref={ref => this._ScrollView = ref}
         scrollEventThrottle={1000/30}
-        onScroll= {(el) => this._handleScroll(el, blockHeight)} style={[global.container]}>
-
-          {this.renderFooter()}
+        onScroll= {(el) => this._handleScroll(el, blockHeight)}
+        >
 
         <View
           onLayout={(event) => {
@@ -126,18 +127,26 @@ export default class DetailedContentItem extends Component {
         <CloseButton onPress={() => Navigation.popToRoute(Navigation.PORTFOLIO_SCENE)}/>
 
       </ScrollView>
+        </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  contentScroll: {
+    backgroundColor: 'white'
+  },
   contentShow: {
+    backgroundColor: 'white',
     marginBottom: ContactFooter.FOOTER_HEIGHT - ContactFooter.UNDERLAY_HEIGHT
   },
   contentShowAndroid: {
+    backgroundColor: 'white',
     marginBottom: ContactFooter.FOOTER_HEIGHT
   },
   contentHide: {
+
+    backgroundColor: 'white',
     marginBottom: 0
   },
   legal: {
