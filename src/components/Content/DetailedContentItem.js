@@ -47,8 +47,7 @@ export default class DetailedContentItem extends Component {
   
   _handleScroll(el, blockHeight) {
     let scrollHeight = el.nativeEvent.contentOffset.y + Style.height;
-    
-    if (scrollHeight === blockHeight) {
+    if (scrollHeight >= blockHeight) {
       this.setState({
         footerToggle: true
       });
@@ -58,11 +57,11 @@ export default class DetailedContentItem extends Component {
   renderFooter() {
     switch (this.props.content.type) {
       case "Initiative":
-        return <ContactFooter toggle={this.state.footerToggle}/>;
+        return <ContactFooter />;
       case "Story":
         return;
       case "Product":
-        return <ContactFooter toggle={this.state.footerToggle} contact={this.props.content.contactInfo}/>;
+        return <ContactFooter contact={this.props.content.contactInfo}/>;
       default:
         return <View><Text>{this.props.content.type}</Text></View>;
     }
@@ -74,24 +73,26 @@ export default class DetailedContentItem extends Component {
     let type = this.props.content.type;
     let blockHeight = 0;
     return (
-      
-      <ScrollView
-        alwaysBounceVertical={true}
-        ref={ref => this._ScrollView = ref}
-        scrollEventThrottle={Style.SCROLL_FPS}
-        onScroll={(el) => this._handleScroll(el, blockHeight)} style={[Style.sheets.container]}>
-        
+
+      <View style={styles.contentScroll}>
         {this.renderFooter()}
-        
-        <View onLayout={(event) => blockHeight = event.nativeEvent.layout.height}
-              style={type !== 'Story' && this.state.footerToggle ? contentShow : styles.contentHide}>
-          <HeaderItem type={this.props.content.type}
-                      image={this.props.content.header.uri}
-                      date={longDateFormatter(this.props.content.date)}/>
-          <TitleItem content={this.props.content}
-                     title={this.props.content.title}
-                     tags={this.props.content.tags}/>
-          
+
+      <ScrollView
+        bounces={false}
+        ref={ref => this._ScrollView = ref}
+        scrollEventThrottle={1000/30}
+        onScroll= {(el) => this._handleScroll(el, blockHeight)}
+        >
+
+        <View
+          onLayout={(event) => {
+            blockHeight = event.nativeEvent.layout.height;
+          }}
+          style = {type !== 'Story' && this.state.footerToggle ? contentShow : styles.contentHide}>
+          <HeaderItem type={this.props.content.type} image={this.props.content.header.uri} date={longDateFormatter(this.props.content.date)}/>
+          <TitleItem content={this.props.content} title={this.props.content.title} tags={this.props.content.tags}/>
+
+
           {blocks.map((block, index) => {
             switch (block._type) {
               case 'CopyBlock':
@@ -140,18 +141,26 @@ export default class DetailedContentItem extends Component {
         <CloseButton onPress={() => Navigation.popToRoute(Navigation.PORTFOLIO_SCENE)}/>
       
       </ScrollView>
+        </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  contentScroll: {
+    backgroundColor: 'white'
+  },
   contentShow: {
+    backgroundColor: 'white',
     marginBottom: ContactFooter.FOOTER_HEIGHT - ContactFooter.UNDERLAY_HEIGHT
   },
   contentShowAndroid: {
+    backgroundColor: 'white',
     marginBottom: ContactFooter.FOOTER_HEIGHT
   },
   contentHide: {
+
+    backgroundColor: 'white',
     marginBottom: 0
   },
   legal: {
