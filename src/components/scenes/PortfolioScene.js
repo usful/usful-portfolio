@@ -270,14 +270,14 @@ export default class PortfolioScene extends Component {
               this.setScrollEnabled(e)
             }}/>
           <View style={styles.storiesScroll}>
-          <ContactFooter />
+
           <ScrollView scrollEventThrottle={16}
 
                       showsVerticalScrollIndicator={false}
                       bounces={false}
                       onScroll={(e) => this.onStoriesScroll(e)}
                       onMomentumScrollEnd={(e) => this.setIdleToZero(e)}>
-
+            <ContactFooter />
 
 
             <View elevation = {10} style = {[{backgroundColor: Style.colours.navBarBlack}, this.state.footerToggle ? styles.contactShow : styles.contactHide, styles.shadow]}>
