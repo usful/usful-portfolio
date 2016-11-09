@@ -20,9 +20,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     flexWrap : 'wrap'
   }
-})
-
-let {height, width } = Dimensions.get('window');
+});
 
 export default class Typewriter extends Component {
 

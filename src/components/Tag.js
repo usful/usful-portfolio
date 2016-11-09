@@ -6,7 +6,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-import styles from '../styles';
+import Style from '../styles';
 
 export default class TagList extends Component {
   static defaultProps = {
@@ -25,9 +25,9 @@ export default class TagList extends Component {
     }
 
     return (
-      <TouchableOpacity style={styles.tagRemoveButton} onPress={(e) => this.props.onRemove(this.props.tag)}>
+      <TouchableOpacity style={Style.sheets.tagRemoveButton} onPress={(e) => this.props.onRemove(this.props.tag)}>
         <View>
-          <Text style={styles.tagRemoveButtonText}>X</Text>
+          <Text style={Style.sheets.tagRemoveButtonText}>X</Text>
         </View>
       </TouchableOpacity>
     );
@@ -35,7 +35,7 @@ export default class TagList extends Component {
 
   render() {
     return (
-      <View style={[styles.tagContainer, {paddingRight: this.props.isRemovable ? 20 : 5}]}>
+      <View style={[Style.sheets.tagContainer, {paddingRight: this.props.isRemovable ? 20 : 5}]}>
         <Text>{this.props.tag}</Text>
         {this.renderRemoveButton()}
       </View>

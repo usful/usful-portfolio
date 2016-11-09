@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet,
-    Text,
-    View,
-    Image
+  StyleSheet,
+  Text,
+  View,
+  Image
 } from 'react-native';
 
-import global from '../../styles';
+import Style from '../../styles';
 
 export default class QuoteItem extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export default class QuoteItem extends Component {
 
   render() {
     return (
-      <View style={global.content}>
+      <View style={Style.sheets.content}>
         <Text style={style.byline}>{this.props.byline}</Text>
       </View>
     );

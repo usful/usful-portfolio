@@ -13,36 +13,45 @@ import {
 } from 'react-native';
 
 import media from '../../data/media';
+
+import Style from '../../styles';
+
 import mediaFormatter from '../../helpers/formatters/mediaUri';
 import longDateFormatter from '../../helpers/formatters/longDate';
 import ActionSheet from '../../helpers/actionSheet';
+
 import TagList from './StoryTagList';
 import Team from '../Team';
-import Font from './../../styles/Font';
-import Colours from './../../styles/Colours';
-import global from '../../styles';
-
-let {height, width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   closeText: {
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     fontSize: 18,
     marginVertical: 40,
     justifyContent: 'center',
     alignSelf: 'center',
-    color: Colours.white
+    color: Style.colours.white
   },
   modalBg: {
-    top: 0,
-    left: 0,
-    height: height,
+    width: Style.width,
+    height: Style.height,
     backgroundColor: 'rgba(0, 0, 0, 0.8)'
   },
-  teamAndroid: {
+  team: {
+    ... Platform.select({
+      ios: {
+        height: 40,
+        width: 70,
+      },
+      android: {
+        height: 43,
+        width: 80,
+        borderColor: Style.colours.transparent,
+        borderWidth: 0.4,
+        marginBottom: 10
+      }
+    }),
     borderRadius: 22,
-    height: 40,
-    width: 70,
   },
   content: {
     flexDirection: 'row',
@@ -52,15 +61,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center'
   },
-  teamiOS: {
-    borderRadius: 22,
-    height: 43,
-    width: 80,
-    borderColor: Colours.transparent,
-    borderWidth: 0.4,
-    marginBottom: 10
-
-  },
   row2: {
     flex: 3,
     flexDirection: 'column',
@@ -68,15 +68,15 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 27,
-    fontFamily: Font.secondaryFont.fontFamily,
-    fontWeight: Font.bold.fontWeight,
+    fontFamily: Style.fonts.secondaryFont.fontFamily,
+    fontWeight: Style.fonts.bold.fontWeight,
     flexWrap: 'wrap'
   },
   share:{
     borderRadius: 22,
     height: 43,
     width: 80,
-    borderColor: Colours.transparent,
+    borderColor: Style.colours.transparent,
     borderWidth: 0.4,
     marginBottom: 10
   }
@@ -89,28 +89,19 @@ export default class TitleItem extends Component {
       tags: []
     }
   };
-
+  
   constructor(props) {
     super(props);
-
+    
     this.state = {
-      modalVisible: false
-    }
+      isModalVisible: false
+    };
   }
-
-  openTeamModal() {
-    this.setState({modalVisible: true});
+  
+  get teamImage() {
+    return {uri: mediaFormatter(media[48])};
   }
-
-  closeTeamModal() {
-    console.log("closing");
-    this.setState({modalVisible: false});
-  }
-
-  getTeamImage(){
-      return {uri: mediaFormatter(media[48])};
-  }
-
+  
   openActionSheet() {
     ActionSheet.open(Platform.OS === 'ios' ? {
         title: 'Usful Portfolio',
@@ -118,46 +109,56 @@ export default class TitleItem extends Component {
         message: 'I think you might like this app by Usful. Check out their stories!',
         subject: `Usful Portfolio - ${longDateFormatter(this.props.content.date || new Date())}`
       } :
-      {
-        text: 'I think you might like this app by Usful. Check out their stories!\n\nhttp://www.usful.co',
-        subject: `Usful Portfolio - ${longDateFormatter(this.props.content.date || new Date())}`
-      }
+        {
+          text: 'I think you might like this app by Usful. Check out their stories!\n\nhttp://www.usful.co',
+          subject: `Usful Portfolio - ${longDateFormatter(this.props.content.date || new Date())}`
+        }
     )
   }
-  showTeam(team) {
-    if (team._array.length > 0) {
-      return <TouchableOpacity onPress={(e) => this.openTeamModal(e)}>
-        <Image style={Platform.OS === 'ios'? styles.teamiOS : styles.teamAndroid} source={this.getTeamImage()}/>
-      </TouchableOpacity>
-    } else {
-      return <View></View>
-    }
+  
+  openTeamModal() {
+    this.setState({isModalVisible: true});
   }
+  
+  closeTeamModal() {
+    this.setState({isModalVisible: false});
+  }
+  
+  renderShowTeam(team) {
+    if (team && team.length > 0) {
+      return (
+        <TouchableOpacity onPress={(e) => this.openTeamModal()}>
+          <Image style={styles.team} source={this.teamImage}/>
+        </TouchableOpacity>
+      )
+    }
+    
+    return <View/>;
+  }
+  
   render() {
     return (
-      <View style={[global.content, styles.content]}>
+      <View style={[Style.sheets.content, styles.content]}>
         <View style={styles.row1}>
-
-          {this.showTeam(this.props.content.team)}
-
+          
+          {this.renderShowTeam(this.props.content.team)}
+          
           <TouchableOpacity onPress={(e) => this.openActionSheet()}>
             <Image style={styles.share} source={{uri: mediaFormatter(media[47])}}/>
           </TouchableOpacity>
         </View>
-
+        
         <View style={styles.row2}>
           <Text style={styles.title}>{this.props.title}</Text>
           <TagList tags={this.props.tags}/>
         </View>
-
-        <Modal animationType={'none'}
-               transparent={true}
-               visible={this.state.modalVisible}
-               onRequestClose={(e) => this.closeTeamModal()}>
+  
+        <Modal animationType="fade" transparent={true} visible={this.state.isModalVisible} onRequestClose={(e) => this.closeTeamModal()}>
           <View style={styles.modalBg}>
             <Team team={this.props.content.team} onClose={() => this.closeTeamModal()} />
           </View>
         </Modal>
+
       </View>
     );
   }

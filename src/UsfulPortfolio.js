@@ -8,7 +8,6 @@ import {
 import Navigation from './helpers/Navigation';
 import AppData from './AppData';
 
-import Team from './components/Team';
 import DetailedContentItem from './components/Content/DetailedContentItem';
 import PortfolioScene from './components/scenes/PortfolioScene';
 import SplashScene from './components/scenes/SplashScene';
@@ -26,6 +25,7 @@ export default class UsfulPortfolio extends Component {
     };
   }
 
+  
   renderScene(route, navigator) {
     switch (route.id) {
       case Navigation.DETAILED_STORY_SCENE.id:
@@ -51,7 +51,7 @@ export default class UsfulPortfolio extends Component {
         <StatusBar translucent={true} backgroundColor="rgb(0,0,0)"/>
         <Navigator
           ref={(el) => Navigation.navigator = el}
-          initialRoute={Navigation.SPLASH_SCENE}
+          initialRoute={Navigation.PORTFOLIO_SCENE}
           configureScene={() => this.configureScene()}
           renderScene={(route, navigator) => this.renderScene(route, navigator)}
         />

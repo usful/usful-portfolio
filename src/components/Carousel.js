@@ -9,8 +9,8 @@ import {
   Dimensions
 } from 'react-native';
 
+import Style from '../styles';
 import CarouselCard from './CarouselCard';
-let {width, height} = Dimensions.get('window');
 
 export default class SliderIndicator extends Component {
 
@@ -34,7 +34,7 @@ export default class SliderIndicator extends Component {
 
   handleScroll(e) {
     this.setState({
-      card: (Math.round(e.nativeEvent.contentOffset.x / (width*.75)))
+      card: (Math.round(e.nativeEvent.contentOffset.x / (Style.width*0.75)))
     });
   }
 
@@ -44,7 +44,7 @@ export default class SliderIndicator extends Component {
 
   _move(index) {
     if (this.state.card !== index) {
-      this._ScrollView.scrollTo({x: index * width*.775, y: 0, animated: true})
+      this._ScrollView.scrollTo({x: index * Style.width*0.775, y: 0, animated: true})
 
     }
   }
@@ -64,13 +64,13 @@ export default class SliderIndicator extends Component {
           ref={ref => this._ScrollView = ref}
           horizontal={true}
           scrollEnabled={this.props.scrollEnabled}
-          snapToInterval={width*.85}
+          snapToInterval={Style.width*0.85}
           decelerationRate={0}
           snapToAlignment={'center'}
           onScroll={(e)=>this.handleScroll(e)}
           onTouchEnd={(e) => this.scrollEnd(e)}
           onTouchStart={(e) => this.scrollEnd(e)}
-          scrollEventThrottle={300}
+          scrollEventThrottle={Style.SCROLL_FPS}
           showsHorizontalScrollIndicator={false}
           style={styles.cardScroll}>
 
@@ -102,8 +102,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#18232c',
     paddingTop: 100,
-    height: height,
-    width: width
+    height: Style.height,
+    width: Style.width
   },
   cardCurrent: {
     opacity: 1
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    width: width - 40,
+    width: Style.width - 40,
     height: 136,
     marginHorizontal: 10
   },

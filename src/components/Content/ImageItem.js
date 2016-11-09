@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet,
-    Image,
-    View,
-Dimensions
+  StyleSheet,
+  Image,
+  View,
+  Dimensions
 } from 'react-native';
-import global from '../../styles';
 
-let {width,height} = Dimensions.get('window');
+import Style from '../../styles';
 
 export default class ImageItem extends Component {
   constructor(props) {
@@ -16,24 +15,24 @@ export default class ImageItem extends Component {
 
   render() {
     return (
-      <View style={global.content}>
-        <Image style={[this.props.style == 'round' ? style.roundImage : style.image]} source={this.props.image}/>
+      <View style={Style.sheets.content}>
+        <Image style={this.props.style === 'round' ? style.roundImage : style.image} source={this.props.image}/>
       </View>
     );
   }
 }
 
 const style = StyleSheet.create({
-    image: {
-      width: width,
-      height: 200
-    },
-    roundImage: {
-      width: 250,
-      height: 250,
-      borderRadius: 125,
-      borderWidth: 0.4,
-      borderColor: 'transparent'
-    },
-
+  image: {
+    width: Style.width,
+    height: 200
+  },
+  roundImage: {
+    width: 250,
+    height: 250,
+    borderRadius: 125,
+    borderWidth: 0.4,
+    borderColor: 'transparent'
+  },
+  
 });

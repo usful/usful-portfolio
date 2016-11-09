@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet,
-    Text,
-    Dimensions,
-    View,
-Image
+  StyleSheet,
+  Text,
+  Dimensions,
+  View,
+  Image
 } from 'react-native';
 
-import global from '../../styles';
-
-let {width,height} = Dimensions.get('window');
+import Style from '../../styles';
 
 export default class HeaderItem extends Component {
   constructor(props) {
@@ -18,7 +16,7 @@ export default class HeaderItem extends Component {
 
   render() {
     return (
-      <View style={global.content}>
+      <View style={Style.sheets.content}>
         <Image style={style.image} source={this.props.image}/>
         {this.props.type === 'Story' ? <Text style={style.date}>{this.props.date}</Text> : undefined}
       </View>
@@ -36,7 +34,7 @@ const style = StyleSheet.create({
 
   },
   image: {
-    width: width,
+    width: Style.width,
     height: 200,
   }
 });

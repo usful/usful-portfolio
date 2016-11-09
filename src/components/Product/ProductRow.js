@@ -10,31 +10,29 @@ import {
 } from 'react-native';
 
 import Carousel from '../Carousel';
-import global from '../../styles';
-let {width, height} = Dimensions.get('window');
-import ContactFooter from '../ContactFooter';
 
 export default class ProductRow extends Component {
-
+  
   static defaultProps = {
     products: [{
-      name : '',
+      name: '',
       description: ''
     }]
-
+    
   };
-
+  
   constructor(props) {
     super(props);
-
   }
-
+  
   render() {
     return (
       <View>
-      <Carousel text = {'Usful products are inspired by our guiding initiatives. They are developed by our team to have purpose and impact.'} slides = {this.props.products} />
+        <Carousel
+          text={'Usful products are inspired by our guiding initiatives. They are developed by our team to have purpose and impact.'}
+          slides={this.props.products}/>
       </View>
     );
-
+    
   }
 }

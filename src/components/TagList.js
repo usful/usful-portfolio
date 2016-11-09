@@ -5,7 +5,7 @@ import {
     View
 } from 'react-native';
 
-import styles from '../styles';
+import Style from '../styles';
 import Tag from './Tag';
 
 export default class TagList extends Component {
@@ -21,7 +21,7 @@ export default class TagList extends Component {
 
   render() {
     return (
-      <View style={styles.tagsContainer}>
+      <View style={Style.sheets.tagsContainer}>
         {this.props.tags.map(tag =>
           <Tag key={tag}
                tag={tag}

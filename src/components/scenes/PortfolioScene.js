@@ -15,19 +15,16 @@ import {
 
 import AppData from '../../AppData';
 import Navigation from '../../helpers/Navigation';
+import Style from '../../styles';
+
 import ContactFooter from '../ContactFooter';
 import StoryCard from '../Story/StoryCard';
 import Carousel from '../Carousel';
-import Colours from '../../styles/Colours';
 import TopNav from '../TopNav';
 
-let {width, height} = Dimensions.get('window');
 let offset = 0;
 let idleTime = 0;
 let idleInterval;
-
-//Set the FPS to 30 in dev mode, no need to try to run high frame rates we can't do in iOS simulator
-const SCROLL_FPS = Math.round(1000 / __DEV__ ? 30 : 60);
 
 function pause(duration = 900) {
   return new Promise((resolve, reject) => {
@@ -38,14 +35,14 @@ function pause(duration = 900) {
 let styles = StyleSheet.create({
 
   container: {
-    backgroundColor: Colours.navBarBlack,
+    backgroundColor: Style.colours.navBarBlack,
     flex: 1,
-    width: width
+    width: Style.width
   },
   storiesScroll: {
-    backgroundColor: Colours.navBarBlack,
-    height: height,
-    width: width,
+    backgroundColor: Style.colours.navBarBlack,
+    height: Style.height,
+    width: Style.width,
   },
   shadow: {
     elevation: 2,
@@ -88,7 +85,7 @@ export default class PortfolioScene extends Component {
     AppState.addEventListener('change', () => this.handleAppStateChange());
     //land Stories first
     setTimeout(() => {
-      this.refs.scrollView.scrollTo({x: width, y: 0, animated: false});
+      this.refs.scrollView.scrollTo({x: Style.width, y: 0, animated: false});
     }, 0);
 
     idleInterval = setInterval(() => this.timerIncrement(), 1000);
@@ -96,7 +93,7 @@ export default class PortfolioScene extends Component {
   }
 
   async animateStoryCards() {
-    const cardsPerScreen = Math.ceil(height / StoryCard.CARD_HEIGHT);
+    const cardsPerScreen = Math.ceil(Style.height / StoryCard.CARD_HEIGHT);
 
     for (let x = 0; x < cardsPerScreen; x++) {
       this.refs[`storyCard${x}`].animateEntry();
@@ -126,9 +123,9 @@ export default class PortfolioScene extends Component {
   }
 
   navSwipeEnds(e) {
-    if ((e.nativeEvent.contentOffset.x % width) === 0) {
+    if ((e.nativeEvent.contentOffset.x % Style.width) === 0) {
       let oldIndex = this.state.index;
-      let newPage = e.nativeEvent.contentOffset.x / width;
+      let newPage = e.nativeEvent.contentOffset.x / Style.width;
 
       if (oldIndex !== newPage) {
         this.setState({
@@ -140,15 +137,15 @@ export default class PortfolioScene extends Component {
     this.setIdleToZero();
 
     //Toggling scrollenabled value of parent scrollview on product/initiative carousels to work on android
-    if (Platform.OS !== 'ios' && (e.nativeEvent.contentOffset.x / width === 0 || e.nativeEvent.contentOffset.x / width === 2)) {
+    if (Platform.OS !== 'ios' && (e.nativeEvent.contentOffset.x / Style.width === 0 || e.nativeEvent.contentOffset.x / Style.width === 2)) {
       this.setState({parentScroll: false})
     }
   }
 
 
   onTopNavScroll(e) {
-    let pageTransition = (e.nativeEvent.contentOffset.x % width) / width;
-    let nowIndex = Math.floor(e.nativeEvent.contentOffset.x / width);
+    let pageTransition = (e.nativeEvent.contentOffset.x % Style.width) / Style.width;
+    let nowIndex = Math.floor(e.nativeEvent.contentOffset.x / Style.width);
 
     if (nowIndex > 0) {
       pageTransition += nowIndex;
@@ -171,11 +168,10 @@ export default class PortfolioScene extends Component {
   }
 
   onStoriesScroll(e) {
-    console.log("gogogo");
     let currentOffset = e.nativeEvent.contentOffset.y;
     let direction = currentOffset > offset;
     let cardsScrolled = Math.floor(e.nativeEvent.contentOffset.y / StoryCard.CARD_HEIGHT);
-    let cardsPerScreen = Math.ceil(height / StoryCard.CARD_HEIGHT);
+    let cardsPerScreen = Math.ceil(Style.height / StoryCard.CARD_HEIGHT);
 
     //PARALLAX CODE
     //based on the current y offset we can tell where each story card is in the viewport because we know the story card
@@ -192,14 +188,14 @@ export default class PortfolioScene extends Component {
         //otherwise set a relative offset for each story card as it passes thru the viewport
         this.refs[`storyCard${i}`].animateEntry(i);
         let relativeOffset = e.nativeEvent.contentOffset.y - (StoryCard.CARD_HEIGHT * i);
-        storyOffsets[i] = (relativeOffset / height) * 0.33;
+        storyOffsets[i] = (relativeOffset / Style.height) * 0.33;
       }
     }
     //END PARALLAX CODE
 
     let yOffset = e.nativeEvent.contentOffset.y;
     let reachedTop = (yOffset <= 30);
-    let reachedBottom = (e.nativeEvent.contentSize.height - height <= yOffset);
+    let reachedBottom = (e.nativeEvent.contentSize.height - Style.height <= yOffset);
     if (reachedTop) {
       this.setState({
         storyOffsets: storyOffsets,
@@ -224,31 +220,18 @@ export default class PortfolioScene extends Component {
   hideNavBar(e) {
     let currentOffset = e.nativeEvent.pageY;
     let direction = currentOffset > offset;
-    offset = currentOffset
-    //let yOffset = e.nativeEvent.contentOffset.y;
-    //let reachedTop = (yOffset < 5);
-    //let reachedBottom = (e.nativeEvent.contentSize.height - height <= yOffset);
-    /* if (reachedBottom) {
-      this.setState({
-        //storyOffsets: storyOffsets,
-        hideNavBar: true,
-        footerToggle: true
-      });
-    } else { */
-      this.setState({
-        //storyOffsets: storyOffsets,
-        hideNavBar: direction
-      });
-    //}
+    offset = currentOffset;
+  
+    this.setState({
+      hideNavBar: direction
+    });
   }
-
 
   onContentPressed(content) {
     Navigation.goContent(content);
   }
 
   setIdleToZero(e) {
-    console.log("end");
     idleTime = 0;
   }
 
@@ -271,20 +254,18 @@ export default class PortfolioScene extends Component {
                     scrollEnabled={this.state.parentScroll}
                     onScroll={(e) => this.onTopNavScroll(e)}
                     onMomentumScrollEnd={(e) => this.navSwipeEnds(e)}
-                    scrollEventThrottle={SCROLL_FPS}>
+                    scrollEventThrottle={Style.SCROLL_FPS}>
           <Carousel
-            text={'Usful products are inspired by our guiding initiatives. They are developed by our team to have purpose and impact.'}
+            text="Usful products are inspired by our guiding initiatives. They are developed by our team to have purpose and impact."
             slides={AppData.products}
-            onTouchEnd={(e) => {
-              this.setScrollEnabled(e)
-            }}/>
+            onTouchEnd={(e) => this.setScrollEnabled(e) }
+          />
 
-          <ScrollView scrollEventThrottle={16}
+          <ScrollView scrollEventThrottle={Style.SCROLL_FPS}
                       showsVerticalScollIndicator={false}
                       style={styles.storiesScroll}
                       bounces={false}
                       onScroll={(e) => this.onStoriesScroll(e)}
-                      onMomentumScrollBegin={(e) => console.log("begin")}
                       onMomentumScrollEnd={(e) => this.setIdleToZero(e)}>
 
               <ContactFooter toggle={this.state.footerToggle} />
@@ -294,7 +275,6 @@ export default class PortfolioScene extends Component {
               <StoryCard ref={`storyCard${i}`}
                          key={story._id}
                          content={story}
-                         fps={SCROLL_FPS}
                          offset={this.state.storyOffsets[i]}
                          onPress={() => this.onContentPressed(story)}/>
             )}
@@ -302,7 +282,7 @@ export default class PortfolioScene extends Component {
           </ScrollView>
 
           <Carousel
-            text={'Usful Initiatives guide our company mission and cultural values. They are the motive behind our authenticity.'}
+            text="Usful Initiatives guide our company mission and cultural values. They are the motive behind our authenticity."
             slides={AppData.initiatives}
             onTouchEnd={(e) => this.setScrollEnabled(e)}/>
 

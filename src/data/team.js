@@ -17,17 +17,16 @@ export default [
   }, {
     _id: GUID(),
     name: 'Kofi Gyekye',
-    description: 'Something Else.',
+    description: 'Be useful. Change the world.',
     tags: ['Lead', 'Innovate', 'Produce'],
     picture: require('../../assets/jose.png'),
     socialAccounts: [
       {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/kofi.g'},
-      {_mg: GUID(), type: 'email', uri: 'mailto:kofi@usful.co'},
-      {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/kofi-gyekye-3812044a'}]
+      {_mg: GUID(), type: 'email', uri: 'mailto:kofi@usful.co'}]
   }, {
     _id: GUID(),
     name: 'Rhea Claus',
-    description: 'Something Else.',
+    description: 'Being Usful is being conscious of the world we live in and contributing to it in a positive manner.',
     tags: ['Direct', 'Realize', 'Plan'],
     picture: require('../../assets/jose.png'),
     socialAccounts: [
