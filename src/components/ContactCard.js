@@ -64,7 +64,7 @@ let styles = StyleSheet.create({
   },
   pageAndClose: {
     alignSelf: 'center',
-    marginTop: 0,
+
     flexDirection: 'row',
     backgroundColor: Style.colours.white,
   },
