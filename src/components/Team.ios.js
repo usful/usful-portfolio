@@ -27,7 +27,7 @@ export default class Team extends TeamBase {
     
     this.state.scales[page].setValue(this.constructor.MAX_SCALE - (this.constructor.MAX_SCALE - this.constructor.REGULAR_SCALE) * offset);
 
-    if (page + 1 >= this.props.content.team.length) {
+    if (page + 1 >= this.props.team.length) {
       return;
     }
     
@@ -45,7 +45,7 @@ export default class Team extends TeamBase {
           scrollEventThrottle={Style.SCROLL_FPS}
           showsHorizontalScrollIndicator={false}
           onScroll={(e) => this.onScroll(e)} >
-          {this.props.content.team.map((person, i) => this.renderStoryCard(person, i))}
+          {this.props.team.map((person, i) => this.renderStoryCard(person, i))}
         </ScrollView>
       </View>
     );

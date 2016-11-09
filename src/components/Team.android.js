@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {
-  Dimensions,
   View,
   ViewPagerAndroid
 } from 'react-native';
 
+import Style from '../styles';
 import TeamBase from './TeamBase';
-
 
 export default class Team extends TeamBase {
   static MAX_SCALE = 1;
@@ -26,7 +25,7 @@ export default class Team extends TeamBase {
   
     this.state.scales[page].setValue(this.constructor.MAX_SCALE - (this.constructor.MAX_SCALE - this.constructor.REGULAR_SCALE) * offset);
   
-    if (page + 1 >= this.props.content.team.length) {
+    if (page + 1 >= this.props.team.length) {
       return;
     }
   
@@ -38,9 +37,9 @@ export default class Team extends TeamBase {
       <View style={{flex:1}}>
         <ViewPagerAndroid
           style={{flex:1}}
-          pageMargin={width}
+          pageMargin={-Style.width * 0.1}
           onPageScroll={(e) => this.onPageScroll(e)}>
-          {this.props.content.team.map((person, i) => this.renderStoryCard(person, i))}
+          {this.props.team.map((person, i) => this.renderStoryCard(person, i))}
         </ViewPagerAndroid>
       </View>
     );

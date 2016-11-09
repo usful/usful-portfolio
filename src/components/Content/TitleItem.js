@@ -155,7 +155,7 @@ export default class TitleItem extends Component {
   
         <Modal animationType="fade" transparent={true} visible={this.state.isModalVisible} onRequestClose={(e) => this.closeTeamModal()}>
           <View style={styles.modalBg}>
-            <Team content={this.props.content} onClose={() => this.closeTeamModal()} />
+            <Team team={this.props.content.team} onClose={() => this.closeTeamModal()} />
           </View>
         </Modal>
 

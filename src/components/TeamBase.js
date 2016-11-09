@@ -30,9 +30,7 @@ export default class TeamBase extends Component {
   static REGULAR_SCALE = 0.8;
   
   static defaultProps = {
-    content: {
-      team: team
-    },
+    team: [],
     onClose: (e) => {}
   };
 
@@ -47,17 +45,18 @@ export default class TeamBase extends Component {
   }
 
   componentWillMount() {
-    this.setupScales(this.props.content.team);
+    this.setupScales(this.props.team);
   }
   
   componentWillReceiveProps(nextProps) {
-    if (nextProps.content.team !== this.props.content.team) {
-      this.setupScales(nextProps.content.team);
+    if (nextProps.team !== this.props.team) {
+      this.setupScales(nextProps.team);
     }
   }
   
   setupScales(people) {
     this.setState({scales: people.map((person, i) => new Animated.Value(i === 0 ? this.constructor.MAX_SCALE : this.constructor.REGULAR_SCALE))});
+    this.setState({scales: people.map((person, i) => new Animated.Value(i === 0 ? MAX_SCALE : REGULAR_SCALE))});
   }
   
   renderStoryCard(person, i) {
@@ -67,11 +66,11 @@ export default class TeamBase extends Component {
     };
   
     return (
-      <View key={i + person._id} style={styles.container} collapsable={false}>
-        <Animated.View style={wrapperStyle}  ollapsable={false}>
+      <View key={i + person._id} style={styles.container}>
+        <Animated.View style={wrapperStyle}>
           <ContactCard personId={person._id}
                        person={person}
-                       totalCards={this.props.content.team.length}
+                       totalCards={this.props.team.length}
                        onClose={this.props.onClose}
                        id={i + 1}/>
         </Animated.View>
