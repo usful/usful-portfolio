@@ -56,7 +56,6 @@ export default class TeamBase extends Component {
   
   setupScales(people) {
     this.setState({scales: people.map((person, i) => new Animated.Value(i === 0 ? this.constructor.MAX_SCALE : this.constructor.REGULAR_SCALE))});
-    this.setState({scales: people.map((person, i) => new Animated.Value(i === 0 ? MAX_SCALE : REGULAR_SCALE))});
   }
   
   renderStoryCard(person, i) {

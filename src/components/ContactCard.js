@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Platform,
   Animated,
   Dimensions,
   StyleSheet,
@@ -8,44 +9,42 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-let {height, width } = Dimensions.get('window');
 
-import Colours from '../styles/Colours';
-import Font from '../styles/Font';
-import LinearGradient from 'react-native-linear-gradient';
+import Style from '../styles';
+
 import SocialMediaButton from './SocialMediaButton';
 
 let styles = StyleSheet.create({
   card: {
-    backgroundColor: Colours.white,
-    width: width * 0.85
+    backgroundColor: Style.colours.white,
+    width: Style.width * 0.85
   },
   cardImage: {
-    height: height * 0.3 ,
-    backgroundColor: Colours.white,
+    height: Style.height * 0.3 ,
+    backgroundColor: Style.colours.white,
   },
 
   closeButton: {
-    marginTop : height * 0.05,
+    marginTop : Style.height * 0.05,
     height: 70,
   },
   closeText: {
-    color: Colours.darkGrey,
-    fontFamily: Font.tags.fontFamily,
-    fontWeight: Font.bold.fontWeight,
+    color: Style.colours.darkGrey,
+    fontFamily: Style.fonts.tags.fontFamily,
+    fontWeight: Style.fonts.bold.fontWeight,
     marginLeft: 100,
     paddingLeft: 30,
 
   },
   contactInfo: {
-    backgroundColor : Colours.white,
+    backgroundColor : Style.colours.white,
     alignItems: 'center',
     justifyContent: 'center',
-    height: height * 0.3,
+    height: Style.height * 0.3,
 
   },
   linearGradient: {
-    backgroundColor: Colours.transparent,
+    backgroundColor: Style.colours.transparent,
     position: 'absolute',
     top: 0,
     bottom: 0,
@@ -53,50 +52,50 @@ let styles = StyleSheet.create({
     right: 0
   },
   page: {
-    marginTop: height * 0.05,
-    color: Colours.darkGrey,
-    fontFamily: Font.tags.fontFamily,
-    fontWeight: Font.bold.fontWeight,
-    backgroundColor: Colours.white,
+    marginTop: Style.height * 0.05,
+    color: Style.colours.darkGrey,
+    fontFamily: Style.fonts.tags.fontFamily,
+    fontWeight: Style.fonts.bold.fontWeight,
+    backgroundColor: Style.colours.white,
 
   },
   pageAndClose: {
     alignSelf: 'center',
     marginTop: (Platform.OS === 'ios'? 0 : 20),
     flexDirection: 'row',
-    backgroundColor: Colours.white,
+    backgroundColor: Style.colours.white,
   },
   socialMediaBox: {
     flexDirection: 'row',
-    backgroundColor: Colours.transparent,
+    backgroundColor: Style.colours.transparent,
     paddingVertical: 10,
     justifyContent: 'center',
   },
   textDescription: {
-    backgroundColor: Colours.white,
-    color: Colours.darkGrey,
-    width: width * 0.6,
+    backgroundColor: Style.colours.white,
+    color: Style.colours.darkGrey,
+    width: Style.width * 0.6,
     fontSize: 12,
     lineHeight: 12,
     marginBottom: 10,
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     textAlign: 'center'
   },
   textName: {
-    backgroundColor: Colours.white,
+    backgroundColor: Style.colours.white,
     marginTop: 20,
     fontWeight: '600',
-    color: Colours.darkGrey,
+    color: Style.colours.darkGrey,
     fontSize: 18,
-    fontFamily: Font.tags.fontFamily,
+    fontFamily: Style.fonts.tags.fontFamily,
     textAlign: 'center'
   },
 
   textTags: {
-    backgroundColor: Colours.white,
-    color: Colours.darkGrey,
-    fontFamily: Font.tags.fontFamily,
-    fontStyle: Font.italics.fontStyle,
+    backgroundColor: Style.colours.white,
+    color: Style.colours.darkGrey,
+    fontFamily: Style.fonts.tags.fontFamily,
+    fontStyle: Style.fonts.italics.fontStyle,
     fontSize: 10,
     paddingTop: 5,
     paddingBottom: 18,
@@ -141,7 +140,7 @@ export default class ContactCard extends Component {
       
         <View style={styles.socialMediaBox}>
           {person.socialAccounts.map((account, i) =>
-            <SocialMediaButton key={i} account={account} size={30} color={Colours.white}/>
+            <SocialMediaButton key={i} account={account} size={30} color={Style.colours.white}/>
           )}
         </View>
       </View>

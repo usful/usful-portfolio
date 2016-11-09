@@ -37,7 +37,7 @@ export default class Team extends TeamBase {
       <View style={{flex:1}}>
         <ViewPagerAndroid
           style={{flex:1}}
-          pageMargin={-Style.width * 0.1}
+          pageMargin={Math.floor(-Style.width * 0.1)}
           onPageScroll={(e) => this.onPageScroll(e)}>
           {this.props.team.map((person, i) => this.renderStoryCard(person, i))}
         </ViewPagerAndroid>
