@@ -16,6 +16,9 @@ import SocialMediaButton from './SocialMediaButton';
 
 let styles = StyleSheet.create({
   card: {
+   marginTop: Platform.OS === 'ios'? Style.height * 0.05: Style.height * 0.02
+  },
+  whiteArea: {
     backgroundColor: Style.colours.white,
     width: Style.width * 0.85
   },
@@ -61,7 +64,7 @@ let styles = StyleSheet.create({
   },
   pageAndClose: {
     alignSelf: 'center',
-    marginTop: (Platform.OS === 'ios'? 0 : 20),
+    marginTop: 0,
     flexDirection: 'row',
     backgroundColor: Style.colours.white,
   },
@@ -122,21 +125,22 @@ export default class ContactCard extends Component {
   
     return (
       <View style={styles.card}>
-        <View style={styles.pageAndClose}>
-          <Text style={styles.page}>{this.props.id}/{this.props.totalCards}</Text>
-          <TouchableOpacity style={styles.closeButton} onPress={this.props.onClose}>
-            <Text style={styles.closeText}>CLOSE</Text>
-          </TouchableOpacity>
+        <View style={styles.whiteArea}>
+          <View style={styles.pageAndClose}>
+            <Text style={styles.page}>{this.props.id}/{this.props.totalCards}</Text>
+            <TouchableOpacity style={styles.closeButton} onPress={this.props.onClose}>
+              <Text style={styles.closeText}>CLOSE</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.cardImage}></View>
+
+          <View style={styles.contactInfo}>
+            <Text style={styles.textName}>{person.name}</Text>
+            <Text style={styles.textTags}>{person.tags.join(' / ')}</Text>
+            <Text style={styles.textDescription}>{person.description}</Text>
+          </View>
         </View>
-      
-        <View style={styles.cardImage}></View>
-      
-        <View style={styles.contactInfo}>
-          <Text style={styles.textName}>{person.name}</Text>
-          <Text style={styles.textTags}>{person.tags.join(' / ')}</Text>
-          <Text style={styles.textDescription}>{person.description}</Text>
-        </View>
-      
       
         <View style={styles.socialMediaBox}>
           {person.socialAccounts.map((account, i) =>
