@@ -8,25 +8,23 @@ Dimensions,
 TouchableOpacity
 } from 'react-native';
 
+
+import Style from '../styles';
 import media from '../data/media';
 import mediaFormatter from '../helpers/formatters/mediaUri';
-import global from '../styles';
 import OutlineButton from './OutlineButton';
-import openLink from '../helpers/navigation/openLink';
-
-let {height, width} = Dimensions.get('window');
 
 const FOOTER_HEIGHT = 600;
 const UNDERLAY_HEIGHT = 100;
-export default class ContactFooter extends Component {
 
+export default class ContactFooter extends Component {
+  
   static FOOTER_HEIGHT = FOOTER_HEIGHT;
   static UNDERLAY_HEIGHT = UNDERLAY_HEIGHT;
-
+  
   static defaultProps = {
     card: 0,
-    contact:
-    {
+    contact: {
       email: 'rishabh@monanetworks.com',
       phone: 'tel:1-877-364-6662',
       instagram: 'https://www.instagram.com/usful.co/',
@@ -34,50 +32,50 @@ export default class ContactFooter extends Component {
       address: '46 Stewart St, Toronto, ON, Canada, M5V 1H6'
     }
   };
-
+  
   constructor(props) {
     super(props);
   }
-
+  
   shouldComponentUpdate(nextProps, nextState) {
     return (
       nextProps.card != this.props.card ||
       nextProps.contact != this.props.contact ||
-    nextProps.toggle != this.props.toggle
-
-)
-  }
-  renderButtons() {
-
-    if(this.props.contact.uri){
-    return(
-      <View style={styles.buttonContainer}>
-        <OutlineButton text={"WEBSITE"} uri = {this.props.contact.uri}/>
-        <OutlineButton text={"TWITTER"} uri = {this.props.contact.twitter}/>
-      </View>
+      nextProps.toggle != this.props.toggle
+    
     )
-  }else
-    {
-      return(
+  }
+  
+  renderButtons() {
+    
+    if (this.props.contact.uri) {
+      return (
         <View style={styles.buttonContainer}>
-          <OutlineButton text={"INSTAGRAM"} uri = {this.props.contact.instagram}/>
-          <OutlineButton text={"TWITTER"} uri = {this.props.contact.twitter}/>
+          <OutlineButton text={"WEBSITE"} uri={this.props.contact.uri}/>
+          <OutlineButton text={"TWITTER"} uri={this.props.contact.twitter}/>
         </View>
       )
+    } else {
+      return (
+        <View style={styles.buttonContainer}>
+          <OutlineButton text={"INSTAGRAM"} uri={this.props.contact.instagram}/>
+          <OutlineButton text={"TWITTER"} uri={this.props.contact.twitter}/>
+        </View>
+      )
+    }
   }
-  }
-
+  
   render() {
     return (
       <View style={this.props.toggle ? styles.contactShow : styles.contactHide}>
         <Image source={{uri: mediaFormatter(media[45])}} resizeMode='cover' style={styles.background}/>
         <View style={styles.contact}>
           <Text style={styles.title}>Contact Us</Text>
-          <Text style= {styles.body}>Interested in learning more about Usful? Contact us! We’d love to hear from you.</Text>
-            {this.renderButtons()}
+          <Text style={styles.body}>Interested in learning more about Usful? Contact us! We’d love to hear from you.</Text>
+          {this.renderButtons()}
           <View style={styles.buttonContainer}>
-            <OutlineButton text={"EMAIL"} uri = {this.props.contact.email}/>
-            <OutlineButton text={"PHONE"} uri = {this.props.contact.phone}/>
+            <OutlineButton text="EMAIL" uri={this.props.contact.email}/>
+            <OutlineButton text="PHONE" uri={this.props.contact.phone}/>
           </View>
           <Text style={styles.address}>{this.props.contact.address}</Text>
         </View>
@@ -147,7 +145,7 @@ const styles= StyleSheet.create({
     top: 0,
     left: 0,
     paddingBottom: UNDERLAY_HEIGHT,
-    width: width,
+    width: Style.width,
     height: FOOTER_HEIGHT,
     backgroundColor: 'transparent'
   }

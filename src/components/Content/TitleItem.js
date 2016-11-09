@@ -13,30 +13,28 @@ import {
 } from 'react-native';
 
 import media from '../../data/media';
+
+import Style from '../../styles';
+
 import mediaFormatter from '../../helpers/formatters/mediaUri';
 import longDateFormatter from '../../helpers/formatters/longDate';
 import ActionSheet from '../../helpers/actionSheet';
+
 import TagList from './StoryTagList';
 import Team from '../Team';
-import Font from './../../styles/Font';
-import Colours from './../../styles/Colours';
-import global from '../../styles';
-
-let {height, width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   closeText: {
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     fontSize: 18,
     marginVertical: 40,
     justifyContent: 'center',
     alignSelf: 'center',
-    color: Colours.white
+    color: Style.colours.white
   },
   modalBg: {
-    top: 0,
-    left: 0,
-    height: height,
+    width: Style.width,
+    height: Style.height,
     backgroundColor: 'rgba(0, 0, 0, 0.8)'
   },
   team: {
@@ -48,7 +46,7 @@ const styles = StyleSheet.create({
       android: {
         height: 43,
         width: 80,
-        borderColor: Colours.transparent,
+        borderColor: Style.colours.transparent,
         borderWidth: 0.4,
         marginBottom: 10
       }
@@ -70,15 +68,15 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 27,
-    fontFamily: Font.secondaryFont.fontFamily,
-    fontWeight: Font.bold.fontWeight,
+    fontFamily: Style.fonts.secondaryFont.fontFamily,
+    fontWeight: Style.fonts.bold.fontWeight,
     flexWrap: 'wrap'
   },
   share:{
     borderRadius: 22,
     height: 43,
     width: 80,
-    borderColor: Colours.transparent,
+    borderColor: Style.colours.transparent,
     borderWidth: 0.4,
     marginBottom: 10
   }
@@ -89,16 +87,18 @@ export default class TitleItem extends Component {
     content: {
       title: 'Title',
       tags: []
-    },
-    onOpenTeam: (team) => {
     }
   };
   
   constructor(props) {
     super(props);
+    
+    this.state = {
+      isModalVisible: false
+    };
   }
   
-  getTeamImage() {
+  get teamImage() {
     return {uri: mediaFormatter(media[48])};
   }
   
@@ -116,11 +116,19 @@ export default class TitleItem extends Component {
     )
   }
   
-  showTeam(team) {
+  openTeamModal() {
+    this.setState({isModalVisible: true});
+  }
+  
+  closeTeamModal() {
+    this.setState({isModalVisible: false});
+  }
+  
+  renderShowTeam(team) {
     if (team && team.length > 0) {
       return (
-        <TouchableOpacity onPress={(e) => this.props.onOpenTeam(team)}>
-          <Image style={styles.team} source={this.getTeamImage()}/>
+        <TouchableOpacity onPress={(e) => this.openTeamModal()}>
+          <Image style={styles.team} source={this.teamImage}/>
         </TouchableOpacity>
       )
     }
@@ -130,10 +138,10 @@ export default class TitleItem extends Component {
   
   render() {
     return (
-      <View style={[global.content, styles.content]}>
+      <View style={[Style.sheets.content, styles.content]}>
         <View style={styles.row1}>
           
-          {this.showTeam(this.props.content.team)}
+          {this.renderShowTeam(this.props.content.team)}
           
           <TouchableOpacity onPress={(e) => this.openActionSheet()}>
             <Image style={styles.share} source={{uri: mediaFormatter(media[47])}}/>
@@ -144,6 +152,13 @@ export default class TitleItem extends Component {
           <Text style={styles.title}>{this.props.title}</Text>
           <TagList tags={this.props.tags}/>
         </View>
+  
+        <Modal animationType="fade" transparent={true} visible={this.state.isModalVisible} onRequestClose={(e) => this.closeTeamModal()}>
+          <View style={styles.modalBg}>
+            <Team content={this.props.content} onClose={() => this.closeTeamModal()} />
+          </View>
+        </Modal>
+
       </View>
     );
   }

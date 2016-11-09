@@ -6,5 +6,4 @@ export default {
   navBarBlack: '#091217',
   white: '#FFFFFF',
   transparent : 'transparent'
-
 }

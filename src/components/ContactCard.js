@@ -17,7 +17,7 @@ import SocialMediaButton from './SocialMediaButton';
 
 let styles = StyleSheet.create({
   card: {
-    backgroundColor: Colours.white,
+    backgroundColor: Colours.white
   },
   cardImage: {
     height: height * 0.3 ,
@@ -141,7 +141,8 @@ export default class ContactCard extends Component {
       
         <View style={styles.socialMediaBox}>
           {person.socialAccounts.map((account, i) =>
-            <SocialMediaButton key={i} account={account} size={30} color={Colours.white}/>)}
+            <SocialMediaButton key={i} account={account} size={30} color={Colours.white}/>
+          )}
         </View>
       </View>
     );

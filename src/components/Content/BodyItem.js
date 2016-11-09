@@ -7,30 +7,33 @@ import {
     View
 } from 'react-native';
 
-import global from '../../styles';
+import Style from '../../styles';
 
-let {width,height} = Dimensions.get('window');
-
-export default class BodyItem extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <View style={global.content}>
-        <Text style={this.props.style || style.text}>{this.props.text}</Text>
-      </View>
-    );
-  }
-}
-
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   text: {
-    width: width,
+    width: Style.width,
     fontFamily: 'Avenir-Book',
     fontSize: 15,
     paddingHorizontal: 30,
     flexWrap: 'wrap'
   }
 });
+
+export default class BodyItem extends Component {
+  
+  static defaultProps = {
+    style: styles.text
+  };
+  
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <View style={Style.sheets.content}>
+        <Text style={this.props.style}>{this.props.text}</Text>
+      </View>
+    );
+  }
+}

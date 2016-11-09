@@ -6,10 +6,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import global from '../../styles';
-import Font from '../../styles/Font';
-import Colours from '../../styles/Colours';
-
+import Style from '../../styles';
 
 export default class CloseButton extends Component {
   static defaultProps = {
@@ -22,7 +19,7 @@ export default class CloseButton extends Component {
 
   render() {
     return (
-      <TouchableOpacity onPress={(e) => this.props.onPress(e)} style={[global.content, style.button]}>
+      <TouchableOpacity onPress={(e) => this.props.onPress(e)} style={[Style.sheets.content, style.button]}>
         <Text style={style.text}>CLOSE</Text>
       </TouchableOpacity>
     );
@@ -34,15 +31,15 @@ const style = StyleSheet.create({
     position: 'absolute',
     top: 0,
     right: 0,
-    backgroundColor: Colours.transparent,
+    backgroundColor: Style.colours.transparent,
     padding: 20
   },
   text: {
     textAlign: 'center',
     fontSize: 15,
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     fontWeight: '500',
-    color: Colours.navBarBlack,
+    color: Style.colours.navBarBlack,
     flexWrap: 'wrap',
   }
 });
