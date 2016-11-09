@@ -12,8 +12,6 @@ import {
 
 import Style from '../../styles';
 
-import global from '../../styles';
-import Colors from '../../styles/Colours';
 import Font from '../../styles/Font';
 
 
@@ -31,7 +29,7 @@ import ImageItem from './ImageItem';
 import NextContentButton from './NextContentButton';
 
 export default class DetailedContentItem extends Component {
-  
+
   static defaultProps = {
     content: {},
     nextContent: {}
@@ -41,7 +39,7 @@ export default class DetailedContentItem extends Component {
     super(props);
     
     this.state = {
-      footerToggle: false
+      footerToggle: false,
     }
   }
   
@@ -53,7 +51,7 @@ export default class DetailedContentItem extends Component {
       });
     }
   }
-  
+
   renderFooter() {
     switch (this.props.content.type) {
       case "Initiative":
@@ -73,23 +71,20 @@ export default class DetailedContentItem extends Component {
     let type = this.props.content.type;
     let blockHeight = 0;
     return (
-
-      <View style={styles.contentScroll}>
-        {this.renderFooter()}
-
-      <ScrollView
+      <View>
+        <ScrollView
         bounces={false}
         ref={ref => this._ScrollView = ref}
         scrollEventThrottle={1000/30}
-        onScroll= {(el) => this._handleScroll(el, blockHeight)}
-        >
-
+        onScroll= {(el) => this._handleScroll(el, blockHeight)}>
+          {this.renderFooter()}
         <View
+          style = {type !== 'Story' && this.state.footerToggle ? styles.contentShow : styles.contentHide}
           elevation = {10}
           onLayout={(event) => {
             blockHeight = event.nativeEvent.layout.height;
           }}
-          style = {type !== 'Story' && this.state.footerToggle ? styles.contentShow : styles.contentHide}>
+          >
           <HeaderItem type={this.props.content.type} image={this.props.content.header.uri} date={longDateFormatter(this.props.content.date)}/>
           <TitleItem content={this.props.content} title={this.props.content.title} tags={this.props.content.tags}/>
 
@@ -144,15 +139,12 @@ export default class DetailedContentItem extends Component {
 }
 
 const styles = StyleSheet.create({
-  contentScroll: {
-    backgroundColor: 'white'
-  },
+
   contentShow: {
     backgroundColor: 'white',
-    marginBottom: ContactFooter.FOOTER_HEIGHT - ContactFooter.UNDERLAY_HEIGHT
+    marginBottom: ContactFooter.FOOTER_HEIGHT - ContactFooter.UNDERLAY_HEIGHT,
   },
   contentHide: {
-
     backgroundColor: 'white',
     marginBottom: 0
   },

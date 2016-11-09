@@ -227,10 +227,8 @@ initiativeBlocks = [
         text: 'The universal human condition encompasses key characteristics, events, and situations that define human existence.'
       },
       {
-        _type: 'MediaCarouselBlock',
-        media: [media[23], media[24]],
-        height: 300,
-        scaleMode: 'contain'
+        _type: 'MediaBlock',
+        media: media[24]
       },
       {
       _type: 'CopyBlock',

@@ -69,6 +69,7 @@ export default class ContactFooter extends Component {
   }
   
   render() {
+
     return (
       <View style={styles.contactShow}>
         <Image source={{uri: mediaFormatter(media[45])}} resizeMode='cover' style={styles.background}/>
@@ -93,7 +94,7 @@ const styles= StyleSheet.create({
     bottom: 0,
     left: 0,
     height: ContactFooter.FOOTER_HEIGHT,
-    opacity: 1
+    opacity: 1,
   },
   contact: {
     marginTop: UNDERLAY_HEIGHT
@@ -109,6 +110,7 @@ const styles= StyleSheet.create({
     marginBottom: 40
   },
   buttonContainer: {
+    zIndex: 999,
     backgroundColor: 'transparent',
     marginTop: 20,
     flexDirection: 'row',
