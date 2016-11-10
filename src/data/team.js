@@ -50,7 +50,7 @@ export default [
     picture: require('../../assets/jose.png'),
     socialAccounts: [
       {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/julianaciccarelli'},
-      {_mg: GUID(), type: 'email', uri: 'juliana@usful.co'},
+      {_mg: GUID(), type: 'email', uri: 'mailto:juliana@usful.co'},
       {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/julianaciccarelli'}]
   }, {
     _id: GUID(),
