@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navigation from '../helpers/Navigation';
 import longDateFormatter from '../helpers/formatters/longDate';
-import Font from '../styles/Font';
+import Style from '../styles';
 import {
   StyleSheet,
   Text,
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   text: {
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     color: '#fff',
     fontSize: 13,
     backgroundColor: 'transparent',

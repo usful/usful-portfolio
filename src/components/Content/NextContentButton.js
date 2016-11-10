@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import Font from '../../styles/Font';
+import Style from '../../styles';
 
 const style = StyleSheet.create({
   content: {
@@ -33,7 +33,7 @@ const style = StyleSheet.create({
     height: 150
   },
   title: {
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     fontWeight: 'bold',
     fontSize: 18,
     flexWrap: 'wrap'
@@ -41,7 +41,7 @@ const style = StyleSheet.create({
   next: {
     marginTop: 15,
     fontSize: 13,
-    fontFamily: Font.secondaryFont.fontFamily,
+    fontFamily: Style.fonts.secondaryFont.fontFamily,
     alignSelf: 'flex-start',
 
   }

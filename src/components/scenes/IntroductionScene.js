@@ -13,7 +13,7 @@ import  {
   Platform,
   View
 } from 'react-native';
-
+import Style from '../../styles';
 import Font from '../../styles/Font';
 import Colours from '../../styles/Colours';
 import Typewriter from '../../Typewriter';
@@ -37,7 +37,7 @@ let styles = StyleSheet.create({
   },
   font: {
     color:  Colours.white,
-    fontFamily: Font.secondaryFont.fontFamily,
+    fontFamily: Style.fonts.secondaryFont.fontFamily,
     fontSize: 18,
     marginTop: 5,
   },
@@ -46,7 +46,7 @@ let styles = StyleSheet.create({
   },
   msg: {
     color:  Colours.white,
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     fontSize: 18,
     fontWeight: '400',
     lineHeight:21,

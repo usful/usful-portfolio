@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
-import Font from '../../styles/Font';
+import Style from '../../styles';
 import Colours from '../../styles/Colours';
 let {height, width} = Dimensions.get('window');
 
@@ -47,7 +47,7 @@ let styles = StyleSheet.create({
   name: {
     backgroundColor: Colours.transparent,
     color: Colours.white,
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     fontSize: 28,
     fontWeight: '500',
     marginBottom: 34,
@@ -56,7 +56,7 @@ let styles = StyleSheet.create({
   title: {
     backgroundColor: Colours.transparent,
     color: Colours.white,
-    fontFamily: Font.tags.fontFamily,
+    fontFamily: Style.fonts.tags.fontFamily,
     lineHeight: 22,
     fontSize: 16,
     fontWeight: '400',
