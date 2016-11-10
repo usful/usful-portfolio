@@ -47,7 +47,6 @@ export default class Typewriter extends Component {
     this.anims = this.props.msg.split(this.props.split).map((val) => {
       //Add some randomness into the speed.
       const speed = Math.round(this.props.speed + (Math.random() * this.props.speed));
-      console.log("speed", speed)
       
       return {
         value: val,

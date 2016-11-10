@@ -77,7 +77,6 @@ export default class TopNav extends Component {
   }
 
   slide(direction){
-    console.log("change");
     let val = (direction === 'down') ? 0: -75;
     let duration = (direction === 'down')? 100: 100;
       Animated.timing(this.state.slidingAnim, {
