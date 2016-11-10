@@ -40,16 +40,24 @@ export default class DetailedContentItem extends Component {
     
     this.state = {
       footerToggle: false,
+      blockHeight: 0
     }
   }
   
-  _handleScroll(el, blockHeight) {
+  _handleScroll(el) {
+    let pullDown = Platform.OS == 'ios' ? this.state.blockHeight + 100 : this.state.blockHeight;
     let scrollHeight = el.nativeEvent.contentOffset.y + Style.height;
-    if (scrollHeight >= blockHeight) {
+    if(scrollHeight <= this.state.blockHeight){
+      this.setState({
+        footerToggle: false
+      })
+    }
+    if (scrollHeight >= pullDown) {
       this.setState({
         footerToggle: true
       });
     }
+
   }
 
   renderFooter() {
@@ -69,20 +77,19 @@ export default class DetailedContentItem extends Component {
 
     let blocks = this.props.content.blocks;
     let type = this.props.content.type;
-    let blockHeight = 0;
     return (
       <View>
         <ScrollView
-        bounces={false}
+        bounces={true}
         ref={ref => this._ScrollView = ref}
         scrollEventThrottle={1000/30}
-        onScroll= {(el) => this._handleScroll(el, blockHeight)}>
+        onScroll= {(el) => this._handleScroll(el)}>
           {this.renderFooter()}
         <View
           style = {type !== 'Story' && this.state.footerToggle ? styles.contentShow : styles.contentHide}
           elevation = {10}
           onLayout={(event) => {
-            blockHeight = event.nativeEvent.layout.height;
+            this.setState({blockHeight: event.nativeEvent.layout.height})
           }}
           >
           <HeaderItem type={this.props.content.type} image={this.props.content.header.uri} date={longDateFormatter(this.props.content.date)}/>

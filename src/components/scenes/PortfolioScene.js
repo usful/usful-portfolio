@@ -71,6 +71,7 @@ export default class PortfolioScene extends Component {
       previousIndex: 0,
       index: 0,
       pageTransition: 0,
+      blockHeight : 0,
       parentScroll: true,
       productCount: 0,
       footerToggle: false,
@@ -90,6 +91,7 @@ export default class PortfolioScene extends Component {
 
     idleInterval = setInterval(() => this.timerIncrement(), 1000);
     this.animateStoryCards();
+
   }
 
   async animateStoryCards() {
@@ -196,8 +198,14 @@ export default class PortfolioScene extends Component {
     let yOffset = e.nativeEvent.contentOffset.y;
     let reachedTop = (yOffset <= 30);
 
-    let bottom = e.nativeEvent.contentSize.height - Style.height;
-    let reachedBottom = (bottom == yOffset);
+    let pullDown = Platform.OS == 'ios' ? this.state.blockHeight + 100 : this.state.blockHeight;
+    let reachedBottom = (this.state.blockHeight == yOffset);
+    let reachedPullDown = (yOffset >= pullDown);
+    if(yOffset < this.state.blockHeight){
+      this.setState({
+        footerToggle: false
+      })
+    }
     if (reachedTop) {
       this.setState({
         storyOffsets: storyOffsets,
@@ -206,7 +214,11 @@ export default class PortfolioScene extends Component {
     } else if (reachedBottom) {
       this.setState({
         storyOffsets: storyOffsets,
-        hideNavBar: true,
+        hideNavBar: true
+      })
+    }
+    else if(reachedPullDown){
+      this.setState({
         footerToggle: true
       })
     }
@@ -274,13 +286,17 @@ export default class PortfolioScene extends Component {
           <ScrollView scrollEventThrottle={16}
 
                       showsVerticalScrollIndicator={false}
-                      bounces={false}
+                      bounces={true}
                       onScroll={(e) => this.onStoriesScroll(e)}
                       onMomentumScrollEnd={(e) => this.setIdleToZero(e)}>
             <ContactFooter />
 
 
-            <View elevation = {10} style = {[{backgroundColor: Style.colours.navBarBlack}, this.state.footerToggle ? styles.contactShow : styles.contactHide, styles.shadow]}>
+            <View
+              onLayout={(event) => {
+                this.setState({blockHeight: event.nativeEvent.layout.height - Style.height})
+              }}
+              elevation = {10} style = {[{backgroundColor: Style.colours.navBarBlack}, this.state.footerToggle ? styles.contactShow : styles.contactHide, styles.shadow]}>
             {AppData.stories.map((story, i) =>
               <StoryCard ref={`storyCard${i}`}
                          key={story._id}
