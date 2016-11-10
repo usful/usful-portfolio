@@ -560,5 +560,24 @@ export default [
     height: 450,
     bytes: 27400
   }),
-
+  new MediaModel({
+    _id: 'Juliana.png',
+    _created: new Date(),
+    _updated: new Date(),
+    contentType: 'image/png',
+    folder: 'team',
+    width: 800,
+    height: 450,
+    bytes: 27400
+  }),
+  new MediaModel({
+    _id: 'Al.png',
+    _created: new Date(),
+    _updated: new Date(),
+    contentType: 'image/png',
+    folder: 'team',
+    width: 800,
+    height: 450,
+    bytes: 27400
+  }),
 ];

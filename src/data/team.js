@@ -48,7 +48,7 @@ export default [
     name: 'Juliana Ciccarelli',
     description: 'Usful is creating products that empower individual people to be a positive change in the world.',
     tags: ['Strategize', 'Produce', 'Achieve'],
-    picture: media[50],
+    picture: media[55],
     socialAccounts: [
       {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/julianaciccarelli'},
       {_mg: GUID(), type: 'email', uri: 'mailto:juliana@usful.co'},
@@ -68,7 +68,7 @@ export default [
     name: 'Alexandra Panagoulia',
     description: 'Usful means partnering with community leaders for a positive change in our local environments.',
     tags: ['Plan', 'Connect', 'Communicate'],
-    picture: media[50],
+    picture: media[56],
     socialAccounts: [
       {_mg: GUID(), type: 'instagram', uri: 'https://www.instagram.com/al.panagoulia'},
       {_mg: GUID(), type: 'email', uri: 'mailto:alexandra@usful.co'},
