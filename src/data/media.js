@@ -500,4 +500,65 @@ export default [
     height: 450,
     bytes: 27400
   }),
+  new MediaModel({
+    _id: 'Clint.png',
+    _created: new Date(),
+    _updated: new Date(),
+    contentType: 'image/png',
+    folder: 'team',
+    width: 800,
+    height: 450,
+    bytes: 27400
+  }),
+  new MediaModel({
+    _id: 'Casey.png',
+    _created: new Date(),
+    _updated: new Date(),
+    contentType: 'image/png',
+    folder: 'team',
+    width: 800,
+    height: 450,
+    bytes: 27400
+  }),
+  new MediaModel({
+    _id: 'Jessica.png',
+    _created: new Date(),
+    _updated: new Date(),
+    contentType: 'image/png',
+    folder: 'team',
+    width: 800,
+    height: 450,
+    bytes: 27400
+  }),
+  new MediaModel({
+    _id: 'Kofi.png',
+    _created: new Date(),
+    _updated: new Date(),
+    contentType: 'image/png',
+    folder: 'team',
+    width: 800,
+    height: 450,
+    bytes: 27400
+  }),
+  new MediaModel({
+    _id: 'Mecha.png',
+    _created: new Date(),
+    _updated: new Date(),
+    contentType: 'image/png',
+    folder: 'team',
+    width: 800,
+    height: 450,
+    bytes: 27400
+  }),
+  new MediaModel({
+    _id: 'Rhea.png',
+    _created: new Date(),
+    _updated: new Date(),
+    contentType: 'image/png',
+    folder: 'team',
+    width: 800,
+    height: 450,
+    bytes: 27400
+  }),
+
 ];
