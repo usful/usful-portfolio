@@ -101,7 +101,7 @@ const styles= StyleSheet.create({
   },
   body: {
     marginTop: 30,
-    fontFamily: Style.font.primaryFont.fontFamily,
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     fontSize: 15,
     marginHorizontal: 20,
     flexWrap: 'wrap',
@@ -121,7 +121,7 @@ const styles= StyleSheet.create({
     marginTop: 60,
     color: '#000',
     fontSize: 30,
-    fontFamily: Style.font.primaryFont.fontFamily,
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     fontWeight: 'bold',
     backgroundColor: 'transparent'
   },
