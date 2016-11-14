@@ -580,4 +580,14 @@ export default [
     height: 450,
     bytes: 27400
   }),
+  new MediaModel({
+    _id: 'Al.png',
+    _created: new Date(),
+    _updated: new Date(),
+    contentType: 'video/mp4',
+    folder: 'team',
+    width: 800,
+    height: 450,
+    bytes: 27400
+  }),
 ];

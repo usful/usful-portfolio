@@ -19,6 +19,15 @@ const MediaModel = Model.create(
   {
     get uri() {
       return {uri: mediaUriFormatter(this)};
+    },
+
+    get type() {
+      let result = null;
+      let mime = this.contentType.match(/[^/]*/);
+      if (mime && mime.length) {
+        result = mime[0];
+      }
+      return result.toString().toUpperCase();
     }
   }
 );

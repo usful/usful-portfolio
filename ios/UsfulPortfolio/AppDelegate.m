@@ -8,7 +8,7 @@
  */
 
 #import "AppDelegate.h"
-
+#import <AVFoundation/AVFoundation.h>
 #import "RCTBundleURLProvider.h"
 #import "RCTRootView.h"
 
@@ -32,6 +32,7 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   return YES;
+  [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil]; 
 }
 
 @end

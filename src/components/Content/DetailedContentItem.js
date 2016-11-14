@@ -14,7 +14,7 @@ import Style from '../../styles';
 
 import Font from '../../styles/Font';
 
-
+import VideoItem from './VideoItem';
 import OutlineButton from '../OutlineButton';
 import longDateFormatter from '../../helpers/formatters/longDate';
 import Navigation from '../../helpers/Navigation';
@@ -57,6 +57,21 @@ export default class DetailedContentItem extends Component {
         footerToggle: true
       });
     }
+
+  }
+
+  renderMedia(media, i) {
+    switch(media.type){
+      case 'VIDEO':
+        return <VideoItem key={i}/>
+      case 'IMAGE':
+        return <ImageItem key={i} style={media.style} image={media.uri}/>
+      case 'Audio':
+        return <AudioItem key= {i}/>
+      default:
+        return <View><Text>{media.type}</Text></View>;
+    }
+
 
   }
 
@@ -103,7 +118,7 @@ export default class DetailedContentItem extends Component {
               case 'LegalBlock':
                 return <BodyItem style={styles.legal} key={index} text={block.text}/>;
               case 'MediaBlock':
-                return <ImageItem key={index} style={block.style} image={block.media.uri}/>;
+                return this.renderMedia(block.media, index);
               case 'ButtonBlock':
                 return <View key={index} style={[Style.sheets.content, styles.buttonContainer]}><OutlineButton
                   text={block.text} uri={block.uri}/></View>;
