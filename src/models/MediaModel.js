@@ -27,7 +27,7 @@ const MediaModel = Model.create(
       if (mime && mime.length) {
         result = mime[0];
       }
-      return result.toString().toUpperCase();
+      return result.toString().charAt(0).toUpperCase() + result.slice(1);;
     }
   }
 );

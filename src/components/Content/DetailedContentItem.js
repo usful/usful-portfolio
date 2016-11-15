@@ -62,9 +62,9 @@ export default class DetailedContentItem extends Component {
 
   renderMedia(media, i) {
     switch(media.type){
-      case 'VIDEO':
+      case 'Video':
         return <VideoItem key={i}/>
-      case 'IMAGE':
+      case 'Image':
         return <ImageItem key={i} style={media.style} image={media.uri}/>
       case 'Audio':
         return <AudioItem key= {i}/>
