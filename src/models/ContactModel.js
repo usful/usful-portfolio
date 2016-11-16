@@ -8,7 +8,8 @@ const ContactModel = Model.create(
     email: String,
     phone: String,
     uri: String,
-    address: String
+    address: String,
+    twitter: String
   }
 );
 

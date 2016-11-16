@@ -139,7 +139,7 @@ const AppData = new AppDataModel(
         team: [
         ],
         contactInfo: {
-          email: 'info@joinlane.com',
+          email: 'mailto:info@joinlane.com',
           phone: 'tel:1-877-364-6662',
           uri: 'https://joinlane.com/',
           twitter: 'https://twitter.com/joinlane'

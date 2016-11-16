@@ -17,7 +17,7 @@ import media from '../../data/media';
 import Style from '../../styles';
 
 import mediaFormatter from '../../helpers/formatters/mediaUri';
-import longDateFormatter from '../../helpers/formatters/longDate';
+import shortDateFormatter from '../../helpers/formatters/shortDate';
 import ActionSheet from '../../helpers/actionSheet';
 
 import TagList from './StoryTagList';
@@ -106,12 +106,12 @@ export default class TitleItem extends Component {
     ActionSheet.open(Platform.OS === 'ios' ? {
         title: 'Usful Portfolio',
         url: 'http://www.usful.co',
-        message: 'I think you might like this app by Usful. Check out their stories!',
-        subject: `Usful Portfolio - ${longDateFormatter(this.props.content.date || new Date())}`
+        message: `I think you might like this app by Usful. Check out their stories!`,
+        subject: `Usful Portfolio - ${shortDateFormatter(this.props.content.date || new Date())}`
       } :
         {
-          text: 'I think you might like this app by Usful. Check out their stories!\n\nhttp://www.usful.co',
-          subject: `Usful Portfolio - ${longDateFormatter(this.props.content.date || new Date())}`
+          text: `I think you might like this app by Usful. Check out their stories!\n\nhttp://www.usful.co`,
+          subject: `Usful Portfolio - ${shortDateFormatter(this.props.content.date || new Date())}`
         }
     )
   }

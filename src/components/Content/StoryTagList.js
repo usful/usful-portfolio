@@ -4,7 +4,7 @@ import {
     Text,
     View
 } from 'react-native';
-
+import Font from '../../styles/Font';
 
 export default class TagList extends Component {
   static defaultProps = {
@@ -26,7 +26,7 @@ export default class TagList extends Component {
 
 const style = StyleSheet.create({
   tag: {
-    fontFamily: 'Courier New',
+    fontFamily: Font.primaryFont.fontFamily,
     color: '#B4B4B4',
     fontSize: 10
   },
