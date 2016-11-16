@@ -9,11 +9,7 @@ import {
   Dimensions
 } from 'react-native';
 
-
 import Style from '../styles';
-
-import Font from '../styles/Font';
-
 import CarouselCard from './CarouselCard';
 
 export default class SliderIndicator extends Component {

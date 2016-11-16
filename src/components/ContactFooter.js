@@ -14,11 +14,7 @@ import media from '../data/media';
 import mediaFormatter from '../helpers/formatters/mediaUri';
 import OutlineButton from './OutlineButton';
 
-import Font from '../styles/Font';
-
-
 const FOOTER_HEIGHT = 600;
-
 const UNDERLAY_HEIGHT = 100;
 
 export default class ContactFooter extends Component {
@@ -28,7 +24,6 @@ export default class ContactFooter extends Component {
   
   static defaultProps = {
     card: 0,
-
     contact:
     {
       email: 'mailto:info@usful.co',
@@ -41,12 +36,6 @@ export default class ContactFooter extends Component {
   
   constructor(props) {
     super(props);
-  }
-  
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      nextProps.contact != this.props.contact
-)
   }
   
   renderButtons() {

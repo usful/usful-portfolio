@@ -7,12 +7,7 @@ import {
     View
 } from 'react-native';
 
-
 import Style from '../../styles';
-
-import Font from '../../styles/Font';
-import global from '../../styles';
-
 
 const styles = StyleSheet.create({
   text: {
@@ -42,4 +37,3 @@ export default class BodyItem extends Component {
     );
   }
 }
-
