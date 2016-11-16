@@ -14,16 +14,17 @@ import Style from '../../styles';
 import Icon from 'react-native-vector-icons/Entypo';
 
 const VIDEO_URI = 'https://www.gns3.com/assets/media/GNS3_Banner.mp4';
+const PLAY_SIZE = 75;
 
 const styles = StyleSheet.create({
   videoContainer : {
     width: Style.width,
     height: 200
   },
-  button: {
+  playButton: {
     position : 'absolute',
-    bottom : 62.5,
-    left: Style.width/2 - 37.5,
+    bottom : 100 - PLAY_SIZE/2,
+    left: Style.width/2 - PLAY_SIZE/2,
 
   }
 });
@@ -37,38 +38,46 @@ export default class VideoItem extends Component {
     this.state = {
       paused: false,
       controlVisible: false,
+      active: false,
       showControl : new Animated.Value(0)
     }
+  }
+  hideControls() {
+    Animated.timing(this.state.showControl, {
+      toValue: 0,
+      duration: 750,
+      easing: Easing.in()
+    }).start(this.setState({active: false, controlVisible : false}));
+  }
+
+  showControls() {
+    Animated.timing(this.state.showControl, {
+      toValue: 0.7,
+      duration: 500,
+      easing: Easing.in()
+    }).start(this.setState({controlVisible : true}));
   }
 
   handlePause() {
     if(this.state.controlVisible === false) {
-      Animated.timing(this.state.showControl, {
-        toValue: 0.7,
-        duration: 500,
-        easing: Easing.in()
-      }).start(this.setState({controlVisible: true}));
+      this.showControls();
     }
-    this.setState({paused : !this.state.paused});
-    if(this.state.paused === true) {
-      Animated.timing(this.state.showControl, {
-        toValue: 0,
-        delay: 500,
-        duration: 500,
-        easing: Easing.in()
-      }).start(this.setState({controlVisible : false}));
-    }
+    this.setState({active: true, paused : !this.state.paused});
   }
 
-  showControls() {
+  toggleControls() {
 
-      Animated.timing(this.state.showControl, {toValue: 0.7, duration: 500, easing: Easing.in()}).start(this.setState({controlVisible : true}));
     if(this.state.controlVisible === true){
-      Animated.timing(this.state.showControl, {toValue: 0, duration: 500, easing: Easing.in()}).start(this.setState({controlVisible : false}));
+        this.hideControls()
+    } else {
+      this.showControls()
     }
-
   }
-
+  inactiveHide() {
+    if(this.state.active === false){
+      this.hideControls()
+    }
+  }
   showAction() {
 
   }
@@ -77,12 +86,15 @@ export default class VideoItem extends Component {
     let controlShow = {
       opacity : this.state.showControl
     };
-    let iconName = this.state.paused ? 'controller-play' : 'controller-paus';
+    let play = this.state.paused ? 'controller-play' : 'controller-paus';
     return(
 
         <TouchableHighlight activeOpacity={1}
-                            onPress={() => this.showControls()}
-                            onLongPress={() => this.showAction()}>
+                            underlayColor={'transparent'}
+                            delayPressOut = {2000}
+                            onPressOut= {() => this.inactiveHide()}
+                            onPress={() => this.toggleControls()}
+                            onLongPress={() => this. showAction()}>
           <View>
           <Video source={{uri: VIDEO_URI}}
                  ref={(ref) => {
@@ -90,14 +102,14 @@ export default class VideoItem extends Component {
                  }}
                  resizeMode="cover"
                  paused={this.state.paused}
-                 muted={true}
+                 muted={this.state.muted}
                  repeat={true}
                  playWhenInactive={false}
                  playInBackground={false}
                  style={styles.videoContainer}/>
           <Animated.View style= {controlShow}>
-            <TouchableHighlight style={styles.button} underlayColor={'transparent'} onPress = {() => this.handlePause()}>
-            <Icon name= {iconName} size={75} color ={Style.colours.darkGrey}/>
+            <TouchableHighlight style={styles.playButton} underlayColor={'transparent'} delayPressOut= {1000} onPressOut = {() => this.hideControls()} onPress = {() => this.handlePause()}>
+            <Icon name= {play} size={PLAY_SIZE} color ={Style.colours.darkGrey}/>
             </TouchableHighlight>
           </Animated.View>
           </View>
