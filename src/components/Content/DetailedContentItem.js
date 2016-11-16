@@ -156,15 +156,15 @@ const styles = StyleSheet.create({
     marginBottom: 0
   },
   legal: {
-    fontFamily: Font.secondaryFont.fontFamily,
-    fontStyle: Font.italics.fontStyle,
+    fontFamily: Style.fonts.secondaryFont.fontFamily,
+    fontStyle: Style.fonts.italics.fontStyle,
     fontSize: 12,
     marginHorizontal: 30,
     flexWrap: 'wrap',
     color: Style.colours.textGrey
   },
   buttonTitle: {
-    fontFamily: Font.secondaryFont.fontFamily,
+    fontFamily: Style.fonts.secondaryFont.fontFamily,
     fontSize: 15,
     paddingHorizontal: 30,
     flexWrap: 'wrap'

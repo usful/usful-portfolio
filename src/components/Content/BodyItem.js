@@ -7,17 +7,12 @@ import {
     View
 } from 'react-native';
 
-
 import Style from '../../styles';
-
-import Font from '../../styles/Font';
-import global from '../../styles';
-
 
 const styles = StyleSheet.create({
   text: {
     width: Style.width,
-    fontFamily: Font.secondaryFont.fontFamily,
+    fontFamily: Style.fonts.secondaryFont.fontFamily,
     fontSize: 15,
     paddingHorizontal: 30,
     flexWrap: 'wrap'
@@ -42,4 +37,3 @@ export default class BodyItem extends Component {
     );
   }
 }
-

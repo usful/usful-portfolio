@@ -14,11 +14,7 @@ import media from '../data/media';
 import mediaFormatter from '../helpers/formatters/mediaUri';
 import OutlineButton from './OutlineButton';
 
-import Font from '../styles/Font';
-
-
 const FOOTER_HEIGHT = 600;
-
 const UNDERLAY_HEIGHT = 100;
 
 export default class ContactFooter extends Component {
@@ -28,7 +24,6 @@ export default class ContactFooter extends Component {
   
   static defaultProps = {
     card: 0,
-
     contact:
     {
       email: 'mailto:info@usful.co',
@@ -41,12 +36,6 @@ export default class ContactFooter extends Component {
   
   constructor(props) {
     super(props);
-  }
-  
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      nextProps.contact != this.props.contact
-)
   }
   
   renderButtons() {
@@ -101,7 +90,7 @@ const styles= StyleSheet.create({
   },
   body: {
     marginTop: 30,
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     fontSize: 15,
     marginHorizontal: 20,
     flexWrap: 'wrap',
@@ -121,7 +110,7 @@ const styles= StyleSheet.create({
     marginTop: 60,
     color: '#000',
     fontSize: 30,
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     fontWeight: 'bold',
     backgroundColor: 'transparent'
   },
@@ -136,7 +125,7 @@ const styles= StyleSheet.create({
     marginTop: 40,
     textAlign: 'center',
     fontSize: 12,
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     paddingHorizontal: 40,
     backgroundColor: 'transparent',
     color: '#000',

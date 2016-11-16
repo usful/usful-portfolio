@@ -30,7 +30,7 @@ const style = StyleSheet.create({
   byline: {
     textAlign: 'center',
     fontSize: 24,
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     fontWeight: 'bold',
     flexWrap: 'wrap',
     marginHorizontal: 40
