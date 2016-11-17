@@ -10,6 +10,8 @@
     "moment": "^2.15.1",
     "react": "15.3.2",
     "react-native": "^0.36.0",
+    "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
+    "react-native-circular-progress": "0.0.7",
     "react-native-image-slider": "^1.1.5",
     "react-native-keyboard-aware-scroll-view": "^0.2.1",
     "react-native-linear-gradient": "^1.5.13",

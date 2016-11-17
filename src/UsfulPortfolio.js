@@ -12,6 +12,7 @@ import DetailedContentItem from './components/Content/DetailedContentItem';
 import PortfolioScene from './components/scenes/PortfolioScene';
 import SplashScene from './components/scenes/SplashScene';
 import IntroductionScene from './components/scenes/IntroductionScene';
+import Snap from '../snap/Snap';
 
 export default class UsfulPortfolio extends Component {
   constructor(props) {
@@ -42,6 +43,8 @@ export default class UsfulPortfolio extends Component {
         return <PortfolioScene/>;
       case Navigation.CONTACT_CARD_SCENE.id:
         return <Team content={route.content}/>;
+      case Navigation.SNAP.id:
+        return <Snap/>
     }
   }
 
@@ -51,7 +54,7 @@ export default class UsfulPortfolio extends Component {
         <StatusBar translucent={true} backgroundColor="rgb(0,0,0)"/>
         <Navigator
           ref={(el) => Navigation.navigator = el}
-          initialRoute={Navigation.PORTFOLIO_SCENE}
+          initialRoute={Navigation.SNAP}
           configureScene={() => this.configureScene()}
           renderScene={(route, navigator) => this.renderScene(route, navigator)}
         />

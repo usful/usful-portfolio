@@ -34,6 +34,14 @@ export default class Navigation {
     id: 'DetailedProductScene'
   };
 
+  static SNAP = {
+    id: 'Snap'
+  }
+
+  static TEMP_PIC = {
+    id: 'TempPic'
+  }
+
   static routes = [];
   static route = {};
 
@@ -54,6 +62,11 @@ export default class Navigation {
 
   static popToRoute(route) {
     this.navigator.popToRoute(route);
+  }
+
+  static takePic(picPath) {
+    this.push({id: this.TEMP_PIC.id, pic: picPath});
+
   }
 
   static goContent(content) {
