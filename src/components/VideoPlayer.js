@@ -5,13 +5,15 @@ import {
     StyleSheet,
     TouchableOpacity,
     Animated,
-    Easing
+    Easing,
+    Platform
 } from 'react-native';
-
 
 import Video from 'react-native-video';
 import Style from '../styles';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
+import ActionSheet from '../helpers/actionSheet';
+import shortDateFormatter from '../helpers/formatters/shortDate';
 
 const VIDEO_URI = 'https://www.gns3.com/assets/media/GNS3_Banner.mp4';
 const PLAY_SIZE = 20;
@@ -24,8 +26,10 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     controllerView: {
+        flexDirection: 'row',
         padding: 5,
         flex: 1,
+        justifyContent: 'space-between',
         width: Style.width,
       position:'absolute',
         bottom : 0,
@@ -36,6 +40,9 @@ const styles = StyleSheet.create({
       height: 200
     },
     playButton: {
+        backgroundColor: 'transparent',
+    },
+    fullButton: {
         backgroundColor: 'transparent',
     }
 });
@@ -77,6 +84,20 @@ export default class VideoPlayer extends Component {
         }
         this.setState({active: true, paused : !this.state.paused});
         setTimeout(() => this.hideControls(),1000);
+    }
+
+    handleShare() {
+        ActionSheet.open(Platform.OS === 'ios' ? {
+                title: 'Usful Portfolio',
+                url: VIDEO_URI,
+                message: `I think you might like this video by Usful. Check out their stories!`,
+                subject: `Usful Portfolio - ${shortDateFormatter(this.props.content.date || new Date())}`
+            } :
+                {
+                    text: `I think you might like this video by Usful. Check out their stories!\n\n${VIDEO_URI}`,
+                    subject: `Usful Portfolio - ${shortDateFormatter(this.props.content.date || new Date())}`
+                }
+        )
     }
 
     toggleControls() {
@@ -129,6 +150,7 @@ export default class VideoPlayer extends Component {
                 </Video>
                 <Animated.View style ={[controlShow, styles.controllerView]}>
                     <Icon onPress = {() => this.handlePause()} style={[styles.playButton]} name= {play} size={PLAY_SIZE} color ={'white'}/>
+                    <Icon onPress = {() => this.handleShare()} style={[styles.fullButton]} name= {'share'} size={PLAY_SIZE} color ={'white'}/>
                 </Animated.View>
             </TouchableOpacity>
 
