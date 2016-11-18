@@ -11,10 +11,10 @@ import {
 
 import Video from 'react-native-video';
 import Style from '../styles';
-import Icon from 'react-native-vector-icons/Entypo';
+import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
 const VIDEO_URI = 'https://www.gns3.com/assets/media/GNS3_Banner.mp4';
-const PLAY_SIZE = 50;
+const PLAY_SIZE = 20;
 const AnimatedIcon = Animated.createAnimatedComponent(Icon)
 
 const styles = StyleSheet.create({
@@ -23,15 +23,20 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center"
     },
+    controllerView: {
+        padding: 5,
+        flex: 1,
+        width: Style.width,
+      position:'absolute',
+        bottom : 0,
+        backgroundColor: Style.colours.navBarBlack,
+        },
     videoContainer: {
       width: Style.width,
       height: 200
     },
     playButton: {
         backgroundColor: 'transparent',
-        position : 'absolute',
-        bottom : 100 - PLAY_SIZE/2,
-        left: Style.width/2 - PLAY_SIZE/2,
     }
 });
 
@@ -57,11 +62,13 @@ export default class VideoPlayer extends Component {
     }
 
     showControls() {
-        Animated.timing(this.state.showControl, {
-            toValue: 0.7,
-            duration: 500,
-            easing: Easing.in()
-        }).start(this.setState({controlVisible : true}));
+        if(this.props.controller == true) {
+            Animated.timing(this.state.showControl, {
+                toValue: 0.7,
+                duration: 500,
+                easing: Easing.in()
+            }).start(this.setState({controlVisible: true}));
+        }
     }
 
     handlePause() {
@@ -73,11 +80,15 @@ export default class VideoPlayer extends Component {
     }
 
     toggleControls() {
-
-        if(this.state.controlVisible === true){
-            this.hideControls()
+        if(this.props.controller) {
+            if (this.state.controlVisible === true) {
+                this.hideControls()
+            } else {
+                this.showControls()
+            }
         } else {
-            this.showControls()
+
+            this.setState({paused : !this.state.paused});
         }
     }
     inactiveHide() {
@@ -93,7 +104,7 @@ export default class VideoPlayer extends Component {
         let controlShow = {
             opacity : this.state.showControl
         };
-        let play = this.state.paused ? 'controller-play' : 'controller-paus';
+        let play = this.state.paused ? 'control-play' : 'control-pause';
         return(
             <TouchableOpacity
                                 style={styles.videoView}
@@ -102,7 +113,7 @@ export default class VideoPlayer extends Component {
                                 delayPressOut = {2000}
                                 onPressOut= {() => this.inactiveHide()}
                                 onPress={() => this.toggleControls()}
-                                onLongPress={() => this. showAction()}>
+                                onLongPress={() => this.showAction()}>
                 <Video source={{uri: VIDEO_URI}}
                            ref={(ref) => {
                    this.player = ref
@@ -116,8 +127,9 @@ export default class VideoPlayer extends Component {
                            style={styles.videoContainer}>
                     <View></View>
                 </Video>
-                <AnimatedIcon  onPress = {() => this.handlePause()} style={[controlShow,styles.playButton]} name= {play} size={PLAY_SIZE} color ={Style.colours.navBarBlack}/>
-
+                <Animated.View style ={[controlShow, styles.controllerView]}>
+                    <Icon onPress = {() => this.handlePause()} style={[styles.playButton]} name= {play} size={PLAY_SIZE} color ={'white'}/>
+                </Animated.View>
             </TouchableOpacity>
 
     );

@@ -28,7 +28,7 @@ export default class VideoItem extends Component {
 
       return (
 
-          <VideoPlayer repeat={true} style={styles.videoContainer}/>
+          <VideoPlayer controller={true} repeat={true} style={styles.videoContainer}/>
       );
   }
 }
