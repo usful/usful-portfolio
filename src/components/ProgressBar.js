@@ -24,7 +24,7 @@ export default class ProgressBar extends Component {
     }
 
     onSeekComplete(){
-        this.props.player.seek(this.props.currentTime);
+        this.props.seek();
         this.setState({ seeking: false });
     }
 

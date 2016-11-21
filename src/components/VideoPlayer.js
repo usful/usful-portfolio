@@ -86,7 +86,8 @@ export default class VideoPlayer extends Component {
     constructor(props){
         super(props);
         this.state = {
-            paused: false,
+            overlay: true,
+            paused: true,
             controlVisible: false,
             active: false,
             showControl : new Animated.Value(0),
@@ -140,29 +141,27 @@ export default class VideoPlayer extends Component {
     //PROGRESS METHODS
     setTime(e){
             this.setState({ currentTime: e.currentTime });
-
     }
 
     onLoad(e){
         this.setState({ videoDuration: e.duration });
     }
+    onVideoEnd(e) {
+        this.player.seek(0);
+        this.setState({
+            overlay: true,
+            paused: true
+        })
+    }
     onValueChange(value){
         let newPosition = value * this.state.videoDuration;
         this.setState({ currentTime: newPosition });
     }
-/*
-    onSeekStart(){
-        this.setState({ seeking: true });
-        this.showControls();
-    }
 
+    onSeek() {
 
-
-    onSeekComplete(){
         this.player.seek( this.state.currentTime );
-        this.setState({ seeking: false });
-        setTimeout(() => this.hideControls(), 1000)
-    }*/
+    }
 
     toggleControls() {
         if(this.props.controller) {
@@ -208,6 +207,7 @@ export default class VideoPlayer extends Component {
                            resizeMode="cover"
                            onLoad={ (e) => this.onLoad(e) }
                            onProgress={ (e) => this.setTime(e) }
+                           onEnd={(e) => this.onVideoEnd(e) }
                            paused={this.state.paused}
                            muted={this.state.muted}
                            repeat={this.props.repeat}
@@ -218,10 +218,11 @@ export default class VideoPlayer extends Component {
                 </Video>
                 <Animated.View style ={[controlShow, styles.controllerView]}>
                     <Icon onPress = {() => this.handlePause()} style={[styles.controlButton]} name= {play} size={PLAY_SIZE} color ={'white'}/>
-                    <ProgressBar onValueChange={(e) => this.onValueChange(e)} currentTime = {this.state.currentTime} width={styles.sliderWidth} player={this.player} videoDuration= {this.state.videoDuration} />
+                    <ProgressBar onValueChange={(e) => this.onValueChange(e)} currentTime = {this.state.currentTime} width={styles.sliderWidth} seek={this.onSeek.bind(this)} videoDuration= {this.state.videoDuration} />
                     <Icon onPress = {() => this.handleShare()} style={[styles.controlButton]} name= {'share'} size={PLAY_SIZE} color ={'white'}/>
                 </Animated.View>
             </TouchableOpacity>
+            
 
     );
     }
