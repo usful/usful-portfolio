@@ -2,59 +2,53 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     View,
-    Slider,
     Text,
 } from 'react-native';
 
 import Style from '../styles';
-import timeFormatter from '../helpers/formatters/timeFormatter';
+import formattedTime from '../helpers/formatters/timeFormatter';
+import Slider from 'react-native-slider';
 
 export default class ProgressBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
             currentTime: 0,
-            songDuration: 0,
+            seeking: false,
         }
 
     }
 
-    onSlidingStart(){
-        this.setState({ sliding: true });
+    onSeekStart(){
+        this.setState({ seeking: true });
     }
 
-    onSlidingChange(value){
-        let newPosition = value * this.state.songDuration;
-        this.setState({ currentTime: newPosition });
-    }
-
-    onSlidingComplete(){
-        this.refs.audio.seek( this.state.currentTime );
-        this.setState({ sliding: false });
+    onSeekComplete(){
+        this.props.player.seek(this.props.currentTime);
+        this.setState({ seeking: false });
     }
 
     render() {
-        let songPercentage;
-        if( this.state.songDuration !== undefined ){
-            songPercentage = this.state.currentTime / this.state.songDuration;
+        let videoPercentage;
+        if( this.props.videoDuration !== undefined ){
+            videoPercentage = this.props.currentTime / this.props.videoDuration;
         } else {
-            songPercentage = 0;
+            videoPercentage = 0;
         }
         return (
-            <View style={ styles.sliderContainer }>
+            <View>
                 <Slider
-                    onSlidingStart={ () => this.onSlidingStart() }
-                    onSlidingComplete={ () => this.onSlidingComplete() }
-                    onValueChange={ () => this.onSlidingChange() }
+                    onSlidingStart={ (e) => this.onSeekStart(e) }
+                    onValueChange = {(e) => this.props.onValueChange(e)}
+                    onSlidingComplete={ (e) => this.onSeekComplete(e) }
                     minimumTrackTintColor='#851c44'
-                    style={ styles.slider }
+                    style={[this.props.width, styles.slider ]}
                     trackStyle={ styles.sliderTrack }
                     thumbStyle={ styles.sliderThumb }
-                    value={ songPercentage }/>
-
+                    value={ videoPercentage }/>
                 <View style={ styles.timeInfo }>
-                    <Text style={ styles.time }>{ timeFormatter(this.state.currentTime)  }</Text>
-                    <Text style={ styles.timeRight }>- { timeFormatter( this.state.songDuration - this.state.currentTime ) }</Text>
+                    <Text style={ styles.time }>{ formattedTime(this.props.currentTime)  }</Text>
+                    <Text style={ styles.timeRight }>- { formattedTime( this.props.videoDuration - this.props.currentTime ) }</Text>
                 </View>
             </View>
         );
@@ -76,11 +70,9 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 10,
     },
-    sliderContainer: {
-        width: Style.width - 40,
-    },
     slider: {
         height: 20,
+        marginHorizontal : 10
     },
     sliderTrack: {
         height: 2,
@@ -95,6 +87,7 @@ const styles = StyleSheet.create({
         shadowOffset: {width: 0, height: 0},
         shadowRadius: 2,
         shadowOpacity: 1,
-    }
+    },
+
 
 });

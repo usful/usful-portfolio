@@ -6,7 +6,8 @@ import {
     TouchableOpacity,
     Animated,
     Easing,
-    Platform
+    Platform,
+    Text,
 } from 'react-native';
 
 import Video from 'react-native-video';
@@ -14,12 +15,32 @@ import Style from '../styles';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import ActionSheet from '../helpers/actionSheet';
 import shortDateFormatter from '../helpers/formatters/shortDate';
+import formattedTime from '../helpers/formatters/timeFormatter';
+import Slider from 'react-native-slider';
+import ProgressBar from './ProgressBar';
 
 const VIDEO_URI = 'https://www.gns3.com/assets/media/GNS3_Banner.mp4';
 const PLAY_SIZE = 20;
 const AnimatedIcon = Animated.createAnimatedComponent(Icon)
 
 const styles = StyleSheet.create({
+    sliderWidth: {
+        width: Style.width - (PLAY_SIZE*2) - 40,
+    },
+    sliderTrack: {
+        height: 2,
+        backgroundColor: '#333',
+    },
+    sliderThumb: {
+        width: 10,
+        height: 10,
+        backgroundColor: '#f62976',
+        borderRadius: 10 / 2,
+        shadowColor: 'red',
+        shadowOffset: {width: 0, height: 0},
+        shadowRadius: 2,
+        shadowOpacity: 1,
+    },
     videoView: {
         flex: 1,
         justifyContent: "center",
@@ -27,11 +48,11 @@ const styles = StyleSheet.create({
     },
     controllerView: {
         flexDirection: 'row',
-        padding: 5,
+        padding: 10,
         flex: 1,
         justifyContent: 'space-between',
         width: Style.width,
-      position:'absolute',
+        position:'absolute',
         bottom : 0,
         backgroundColor: Style.colours.navBarBlack,
         },
@@ -39,12 +60,23 @@ const styles = StyleSheet.create({
       width: Style.width,
       height: 200
     },
-    playButton: {
+    controlButton: {
         backgroundColor: 'transparent',
     },
-    fullButton: {
-        backgroundColor: 'transparent',
-    }
+    timeInfo: {
+        flexDirection: 'row',
+    },
+    time: {
+        color: '#FFF',
+        flex: 1,
+        fontSize: 10,
+    },
+    timeRight: {
+        color: '#FFF',
+        textAlign: 'right',
+        flex: 1,
+        fontSize: 10,
+    },
 });
 
 export default class VideoPlayer extends Component {
@@ -57,9 +89,14 @@ export default class VideoPlayer extends Component {
             paused: false,
             controlVisible: false,
             active: false,
-            showControl : new Animated.Value(0)
+            showControl : new Animated.Value(0),
+            seeking: false,
+            videoDuration : 0,
+            currentTime: 0,
         }
     }
+
+    //CONTROL ANIMATIONS
     hideControls() {
         Animated.timing(this.state.showControl, {
             toValue: 0,
@@ -77,7 +114,7 @@ export default class VideoPlayer extends Component {
             }).start(this.setState({controlVisible: true}));
         }
     }
-
+    //CONTROL ACTIONS
     handlePause() {
         if(this.state.controlVisible === false) {
             this.showControls();
@@ -91,14 +128,41 @@ export default class VideoPlayer extends Component {
                 title: 'Usful Portfolio',
                 url: VIDEO_URI,
                 message: `I think you might like this video by Usful. Check out their stories!`,
-                subject: `Usful Portfolio - ${shortDateFormatter(this.props.content.date || new Date())}`
+                subject: `Usful Portfolio - ${shortDateFormatter(new Date())}`
             } :
                 {
                     text: `I think you might like this video by Usful. Check out their stories!\n\n${VIDEO_URI}`,
-                    subject: `Usful Portfolio - ${shortDateFormatter(this.props.content.date || new Date())}`
+                    subject: `Usful Portfolio - ${shortDateFormatter(new Date())}`
                 }
         )
     }
+
+    //PROGRESS METHODS
+    setTime(e){
+            this.setState({ currentTime: e.currentTime });
+
+    }
+
+    onLoad(e){
+        this.setState({ videoDuration: e.duration });
+    }
+    onValueChange(value){
+        let newPosition = value * this.state.videoDuration;
+        this.setState({ currentTime: newPosition });
+    }
+/*
+    onSeekStart(){
+        this.setState({ seeking: true });
+        this.showControls();
+    }
+
+
+
+    onSeekComplete(){
+        this.player.seek( this.state.currentTime );
+        this.setState({ seeking: false });
+        setTimeout(() => this.hideControls(), 1000)
+    }*/
 
     toggleControls() {
         if(this.props.controller) {
@@ -126,12 +190,14 @@ export default class VideoPlayer extends Component {
             opacity : this.state.showControl
         };
         let play = this.state.paused ? 'control-play' : 'control-pause';
+
+
         return(
             <TouchableOpacity
                                 style={styles.videoView}
                                 activeOpacity={1}
                                 underlayColor={'transparent'}
-                                delayPressOut = {2000}
+                                delayPressOut = {3000}
                                 onPressOut= {() => this.inactiveHide()}
                                 onPress={() => this.toggleControls()}
                                 onLongPress={() => this.showAction()}>
@@ -140,6 +206,8 @@ export default class VideoPlayer extends Component {
                    this.player = ref
                  }}
                            resizeMode="cover"
+                           onLoad={ (e) => this.onLoad(e) }
+                           onProgress={ (e) => this.setTime(e) }
                            paused={this.state.paused}
                            muted={this.state.muted}
                            repeat={this.props.repeat}
@@ -149,18 +217,39 @@ export default class VideoPlayer extends Component {
                     <View></View>
                 </Video>
                 <Animated.View style ={[controlShow, styles.controllerView]}>
-                    <Icon onPress = {() => this.handlePause()} style={[styles.playButton]} name= {play} size={PLAY_SIZE} color ={'white'}/>
-                    <Icon onPress = {() => this.handleShare()} style={[styles.fullButton]} name= {'share'} size={PLAY_SIZE} color ={'white'}/>
+                    <Icon onPress = {() => this.handlePause()} style={[styles.controlButton]} name= {play} size={PLAY_SIZE} color ={'white'}/>
+                    <ProgressBar onValueChange={(e) => this.onValueChange(e)} currentTime = {this.state.currentTime} width={styles.sliderWidth} player={this.player} videoDuration= {this.state.videoDuration} />
+                    <Icon onPress = {() => this.handleShare()} style={[styles.controlButton]} name= {'share'} size={PLAY_SIZE} color ={'white'}/>
                 </Animated.View>
             </TouchableOpacity>
 
     );
     }
-
-
 }
-
-
 /**
  * Created by rishabh on 2016-11-17.
  */
+/*
+let videoPercentage;
+if( this.state.videoDuration !== undefined ){
+    videoPercentage = this.state.currentTime / this.state.videoDuration;
+} else {
+    videoPercentage = 0;
+}
+
+<View style= {styles.sliderContainer}>
+
+    <Slider
+        onSlidingStart={ (e) => this.onSeekStart(e) }
+        onSlidingComplete={ (e) => this.onSeekComplete(e) }
+        onValueChange={ (e) => this.onValueChange(e) }
+        minimumTrackTintColor='#851c44'
+        style={ styles.slider }
+        trackStyle={ styles.sliderTrack }
+        thumbStyle={ styles.sliderThumb }
+        value={ videoPercentage }/>
+    <View style={ styles.timeInfo }>
+        <Text style={ styles.time }>{ formattedTime(this.state.currentTime)  }</Text>
+        <Text style={ styles.timeRight }>- { formattedTime( this.state.videoDuration - this.state.currentTime ) }</Text>
+    </View>
+</View>*/
