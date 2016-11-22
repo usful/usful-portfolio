@@ -6,10 +6,11 @@ import React, { Component } from 'react';
 import  {
   Animated,
   CameraRoll,
-  Platform,
+  Modal,
   StyleSheet,
-  TouchableWithoutFeedback,
+  Platform,
   Text,
+  TouchableWithoutFeedback,
   TouchableHighlight,
   TouchableOpacity,
   View
@@ -115,13 +116,14 @@ export default class Snap extends Component {
             <TouchableHighlight onPress={() => this.changeCamera()}>
               <Icon name={"ios-reverse-camera-outline"} color={'white'} size={60}></Icon>
             </TouchableHighlight>
-          <TouchableOpacity></TouchableOpacity><Text>CLICK FOR ICON DRAWER</Text>
-            <TouchableHighlight style={{marginLeft: 200}} onPress={() => this.changeMode()}>
+          <TouchableOpacity
+                  onPress={() => this.setState({modalVisible:true})}><Text style={{color:'white'}}>CLICK FOR ICON DRAWER</Text></TouchableOpacity>
+            <TouchableHighlight style={{marginLeft: 50}} onPress={() => this.changeMode()}>
               <Icon name={this.state.mode === Camera.constants.Type.video? 'ios-videocam-outline' : 'ios-camera-outline'} color={'white'} size={60}></Icon>
             </TouchableHighlight>
         </View>
         <TouchableWithoutFeedback onLongPress={(e)=>this.startRecording()}
-                          onPressOut={(e)=>this.doneRecording()}>
+                                  onPressOut={(e)=>this.doneRecording()}>
           <View>
           <AnimatedCircularProgress
             size={100}
@@ -135,7 +137,7 @@ export default class Snap extends Component {
         </TouchableWithoutFeedback>
         <TouchableOpacity><Text>Get Icons</Text></TouchableOpacity>
         <Modal
-          animationType={"slide"}
+          animationType={"none"}
           transparent={false}
           visible={this.state.modalVisible}
           onRequestClose={() => {alert("Modal has been closed.")}}

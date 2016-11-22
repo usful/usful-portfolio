@@ -150,7 +150,7 @@ export default class TopNav extends Component {
           <TouchableOpacity onPress={() => this.goToPage(1)}><Text style={styles.activeText}>Stories</Text></TouchableOpacity>
         </Animated.View>
         <Animated.View style={{transform: transform3, opacity: opacity3}}>
-          <TouchableOpacity onPress={() => this.goToPage(2)}><Text style={styles.activeText}>Initiative</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.goToPage(2)}><Text style={styles.activeText}>Initiatives</Text></TouchableOpacity>
         </Animated.View>
       </Animated.View>
     );
