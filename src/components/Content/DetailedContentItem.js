@@ -14,6 +14,7 @@ import Style from '../../styles';
 
 import Font from '../../styles/Font';
 
+import AudioItem from './AudioItem';
 import VideoItem from './VideoItem';
 import OutlineButton from '../OutlineButton';
 import longDateFormatter from '../../helpers/formatters/longDate';
