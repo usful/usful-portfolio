@@ -177,6 +177,7 @@ export default class VideoPlayer extends Component {
     onValueChange(value){
         let newPosition = value * this.state.videoDuration;
         this.setState({ currentTime: newPosition });
+        this.player.seek( this.state.currentTime );
     }
 
     onSeekStart(){
@@ -184,7 +185,6 @@ export default class VideoPlayer extends Component {
     }
 
     onSeekComplete(){
-        this.player.seek( this.state.currentTime );
         this.setState({ seeking: false});
     }
 
