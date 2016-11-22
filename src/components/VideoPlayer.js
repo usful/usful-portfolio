@@ -7,6 +7,7 @@ import {
     Animated,
     Easing,
     Platform,
+    TouchableWithoutFeedback,
     Text,
 } from 'react-native';
 
@@ -98,10 +99,11 @@ export default class VideoPlayer extends Component {
     }
 
     //CONTROL ANIMATIONS
-    hideControls() {
+    hideControls(delay) {
         Animated.timing(this.state.showControl, {
             toValue: 0,
             duration: 750,
+            delay: delay || 0,
             easing: Easing.in()
         }).start(this.setState({active: false, controlVisible : false}));
     }
@@ -115,54 +117,6 @@ export default class VideoPlayer extends Component {
             }).start(this.setState({controlVisible: true}));
         }
     }
-    //CONTROL ACTIONS
-    handlePause() {
-        if(this.state.controlVisible === false) {
-            this.showControls();
-        }
-        this.setState({active: true, paused : !this.state.paused});
-        setTimeout(() => this.hideControls(),1000);
-    }
-
-    handleShare() {
-        ActionSheet.open(Platform.OS === 'ios' ? {
-                title: 'Usful Portfolio',
-                url: VIDEO_URI,
-                message: `I think you might like this video by Usful. Check out their stories!`,
-                subject: `Usful Portfolio - ${shortDateFormatter(new Date())}`
-            } :
-                {
-                    text: `I think you might like this video by Usful. Check out their stories!\n\n${VIDEO_URI}`,
-                    subject: `Usful Portfolio - ${shortDateFormatter(new Date())}`
-                }
-        )
-    }
-
-    //PROGRESS METHODS
-    setTime(e){
-            this.setState({ currentTime: e.currentTime });
-    }
-
-    onLoad(e){
-        this.setState({ videoDuration: e.duration });
-    }
-    onVideoEnd(e) {
-        this.player.seek(0);
-        this.setState({
-            overlay: true,
-            paused: true
-        })
-    }
-    onValueChange(value){
-        let newPosition = value * this.state.videoDuration;
-        this.setState({ currentTime: newPosition });
-    }
-
-    onSeek() {
-
-        this.player.seek( this.state.currentTime );
-    }
-
     toggleControls() {
         if(this.props.controller) {
             if (this.state.controlVisible === true) {
@@ -180,6 +134,61 @@ export default class VideoPlayer extends Component {
             this.hideControls()
         }
     }
+
+    //CONTROL ACTIONS
+    handlePause() {
+        if(this.state.controlVisible === false) {
+            this.showControls();
+        }
+        this.setState({active: true, paused : !this.state.paused});
+    }
+
+    handleShare() {
+        ActionSheet.open(Platform.OS === 'ios' ? {
+                title: 'Usful Portfolio',
+                url: VIDEO_URI,
+                message: `I think you might like this video by Usful. Check out their stories!`,
+                subject: `Usful Portfolio - ${shortDateFormatter(new Date())}`
+            } :
+                {
+                    text: `I think you might like this video by Usful. Check out their stories!\n\n${VIDEO_URI}`,
+                    subject: `Usful Portfolio - ${shortDateFormatter(new Date())}`
+                }
+        )
+    }
+
+    //PLAYER METHODS
+    setTime(e){
+            if(!this.state.seeking) {
+                this.setState({currentTime: e.currentTime});
+            }
+    }
+    onLoad(e){
+        this.setState({ videoDuration: e.duration });
+    }
+    onVideoEnd(e) {
+        this.player.seek(0);
+        this.setState({
+            overlay: true,
+            paused: true
+        })
+    }
+
+    //PROGRESS BAR METHODS
+    onValueChange(value){
+        let newPosition = value * this.state.videoDuration;
+        this.setState({ currentTime: newPosition });
+    }
+
+    onSeekStart(){
+        this.setState({ seeking: true, active: true });
+    }
+
+    onSeekComplete(){
+        this.player.seek( this.state.currentTime );
+        this.setState({ seeking: false});
+    }
+
     showAction() {
 
     }
@@ -218,7 +227,13 @@ export default class VideoPlayer extends Component {
                 </Video>
                 <Animated.View style ={[controlShow, styles.controllerView]}>
                     <Icon onPress = {() => this.handlePause()} style={[styles.controlButton]} name= {play} size={PLAY_SIZE} color ={'white'}/>
-                    <ProgressBar onValueChange={(e) => this.onValueChange(e)} currentTime = {this.state.currentTime} width={styles.sliderWidth} seek={this.onSeek.bind(this)} videoDuration= {this.state.videoDuration} />
+                    <ProgressBar
+                        onValueChange={(e) => this.onValueChange(e)}
+                        onSeekStart = {() => this.onSeekStart()}
+                        onSeekComplete = {() => this.onSeekComplete()}
+                        currentTime = {this.state.currentTime}
+                        width={styles.sliderWidth}
+                        videoDuration= {this.state.videoDuration} />
                     <Icon onPress = {() => this.handleShare()} style={[styles.controlButton]} name= {'share'} size={PLAY_SIZE} color ={'white'}/>
                 </Animated.View>
             </TouchableOpacity>

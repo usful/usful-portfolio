@@ -38,9 +38,9 @@ export default class ProgressBar extends Component {
         return (
             <View>
                 <Slider
-                    onSlidingStart={ (e) => this.onSeekStart(e) }
+                    onSlidingStart={ (e) => this.props.onSeekStart(e) }
                     onValueChange = {(e) => this.props.onValueChange(e)}
-                    onSlidingComplete={ (e) => this.onSeekComplete(e) }
+                    onSlidingComplete={ (e) => this.props.onSeekComplete(e) }
                     minimumTrackTintColor='#851c44'
                     style={[this.props.width, styles.slider ]}
                     trackStyle={ styles.sliderTrack }
