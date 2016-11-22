@@ -28,25 +28,6 @@ const styles = StyleSheet.create({
     sliderWidth: {
         width: Style.width - (PLAY_SIZE*2) - 40,
     },
-    sliderTrack: {
-        height: 2,
-        backgroundColor: '#333',
-    },
-    sliderThumb: {
-        width: 10,
-        height: 10,
-        backgroundColor: '#f62976',
-        borderRadius: 10 / 2,
-        shadowColor: 'red',
-        shadowOffset: {width: 0, height: 0},
-        shadowRadius: 2,
-        shadowOpacity: 1,
-    },
-    videoView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
     controllerView: {
         flexDirection: 'row',
         padding: 10,
@@ -64,20 +45,6 @@ const styles = StyleSheet.create({
     controlButton: {
         backgroundColor: 'transparent',
     },
-    timeInfo: {
-        flexDirection: 'row',
-    },
-    time: {
-        color: '#FFF',
-        flex: 1,
-        fontSize: 10,
-    },
-    timeRight: {
-        color: '#FFF',
-        textAlign: 'right',
-        flex: 1,
-        fontSize: 10,
-    },
 });
 
 export default class VideoPlayer extends Component {
@@ -87,7 +54,6 @@ export default class VideoPlayer extends Component {
     constructor(props){
         super(props);
         this.state = {
-            overlay: true,
             paused: true,
             controlVisible: false,
             active: false,
@@ -200,7 +166,7 @@ export default class VideoPlayer extends Component {
 
         return(
             <TouchableOpacity
-                                style={styles.videoView}
+                                style={Style.sheets.content}
                                 activeOpacity={1}
                                 underlayColor={'transparent'}
                                 delayPressOut = {3000}
