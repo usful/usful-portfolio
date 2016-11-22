@@ -18,11 +18,12 @@ import {
 let {width, height} = Dimensions.get('window');
 import Colours from '../styles/Colours';
 import Font from '../styles/Font';
+import Style from '../styles';
 
 const styles= StyleSheet.create({
     activeText: {
       color: Colours.white,
-      fontFamily: Font.primaryFont.fontFamily,
+      fontFamily: Style.fonts.primaryFont.fontFamily,
       fontSize: 20,
       opacity: 1,
       paddingHorizontal: 40
@@ -77,7 +78,6 @@ export default class TopNav extends Component {
   }
 
   slide(direction){
-    console.log("change");
     let val = (direction === 'down') ? 0: -75;
     let duration = (direction === 'down')? 100: 100;
       Animated.timing(this.state.slidingAnim, {

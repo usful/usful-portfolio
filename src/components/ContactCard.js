@@ -11,22 +11,29 @@ import {
 } from 'react-native';
 
 import Style from '../styles';
-
+import mediaUri from '../helpers/formatters/mediaUri';
 import SocialMediaButton from './SocialMediaButton';
 
 let styles = StyleSheet.create({
   card: {
+   marginTop: Platform.OS === 'ios' ? Style.height * 0.02 : Style.height * 0.01
+  },
+  whiteArea: {
     backgroundColor: Style.colours.white,
     width: Style.width * 0.85
   },
-  cardImage: {
-    height: Style.height * 0.3 ,
+  cardImageContainer: {
     backgroundColor: Style.colours.white,
+  },
+  cardImage:{
+    alignSelf: 'center' ,
+    width : Style.width * 0.70,
+    height: Style.height * 0.38
   },
 
   closeButton: {
     marginTop : Style.height * 0.05,
-    height: 70,
+    height: 50,
   },
   closeText: {
     color: Style.colours.darkGrey,
@@ -40,8 +47,7 @@ let styles = StyleSheet.create({
     backgroundColor : Style.colours.white,
     alignItems: 'center',
     justifyContent: 'center',
-    height: Style.height * 0.3,
-
+    height: Style.height * 0.28,
   },
   linearGradient: {
     backgroundColor: Style.colours.transparent,
@@ -61,7 +67,6 @@ let styles = StyleSheet.create({
   },
   pageAndClose: {
     alignSelf: 'center',
-    marginTop: (Platform.OS === 'ios'? 0 : 20),
     flexDirection: 'row',
     backgroundColor: Style.colours.white,
   },
@@ -77,13 +82,11 @@ let styles = StyleSheet.create({
     width: Style.width * 0.6,
     fontSize: 12,
     lineHeight: 12,
-    marginBottom: 10,
     fontFamily: Style.fonts.primaryFont.fontFamily,
     textAlign: 'center'
   },
   textName: {
     backgroundColor: Style.colours.white,
-    marginTop: 20,
     fontWeight: '600',
     color: Style.colours.darkGrey,
     fontSize: 18,
@@ -122,21 +125,25 @@ export default class ContactCard extends Component {
   
     return (
       <View style={styles.card}>
-        <View style={styles.pageAndClose}>
-          <Text style={styles.page}>{this.props.id}/{this.props.totalCards}</Text>
-          <TouchableOpacity style={styles.closeButton} onPress={this.props.onClose}>
-            <Text style={styles.closeText}>CLOSE</Text>
-          </TouchableOpacity>
+        <View style={styles.whiteArea}>
+          <View style={styles.pageAndClose}>
+            <Text style={styles.page}>{this.props.id}/{this.props.totalCards}</Text>
+            <TouchableOpacity style={styles.closeButton} onPress={this.props.onClose}>
+              <Text style={styles.closeText}>CLOSE</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.cardImageContainer}>
+            <Image style={styles.cardImage}
+                   source={{ uri : mediaUri(person.picture)}}/>
+          </View>
+
+          <View style={styles.contactInfo}>
+            <Text style={styles.textName}>{person.name}</Text>
+            <Text style={styles.textTags}>{person.tags.join(' / ')}</Text>
+            <Text style={styles.textDescription}>{person.description}</Text>
+          </View>
         </View>
-      
-        <View style={styles.cardImage}></View>
-      
-        <View style={styles.contactInfo}>
-          <Text style={styles.textName}>{person.name}</Text>
-          <Text style={styles.textTags}>{person.tags.join(' / ')}</Text>
-          <Text style={styles.textDescription}>{person.description}</Text>
-        </View>
-      
       
         <View style={styles.socialMediaBox}>
           {person.socialAccounts.map((account, i) =>

@@ -93,7 +93,7 @@ export default class IconsDrawer extends Component {
 
   render(){
 
-    return <ScrollView
+    return <View
 
                 style={{flexDirection: 'row', flexWrap: 'wrap'}}>
       <View>
@@ -106,7 +106,7 @@ export default class IconsDrawer extends Component {
                             </TouchableOpacity>)}
       </View>
 
-    </ScrollView>
+    </View>
 
   }
 }

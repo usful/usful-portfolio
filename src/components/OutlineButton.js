@@ -4,7 +4,7 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
-
+import Style from '../styles';
 import openLink from '../helpers/navigation/openLink';
 
 export default class OutlineButton extends Component {
@@ -25,7 +25,7 @@ export default class OutlineButton extends Component {
 const styles= StyleSheet.create({
 
   buttonText: {
-    fontFamily: 'Courier New',
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     fontSize: 15,
     textAlign: 'center'
   },

@@ -12,7 +12,7 @@ import Style from '../../styles';
 const styles = StyleSheet.create({
   text: {
     width: Style.width,
-    fontFamily: 'Avenir-Book',
+    fontFamily: Style.fonts.secondaryFont.fontFamily,
     fontSize: 15,
     paddingHorizontal: 30,
     flexWrap: 'wrap'

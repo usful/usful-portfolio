@@ -24,8 +24,9 @@ export default class ContactFooter extends Component {
   
   static defaultProps = {
     card: 0,
-    contact: {
-      email: 'rishabh@monanetworks.com',
+    contact:
+    {
+      email: 'mailto:info@usful.co',
       phone: 'tel:1-877-364-6662',
       instagram: 'https://www.instagram.com/usful.co/',
       twitter: 'https://twitter.com/Usful_',
@@ -35,15 +36,6 @@ export default class ContactFooter extends Component {
   
   constructor(props) {
     super(props);
-  }
-  
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      nextProps.card != this.props.card ||
-      nextProps.contact != this.props.contact ||
-      nextProps.toggle != this.props.toggle
-    
-    )
   }
   
   renderButtons() {
@@ -66,8 +58,9 @@ export default class ContactFooter extends Component {
   }
   
   render() {
+
     return (
-      <View style={this.props.toggle ? styles.contactShow : styles.contactHide}>
+      <View style={styles.contactShow}>
         <Image source={{uri: mediaFormatter(media[45])}} resizeMode='cover' style={styles.background}/>
         <View style={styles.contact}>
           <Text style={styles.title}>Contact Us</Text>
@@ -90,18 +83,14 @@ const styles= StyleSheet.create({
     bottom: 0,
     left: 0,
     height: ContactFooter.FOOTER_HEIGHT,
-    opacity: 1
-  },
-  contactHide: {
-    height: 0,
-    opacity: 0
+    opacity: 1,
   },
   contact: {
     marginTop: UNDERLAY_HEIGHT
   },
   body: {
     marginTop: 30,
-    fontFamily: 'Courier New',
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     fontSize: 15,
     marginHorizontal: 20,
     flexWrap: 'wrap',
@@ -110,6 +99,7 @@ const styles= StyleSheet.create({
     marginBottom: 40
   },
   buttonContainer: {
+    zIndex: 999,
     backgroundColor: 'transparent',
     marginTop: 20,
     flexDirection: 'row',
@@ -120,7 +110,7 @@ const styles= StyleSheet.create({
     marginTop: 60,
     color: '#000',
     fontSize: 30,
-    fontFamily: 'Courier New',
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     fontWeight: 'bold',
     backgroundColor: 'transparent'
   },
@@ -135,10 +125,10 @@ const styles= StyleSheet.create({
     marginTop: 40,
     textAlign: 'center',
     fontSize: 12,
-    fontFamily: 'Courier New',
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     paddingHorizontal: 40,
     backgroundColor: 'transparent',
-    color: '#B4B4B4'
+    color: '#000',
   },
   background: {
     position: 'absolute',
@@ -147,6 +137,5 @@ const styles= StyleSheet.create({
     paddingBottom: UNDERLAY_HEIGHT,
     width: Style.width,
     height: FOOTER_HEIGHT,
-    backgroundColor: 'transparent'
   }
 });

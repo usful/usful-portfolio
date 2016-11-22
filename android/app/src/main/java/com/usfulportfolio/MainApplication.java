@@ -8,6 +8,7 @@ import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
+import com.blueprintalpha.rnandroidshare.RNAndroidSharePackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 
@@ -27,7 +28,9 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
           new LinearGradientPackage(),
-          new RCTCameraPackage()
+          new RCTCameraPackage(),
+          new RNAndroidSharePackage()
+
       );
     }
   };

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import Style from '../../styles';
 
 const style = StyleSheet.create({
   content: {
@@ -32,7 +33,7 @@ const style = StyleSheet.create({
     height: 150
   },
   title: {
-    fontFamily: 'Courier New',
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     fontWeight: 'bold',
     fontSize: 18,
     flexWrap: 'wrap'
@@ -40,7 +41,7 @@ const style = StyleSheet.create({
   next: {
     marginTop: 15,
     fontSize: 13,
-    fontFamily: 'Avenir-Book',
+    fontFamily: Style.fonts.secondaryFont.fontFamily,
     alignSelf: 'flex-start',
 
   }
@@ -90,7 +91,7 @@ export default class NextStoryButton extends Component {
 
   render() {
     return (
-      <View elevation = {this.props.elevation}>
+      <View>
       <TouchableOpacity style ={this.props.style} onPress={() => this.nextContent()}>
         <View style={style.content}>
           {this.renderCopy()}

@@ -13,7 +13,7 @@ import  {
   Platform,
   View
 } from 'react-native';
-
+import Style from '../../styles';
 import Font from '../../styles/Font';
 import Colours from '../../styles/Colours';
 import Typewriter from '../../Typewriter';
@@ -33,11 +33,11 @@ let styles = StyleSheet.create({
   enter: {
      marginTop: height * 0.1,
      alignSelf: 'flex-end' ,
-     marginRight: width * 0.1
+     marginRight: width * 0.1,
   },
   font: {
     color:  Colours.white,
-    fontFamily: Font.secondaryFont.fontFamily,
+    fontFamily: Style.fonts.secondaryFont.fontFamily,
     fontSize: 18,
     marginTop: 5,
   },
@@ -46,17 +46,17 @@ let styles = StyleSheet.create({
   },
   msg: {
     color:  Colours.white,
-    fontFamily: Font.primaryFont.fontFamily,
+    fontFamily: Style.fonts.primaryFont.fontFamily,
     fontSize: 18,
     fontWeight: '400',
     lineHeight:21,
   },
-  skip:{
+  skip: {
     alignSelf:'flex-end',
     color:  Colours.white,
     fontSize: 20,
   },
-  view :{
+  view: {
     backgroundColor:  Colours.navBarBlack,
   },
 });
@@ -69,12 +69,8 @@ export default class IntroductionScene extends Component {
     this.deter(introMsg);
     
     this.state = {
-      valid: true,
-      emailFadeIn: new Animated.Value(0),
-      enterOurWorldFadeIn : new Animated.Value(0),
-      okMsg: "",
-      introMsgFadeIn: false,
-      okMsgFadeIn: false,
+      enterFadeIn: new Animated.Value(1),
+      enterMsg : 'SKIP',
     };
   }
   
@@ -88,7 +84,7 @@ export default class IntroductionScene extends Component {
     let wordsLst = introMsg.split(' ');
     let newWord = '';
 
-    if (width >= 414) {//iphone 6plus
+    if (width >= 414) { //iphone 6plus
       lettersPerLine = spaceLeft = 29;
     } else if (width >= 325) {
       lettersPerLine = spaceLeft = 25;
@@ -110,10 +106,16 @@ export default class IntroductionScene extends Component {
   }
 
   onFinished(num) {
-    if (num != newMsgList.length- 1) {
+    if (num == newMsgList.length - 2) {
+      Animated.timing(this.state.enterFadeIn, { toValue: 0, duration: 1000 }).start(() => this.setState({ enterMsg: 'ENTER'}));
       this.refs[`introMsg${++num}`].start(true);
+    }
+     else if (num != newMsgList.length - 1) {
+
+      this.refs[`introMsg${++num}`].start(true);
+
     } else {
-      Animated.timing(this.state.emailFadeIn, {toValue: 1, duration: 1000}).start();
+      Animated.timing(this.state.enterFadeIn, {toValue: 1, duration: 1000}).start();
     }
   }
   
@@ -129,8 +131,9 @@ export default class IntroductionScene extends Component {
                                                             height={30}
                                                             onFinished={() => this.onFinished(i)}/>)}
 
-                <TouchableOpacity style={styles.enter} onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
-                  <Animated.Text style={[styles.font, styles.skip,{opacity: this.state.emailFadeIn}]}>ENTER</Animated.Text>
+
+                <TouchableOpacity style={[styles.enter]}  onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
+                    <Animated.Text style={[styles.font, styles.skip,{ opacity: this.state.enterFadeIn }]}>{this.state.enterMsg}</Animated.Text>
                 </TouchableOpacity>
               </View>
         </ScrollView>
