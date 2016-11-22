@@ -238,6 +238,14 @@ initiativeBlocks = [
         _type: 'MediaBlock',
         media: media[57]
       },
+      {
+        _type: 'CopyBlock',
+        text: 'With the rise of technological advancements, we believe it is necessary that humans are educated on how technology can be applied to limit human suffering, impact positive behaviour changes, and help people live fulfilled lives.'
+      },
+      {
+        _type: 'MediaBlock',
+        media: media[58]
+      },
 
     ]
   },

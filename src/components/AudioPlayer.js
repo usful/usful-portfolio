@@ -2,6 +2,8 @@
 import React, {Component} from 'react';
 import {
     View,
+    Image,
+    Platform,
     StyleSheet,
     TouchableOpacity,
     Text,
@@ -14,26 +16,35 @@ import ActionSheet from '../helpers/actionSheet';
 import shortDateFormatter from '../helpers/formatters/shortDate';
 import ProgressBar from './ProgressBar';
 
-const VIDEO_URI = 'https://mp3l.jamendo.com/?trackid=1312012&format=mp31&from=app-97dab294';
-const PLAY_SIZE = 30;
+const AUDIO_URI = 'https://mp3l.jamendo.com/?trackid=1312012&format=mp31&from=app-97dab294';
+const PLAY_SIZE = 20;
 
 const styles = StyleSheet.create({
+    infoContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        opacity: 0.7,
+        backgroundColor: Style.colours.navBarBlack,
+    },
+    titleContainer: {
+      margin: 10,
+      flex: 1,
+      flexDirection: 'column',
+        alignSelf: 'flex-start'
+    },
+    title: {
+        color: '#fff',
+        fontFamily: Style.fonts.secondaryFont.fontFamily,
+        fontSize: 14
+    },
+    author: {
+
+        color: '#fff',
+        fontFamily: Style.fonts.secondaryFont.fontFamily,
+        fontSize: 10
+    },
     sliderWidth: {
         width: Style.width - (PLAY_SIZE*2) - 40,
-    },
-    sliderTrack: {
-        height: 2,
-        backgroundColor: '#333',
-    },
-    sliderThumb: {
-        width: 10,
-        height: 10,
-        backgroundColor: '#f62976',
-        borderRadius: 10 / 2,
-        shadowColor: 'red',
-        shadowOffset: {width: 0, height: 0},
-        shadowRadius: 2,
-        shadowOpacity: 1,
     },
     videoView: {
         flex: 1,
@@ -41,39 +52,24 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     controllerView: {
-        flexDirection: 'row',
+
         padding: 10,
+        flexDirection: 'row',
         flex: 1,
         justifyContent: 'space-between',
-        width: Style.width,
-        position:'absolute',
-        bottom : 0,
-        backgroundColor: Style.colours.navBarBlack,
-    },
-    videoContainer: {
-        width: Style.width,
-        height: 200
+        width: Style.width
     },
     controlButton: {
         backgroundColor: 'transparent',
+        opacity: 0.7
     },
-    timeInfo: {
-        flexDirection: 'row',
-    },
-    time: {
-        color: '#FFF',
-        flex: 1,
-        fontSize: 10,
-    },
-    timeRight: {
-        color: '#FFF',
-        textAlign: 'right',
-        flex: 1,
-        fontSize: 10,
-    },
+    image: {
+        height: 150,
+        width: Style.width
+    }
 });
 
-export default class VideoPlayer extends Component {
+export default class AudioPlayer extends Component {
     static defaultProps = {
         audio: AUDIO_URI
     }
@@ -87,60 +83,20 @@ export default class VideoPlayer extends Component {
         }
     }
 
-    //CONTROL ANIMATIONS
-    hideControls(delay) {
-        Animated.timing(this.state.showControl, {
-            toValue: 0,
-            duration: 750,
-            delay: delay || 0,
-            easing: Easing.in()
-        }).start(this.setState({active: false, controlVisible : false}));
-    }
-
-    showControls() {
-        if(this.props.controller) {
-            Animated.timing(this.state.showControl, {
-                toValue: 0.7,
-                duration: 500,
-                easing: Easing.in()
-            }).start(this.setState({controlVisible: true}));
-        }
-    }
-    toggleControls() {
-        if(this.props.controller) {
-            if (this.state.controlVisible === true) {
-                this.hideControls()
-            } else {
-                this.showControls()
-            }
-        } else {
-
-            this.setState({paused : !this.state.paused});
-        }
-    }
-    inactiveHide() {
-        if(this.state.active === false){
-            this.hideControls()
-        }
-    }
-
     //CONTROL ACTIONS
     handlePause() {
-        if(this.state.controlVisible === false) {
-            this.showControls();
-        }
-        this.setState({active: true, paused : !this.state.paused});
+        this.setState({paused : !this.state.paused});
     }
 
     handleShare() {
         ActionSheet.open(Platform.OS === 'ios' ? {
                 title: 'Usful Portfolio',
-                url: VIDEO_URI,
-                message: `I think you might like this video by Usful. Check out their stories!`,
+                url: AUDIO_URI,
+                message: `I think you might like this sound clip by Usful. Check out their stories!`,
                 subject: `Usful Portfolio - ${shortDateFormatter(new Date())}`
             } :
                 {
-                    text: `I think you might like this video by Usful. Check out their stories!\n\n${VIDEO_URI}`,
+                    text: `I think you might like this sound clip by Usful. Check out their stories!\n\n${AUDIO_URI}`,
                     subject: `Usful Portfolio - ${shortDateFormatter(new Date())}`
                 }
         )
@@ -153,10 +109,10 @@ export default class VideoPlayer extends Component {
         }
     }
     onLoad(e){
-        this.setState({ videoDuration: e.duration });
+        this.setState({ audioDuration: e.duration });
     }
-    onVideoEnd(e) {
-        this.player.seek(1);
+    onAudioEnd(e) {
+        this.player.seek(0);
         this.setState({
             paused: true
         })
@@ -164,7 +120,7 @@ export default class VideoPlayer extends Component {
 
     //PROGRESS BAR METHODS
     onValueChange(value){
-        let newPosition = value * this.state.videoDuration;
+        let newPosition = value * this.state.audioDuration;
         this.setState({ currentTime: newPosition });
     }
 
@@ -182,49 +138,45 @@ export default class VideoPlayer extends Component {
     }
 
     render() {
-        let controlShow = {
-            opacity : this.state.showControl
-        };
         let play = this.state.paused ? 'control-play' : 'control-pause';
 
         return(
-            <TouchableOpacity
-                style={styles.videoView}
-                activeOpacity={1}
-                underlayColor={'transparent'}
-                delayPressOut = {3000}
-                onPressOut= {() => this.inactiveHide()}
-                onPress={() => this.toggleControls()}
-                onLongPress={() => this.showAction()}>
-                <Video source={{uri: VIDEO_URI}}
+            <View style={Style.sheets.content}>
+
+                <Video source={{uri: AUDIO_URI}}
                        ref={(ref) => {
                    this.player = ref
                  }}
                        resizeMode="cover"
                        onLoad={ (e) => this.onLoad(e) }
                        onProgress={ (e) => this.setTime(e) }
-                       onEnd={(e) => this.onVideoEnd(e) }
+                       onEnd={(e) => this.onAudioEnd(e) }
                        paused={this.state.paused}
                        muted={this.state.muted}
                        repeat={this.props.repeat}
                        playWhenInactive={true}
-                       playInBackground={false}
-                       style={styles.videoContainer}>
+                       playInBackground={false}>
                     <View></View>
                 </Video>
-                <Animated.View style ={[controlShow, styles.controllerView]}>
-                    <Icon onPress = {() => this.handlePause()} style={[styles.controlButton]} name= {play} size={PLAY_SIZE} color ={'white'}/>
-                    <ProgressBar
-                        onValueChange={(e) => this.onValueChange(e)}
-                        onSeekStart = {() => this.onSeekStart()}
-                        onSeekComplete = {() => this.onSeekComplete()}
-                        currentTime = {this.state.currentTime}
-                        width={styles.sliderWidth}
-                        videoDuration= {this.state.videoDuration} />
-                    <Icon onPress = {() => this.handleShare()} style={[styles.controlButton]} name= {'share'} size={PLAY_SIZE} color ={'white'}/>
-                </Animated.View>
-            </TouchableOpacity>
-
+                <Image style={styles.image} resizeMode={'cover'} source={{uri: "https://i1.sndcdn.com/artworks-000151442816-e2zcka-t500x500.jpg"}} />
+                <View style = {styles.infoContainer}>
+                    <View style= {styles.titleContainer}>
+                        <Text style= {styles.author}>KAYTRANADA</Text>
+                        <Text style= {styles.title}>GLOWED UP ft. ANDERSON .PAAK</Text>
+                    </View>
+                    <View style ={[styles.controllerView]}>
+                        <Icon onPress = {() => this.handlePause()} style={[styles.controlButton]} name= {play} size={PLAY_SIZE} color ={'white'}/>
+                        <ProgressBar
+                            onValueChange={(e) => this.onValueChange(e)}
+                            onSeekStart = {() => this.onSeekStart()}
+                            onSeekComplete = {() => this.onSeekComplete()}
+                            currentTime = {this.state.currentTime}
+                            width={styles.sliderWidth}
+                            videoDuration= {this.state.audioDuration} />
+                        <Icon onPress = {() => this.handleShare()} style={[styles.controlButton]} name= {'share'} size={PLAY_SIZE} color ={'white'}/>
+                </View>
+                </View>
+            </View>
         );
     }
 }
