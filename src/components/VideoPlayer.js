@@ -109,7 +109,7 @@ export default class VideoPlayer extends Component {
     }
 
     showControls() {
-        if(this.props.controller == true) {
+        if(this.props.controller) {
             Animated.timing(this.state.showControl, {
                 toValue: 0.7,
                 duration: 500,
@@ -167,9 +167,8 @@ export default class VideoPlayer extends Component {
         this.setState({ videoDuration: e.duration });
     }
     onVideoEnd(e) {
-        this.player.seek(0);
+        this.player.seek(1);
         this.setState({
-            overlay: true,
             paused: true
         })
     }
@@ -198,7 +197,6 @@ export default class VideoPlayer extends Component {
             opacity : this.state.showControl
         };
         let play = this.state.paused ? 'control-play' : 'control-pause';
-
 
         return(
             <TouchableOpacity
@@ -237,7 +235,6 @@ export default class VideoPlayer extends Component {
                     <Icon onPress = {() => this.handleShare()} style={[styles.controlButton]} name= {'share'} size={PLAY_SIZE} color ={'white'}/>
                 </Animated.View>
             </TouchableOpacity>
-            
 
     );
     }
@@ -245,27 +242,3 @@ export default class VideoPlayer extends Component {
 /**
  * Created by rishabh on 2016-11-17.
  */
-/*
-let videoPercentage;
-if( this.state.videoDuration !== undefined ){
-    videoPercentage = this.state.currentTime / this.state.videoDuration;
-} else {
-    videoPercentage = 0;
-}
-
-<View style= {styles.sliderContainer}>
-
-    <Slider
-        onSlidingStart={ (e) => this.onSeekStart(e) }
-        onSlidingComplete={ (e) => this.onSeekComplete(e) }
-        onValueChange={ (e) => this.onValueChange(e) }
-        minimumTrackTintColor='#851c44'
-        style={ styles.slider }
-        trackStyle={ styles.sliderTrack }
-        thumbStyle={ styles.sliderThumb }
-        value={ videoPercentage }/>
-    <View style={ styles.timeInfo }>
-        <Text style={ styles.time }>{ formattedTime(this.state.currentTime)  }</Text>
-        <Text style={ styles.timeRight }>- { formattedTime( this.state.videoDuration - this.state.currentTime ) }</Text>
-    </View>
-</View>*/
