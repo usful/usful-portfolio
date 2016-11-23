@@ -21,12 +21,21 @@ import Slider from 'react-native-slider';
 import ProgressBar from './ProgressBar';
 
 const VIDEO_URI = 'https://www.gns3.com/assets/media/GNS3_Banner.mp4';
-const PLAY_SIZE = 20;
-const AnimatedIcon = Animated.createAnimatedComponent(Icon)
+const CONTROLLER_ICON_SIZE = 20;
+const OVERLAY_ICON_SIZE = 50;
 
 const styles = StyleSheet.create({
     sliderWidth: {
-        width: Style.width - (PLAY_SIZE*2) - 40,
+        width: Style.width - (CONTROLLER_ICON_SIZE*2) - 40,
+    },
+    overlayContainer: {
+        width: Style.width,
+        position:'absolute',
+        bottom : 0,
+        height: 200,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     controllerView: {
         flexDirection: 'row',
@@ -44,6 +53,10 @@ const styles = StyleSheet.create({
     },
     controlButton: {
         backgroundColor: 'transparent',
+    },
+    overlayButton: {
+        backgroundColor: 'transparent',
+        opacity: 0.8
     },
 });
 
@@ -133,8 +146,10 @@ export default class VideoPlayer extends Component {
         this.setState({ videoDuration: e.duration });
     }
     onVideoEnd(e) {
-        this.player.seek(1);
+        this.player.seek(0);
+        this.state.showControl.setValue(0);
         this.setState({
+            controlVisible: false,
             paused: true
         })
     }
@@ -154,6 +169,20 @@ export default class VideoPlayer extends Component {
         this.setState({ seeking: false});
     }
 
+    //PAUSE OVERLAY
+    renderOverlay(){
+        if(this.state.paused && !this.state.controlVisible){
+            return(<View style={styles.overlayContainer}>
+                <Icon onPress = {() => this.handlePause()} style={[styles.overlayButton]} name= {'control-play'} size={OVERLAY_ICON_SIZE} color ={'white'}/>
+            </View>)
+        } else{
+            return
+        }
+
+
+    }
+
+    //TODO: Link to radial menu
     showAction() {
 
     }
@@ -190,7 +219,7 @@ export default class VideoPlayer extends Component {
                     <View></View>
                 </Video>
                 <Animated.View style ={[controlShow, styles.controllerView]}>
-                    <Icon onPress = {() => this.handlePause()} style={[styles.controlButton]} name= {play} size={PLAY_SIZE} color ={'white'}/>
+                    <Icon onPress = {() => this.handlePause()} style={[styles.controlButton]} name= {play} size={CONTROLLER_ICON_SIZE} color ={'white'}/>
                     <ProgressBar
                         onValueChange={(e) => this.onValueChange(e)}
                         onSeekStart = {() => this.onSeekStart()}
@@ -198,8 +227,9 @@ export default class VideoPlayer extends Component {
                         currentTime = {this.state.currentTime}
                         width={styles.sliderWidth}
                         videoDuration= {this.state.videoDuration} />
-                    <Icon onPress = {() => this.handleShare()} style={[styles.controlButton]} name= {'share'} size={PLAY_SIZE} color ={'white'}/>
+                    <Icon onPress = {() => this.handleShare()} style={[styles.controlButton]} name= {'share'} size={CONTROLLER_ICON_SIZE} color ={'white'}/>
                 </Animated.View>
+                {this.renderOverlay()}
             </TouchableOpacity>
 
     );
