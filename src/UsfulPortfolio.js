@@ -23,9 +23,9 @@ export default class UsfulPortfolio extends Component {
       ...Navigator.SceneConfigs.PushFromRight,
       gestures: {}
     };
+
   }
 
-  
   renderScene(route, navigator) {
     switch (route.id) {
       case Navigation.DETAILED_STORY_SCENE.id:
