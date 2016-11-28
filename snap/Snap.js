@@ -6,13 +6,13 @@ import React, { Component } from 'react';
 import  {
   Animated,
   CameraRoll,
-  Modal,
   StyleSheet,
   Platform,
   Text,
   TouchableWithoutFeedback,
   TouchableHighlight,
   TouchableOpacity,
+  ScrollView,
   View
 } from 'react-native';
 
@@ -35,32 +35,35 @@ export default class Snap extends Component {
       mode: Camera.constants.CaptureMode.still,
       camera: Camera.constants.Type.front,
       aspect: Camera.constants.Aspect.fill,
-      fill: 0,
-      modalVisible: false
+      fill: 0
     }
 
   }
 
 
-  async _takePicture() {
-    try {
-      const fetchParams = {
-        first: 1,
-        groupTypes: 'SavedPhotos',
-        assetType: 'Photos',
-      };
-      const data = await this.camera.capture();
-        console.log(data);
-        CameraRoll.getPhotos(fetchParams, this.getPhotosFromRoll(), console.log(error));
-        Navigation.takePic(data.path);
-    } catch (e) {
-        console.log(e);
-    }
+ takePicture() {
+
+      this.camera.capture()
+        .then((data) => console.log(data))
+        .catch(err => console.error(err));
+        //var data = this.getPhotosFromRoll();
+        //console.log(data);
+        Navigation.push(Navigation.SHOWSNAP);
   }
 
 
   getPhotosFromRoll(){
-    console.log(data);
+    const fetchParams = {
+      first: 1,
+      groupTypes: 'SavedPhotos',
+      assetType: 'Photos',
+    };
+
+    CameraRoll.getPhotos(fetchParams).then((data) => {
+      return (data);
+    }).catch((e) => {
+      console.log(e);
+    });
   }
 
   changeCamera() {
@@ -85,13 +88,13 @@ export default class Snap extends Component {
     let val;
     myInt = setInterval(() => {
       let oldFill = this.state.fill;
-      val = oldFill + 5;
+      val = oldFill + 1;
 
       if (val > 100) {
         val = 0;
       }
       this.setState({fill: val});
-    }, 500);
+    }, 100);
     if (val == 0) clearInterval(myInt);
   }
 
@@ -116,38 +119,26 @@ export default class Snap extends Component {
             <TouchableHighlight onPress={() => this.changeCamera()}>
               <Icon name={"ios-reverse-camera-outline"} color={'white'} size={60}></Icon>
             </TouchableHighlight>
-          <TouchableOpacity
-                  onPress={() => this.setState({modalVisible:true})}><Text style={{color:'white'}}>CLICK FOR ICON DRAWER</Text></TouchableOpacity>
-            <TouchableHighlight style={{marginLeft: 50}} onPress={() => this.changeMode()}>
+            <TouchableHighlight style={{marginLeft: Style.width * 0.5}} onPress={() => this.changeMode()}>
               <Icon name={this.state.mode === Camera.constants.Type.video? 'ios-videocam-outline' : 'ios-camera-outline'} color={'white'} size={60}></Icon>
             </TouchableHighlight>
         </View>
-        <TouchableWithoutFeedback onLongPress={(e)=>this.startRecording()}
+        <TouchableOpacity onPress={() => this.takePicture()}
+                                  onLongPress={(e)=>this.startRecording()}
                                   onPressOut={(e)=>this.doneRecording()}>
           <View>
-          <AnimatedCircularProgress
-            size={100}
-            width={5}
-            fill={this.state.fill}
-            rotation={0}
-            tintColor="red"
-            backgroundColor="#fff">
-          </AnimatedCircularProgress>
-            </View>
-        </TouchableWithoutFeedback>
-        <TouchableOpacity><Text>Get Icons</Text></TouchableOpacity>
-        <Modal
-          animationType={"none"}
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {alert("Modal has been closed.")}}
-        >
-         <IconsDrawer></IconsDrawer>
-        </Modal>
-        <TouchableOpacity style={styles.capture}
-                          onPress={() => this._takePicture()}>
-          <Text style={{ color: 'black' }}> Capture </Text>
+            <AnimatedCircularProgress
+              size={100}
+              width={5}
+              fill={this.state.fill}
+              rotation={0}
+              tintColor="red"
+              backgroundColor="#fff">
+            </AnimatedCircularProgress>
+          </View>
         </TouchableOpacity>
+        <TouchableOpacity><Text>Get Icons</Text></TouchableOpacity>
+
 
 
       </Camera>

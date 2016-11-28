@@ -13,6 +13,8 @@ import PortfolioScene from './components/scenes/PortfolioScene';
 import SplashScene from './components/scenes/SplashScene';
 import IntroductionScene from './components/scenes/IntroductionScene';
 import Snap from '../snap/Snap';
+import ShowSnap from '../snap/ShowSnap';
+import Filters from '../snap/Filters';
 
 export default class UsfulPortfolio extends Component {
   constructor(props) {
@@ -43,8 +45,12 @@ export default class UsfulPortfolio extends Component {
         return <PortfolioScene/>;
       case Navigation.CONTACT_CARD_SCENE.id:
         return <Team content={route.content}/>;
-      case Navigation.SNAP.id:
+       case Navigation.SNAP.id:
         return <Snap/>
+      case Navigation.SHOWSNAP.id:
+        return <ShowSnap/>
+      case Navigation.FILTERS.id:
+        return <Filters/>
     }
   }
 

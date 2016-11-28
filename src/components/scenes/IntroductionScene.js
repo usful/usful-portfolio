@@ -9,7 +9,7 @@ import  {
   TextInput,
   Text,
   TouchableOpacity,
-  PixelRatio,
+  NativeMethodsMixin,
   Platform,
   View
 } from 'react-native';
@@ -20,15 +20,23 @@ import Typewriter from '../../Typewriter';
 import Navigation from '../../helpers/Navigation';
 
 let {width, height} = Dimensions.get('window');
-let introMsg = `Planetary change is inevitable. Through technology, design, and education, Usful is preparing communities for this reality. We are a conscious team of technologists, designers, developers, engineers, and architects who create Usful products with purpose.`;
+let introMsg = `Planetary change is inevitable. Through technology, design, and education, Usful is preparing communities for this reality`;
+let introMsg2 = `We are a conscious team of technologists, designers, developers, engineers, and architects who create Usful products with purpose.`;
 let newMsgList = [];
+let newMsgList2 = [];
 let styles = StyleSheet.create({
-
+  animatedTextLayers: {
+    position:'absolute',
+    top: 0,
+    left: 0
+  },
   container: {
     justifyContent: 'flex-end',
     backgroundColor: 'transparent',
     marginTop: height * 0.15,
-    marginHorizontal: 30
+    marginHorizontal: 30,
+    flexWrap: 'wrap',
+    flexDirection: 'row'
   },
   enter: {
      marginTop: height * 0.1,
@@ -52,6 +60,7 @@ let styles = StyleSheet.create({
     lineHeight:21,
   },
   skip: {
+    marginTop: Style.height * 0.6,
     alignSelf:'flex-end',
     color:  Colours.white,
     fontSize: 20,
@@ -61,30 +70,51 @@ let styles = StyleSheet.create({
   },
 });
 
+
+let posX, posY;
+
 export default class IntroductionScene extends Component {
   
   constructor(props) {
     super(props);
 
-    this.deter(introMsg);
+    this.deter(introMsg, newMsgList);
+    this.deter(introMsg2, newMsgList2);
     
     this.state = {
       enterFadeIn: new Animated.Value(1),
       enterMsg : 'SKIP',
+      firstPhase : true,
+      fullStopPulse: new Animated.Value(0),
+      phaseOne : new Animated.Value(1)
     };
   }
   
   componentDidMount() {
-    this.refs.introMsg0.start(true);
+    this.refs.introMsg10.start(true);
   }
 
-  deter(msg){
+  pauseThenFadeOut() {
+    //fadeOut Phase 1
+    Animated.sequence([
+      Animated.timing(this.state.fullStopPulse, {toValue: 1, duration: 800}),
+      Animated.timing(this.state.fullStopPulse, {toValue: 0, duration: 800}),
+      Animated.timing(this.state.fullStopPulse, {toValue: 1, duration: 800}),
+      Animated.timing(this.state.fullStopPulse, {toValue: 0, duration: 800}),
+      Animated.timing(this.state.fullStopPulse, {toValue: 1, duration: 800}),
+      Animated.timing(this.state.phaseOne, {toValue: 0, duration: 500})
+
+    ]).start();
+
+  }
+
+  deter(msg, newList){
 
     let lettersPerLine, spaceLeft;
-    let wordsLst = introMsg.split(' ');
+    let wordsLst = msg.split(' ');
     let newWord = '';
 
-    if (width >= 414) { //iphone 6plus
+    if (width >= 414) { //iPhone 6 Plus
       lettersPerLine = spaceLeft = 29;
     } else if (width >= 325) {
       lettersPerLine = spaceLeft = 25;
@@ -95,27 +125,49 @@ export default class IntroductionScene extends Component {
     for (let word of wordsLst) {
 
       if ((word.length + 1) > spaceLeft) {
-        newMsgList.push(newWord);
+        newList.push(newWord);
         spaceLeft = lettersPerLine;
         newWord = '';
       }
       newWord = newWord.concat(word + ' ');
       spaceLeft -= (word.length + 1);
     }
-    newMsgList.push(newWord);
+    newList.push(newWord);
   }
 
-  onFinished(num) {
-    if (num == newMsgList.length - 2) {
-      Animated.timing(this.state.enterFadeIn, { toValue: 0, duration: 1000 }).start(() => this.setState({ enterMsg: 'ENTER'}));
-      this.refs[`introMsg${++num}`].start(true);
-    }
-     else if (num != newMsgList.length - 1) {
-
-      this.refs[`introMsg${++num}`].start(true);
+  onFinished2(num, newList, fadeIn) {
+    if (num == newList.length - 1) {
 
     } else {
-      Animated.timing(this.state.enterFadeIn, {toValue: 1, duration: 1000}).start();
+      this.refs[`introMsg2${++num}`].start(fadeIn);
+    }
+  }
+
+  //TODO: instant fadeOut Phase 1
+
+  onFinished1(num, newList, fadeIn){
+    if (num == newList.length - 2) {
+      this.refs[`introMsg1${++num}`].start(fadeIn);
+    }
+    else if (num == newList.length - 1) {
+      let firstPhase = this.state.firstPhase;
+      this.setState({ firstPhase: !firstPhase });
+      let len = newMsgList.length - 1;
+      //NativeMethodsMixin.measure.call(this.refs[`introMsg1${len}`], (x, y, w, h) => {
+        //console.log(x,y,w,h)
+      //});
+      this.refs[`introMsg1${len}`].measure((x,y,w,h,px,py) => console.log(x,y,w,h,px,py));
+      if (firstPhase) {
+        this.pauseThenFadeOut();
+        setTimeout(() => this.refs.introMsg20.start(true), 4500);
+
+      } else {
+      }
+
+    } else {
+      this.refs[`introMsg1${++num}`].start(fadeIn);
+
+      //Animated.timing(this.state.enterFadeIn, {toValue: 1, duration: 1000}).start();
     }
   }
   
@@ -123,17 +175,33 @@ export default class IntroductionScene extends Component {
     return (
         <ScrollView style={styles.view}>
               <View style={styles.container}>
+                <Animated.View style={[ styles.animatedTextLayers, { zIndex: 2, flexWrap: 'wrap', opacity: this.state.phaseOne }]}>
                 {newMsgList.map((sentence, i) => <Typewriter key={i}
-                                                            ref={`introMsg${i}`}
-                                                            style={ styles.msg }
+                                                            ref={`introMsg1${i}`}
+                                                             passbackLayout={(e) => {console.log(e.nativeEvent); posX= e.nativeEvent.layout.x; posY = e.nativeEvent.layout.y}}
+                                                             style={ styles.msg }
                                                             msg={sentence}
                                                             colour="white"
+                                                             speedOnPause={20}
                                                             height={30}
-                                                            onFinished={() => this.onFinished(i)}/>)}
+                                                            onFinished={() => this.onFinished1(i, newMsgList, this.state.firstPhase)}/>)}
+                  <View style={{position: 'absolute', top : posX, left: posY}}><Animated.Text style={[{opacity: this.state.fullStopPulse}, styles.msg ]}>.</Animated.Text></View>
 
+                </Animated.View>
+                <View style={[ styles.animatedTextLayers, { zIndex: 5 }]}>
+                {newMsgList2.map((sentence, i) => <Typewriter key={i}
+                                                              passbackLayout={(e) => {}}
+                                                              ref={`introMsg2${i}`}
+                                                             style={ styles.msg }
+                                                             msg={sentence}
+                                                             colour="white"
+                                                             height={30}
+                                                             onFinished={() => this.onFinished2(i, newMsgList2, true)}/>)}
 
-                <TouchableOpacity style={[styles.enter]}  onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
-                    <Animated.Text style={[styles.font, styles.skip,{ opacity: this.state.enterFadeIn }]}>{this.state.enterMsg}</Animated.Text>
+                </View>
+                <TouchableOpacity style={[styles.enter]}
+                                  onPress={() => Navigation.push(Navigation.PORTFOLIO_SCENE)}>
+                    <Animated.Text style={[styles.font, styles.skip,{ opacity: 1 }]}>{this.state.enterMsg}</Animated.Text>
                 </TouchableOpacity>
               </View>
         </ScrollView>

@@ -5,14 +5,14 @@
 
 import React, { Component } from 'react';
 import  {
-  ScrollView,
+  View,
   StyleSheet,
   Image,
   TouchableWithoutFeedback,
   Text,
   TouchableHighlight,
   TouchableOpacity,
-  View
+  ListView
 } from 'react-native';
 
 
@@ -34,10 +34,17 @@ let pngs = ["e8",
             "fd",
             "ff"];
 
-export default class IconsDrawer extends Component {
+var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
+import IconOnImage from './IconOnImage';
+import Icon from 'react-native-vector-icons/Ionicons';
+
+export default class IconsDrawer extends Component {
+/* <Icon style={{alignSelf: 'flex-end'}} name={"ios-close-outline"} size={30} color={"white"}></Icon>*/
   constructor(props){
     super(props);
+
+    this.state= { dataSource: ds.cloneWithRows(pngs) };
 
   }
 
@@ -91,22 +98,58 @@ export default class IconsDrawer extends Component {
 
   }
 
+  putIconOnImage(rowData){
+    this.props.closeModal(rowData);
+    return <IconOnImage img={rowData}/>
+  }
+
+  renderRow(rowData){
+    return (
+        <View style={styles.row}>
+          <TouchableOpacity
+                            onPress={() => this.putIconOnImage(rowData)}>
+            <Image source={this.getImageSrc(rowData)} style={ styles.square } />
+          </TouchableOpacity>
+        </View>);
+
+  }
+
   render(){
 
-    return <View
+    return (
 
-                style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-      <View>
-      {pngs.map((name,i)=> <TouchableOpacity key={i + name}
-                                style={{ height:30, width: 30, marginHorizontal: 30}}>
-                              <Image
-                                     style={{marginHorizontal:30}}
-                                     resizeMode={"contain"}
-                                     source={this.getImageSrc(name)}/>
-                            </TouchableOpacity>)}
-      </View>
 
-    </View>
+
+      <ListView
+        contentContainerStyle={styles.container}
+        dataSource={ this.state.dataSource }
+        renderRow={(rowData) => this.renderRow(rowData) }/>
+
+    )
 
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    margin:20,
+    marginTop: 70,
+    flex: 1,
+
+  },
+  square: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    resizeMode: 'contain',
+    backgroundColor: 'transparent',
+    padding:20,
+  },
+  row: {
+    justifyContent: 'center',
+    width:64,
+    height: 64,
+ },
+})

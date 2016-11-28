@@ -38,8 +38,12 @@ export default class Navigation {
     id: 'Snap'
   }
 
-  static TEMP_PIC = {
-    id: 'TempPic'
+  static SHOWSNAP = {
+    id: 'ShowSnap'
+  }
+
+  static FILTERS = {
+    id: 'Filters'
   }
 
   static routes = [];
@@ -64,10 +68,10 @@ export default class Navigation {
     this.navigator.popToRoute(route);
   }
 
-  static takePic(picPath) {
-    this.push({id: this.TEMP_PIC.id, pic: picPath});
+  /* static pushPic(picPath) {
+    this.push({id: this.SHOWSNAP.id, pic: picPath});
 
-  }
+  } */
 
   static goContent(content) {
     switch (content.type) {

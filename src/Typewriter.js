@@ -31,6 +31,7 @@ export default class Typewriter extends Component {
     msg: '',
     split: SPLIT_ON,
     speed: 20,
+    speedOnPause: 500,
     colour: 'black',
     fadeIn: true,
     style: {},
@@ -42,6 +43,7 @@ export default class Typewriter extends Component {
     this._isSkipped = false;
     this.setupAnimations();
   }
+
   
   setupAnimations() {
     this.anims = this.props.msg.split(this.props.split).map((val) => {
@@ -50,7 +52,7 @@ export default class Typewriter extends Component {
       
       return {
         value: val,
-        speed: PAUSE_ON.includes(val) ? 500 : speed,
+        speed: PAUSE_ON.includes(val) ? this.props.speedOnPause : speed,
         anim: new Animated.Value(this.props.fadeIn ? 0 : 1)
       };
     });
@@ -72,10 +74,12 @@ export default class Typewriter extends Component {
   
   render() {
     return (
-      <View style={styles.wrapper}>
+      <View
+        style={styles.wrapper}>
         {this.anims.map((obj, i) =>
           <Animated.Text key={obj.value + i}
-                         style={[this.props.style, { height: this.props.height, width: this.props.space ,color:this.props.colour, opacity: this.anims[i].anim}]}>
+                         onLayout={(e) => this.props.passbackLayout(e)}
+                         style={[this.props.style, { height: this.props.height, width: this.props.space, color: this.props.colour, opacity: this.anims[i].anim}]}>
             {obj.value}
           </Animated.Text>
         )}

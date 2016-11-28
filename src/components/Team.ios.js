@@ -24,13 +24,10 @@ export default class Team extends TeamBase {
     if (page < 0) {
       return;
     }
-    
     this.state.scales[page].setValue(this.constructor.MAX_SCALE - (this.constructor.MAX_SCALE - this.constructor.REGULAR_SCALE) * offset);
-
     if (page + 1 >= this.props.team.length) {
       return;
     }
-    
     this.state.scales[page + 1].setValue((this.constructor.MAX_SCALE - this.constructor.REGULAR_SCALE) * offset + this.constructor.REGULAR_SCALE);
   }
   

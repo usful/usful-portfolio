@@ -6,16 +6,23 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "gl-react": "^2.2.8",
+    "gl-react-instagramfilters": "^0.2.0",
+    "gl-react-native": "^2.38.0",
+    "glsl-transition": "^1.0.2",
     "models": "git://github.com/usful/models.git",
     "moment": "^2.15.1",
     "react": "15.3.2",
     "react-native": "^0.37.0",
     "react-native-android-share": "0.0.5",
+    "react-native-aws3": "0.0.3",
     "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
+    "react-native-camera-roll-picker": "^1.1.9",
     "react-native-circular-progress": "0.0.7",
     "react-native-image-slider": "^1.1.5",
     "react-native-keyboard-aware-scroll-view": "^0.2.1",
     "react-native-linear-gradient": "^1.5.13",
-    "react-native-vector-icons": "^3.0.0"
+    "react-native-vector-icons": "^3.0.0",
+    "react-native-view-shot": "^1.5.0"
   }
 }
