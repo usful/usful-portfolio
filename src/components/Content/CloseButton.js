@@ -20,7 +20,7 @@ export default class CloseButton extends Component {
   render() {
     return (
       <TouchableOpacity onPress={(e) => this.props.onPress(e)} style={[Style.sheets.content, style.button]}>
-        <Text style={[style.text, {color: this.props.color}]}>CLOSE</Text>
+        <Text style={[style.text, {color: this.props.color || Style.colours.navBarBlack}]}>CLOSE</Text>
       </TouchableOpacity>
     );
   }
