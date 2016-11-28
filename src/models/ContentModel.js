@@ -19,6 +19,7 @@ const ContentModel = Model.create(
     type: String,
     title: String,
     header: MediaModel,
+    closeColor: String,
     author: PersonModel,
     date: Date,
     hero: MediaModel,

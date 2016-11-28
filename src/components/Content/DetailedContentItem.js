@@ -134,9 +134,8 @@ export default class DetailedContentItem extends Component {
                 return <View key={index}><Text>{block._type}</Text></View>;
             }
           })}
-          
           <NextContentButton style={ [styles.footer, type === 'Story' ? styles.noShadow : styles.shadow]} current = {this.props.content} content={this.props.nextContent} image={this.props.content.footer.uri}/>
-          <CloseButton onPress={() => Navigation.popToRoute(Navigation.PORTFOLIO_SCENE)}/>
+          <CloseButton color={this.props.content.closeColor} onPress={() => Navigation.popToRoute(Navigation.PORTFOLIO_SCENE)}/>
         </View>
 
       </ScrollView>

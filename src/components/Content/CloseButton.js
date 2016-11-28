@@ -20,7 +20,7 @@ export default class CloseButton extends Component {
   render() {
     return (
       <TouchableOpacity onPress={(e) => this.props.onPress(e)} style={[Style.sheets.content, style.button]}>
-        <Text style={style.text}>CLOSE</Text>
+        <Text style={[style.text, {color: this.props.color}]}>CLOSE</Text>
       </TouchableOpacity>
     );
   }
@@ -39,7 +39,6 @@ const style = StyleSheet.create({
     fontSize: 15,
     fontFamily: Style.fonts.primaryFont.fontFamily,
     fontWeight: '500',
-    color: Style.colours.navBarBlack,
     flexWrap: 'wrap',
   }
 });
