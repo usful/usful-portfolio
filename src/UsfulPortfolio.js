@@ -18,14 +18,32 @@ export default class UsfulPortfolio extends Component {
     super(props);
   }
 
-  configureScene() {
-    return {
-      ...Navigator.SceneConfigs.PushFromRight,
-      gestures: {}
-    };
-  }
+  configureScene(route) {
 
-  
+        const backSwipe = {
+            ...Navigator.SceneConfigs.PushFromRight
+        };
+
+        const noBackSwipe = {
+            ...Navigator.SceneConfigs.PushFromRight,
+            gestures: {
+                pop: {}
+            }
+        };
+
+        switch (route.id) {
+            case Navigation.INTRODUCTION_SCENE.id:
+                return noBackSwipe;
+                break;
+            case Navigation.PORTFOLIO_SCENE.id:
+                return noBackSwipe;
+                break;
+            default:
+                return backSwipe;
+                break;
+        }
+    }
+
   renderScene(route, navigator) {
     switch (route.id) {
       case Navigation.DETAILED_STORY_SCENE.id:
@@ -52,7 +70,7 @@ export default class UsfulPortfolio extends Component {
         <Navigator
           ref={(el) => Navigation.navigator = el}
           initialRoute={Navigation.SPLASH_SCENE}
-          configureScene={() => this.configureScene()}
+          configureScene={(route) => this.configureScene(route)}
           renderScene={(route, navigator) => this.renderScene(route, navigator)}
         />
       </View>
