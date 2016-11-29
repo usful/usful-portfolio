@@ -45,7 +45,7 @@ export default class Navigation {
   }
 
   static androidBackPressed() {
-
+      let lastIndex = Navigation.routes.length - 1;
       if (Navigation.routes[lastIndex].id === ('PortfolioScene' || 'IntroductionScene')) {
           BackAndroid.exitApp();
           return false;
