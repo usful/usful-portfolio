@@ -19,7 +19,6 @@ import  {
 import Style from '../src/styles';
 import Camera from 'react-native-camera';
 import Navigation from '../src/helpers/Navigation';
-import TempPic from './TempPic';
 import IconsDrawer from './IconsDrawer';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';

@@ -64,7 +64,7 @@ export default class UsfulPortfolio extends Component {
         return <PortfolioScene/>;
       case Navigation.CONTACT_CARD_SCENE.id:
         return <Team content={route.content}/>;
-       case Navigation.SNAP.id:
+      case Navigation.SNAP.id:
         return <Snap/>
       case Navigation.SHOWSNAP.id:
         return <ShowSnap/>
