@@ -80,11 +80,7 @@ export default class UsfulPortfolio extends Component {
         <Navigator
           ref={(el) => Navigation.navigator = el}
           initialRoute={Navigation.SPLASH_SCENE}
-<<<<<<< HEAD
-          configureScene={() => this.configureScene(Navigation.SPLASH_SCENE)}
-=======
           configureScene={(route) => this.configureScene(route)}
->>>>>>> master
           renderScene={(route, navigator) => this.renderScene(route, navigator)}
         />
       </View>
