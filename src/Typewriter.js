@@ -78,7 +78,7 @@ export default class Typewriter extends Component {
         style={styles.wrapper}>
         {this.anims.map((obj, i) =>
           <Animated.Text key={obj.value + i}
-                         onLayout={(e) => this.props.passbackLayout(e)}
+                         onLayout={(e) => this.props.countSpace(e)}
                          style={[this.props.style, { height: this.props.height, width: this.props.space, color: this.props.colour, opacity: this.anims[i].anim}]}>
             {obj.value}
           </Animated.Text>

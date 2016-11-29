@@ -21,11 +21,28 @@ export default class UsfulPortfolio extends Component {
     super(props);
   }
 
-  configureScene() {
-    return {
-      ...Navigator.SceneConfigs.PushFromRight,
-      gestures: {}
+
+  configureScene(route) {
+
+    const backSwipe = {
+      ...Navigator.SceneConfigs.PushFromRight
     };
+
+    const noBackSwipe = {
+      ...Navigator.SceneConfigs.PushFromRight,
+      gestures: {
+        pop: {}
+      }
+    };
+
+    switch (route.id) {
+      case Navigation.DETAILED_STORY_SCENE.id:
+        return backSwipe;
+        break;
+      default:
+        return noBackSwipe;
+        break;
+    }
   }
 
   
@@ -60,8 +77,8 @@ export default class UsfulPortfolio extends Component {
         <StatusBar translucent={true} backgroundColor="rgb(0,0,0)"/>
         <Navigator
           ref={(el) => Navigation.navigator = el}
-          initialRoute={Navigation.SNAP}
-          configureScene={() => this.configureScene()}
+          initialRoute={Navigation.SPLASH_SCENE}
+          configureScene={() => this.configureScene(Navigation.SPLASH_SCENE)}
           renderScene={(route, navigator) => this.renderScene(route, navigator)}
         />
       </View>

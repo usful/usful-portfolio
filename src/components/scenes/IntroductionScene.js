@@ -71,8 +71,8 @@ let styles = StyleSheet.create({
 });
 
 
-let posX, posY;
-
+let posX = 0;
+let posY = 0;
 export default class IntroductionScene extends Component {
   
   constructor(props) {
@@ -153,22 +153,27 @@ export default class IntroductionScene extends Component {
       let firstPhase = this.state.firstPhase;
       this.setState({ firstPhase: !firstPhase });
       let len = newMsgList.length - 1;
-      //NativeMethodsMixin.measure.call(this.refs[`introMsg1${len}`], (x, y, w, h) => {
-        //console.log(x,y,w,h)
-      //});
-      this.refs[`introMsg1${len}`].measure((x,y,w,h,px,py) => console.log(x,y,w,h,px,py));
       if (firstPhase) {
         this.pauseThenFadeOut();
         setTimeout(() => this.refs.introMsg20.start(true), 4500);
 
       } else {
+
       }
 
     } else {
       this.refs[`introMsg1${++num}`].start(fadeIn);
-
-      //Animated.timing(this.state.enterFadeIn, {toValue: 1, duration: 1000}).start();
+      Animated.timing(this.state.enterFadeIn, {toValue: 1, duration: 1000}).start();
     }
+
+
+  }
+
+  getPosForPeriod(e,i){
+    if ((i == (newMsgList.length - 1)) && e.nativeEvent.layout.x > posX) {
+      posX = e.nativeEvent.layout.x
+    }
+    posY = e.nativeEvent.layout.height;
   }
   
   render() {
@@ -177,26 +182,28 @@ export default class IntroductionScene extends Component {
               <View style={styles.container}>
                 <Animated.View style={[ styles.animatedTextLayers, { zIndex: 2, flexWrap: 'wrap', opacity: this.state.phaseOne }]}>
                 {newMsgList.map((sentence, i) => <Typewriter key={i}
-                                                            ref={`introMsg1${i}`}
-                                                             passbackLayout={(e) => {console.log(e.nativeEvent); posX= e.nativeEvent.layout.x; posY = e.nativeEvent.layout.y}}
+                                                             ref={`introMsg1${i}`}
+                                                             countSpace={(e) => {this.getPosForPeriod(e,i)}}
                                                              style={ styles.msg }
-                                                            msg={sentence}
-                                                            colour="white"
+                                                             msg={sentence}
+                                                             colour="white"
                                                              speedOnPause={20}
-                                                            height={30}
-                                                            onFinished={() => this.onFinished1(i, newMsgList, this.state.firstPhase)}/>)}
-                  <View style={{position: 'absolute', top : posX, left: posY}}><Animated.Text style={[{opacity: this.state.fullStopPulse}, styles.msg ]}>.</Animated.Text></View>
+                                                             height={30}
+                                                             onFinished={() => this.onFinished1(i, newMsgList, this.state.firstPhase)}/>)}
+                  <View style={{position: 'absolute', left: posX + 2, top: (newMsgList.length -1) * posY}}>
+                    <Animated.Text style={[{opacity: this.state.fullStopPulse}, styles.msg ]}>.</Animated.Text>
+                  </View>
 
                 </Animated.View>
                 <View style={[ styles.animatedTextLayers, { zIndex: 5 }]}>
                 {newMsgList2.map((sentence, i) => <Typewriter key={i}
-                                                              passbackLayout={(e) => {}}
+                                                              countSpace={(e) => {}}
                                                               ref={`introMsg2${i}`}
-                                                             style={ styles.msg }
-                                                             msg={sentence}
-                                                             colour="white"
-                                                             height={30}
-                                                             onFinished={() => this.onFinished2(i, newMsgList2, true)}/>)}
+                                                              style={ styles.msg }
+                                                              msg={sentence}
+                                                              colour="white"
+                                                              height={30}
+                                                              onFinished={() => this.onFinished2(i, newMsgList2, true)}/>)}
 
                 </View>
                 <TouchableOpacity style={[styles.enter]}
