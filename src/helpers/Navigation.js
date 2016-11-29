@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import {BackAndroid} from 'react-native';
+
 export default class Navigation {
 
   static navigator = null;
@@ -54,18 +56,31 @@ export default class Navigation {
     Navigation.routes = [route];
   }
 
+  static androidBackPressed() {
+      let lastIndex = Navigation.routes.length - 1;
+      if (Navigation.routes[lastIndex].id === ('PortfolioScene' || 'IntroductionScene')) {
+          BackAndroid.exitApp();
+          return false;
+      }
+
+      Navigation.pop();
+      return true;
+  }
+
   static push(route) {
     Navigation.routes.push(route);
-    this.navigator.push(route)
+    this.navigator.push(route);
   }
 
   static pop() {
     this.navigator.pop();
-    return Navigation.routes.pop();
+    Navigation.routes.pop();
   }
 
   static popToRoute(route) {
+
     this.navigator.popToRoute(route);
+    Navigation.routes.pop(route);
   }
 
   /* static pushPic(picPath) {
@@ -87,3 +102,5 @@ export default class Navigation {
     }
   }
 }
+
+BackAndroid.addEventListener('hardwareBackPress', Navigation.androidBackPressed);
