@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 export default class TeamBase extends Component {
   static MAX_SCALE = 1;
   static REGULAR_SCALE = 0.8;
-  
+
   static defaultProps = {
     team: [],
     onClose: (e) => {}
@@ -36,7 +36,7 @@ export default class TeamBase extends Component {
 
   constructor(props) {
     super(props);
-    
+
     this.state = {
       modalVisible: true,
       scales: [],
@@ -47,23 +47,23 @@ export default class TeamBase extends Component {
   componentWillMount() {
     this.setupScales(this.props.team);
   }
-  
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.team !== this.props.team) {
       this.setupScales(nextProps.team);
     }
   }
-  
+
   setupScales(people) {
     this.setState({scales: people.map((person, i) => new Animated.Value(i === 0 ? this.constructor.MAX_SCALE : this.constructor.REGULAR_SCALE))});
   }
-  
+
   renderStoryCard(person, i) {
     let wrapperStyle = {
       transform: [{scale: this.state.scales[i]}],
       overflow: 'visible'
     };
-  
+
     return (
       <View key={i + person._id} style={styles.container}>
         <Animated.View style={wrapperStyle}>
@@ -76,7 +76,7 @@ export default class TeamBase extends Component {
       </View>
     )
   };
-  
+
   render() {
     return (
 
@@ -90,7 +90,7 @@ export default class TeamBase extends Component {
           onScroll={(e) => this.onScroll(e)} >
           {this.props.team.map((person, i) => this.renderStoryCard(person, i))}
         </ScrollView>
-     </View>
+      </View>
     );
   }
 }

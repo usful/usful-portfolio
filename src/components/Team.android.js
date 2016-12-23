@@ -9,7 +9,7 @@ import TeamBase from './TeamBase';
 
 export default class Team extends TeamBase {
   static MAX_SCALE = 1;
-  static REGULAR_SCALE = 0.8;
+  static REGULAR_SCALE = 0.8
 
   constructor(props) {
     super(props);

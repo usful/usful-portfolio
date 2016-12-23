@@ -95,7 +95,7 @@ export default [
       {_mg: GUID(), type: 'linkedin', uri: 'https://www.linkedin.com/in/rishabhnag'}]
   }, {
     _id: GUID(),
-    name: 'Mercedes Lo',
+    name: 'Mercedes Lo', //9
     description: 'Usful means to effectively integrate technology into our daily routines.',
     tags: ['Conceptualize', 'Develop', 'Build'],
     picture: media[50],

@@ -17,13 +17,45 @@ function randomMedia() {
   return media[Math.floor(Math.random() * media.length)];
 }
 
-//TODO: Add correct team members for each content piece
 //TODO: Better way to retrieve blocks from content data, hardcoded right now to exact position in array, need less terrible solution
 
 const AppData = new AppDataModel(
   {
     team: team,
     content: [
+      {
+        _id: GUID(),
+        type: 'Story',
+        name: 'A Usful Holiday Season',
+        header: media[57],
+        closeColor: 'white',
+        author: team[6],
+        hero: media[57],
+        heroDescription: 'Happy Holidays and Best Wishes for a Wonderful New Year',
+        title: 'Happy Holidays and Best Wishes for a Wonderful New Year',
+        footer: media[17],
+        blocks: content[0][4].blocks,
+        team: [
+          team[0],team[1],team[2],team[3],team[4],team[5],team[6],team[7],team[8],team[9]
+        ],
+        story: 'Product Update'
+      },
+      {
+        _id: GUID(),
+        type: 'Story',
+        name: 'Product Update',
+        header: media[32],
+        author: team[6],
+        hero: media[31],
+        heroDescription: 'Now you can get your message out quicker and easier! ',
+        title: 'We Updated Lane’s Portal',
+        footer: media[36],
+        blocks: content[2][2].blocks,
+        team: [
+          team[0],
+          team[4],
+        ]
+      },
       {
         _id: GUID(),
         hero: media[10],
@@ -109,7 +141,7 @@ const AppData = new AppDataModel(
         team: [
 
         ],
-        story: '#FarmFreshTO'
+        story: 'A Usful Holiday Season'
       },
       {
         _id: GUID(),
@@ -147,7 +179,7 @@ const AppData = new AppDataModel(
           uri: 'https://joinlane.com/',
           twitter: 'https://twitter.com/joinlane'
         },
-        story: 'Manufactured Landscapes'
+        story: 'Product Update'
       },
       {
         _id: GUID(),
@@ -163,7 +195,8 @@ const AppData = new AppDataModel(
         team: [
         ],
         story: '#FarmFreshTO'
-      }
+      },
+
     ]
   }
 );
