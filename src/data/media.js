@@ -580,4 +580,14 @@ export default [
     height: 450,
     bytes: 27400
   }),
+  new MediaModel({
+    _id: 'Header_Image.jpg',
+    _created: new Date(),
+    _updated: new Date(),
+    contentType: 'image/png',
+    folder: 'holidayGreetings',
+    width: 800,
+    height: 450,
+    bytes: 27400
+  }),
 ];

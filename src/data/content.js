@@ -4,7 +4,7 @@ function randomMedia() {
 }
 
 
-export default[
+export default [
 storyBlocks = [
   {
     title: 'Urban Farming',
@@ -215,6 +215,23 @@ storyBlocks = [
 
     ]
   },
+  {
+    title: 'Holiday Greetings',
+    blocks: [
+      {
+        _type: 'CopyBlock',
+        text: 'This holiday season the Usful team has reflected upon our products, partnerships, and those who have made our progress possible.'
+      },
+      {
+        _type: 'CopyBlock',
+        text: 'In this spirit, we would like send our warmest wishes to you and your loved ones this season and hope for all the best in the coming new year.'
+      },
+      {
+        _type: 'CopyBlock',
+        text: 'Here’s to a prosperous 2017.'
+      },
+    ]
+  },
 
 ],
 
@@ -256,7 +273,6 @@ initiativeBlocks = [
     ]
   }
 ],
-
   productBlocks = [
     {
       title: 'Lane',
@@ -397,7 +413,71 @@ initiativeBlocks = [
         },
 
       ]
+    },
+    {
+      title: 'Now you can get your message out quicker and easier! ',
+      blocks: [
+        {
+          _type: 'CopyBlock',
+          text: 'Welcome to the newest portal update.'
+        },
+        {
+          _type: 'CopyBlock',
+          text: 'While users can still create and schedule content for channel subscribers, the latest portal release of Lane comes with a new design and improved functionality. '
+        },
+        {
+          _type: 'CopyBlock',
+          text: 'We’re most excited about three particular features that make it easier for our users to create, schedule, and organize their channel’s content.'
+        },
+        {
+          _type: 'ButtonRowBlock',
+          title: 'Check this youtube video out!',
+          buttons: [
+            {
+              _type: 'ButtonBlock',
+              text: 'Video',
+              uri: 'https://www.youtube.com/watch?v=u_Dm6_vsXcA&t=9s'
+            },
+          ]
+        },
+        {
+          _type: 'CopyBlock',
+          text: 'Main Menu'
+        },
+        {
+          _type: 'CopyBlock',
+          text: 'You’ll notice that the main menu has been updated. Now user’s can access their account’s main menu and their channel’s main menu separately. These menus remain visible on the home screen for easy access and quick navigation. If a wider screen is preferred, simply click on the three white dots to the right of the side menu to hide it. Channel hierarchy can also be referenced within the channel menu.'
+        },
+        {
+          _type: 'CopyBlock',
+          text: 'Scheduled Content'
+        },
+        {
+          _type: 'CopyBlock',
+          text: 'Programming scheduled content is a new feature that allows channel users to create and push time-released content to subscribers once they have joined a channel. For example, you can send new subscribers a ‘Welcome’ notification within 3 minutes of them joining your Channel - making their experience personalized. Or, push a feedback survey after a subscriber has been a member of your channel for 2 weeks. With scheduled content, keeping subscribers engaged with important information is easy! '
+        },
+        {
+          _type: 'CopyBlock',
+          text: 'Custom Tabs'
+        },
+        {
+          _type: 'CopyBlock',
+          text: 'Channel customization is now even easier with the new portal capability to build tabs specific to the information and subscribers of any channel. Similar to services, subscribers will be able to access pages through customized tabs. Select the tab’s name and icon that appears in menus. This feature allows users to add even more channel specific information and display it to subscribers in a personalized way.'
+        },
+        {
+          _type: 'ButtonRowBlock',
+          title: 'If you are a Lane user, log in now to your new portal',
+          buttons: [
+            {
+              _type: 'ButtonBlock',
+              text: 'Login',
+              uri: 'https://app.joinlane.com/portal/login#/portal/ '
+            },
+          ]
+        },
+
+      ]
     }
   ]
-  ]
+]
 
